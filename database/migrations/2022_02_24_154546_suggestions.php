@@ -18,13 +18,13 @@ return new class extends Migration
             $table->string('title');
             $table->string('description');
             $table->boolean('status');
-            $table->foreignId('departament_id')
-            ->constrained('departaments');
-            $table->foreignId('user_id')
-            ->constrained('users');
-            $table->foreignId('manager_id')
-            ->constrained('managers')
-            ->nullable();
+            $table->foreignId('departament_id')->constrained('departaments');
+            $table->unsignedBigInteger('department_id');
+            $table->foreign('user_id')->references('id')->on('department')->onDelete('cascade')->nullable();
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->nullable();
+            $table->unsignedBigInteger('manager_id');
+            $table->foreign('manager_id')->references('id')->on('users')->onDelete('cascade')->nullable();
             $table->timestamps();
         });
     }
