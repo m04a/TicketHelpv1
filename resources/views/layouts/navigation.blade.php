@@ -13,6 +13,12 @@
 
                 <!-- primary nav -->
                 <!-- Settings Dropdown -->
+
+
+            <!-- secondary nav -->
+            <div class="hidden md:flex items-center space-x-1">
+                <a href="{{ route('login') }}" class="bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900 py-5 px-3">Login</a>
+                <a href="{{ route('register') }}" class="py-2 px-3 bg-yellow-400 hover:bg-yellow-300 text-yellow-900 hover:text-yellow-800 rounded transition duration-300">Registre</a>
                 <div class="hidden sm:flex sm:items-center sm:ml-6">
                     <x-dropdown align="right" width="48">
                         <x-slot name="trigger">
@@ -42,12 +48,6 @@
                     </x-dropdown>
                 </div>
             </div>
-
-            <!-- secondary nav -->
-            <div class="hidden md:flex items-center space-x-1">
-                <a href="{{ route('login') }}" class="bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900 py-5 px-3">Login</a>
-                <a href="{{ route('register') }}" class="py-2 px-3 bg-yellow-400 hover:bg-yellow-300 text-yellow-900 hover:text-yellow-800 rounded transition duration-300">Registre</a>
-
             </div>
 
             <!-- mobile button goes here -->
