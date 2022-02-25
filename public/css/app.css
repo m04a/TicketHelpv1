@@ -1119,8 +1119,8 @@ select {
   font-weight: 600;
 }
 
-.font-bold {
-  font-weight: 700;
+.font-extrabold {
+  font-weight: 800;
 }
 
 .uppercase {
@@ -1340,7 +1340,6 @@ select {
 
 .logo-image{
     font-family: "Fira Sans", serif;
-    font-weight: bold;
     color:#383838;
 }
 
