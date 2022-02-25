@@ -5,14 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class zone extends Model
+class Zone extends Model
 {
     use HasFactory;
 
-    public function zone()
+    public function Breakdown()
     {
-        return $this->hasMany(Comment::Breakdown);
-        return $this->hasMany(Comment::Device);
+        return $this->hasMany(Breakdown::Class);
+    }
+
+    public function Device()
+    {
+        return $this->hasMany(Device::Class);
     }
 
     protected $fillable = [
@@ -20,6 +24,5 @@ class zone extends Model
         'label',
         'description',
     ];
-
 }
 
