@@ -48,8 +48,8 @@ class User extends Authenticatable
      *
      * @return belongsTo(Modal::class);
      */
-    public function usd()
+    public function relationship_UserRole()
     {
-        return $this->belongsTo(Role::class);
+        return $this->belongsTo(Role::class, 'role_id');
     }
 }
