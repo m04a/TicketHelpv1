@@ -14,18 +14,23 @@ return new class extends Migration
     public function up()
     {
         Schema::create('questions', function (Blueprint $table) {
+            
             $table->id();
             $table->string('title');
             $table->string('description');
             $table->boolean('status');
-            $table->foreignId('departament_id')
-            ->constrained('departaments');
-            $table->foreignId('user_id')
-            ->constrained('users');
-            $table->foreignId('manager_id')
-            ->constrained('managers')
-            ->nullable();
+            
+            $table->unsignedBigInteger('department_id');
+            $table->foreign('department_id')->references('id')->on('departments')->nullable();
+            
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            
+            $table->unsignedBigInteger('manager_id');
+            $table->foreign('manager_id')->references('id')->on('users')->nullable();
+
             $table->timestamps();
+            
         });
     }
 
