@@ -19,9 +19,9 @@ return new class extends Migration
             $table->string('description');
             $table->boolean('status');
             $table->unsignedBigInteger('department_id');
-            $table->foreign('user_id')->references('id')->on('departments')->onDelete('cascade')->nullable();
+            $table->foreign('department_id')->references('id')->on('departments')->onDelete('cascade')->nullable();
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->nullable();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('manager_id');
             $table->foreign('manager_id')->references('id')->on('users')->onDelete('cascade')->nullable();
             $table->timestamps();
