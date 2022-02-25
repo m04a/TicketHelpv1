@@ -16,13 +16,16 @@ return new class extends Migration
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
             $table->text('content');
-            $table->foreignId('user_id')
-            ->constrained('users');
-            $table->foreignId('question_id')
-            ->constrained('questions')
-            ->nullable();
-            $table->foreignId('breakdown_id')
-            ->constrained('breakdowns');
+            
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            
+            $table->unsignedBigInteger('question_id');
+            $table->foreign('question_id')->references('id')->on('questions')->onDelete('cascade')->nullable();
+            
+            $table->unsignedBigInteger('breakdown_id');
+            $table->foreign('breakdown_id')->references('id')->on('breakdowns')->onDelete('cascade')->nullable();
+            
             $table->timestamps();
         });
     }
