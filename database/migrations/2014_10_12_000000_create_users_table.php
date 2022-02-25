@@ -20,8 +20,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
 
-            $table->unsignedBigInteger('role_id')->nullable();
-            $table->index('role_id');
+            $table->unsignedBigInteger('role_id')->default(1);
             $table->foreign('role_id')->references('id')->on('role');
 
             $table->rememberToken();
@@ -39,7 +38,7 @@ return new class extends Migration
         Schema::dropIfExists('users');
 
         $table->dropForeign('lists_role_id_foreign');
-        $table->dropIndex('lists_role_index');
+        
         $table->dropColumn('role_id');
     }
 };
