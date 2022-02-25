@@ -25,4 +25,3 @@ class Zone extends Model
         'description',
     ];
 }
-
