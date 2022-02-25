@@ -7,7 +7,7 @@
                 <!-- logo -->
                 <div>
                     <a href="#" class="flex items-center py-5 px-2 text-gray-700 hover:text-gray-900">
-                        <span class="logo-image font-bold">TicketHelp</span>
+                        <span class="logo-image font-extrabold">TicketHelp</span>
                     </a>
                 </div>
 
