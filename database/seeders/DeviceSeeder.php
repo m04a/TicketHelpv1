@@ -36,7 +36,7 @@ class Device extends Seeder
 
         DB::table('devices')->insert([
             'label' => 's-04-02',
-            'type_id' => 2,
+            'type_id' => 1,
             'zone_id' => 4,
         ]);
     }
