@@ -1,9 +1,4 @@
 <aside class="aside is-placed-left is-expanded">
-    <div class="aside-tools">
-        <div class="logo-dashboard">
-            <b class="font-black"> TicketHelp</b>
-        </div>
-    </div>
     <div class="menu is-menu-main">
         <p class="menu-label">General</p>
         <ul class="menu-list">

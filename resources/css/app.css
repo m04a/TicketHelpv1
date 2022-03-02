@@ -28,12 +28,6 @@
 .bold{font-weight:bold;}
 .italic{font-style: italic;}
 .oblique{font-style: oblique;}
-.logo-image{
-    font-family: "Fira Sans", serif;
-    color:#ff0000;
-    font-weight: 600;
-    font-size: 40px;
-}
 /*Main styles of the body*/
 body {
     @apply bg-gray-50 text-base pt-14 lg:pl-60 text-gray-700;
@@ -66,12 +60,9 @@ body {
 }
 /*Aside main styles for the sidebar*/
 .aside {
-    @apply w-60 -left-60 fixed top-0 z-40 h-screen bg-white transition-all lg:left-0 shadow-lg;
+    @apply w-60 -left-60 fixed h-screen bg-white transition-all lg:left-0 shadow-lg;
 }
 
-.aside-tools {
-    @apply flex flex-row w-full bg-white text-red-600 flex-1 px-3 h-14 items-center;
-}
 
 .aside-mobile-expanded .aside {
     @apply left-0;
@@ -89,7 +80,8 @@ body {
     @apply overflow-hidden lg:overflow-visible;
 }
 .logo-dashboard{
-    @apply text-3xl text-center;
+    @apply text-3xl text-center font-bold text-red-600 p-3;
+    font-family: "Fira Sans", serif;
 }
 /*Menu items */
 .menu-label {
@@ -430,7 +422,11 @@ body {
     content: '/';
     @apply inline-block pl-3;
 }
-
+@media (min-width: 1024px){
+    .navbar {
+        padding-left: 0;
+    }
+}
 .is-title-bar li:last-child {
     @apply pr-0 font-black text-black;
 }

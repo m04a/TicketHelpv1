@@ -24,7 +24,11 @@
             <!-- Page Heading -->
             <header class="bg-white shadow">
                 <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                    {{ $header }}
+                    <section class="is-hero-bar">
+                        <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0 text-center">
+                            {{ $header }}
+                        </div>
+                    </section>
                 </div>
             </header>
 

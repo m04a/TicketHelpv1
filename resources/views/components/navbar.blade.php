@@ -1,8 +1,10 @@
 <nav id="navbar-main" class="navbar is-fixed-top">
+    <div class="aside-tools">
+        <div class="logo-dashboard">
+            <b class="font-black"> TicketHelp</b>
+        </div>
+    </div>
     <div class="navbar-brand">
-        <a class="navbar-item mobile-aside-button">
-            <span class="icon"><i class="mdi mdi-forwardburger mdi-24px"></i></span>
-        </a>
     </div>
     <div class="navbar-brand is-right">
         <a class="navbar-item --jb-navbar-menu-toggle" data-target="navbar-menu">
