@@ -17,19 +17,19 @@ class TypeSeeder extends Seeder
     { 
         DB::table('types')->insert([
             'id' => 1,
-            'label' => 'switch',
+            'label' => 'Switch',
             'description' => 'switchs CISCO del institut',
         ]);
 
         DB::table('types')->insert([
             'id' => 2,
-            'label' => 'impresora',
+            'label' => 'Impresora',
             'description' => 'impresores EPSON del institut',
         ]);
 
         DB::table('types')->insert([
             'id' => 3,
-            'label' => 'monitor',
+            'label' => 'Monitor',
             'description' => 'monitors LG pro max institut',
         ]);
 
