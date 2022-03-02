@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Seeder;
 
-class Device extends Seeder
+class DeviceSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -36,7 +36,7 @@ class Device extends Seeder
 
         DB::table('devices')->insert([
             'label' => 's-04-02',
-            'type_id' => 2,
+            'type_id' => 1,
             'zone_id' => 4,
         ]);
     }
