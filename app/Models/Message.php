@@ -23,4 +23,9 @@ class Message extends Model
     {
         return $this->belongsTo(Question::Class);
     }
+
+    protected $fillable = [
+        'id',
+        'content'
+    ];
 }

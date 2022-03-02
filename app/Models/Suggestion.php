@@ -18,4 +18,10 @@ class Suggestion extends Model
     {
         return $this->belongsTo(User::Class);
     }
+
+    protected $fillable = [
+        'id',
+        'tittle',
+        'description'
+    ];
 }

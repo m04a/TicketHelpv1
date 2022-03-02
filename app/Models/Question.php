@@ -23,4 +23,10 @@ class Question extends Model
     {
         return $this->hasMany(Message::Class);
     }
+
+    protected $fillable = [
+        'id',
+        'tittle',
+        'description'
+    ];
 }
