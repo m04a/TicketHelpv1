@@ -11,17 +11,17 @@ class Department extends Model
     use HasFactory;
 
 
-    public function Question()
+    public function questions()
     {
         return $this->hasMany(Question::Class);
     }
 
-    public function Suggestion()
+    public function suggestions()
     {
         return $this->hasMany(Suggestion::Class);
     }
 
-    public function Breakdown()
+    public function breakdowns()
     {
         return $this->hasMany(Breakdown::Class);
     }
