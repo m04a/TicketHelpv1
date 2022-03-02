@@ -17,25 +17,25 @@ class Device extends Seeder
     public function run()
     {
         DB::table('devices')->insert([
-            'label' => 'i-01-01',
+            'label' => 'i-01-02',
             'type_id' => 2,
             'zone_id' => 1,
         ]);
 
         DB::table('devices')->insert([
-            'label' => 'm-02-01',
+            'label' => 'm-02-03',
             'type_id' => 3,
             'zone_id' => 2,
         ]);
         
         DB::table('devices')->insert([
-            'label' => 'px-03-01',
+            'label' => 'px-03-04',
             'type_id' => 4,
             'zone_id' => 3,
         ]);
 
         DB::table('devices')->insert([
-            'label' => 's-04-01',
+            'label' => 's-04-02',
             'type_id' => 2,
             'zone_id' => 4,
         ]);
