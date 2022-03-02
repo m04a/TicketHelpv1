@@ -28,6 +28,7 @@ class Question extends Model
         'id',
         'tittle',
         'description',
+        'department_id',
         'user_id',
         'manager_id'
     ];
