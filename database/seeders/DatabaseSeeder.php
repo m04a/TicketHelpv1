@@ -14,7 +14,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
-        $this->call(ZoneSeeder::class);
+        $this->call([
+            UserSeeder::class,
+            RoleSeeder::class,
+            DeviceSeeder::class,
+            ZoneSeeder::class,
+        ]);
     }
 }
