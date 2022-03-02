@@ -9,12 +9,12 @@ class Suggestion extends Model
 {
     use HasFactory;
 
-    public function Department()
+    public function department()
     {
         return $this->belongsTo(Department::Class);
     }
 
-    public function User()
+    public function user()
     {
         return $this->belongsTo(User::Class);
     }
@@ -22,6 +22,8 @@ class Suggestion extends Model
     protected $fillable = [
         'id',
         'tittle',
-        'description'
+        'description',
+        'department_id',
+        'user_id'
     ];
 }
