@@ -17,25 +17,25 @@ class Device extends Seeder
     public function run()
     {
         DB::table('devices')->insert([
-            'label' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam, eius.',
+            'label' => 'i-01-01',
             'type_id' => 2,
             'zone_id' => 1,
         ]);
 
         DB::table('devices')->insert([
-            'label' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam, eius.',
+            'label' => 'm-02-01',
             'type_id' => 3,
             'zone_id' => 2,
         ]);
         
         DB::table('devices')->insert([
-            'label' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam, eius.',
+            'label' => 'px-03-01',
             'type_id' => 4,
             'zone_id' => 3,
         ]);
 
         DB::table('devices')->insert([
-            'label' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam, eius.',
+            'label' => 's-04-01',
             'type_id' => 2,
             'zone_id' => 4,
         ]);
