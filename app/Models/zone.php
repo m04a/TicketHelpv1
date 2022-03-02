@@ -9,12 +9,12 @@ class Zone extends Model
 {
     use HasFactory;
 
-    public function Breakdown()
+    public function breakdowns()
     {
         return $this->hasMany(Breakdown::Class);
     }
 
-    public function Device()
+    public function devices()
     {
         return $this->hasMany(Device::Class);
     }
