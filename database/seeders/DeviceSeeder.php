@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Seeder;
 
-class Device extends Seeder
+class DeviceSeeder extends Seeder
 {
     /**
      * Run the database seeds.
