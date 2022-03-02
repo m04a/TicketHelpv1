@@ -9,23 +9,26 @@ class Message extends Model
 {
     use HasFactory;
 
-    public function User()
+    public function user()
     {
         return $this->belongsTo(User::Class);
     }
 
-    public function Question()
+    public function question()
     {
         return $this->belongsTo(Question::Class);
     }
 
-    public function Breakdown()
+    public function breakdown()
     {
         return $this->belongsTo(Question::Class);
     }
 
     protected $fillable = [
         'id',
-        'content'
+        'content',
+        'user_id',
+        'question_id',
+        'breakdown_id'
     ];
 }
