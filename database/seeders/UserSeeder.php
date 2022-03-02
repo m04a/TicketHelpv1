@@ -78,6 +78,5 @@ class User extends Seeder
             'role_id' => 2,
             'password' => '1234567890',
         ]);
-        
     }
 }

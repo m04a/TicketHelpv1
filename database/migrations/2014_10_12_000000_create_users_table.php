@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('password');
 
             $table->unsignedBigInteger('role_id')->default(1);
-            $table->foreign('role_id')->references('id')->on('role');
+            $table->foreign('role_id')->references('id')->on('roles');
 
             $table->rememberToken();
             $table->timestamps();
@@ -39,6 +39,6 @@ return new class extends Migration
 
         $table->dropForeign('lists_role_id_foreign');
         $table->dropColumn('role_id');
-        
+
     }
 };
