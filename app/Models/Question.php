@@ -9,17 +9,17 @@ class Question extends Model
 {
     use HasFactory;
 
-    public function User()
+    public function user()
     {
         return $this->belongsTo(User::Class);
     }
 
-    public function Department()
+    public function department()
     {
         return $this->belongsTo(Department::Class);
     }
 
-    public function Message()
+    public function messages()
     {
         return $this->hasMany(Message::Class);
     }
@@ -27,6 +27,8 @@ class Question extends Model
     protected $fillable = [
         'id',
         'tittle',
-        'description'
+        'description',
+        'user_id',
+        'manager_id'
     ];
 }
