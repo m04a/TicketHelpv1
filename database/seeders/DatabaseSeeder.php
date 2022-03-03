@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             TypeSeeder::class,
             DeviceSeeder::class,
+            ZoneSeeder::class,
             DepartmentSeeder::class,
         ]);
     }
