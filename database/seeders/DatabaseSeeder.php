@@ -18,8 +18,8 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             UserSeeder::class,
             TypeSeeder::class,
-            DeviceSeeder::class,
             ZoneSeeder::class,
+            DeviceSeeder::class,
             DepartmentSeeder::class,
         ]);
     }
