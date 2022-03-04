@@ -27,5 +27,8 @@ Route::get('/users', function () {
 })->middleware(['auth'])->name('users');
 
 
+Route::get('question', function () {
+    return view('question');
+});
 
 require __DIR__.'/auth.php';
