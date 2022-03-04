@@ -38,6 +38,4 @@
             </main>
         </div>
     </body>
-    <!-- We should install this with npm -->
-    <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.9.95/css/materialdesignicons.min.css">
 </html>
