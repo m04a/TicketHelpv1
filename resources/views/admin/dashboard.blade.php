@@ -8,3 +8,4 @@
 <x-slot name="slot">
     <p>Està es una prova</p>
 </x-slot>
+

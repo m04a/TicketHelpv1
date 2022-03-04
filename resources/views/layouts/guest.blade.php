@@ -17,11 +17,10 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 </head>
-<body class="font-sans antialiased">
+ <body class="login">
     <!-- Page Content -->
         {{ $slot }}
-
-</body>
+ </body>
 <!-- We should install this with npm -->
 <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.9.95/css/materialdesignicons.min.css">
 
