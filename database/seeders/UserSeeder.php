@@ -18,65 +18,65 @@ class UserSeeder extends Seeder
     {
         DB::table('users')->insert([
             'username' => 'Oriol',
-            'email' => 'Oriol@Oriol',
+            'email' => 'oriol@cendrassos.net',
             'role_id' => 3,
-            'password' => '1234567890',
+            'password' => Hash::make('1234567890'),
         ]);
 
         DB::table('users')->insert([
             'username' => 'Alex',
-            'email' => 'Alex@Alex',
+            'email' => 'alex@cendrassos.net',
             'role_id' => 3,
-            'password' => '1234567890',
+            'password' => Hash::make('1234567890'),
         ]);
 
         DB::table('users')->insert([
             'username' => 'Moha',
-            'email' => 'Moha@Moha',
+            'email' => 'moha@cendrassos.net',
             'role_id' => 3,
-            'password' => '1234567890',
+            'password' => Hash::make('1234567890'),
         ]);
 
         DB::table('users')->insert([
             'username' => 'Juanka',
-            'email' => 'Juanka@Juanka',
+            'email' => 'juanka@cendrassos.net',
             'role_id' => 3,
-            'password' => '1234567890',
+            'password' => Hash::make('1234567890'),
         ]);
 
         DB::table('users')->insert([
             'username' => 'Kirill',
-            'email' => 'Kirill@Kirill',
+            'email' => 'kirill@cendrassos.net',
             'role_id' => 3,
-            'password' => '1234567890',
+            'password' => Hash::make('1234567890'),
         ]);
 
         DB::table('users')->insert([
             'username' => 'Jorge',
-            'email' => 'Jorge@Jorge',
+            'email' => 'jorge@cendrassos.net',
             'role_id' => 3,
-            'password' => '1234567890',
+            'password' => Hash::make('1234567890'),
         ]);
 
         DB::table('users')->insert([
             'username' => 'Iker',
-            'email' => 'Iker@Iker',
+            'email' => 'iker@cendrassos.net',
             'role_id' => 3,
-            'password' => '1234567890',
+            'password' => Hash::make('1234567890'),
         ]);
         
         DB::table('users')->insert([
             'username' => 'User',
-            'email' => 'User@User',
+            'email' => 'user@cendrassos.net',
             'role_id' => 1,
-            'password' => '1234567890',
+            'password' => Hash::make('1234567890'),
         ]);
 
         DB::table('users')->insert([
             'username' => 'Editor',
-            'email' => 'Editor@Editor',
+            'email' => 'editor@cendrassos.net',
             'role_id' => 2,
-            'password' => '1234567890',
+            'password' => Hash::make('1234567890'),
         ]);
     }
 }
