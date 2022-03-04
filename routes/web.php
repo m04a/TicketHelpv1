@@ -34,8 +34,8 @@ Route::get('/questions', function () {
     return view('admin/questions/index');
 })->middleware(['auth'])->name('questions');
 
-Route::get('question', function () {
-    return view('question');
-});
+Route::get('/question', function () {
+    return view('admin/question');
+})->middleware(['auth'])->name('question');
 
 require __DIR__.'/auth.php';
