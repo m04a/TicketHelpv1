@@ -9,6 +9,9 @@ module.exports = {
 
     theme: {
         extend: {
+            colors: {
+                cendrassos:"#ff0000"
+            },
             fontFamily: {
                 sans: ['Nunito', ...defaultTheme.fontFamily.sans],
             },

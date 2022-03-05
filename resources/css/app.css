@@ -177,7 +177,7 @@ body {
     @apply mx-1;
 }
 .card {
-    @apply bg-white border border-gray-100 rounded;
+    @apply bg-white border border-gray-100;
 }
 
 .card.has-table .card-content {
@@ -495,6 +495,18 @@ td.image-cell:before, td.actions-cell:before {
 }
 td.image-cell .image {
   @apply w-24 h-24 mx-auto lg:w-6 lg:h-6;
+}
+
+.button-table-add{
+  @apply pt-1 m-3 bg-stone-800 hover:bg-stone-600 text-white font-bold w-40 items-center;
+}
+
+.button-table-edit{
+    @apply bg-blue-500 mr-2 p-2 text-white hover:bg-blue-300;
+}
+
+.button-table-delete{
+    @apply bg-red-500 mr-2 p-2 text-white hover:bg-red-300;
 }
 
 
