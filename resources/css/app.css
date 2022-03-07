@@ -527,3 +527,11 @@ td.image-cell .image {
     @apply bg-red-500 mr-2 p-2 text-white hover:bg-red-300;
 }
 /*Dashboard card*/
+/* question styles */
+.card-header-question{
+    @apply items-center;
+}
+
+.card-header-title-question{
+    @apply items-center;
+}
