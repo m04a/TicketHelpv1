@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h1 class="title">
-            Usuaris
+            Departaments
         </h1>
     </x-slot>
     <x-slot name="slot">
