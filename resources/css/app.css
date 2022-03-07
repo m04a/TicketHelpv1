@@ -197,7 +197,7 @@ body {
 }
 
 .card-header {
-    @apply flex items-stretch border-b border-gray-100;
+    @apply flex items-end border-b border-gray-100;
 }
 
 .card-header-title, .card-header-icon {
@@ -498,8 +498,12 @@ td.image-cell .image {
 }
 
 .button-table-add{
-  @apply pt-1 m-3 bg-stone-800 hover:bg-stone-600 text-white font-bold w-40 items-center;
+  @apply pt-1 m-3 bg-stone-800 hover:bg-stone-600 text-white font-bold w-auto ;
 }
+
+.button-table-add-separation{
+    @apply pr-2;
+  }
 
 .button-table-edit{
     @apply bg-blue-500 mr-2 p-2 text-white hover:bg-blue-300;
