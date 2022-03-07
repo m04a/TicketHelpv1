@@ -496,6 +496,9 @@ td.image-cell:before, td.actions-cell:before {
 td.image-cell .image {
   @apply w-24 h-24 mx-auto lg:w-6 lg:h-6;
 }
+.table-pagination {
+    @apply px-6 py-3 border-t border-gray-100;
+}
 
 .button-table-add{
   @apply pt-1 m-3 bg-stone-800 hover:bg-stone-600 text-white font-bold w-40 items-center;
@@ -507,6 +510,9 @@ td.image-cell .image {
 
 .button-table-delete{
     @apply bg-red-500 mr-2 p-2 text-white hover:bg-red-300;
+}
+.table-pagination {
+    @apply px-6 py-3 border-t border-gray-100;
 }
 
 

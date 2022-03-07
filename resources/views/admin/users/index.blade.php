@@ -19,7 +19,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                         </svg>
-                        <span>Afegir Usuari</span>                    
+                        <span>Afegir Usuari</span>
                     </div>
                 </button>
             </header>
@@ -131,6 +131,16 @@
                     </tr>
                     </tbody>
                 </table>
+                <div class="table-pagination">
+                    <div class="flex items-center justify-between">
+                        <div class="buttons">
+                            <button type="button" class="button active">1</button>
+                            <button type="button" class="button">2</button>
+                            <button type="button" class="button">3</button>
+                        </div>
+                        <small>Pàgina 1 of 3</small>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
