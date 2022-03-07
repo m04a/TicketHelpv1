@@ -11,10 +11,10 @@
                     <span class="icon">
                         <i class="mdi mdi-account-multiple"></i>
                     </span>
-                    <h1 class="card-header-title card-header-title-question">Preguntes a respondre</h1>
+                    <h1 class="card-header-title">Les meves preguntes</h1>
                 </header>
-                <div>
-                    HHHH
+                <div class="card-headere-title card-header-title-question">
+                    <h1></h1>
                 </div>
             </div>
         </section>
@@ -25,9 +25,9 @@
                     <span class="icon">
                         <i class="mdi mdi-account-multiple"></i>
                     </span>
-                    <h1 class="card-header-title card-header-title-question">Preguntes formulades</h1>
+                    <h1 class="card-header-title">Preguntes a respondre</h1>
                 </header>
-                <div>
+                <div class="card-headere-title card-header-title-question">
                     ddddd
                 </div>
             </div>
