@@ -553,3 +553,11 @@ td.image-cell .image {
     @apply m-1 pr-1 flex flex-row;
 }
 /*Dashboard card*/
+/* question styles */
+.card-header-question{
+    @apply items-center;
+}
+
+.card-header-title-question{
+    @apply items-center;
+}
