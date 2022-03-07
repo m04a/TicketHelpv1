@@ -2542,6 +2542,7 @@ td.image-cell .image {
 
 .card-header-title-question {
   align-items: center;
+    padding:1vw;
 }
 
 .hover\:border-gray-300:hover {
