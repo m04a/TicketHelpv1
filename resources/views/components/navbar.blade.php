@@ -1,7 +1,7 @@
 <nav id="navbar-main" class="navbar is-fixed-top">
     <div class="aside-tools">
         <div class="logo-dashboard">
-            <b class="font-black"> TicketHelp</b>
+            <b>TicketHelp</b>
         </div>
     </div>
     <div class="navbar-brand">

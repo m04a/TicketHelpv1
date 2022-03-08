@@ -4,8 +4,6 @@
 
 @import "tailwindcss/utilities";
 
-
-
 [x-cloak] { display: none !important; }
 
 ::-webkit-scrollbar {
@@ -38,7 +36,6 @@ body {
 .main-section {
     @apply p-6;
 }
-
 .dropdown {
     @apply cursor-pointer;
 }
@@ -80,9 +77,16 @@ body {
     @apply overflow-hidden lg:overflow-visible;
 }
 .logo-dashboard{
-    @apply text-3xl text-center font-bold text-red-600 p-3;
+    @apply text-3xl text-center font-bold text-red-600 p-3 font-black;
     font-family: "Fira Sans", serif;
 }
+.login{
+    @apply p-20;
+}
+.user{
+    @apply pl-0;
+}
+
 /*Menu items */
 .menu-label {
     @apply p-3 text-xs uppercase;
@@ -177,17 +181,31 @@ body {
     @apply mx-1;
 }
 .card {
-    @apply bg-white border border-gray-100 rounded;
+    @apply bg-white border border-gray-100;
 }
-
+.card-dashboard{
+    @apply m-6 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:duration-300;
+}
 .card.has-table .card-content {
     @apply p-0;
+}
+.card-container {
+    @apply p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-5
+    justify-center items-center h-48;
 }
 
 .card-content {
     @apply p-6;
 }
-
+.card-item{
+    @apply rounded overflow-hidden shadow-lg bg-white;
+}
+.card-spacing {
+    @apply px-6 py-4 h-48;
+}
+.card-spacing-text{
+    @apply text-3xl font-bold mb-4 mt-0 flex justify-center items-center h-36;
+}
 .card-content hr {
     @apply my-6 -mx-6;
 }
@@ -217,8 +235,9 @@ body {
 }
 
 .widget-label h1 {
-    @apply text-3xl leading-tight font-semibold;
+    @apply leading-tight font-semibold;
 }
+
 
 .form-screen .card {
     @apply w-11/12 lg:w-5/12 shadow-2xl rounded-lg;
@@ -294,7 +313,7 @@ body {
 }
 
 /*Navbar */
-@layer components {
+
     .navbar, .navbar-menu, .navbar-start, .navbar-end {
         @apply lg:flex lg:items-stretch;
     }
@@ -388,7 +407,7 @@ body {
     .navbar-item.active:not(.dropdown), .navbar-item.active.dropdown > .navbar-link {
         @apply text-blue-500;
     }
-}
+
 /*Notifications*/
 .notification {
     @apply px-3 py-6 rounded;
@@ -430,3 +449,81 @@ body {
 .is-title-bar li:last-child {
     @apply pr-0 font-black text-black;
 }
+
+/*Taula*/
+table {
+  @apply w-full;
+}
+
+thead {
+  @apply hidden lg:table-header-group;
+}
+
+tr {
+  @apply max-w-full block relative border-b-4 border-gray-100
+    lg:table-row lg:border-b-0;
+}
+
+tr:last-child {
+  @apply border-b-0;
+}
+
+th {
+  @apply lg:text-left lg:py-2 lg:px-3;
+}
+
+td {
+  @apply flex justify-between text-right py-3 px-4 align-top border-b border-gray-100
+    lg:table-cell lg:text-left lg:py-2 lg:px-3 lg:align-middle lg:border-b-0;
+}
+
+tr:nth-child(odd) td {
+  @apply lg:bg-gray-50;
+}
+
+td:last-child {
+  @apply border-b-0;
+}
+
+tbody tr:hover td {
+  @apply lg:bg-gray-100;
+}
+
+td:before {
+  content: attr(data-label);
+  @apply font-semibold pr-3 text-left lg:hidden;
+}
+
+td.checkbox-cell, th.checkbox-cell {
+  @apply lg:w-5;
+}
+
+td.progress-cell progress {
+  @apply flex w-2/5 self-center
+    lg:w-full;
+}
+
+td.image-cell {
+  @apply border-b-0 lg:w-6;
+}
+
+td.image-cell:before, td.actions-cell:before {
+  @apply hidden;
+
+}
+td.image-cell .image {
+  @apply w-24 h-24 mx-auto lg:w-6 lg:h-6;
+}
+
+.button-table-add{
+  @apply pt-1 m-3 bg-stone-800 hover:bg-stone-600 text-white font-bold w-40 items-center;
+}
+
+.button-table-edit{
+    @apply bg-blue-500 mr-2 p-2 text-white hover:bg-blue-300;
+}
+
+.button-table-delete{
+    @apply bg-red-500 mr-2 p-2 text-white hover:bg-red-300;
+}
+/*Dashboard card*/
