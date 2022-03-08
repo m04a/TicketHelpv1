@@ -5,6 +5,9 @@
         </h1>
     </x-slot>
     <x-slot name="slot">
+        <x-select>
+            <option value="1">Hola</option>
+        </x-select>
         <div class="card-container">
             <a href="{{route('users')}}" class="card-dashboard">
             <div class="card-item">
