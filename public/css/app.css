@@ -708,10 +708,6 @@ select {
   display: inline-flex;
 }
 
-.table {
-  display: table;
-}
-
 .grid {
   display: grid;
 }
@@ -1039,6 +1035,18 @@ select {
   padding-right: 0.25rem;
 }
 
+<<<<<<< HEAD
+=======
+.py-6 {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+.pt-8 {
+  padding-top: 2rem;
+}
+
+>>>>>>> 314145a (rebase)
 .pt-6 {
   padding-top: 1.5rem;
 }
@@ -1163,9 +1171,15 @@ select {
   color: rgb(209 213 219 / var(--tw-text-opacity));
 }
 
+<<<<<<< HEAD
 .text-gray-400 {
   --tw-text-opacity: 1;
   color: rgb(156 163 175 / var(--tw-text-opacity));
+=======
+.text-gray-900 {
+  --tw-text-opacity: 1;
+  color: rgb(17 24 39 / var(--tw-text-opacity));
+>>>>>>> 314145a (rebase)
 }
 
 .text-gray-900 {
@@ -2817,10 +2831,6 @@ td.image-cell .image {
 
   .sm\:items-center {
     align-items: center;
-  }
-
-  .sm\:justify-start {
-    justify-content: flex-start;
   }
 
   .sm\:justify-center {
