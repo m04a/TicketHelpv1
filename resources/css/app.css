@@ -197,11 +197,11 @@ body {
 }
 
 .card-header {
-    @apply flex items-end border-b border-gray-100;
+    @apply flex border-b border-gray-100;
 }
 
 .card-header-title, .card-header-icon {
-    @apply flex items-center py-3 px-4;
+    @apply flex items-center py-3 pl-4;
 }
 
 .card-header-title {
@@ -498,11 +498,11 @@ td.image-cell .image {
 }
 
 .button-table-add{
-  @apply pt-1 m-3 bg-stone-800 hover:bg-stone-600 text-white font-bold w-auto ;
+  @apply m-3 bg-stone-800 hover:bg-stone-600 text-white font-bold w-auto ;
 }
 
 .button-table-add-separation{
-    @apply pr-2;
+    @apply m-1 pr-1 flex flex-row;
   }
 
 .button-table-edit{
