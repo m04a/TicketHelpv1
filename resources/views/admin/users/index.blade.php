@@ -11,7 +11,7 @@
         <div class="card has-table">
             <header class="card-header">
                 <p class="card-header-title">
-                    Clients
+                    Usuaris
                 </p>
                 <button class="button-table-add">
                     <div class="button-table-add-separation">
