@@ -215,11 +215,11 @@ body {
 }
 
 .card-header {
-    @apply flex items-stretch border-b border-gray-100;
+    @apply flex border-b border-gray-100;
 }
 
 .card-header-title, .card-header-icon {
-    @apply flex items-center py-3 px-4;
+    @apply flex items-center py-3 pl-3;
 }
 
 .card-header-title {
@@ -229,7 +229,6 @@ body {
 .card-header-icon {
     @apply justify-center;
 }
-
 .widget-label h3 {
     @apply text-lg leading-tight text-gray-500;
 }
@@ -450,6 +449,13 @@ body {
     @apply pr-0 font-black text-black;
 }
 
+/* question styles */
+
+.card-header-question{
+    @apply items-center;
+}
+
+
 /*Taula*/
 table {
   @apply w-full;
@@ -515,10 +521,16 @@ td.image-cell .image {
   @apply w-24 h-24 mx-auto lg:w-6 lg:h-6;
 }
 
-.button-table-add{
-  @apply pt-1 m-3 bg-stone-800 hover:bg-stone-600 text-white font-bold w-40 items-center;
+.button-table-view{
+    @apply bg-green-500 mr-2 p-2 text-white hover:bg-green-300;
 }
-
+.button-table-add{
+    @apply m-3 bg-stone-800 hover:bg-stone-600 text-white font-bold w-auto ;
+  }
+  
+.button-table-add-separation{
+      @apply m-1 pr-1 flex flex-row;
+}
 .button-table-edit{
     @apply bg-blue-500 mr-2 p-2 text-white hover:bg-blue-300;
 }
