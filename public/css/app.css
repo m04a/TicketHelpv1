@@ -1682,7 +1682,6 @@ body {
 
 .card-header {
   display: flex;
-  align-items: stretch;
   border-bottom-width: 1px;
   --tw-border-opacity: 1;
   border-color: rgb(243 244 246 / var(--tw-border-opacity));
@@ -1693,8 +1692,7 @@ body {
   align-items: center;
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
+  padding-left: 0.75rem;
 }
 
 .card-header-title {
@@ -2245,9 +2243,12 @@ body {
   color: rgb(0 0 0 / var(--tw-text-opacity));
 }
 
+.card-header-question {
+  align-items: center;
+}
+
 /*Taula*/
 
-table {
   width: 100%;
 }
 
@@ -2427,13 +2428,25 @@ td.image-cell .image {
   }
 }
 
+.button-table-view {
+  margin-right: 0.5rem;
+  --tw-bg-opacity: 1;
+  background-color: rgb(34 197 94 / var(--tw-bg-opacity));
+  padding: 0.5rem;
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.button-table-view:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(134 239 172 / var(--tw-bg-opacity));
+}
+
 .button-table-add {
   margin: 0.75rem;
-  width: 10rem;
-  align-items: center;
+  width: auto;
   --tw-bg-opacity: 1;
   background-color: rgb(41 37 36 / var(--tw-bg-opacity));
-  padding-top: 0.25rem;
   font-weight: 700;
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
@@ -2442,6 +2455,13 @@ td.image-cell .image {
 .button-table-add:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(87 83 78 / var(--tw-bg-opacity));
+}
+
+.button-table-add-separation {
+  margin: 0.25rem;
+  display: flex;
+  flex-direction: row;
+  padding-right: 0.25rem;
 }
 
 .button-table-edit {
