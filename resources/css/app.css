@@ -81,8 +81,12 @@ body {
     font-family: "Fira Sans", serif;
 }
 .login{
-    @apply p-20  ;
+    @apply p-20;
 }
+.user{
+    @apply pl-0;
+}
+
 /*Menu items */
 .menu-label {
     @apply p-3 text-xs uppercase;
@@ -179,15 +183,29 @@ body {
 .card {
     @apply bg-white border border-gray-100;
 }
-
+.card-dashboard{
+    @apply m-6 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:duration-300;
+}
 .card.has-table .card-content {
     @apply p-0;
+}
+.card-container {
+    @apply p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-5
+    justify-center items-center h-48;
 }
 
 .card-content {
     @apply p-6;
 }
-
+.card-item{
+    @apply rounded overflow-hidden shadow-lg bg-white;
+}
+.card-spacing {
+    @apply px-6 py-4 h-48;
+}
+.card-spacing-text{
+    @apply text-3xl font-bold mb-4 mt-0 flex justify-center items-center h-36;
+}
 .card-content hr {
     @apply my-6 -mx-6;
 }
@@ -514,6 +532,4 @@ td.image-cell .image {
 .table-pagination {
     @apply px-6 py-3 border-t border-gray-100;
 }
-
-
-
+/*Dashboard card*/
