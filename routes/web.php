@@ -21,7 +21,12 @@ Route::get('/', function () {
 
 Route::get('/admin/users', function () {
     return view('admin/users/index');
-})->middleware(['auth'])->name('users');
+})->middleware(['auth'])->name('admin.users');
+
+Route::get('/admin/users/create', function () {
+    return view('admin/users/create');
+})->middleware(['auth'])->name('admin.users.create');
+
 
 Route::get('/admin/dashboard', function () {
     return view('admin/dashboard');
