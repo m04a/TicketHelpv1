@@ -553,3 +553,20 @@ td.image-cell .image {
     @apply m-1 pr-1 flex flex-row;
 }
 /*Dashboard card*/
+
+/*Create Card*/
+.content-column{
+    @apply flex sm:justify-center items-center w-full;
+}
+.column-left{
+    @apply w-full mr-6;
+}
+.column-right{
+    @apply w-full;
+}
+.inpunt-content{
+    @apply block mt-4 w-full m-auto;
+}
+.button-create{
+    @apply flex items-center justify-end mt-4;
+}
