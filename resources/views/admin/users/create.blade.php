@@ -1,26 +1,26 @@
-<x-guest-layout>
+<x-app-layout>
 
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo :title="'Tu puta madre'"/>
-            </a>
+        <x-slot name="header">
+            <h1 class="title">
+                Crear Usuari
+            </h1>
         </x-slot>
-
-        <!-- Session Status -->
-        <x-auth-session-status class="mb-4" :status="session('status')" />
-
-        <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
-
-        <form method="POST" action="{{ route('login') }}">
+<x-create-card>
+        <form method="POST" action="">
             @csrf
 
-            <!-- Email Address -->
+            <!-- Name User -->
             <div>
-                <x-label for="email" :value="__('Correu electronic')" />
+                <x-label for="usuari" :value="__('Nom Usuari')" />
 
-                <x-input id="email" class="block mt-4 w-full" type="email" name="email" :value="old('email')" required autofocus />
+                <x-input id="nom" class="block mt-4 w-full" type="text" name="nom" required autofocus />
+            </div>
+
+            <!-- Email User -->
+            <div class="mt-4">
+                <x-label for="email" :value="__('Correu Electronic')" />
+
+                <x-input id="email" class="block mt-4 w-full" type="email" name="email" required autofocus />
             </div>
 
             <!-- Password -->
@@ -33,28 +33,26 @@
                                 required autocomplete="current-password" />
             </div>
 
-            <!-- Remember Me -->
-            <div class="block mt-4">
-                <label for="remember_me" class="inline-flex items-center">
-                    <input id="remember_me" type="checkbox" class="border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="remember">
-                    <span class="ml-2 text-sm text-gray-600">{{ __("Recorda'm") }}</span>
-                </label>
+            <!-- Rol User -->
+            <div class="mt-4">
+                <x-label for="rol" :value="__('Tria el Rol del Usuari')" />
+                
+                <x-select class="block mt-4 w-full">
+                    <option value="1">Usuari</option>
+                    <option value="2">Administrador</option>
+                    <option value="3">Moderador</option>
+                </x-select>
+
             </div>
 
             <div class="flex items-center justify-end mt-4">
-                @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
-                        {{ __('Has olvidat el password?') }}
-                    </a>
-                @endif
-
                 <x-button class="ml-3">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
                     </svg>
-                    {{ __('Accedir') }}
+                    {{ __('Crear Usuari') }}
                 </x-button>
             </div>
         </form>
-    </x-auth-card>
-</x-guest-layout>
+    </x-create-card>
+</x-app-layout>
