@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-user-layout>
     <x-slot name="header">
         <h1 class="title">
             Dashboard
@@ -21,7 +21,7 @@
                 </div>
             </div>
             </a>
-            <a href="{{route('question')}}" class="card-dashboard">
+            <a href="{{route('users')}}" class="card-dashboard">
             <div class="card-item">
                 <div class="card-spacing">
                     <div class="card-spacing-text">Preguntes</div>
@@ -33,10 +33,3 @@
     </x-slot>
 </x-user-layout>
 
-
-        <section class="section main-section">
-        
-        </section>
-
-    </x-slot>
-</x-app-layout>

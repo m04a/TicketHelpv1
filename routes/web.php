@@ -17,21 +17,29 @@ Route::get('/', function () {
     return view('auth/login');
 });
 
+// ADMIN
 
 Route::get('/dashboard', function () {
     return view('public/dashboard');
 })->middleware(['auth'])->name('dashboard');
 
 Route::get('/users', function () {
+Route::get('/admin/users', function () {
     return view('admin/users/index');
 })->middleware(['auth'])->name('users');
 
-Route::get('/devices', function () {
-    return view('admin/devices/index');
-})->middleware(['auth'])->name('devices');
+Route::get('/admin/dashboard', function () {
+    return view('admin/dashboard');
+})->middleware(['auth'])->name('users');
 
-Route::get('/questions', function () {
-    return view('admin/questions/index');
+// USER
+
+Route::get('/user/dashboard', function () {
+    return view('user/dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+Route::get('/user/questions/list', function () {
+    return view('user/questions/list');
 })->middleware(['auth'])->name('questions');
 
 Route::get('/question', function () {
