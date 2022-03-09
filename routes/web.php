@@ -26,6 +26,13 @@ Route::get('/users', function () {
     return view('admin/users/index');
 })->middleware(['auth'])->name('users');
 
+Route::get('/devices', function () {
+    return view('admin/devices/index');
+})->middleware(['auth'])->name('devices');
+
+Route::get('/questions', function () {
+    return view('admin/questions/index');
+})->middleware(['auth'])->name('questions');
 
 
 require __DIR__.'/auth.php';

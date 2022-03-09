@@ -2458,6 +2458,20 @@ td.image-cell .image {
   background-color: rgb(147 197 253 / var(--tw-bg-opacity));
 }
 
+.button-table-view {
+  margin-right: 0.5rem;
+  --tw-bg-opacity: 1;
+  background-color: rgb(34 197 94 / var(--tw-bg-opacity));
+  padding: 0.5rem;
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.button-table-view:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(134 239 172 / var(--tw-bg-opacity));
+}
+
 .button-table-delete {
   margin-right: 0.5rem;
   --tw-bg-opacity: 1;
@@ -2470,6 +2484,52 @@ td.image-cell .image {
 .button-table-delete:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(252 165 165 / var(--tw-bg-opacity));
+}
+
+.card-header {
+  display: flex;
+  border-bottom-width: 1px;
+  --tw-border-opacity: 1;
+  border-color: rgb(243 244 246 / var(--tw-border-opacity));
+}
+
+.card-header-title, .card-header-icon {
+  display: flex;
+  align-items: center;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  padding-left: 0.75rem;
+}
+
+.card-header-title {
+  flex-grow: 1;
+  font-weight: 700;
+}
+
+.card-header-icon {
+  justify-content: center;
+}
+
+.button-table-add {
+  margin: 0.75rem;
+  width: auto;
+  --tw-bg-opacity: 1;
+  background-color: rgb(41 37 36 / var(--tw-bg-opacity));
+  font-weight: 700;
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.button-table-add:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(87 83 78 / var(--tw-bg-opacity));
+}
+
+.button-table-add-separation {
+  margin: 0.25rem;
+  display: flex;
+  flex-direction: row;
+  padding-right: 0.25rem;
 }
 
 /*Dashboard card*/
