@@ -1,13 +1,10 @@
-<x-app-layout>
+<x-user-layout>
     <x-slot name="header">
         <h1 class="title">
             Dashboard
         </h1>
     </x-slot>
     <x-slot name="slot">
-        <x-select>
-            <option value="1">Hola</option>
-        </x-select>
         <div class="card-container">
             <a href="{{route('users')}}" class="card-dashboard">
             <div class="card-item">
@@ -36,10 +33,3 @@
     </x-slot>
 </x-user-layout>
 
-
-        <section class="section main-section">
-        
-        </section>
-
-    </x-slot>
-</x-app-layout>

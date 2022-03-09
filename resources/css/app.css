@@ -523,7 +523,33 @@ td.image-cell .image {
     @apply bg-blue-500 mr-2 p-2 text-white hover:bg-blue-300;
 }
 
+.button-table-view{
+    @apply bg-green-500 mr-2 p-2 text-white hover:bg-green-300;
+}
+
 .button-table-delete{
     @apply bg-red-500 mr-2 p-2 text-white hover:bg-red-300;
+}
+.card-header {
+    @apply flex border-b border-gray-100;
+}
+
+.card-header-title, .card-header-icon {
+    @apply flex items-center py-3 pl-3;
+}
+
+.card-header-title {
+    @apply flex-grow font-bold ;
+}
+
+.card-header-icon {
+    @apply justify-center;
+}
+.button-table-add{
+  @apply m-3 bg-stone-800 hover:bg-stone-600 text-white font-bold w-auto ;
+}
+
+.button-table-add-separation{
+    @apply m-1 pr-1 flex flex-row;
 }
 /*Dashboard card*/

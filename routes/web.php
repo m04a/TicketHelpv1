@@ -17,20 +17,30 @@ Route::get('/', function () {
     return view('auth/login');
 });
 
+// ADMIN
 
-Route::get('/dashboard', function () {
-    return view('admin/dashboard');
-})->middleware(['auth'])->name('dashboard');
-
-Route::get('/users', function () {
+Route::get('/admin/users', function () {
     return view('admin/users/index');
+})->middleware(['auth'])->name('admin.users');
+
+Route::get('/admin/users/create', function () {
+    return view('admin/users/create');
+})->middleware(['auth'])->name('admin.users.create');
+
+
+Route::get('/admin/dashboard', function () {
+    return view('admin/dashboard');
 })->middleware(['auth'])->name('users');
 
-Route::get('/users/create', function () {
-    return view('admin/users/create');
-})->middleware(['auth'])->name('users-create');
+// USER
 
+Route::get('/user/dashboard', function () {
+    return view('user/dashboard');
+})->middleware(['auth'])->name('dashboard');
 
+Route::get('/user/questions/list', function () {
+    return view('user/questions/list');
+})->middleware(['auth'])->name('questions');
 
 
 require __DIR__.'/auth.php';

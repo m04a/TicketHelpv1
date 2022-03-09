@@ -8,7 +8,7 @@
 <x-create-card>
         <form method="POST" action="">
             @csrf
-
+            <div class="flex row">
             <!-- Name User -->
             <div>
                 <x-label for="usuari" :value="__('Nom Usuari')" />
@@ -17,34 +17,35 @@
             </div>
 
             <!-- Email User -->
-            <div class="mt-4">
+            <div>
                 <x-label for="email" :value="__('Correu Electronic')" />
 
                 <x-input id="email" class="block mt-4 w-full" type="email" name="email" required autofocus />
             </div>
-
-            <!-- Password -->
-            <div class="mt-4">
-                <x-label for="password" :value="__('Contrasenya')" />
-
-                <x-input id="password" class="block mt-4 w-full"
-                                type="password"
-                                name="password"
-                                required autocomplete="current-password" />
             </div>
+            <div class="flex row">
+                <!-- Password -->
+                <div class="mt-4">
+                    <x-label for="password" :value="__('Contrasenya')" />
 
-            <!-- Rol User -->
-            <div class="mt-4">
-                <x-label for="rol" :value="__('Tria el Rol del Usuari')" />
-                
-                <x-select class="block mt-4 w-full">
-                    <option value="1">Usuari</option>
-                    <option value="2">Administrador</option>
-                    <option value="3">Moderador</option>
-                </x-select>
+                    <x-input id="password" class="block mt-4 w-full"
+                                    type="password"
+                                    name="password"
+                                    required autocomplete="current-password" />
+                </div>
 
+                <!-- Rol User -->
+                <div class="mt-4">
+                    <x-label for="rol" :value="__('Tria el Rol del Usuari')" />
+                    
+                    <x-select class="block mt-4 w-full">
+                        <option value="1">Usuari</option>
+                        <option value="2">Administrador</option>
+                        <option value="3">Moderador</option>
+                    </x-select>
+
+                </div>
             </div>
-
             <div class="flex items-center justify-end mt-4">
                 <x-button class="ml-3">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
