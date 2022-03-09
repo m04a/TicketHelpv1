@@ -2243,12 +2243,15 @@ body {
   color: rgb(0 0 0 / var(--tw-text-opacity));
 }
 
+/* question styles */
+
 .card-header-question {
   align-items: center;
 }
 
 /*Taula*/
 
+table {
   width: 100%;
 }
 
@@ -2562,7 +2565,6 @@ td.image-cell .image {
 
 .card-header-title-question {
   align-items: center;
-    padding:1vw;
 }
 
 .hover\:border-gray-300:hover {
