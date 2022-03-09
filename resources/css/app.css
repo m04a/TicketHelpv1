@@ -230,6 +230,17 @@ body {
     @apply justify-center;
 }
 
+.card-container-breakdown{
+    @apply p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-5
+    justify-center items-center h-48 justify-items-center;
+}
+.card-item-breakdown{
+    @apply rounded overflow-hidden shadow-lg bg-white w-full ;
+}
+.card-dashboard-breakdown{
+    @apply m-6 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:duration-300 w-3/5;
+}
+
 .widget-label h3 {
     @apply text-lg leading-tight text-gray-500;
 }
@@ -523,8 +534,34 @@ td.image-cell .image {
     @apply bg-blue-500 mr-2 p-2 text-white hover:bg-blue-300;
 }
 
+.button-table-view{
+    @apply bg-green-500 mr-2 p-2 text-white hover:bg-green-300;
+}
+
 .button-table-delete{
     @apply bg-red-500 mr-2 p-2 text-white hover:bg-red-300;
+}
+.card-header {
+    @apply flex border-b border-gray-100;
+}
+
+.card-header-title, .card-header-icon {
+    @apply flex items-center py-3 pl-3;
+}
+
+.card-header-title {
+    @apply flex-grow font-bold ;
+}
+
+.card-header-icon {
+    @apply justify-center;
+}
+.button-table-add{
+  @apply m-3 bg-stone-800 hover:bg-stone-600 text-white font-bold w-auto ;
+}
+
+.button-table-add-separation{
+    @apply m-1 pr-1 flex flex-row;
 }
 /*Dashboard card*/
 .field:not(:last-child) {
@@ -617,4 +654,21 @@ td.image-cell .image {
 }
 .toggle-checkbox:focus {
     @apply: ring-none;
+}
+
+/*Create Card*/
+.content-column{
+    @apply flex sm:justify-center items-center w-full;
+}
+.column-left{
+    @apply w-full mr-6;
+}
+.column-right{
+    @apply w-full;
+}
+.inpunt-content{
+    @apply block mt-4 w-full m-auto;
+}
+.button-create{
+    @apply flex items-center justify-end mt-4;
 }
