@@ -27,6 +27,9 @@ Route::get('/admin/users/create', function () {
     return view('admin/users/create');
 })->middleware(['auth'])->name('admin.users.create');
 
+Route::get('/admin/users/edit', function () {
+    return view('admin/users/edit');
+})->middleware(['auth'])->name('admin.users.edit');
 
 Route::get('/admin/dashboard', function () {
     return view('admin/dashboard');
