@@ -26,6 +26,8 @@ Route::get('/users', function () {
     return view('admin/users/index');
 })->middleware(['auth'])->name('users');
 
-
+Route::get('/suggestions/create', function () {
+    return view('admin/suggestions/create');
+})->middleware(['auth']);
 
 require __DIR__.'/auth.php';
