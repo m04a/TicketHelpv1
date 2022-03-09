@@ -230,6 +230,17 @@ body {
     @apply justify-center;
 }
 
+.card-container-breakdown{
+    @apply p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-5
+    justify-center items-center h-48 justify-items-center;
+}
+.card-item-breakdown{
+    @apply rounded overflow-hidden shadow-lg bg-white w-full ;
+}
+.card-dashboard-breakdown{
+    @apply m-6 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:duration-300 w-3/5;
+}
+
 .widget-label h3 {
     @apply text-lg leading-tight text-gray-500;
 }

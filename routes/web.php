@@ -37,5 +37,8 @@ Route::get('/user/questions/list', function () {
     return view('user/questions/list');
 })->middleware(['auth'])->name('questions');
 
+Route::get('/breakdown', function () {
+    return view('user/index');
+})->middleware(['auth'])->name('breakdown');
 
 require __DIR__.'/auth.php';
