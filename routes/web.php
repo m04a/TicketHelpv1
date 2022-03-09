@@ -19,7 +19,7 @@ Route::get('/', function () {
 
 
 Route::get('/dashboard', function () {
-    return view('admin/dashboard');
+    return view('public/dashboard');
 })->middleware(['auth'])->name('dashboard');
 
 Route::get('/users', function () {
@@ -33,6 +33,11 @@ Route::get('/devices', function () {
 Route::get('/questions', function () {
     return view('admin/questions/index');
 })->middleware(['auth'])->name('questions');
+
+Route::get('/question', function () {
+    return view('public/question/index');
+})->middleware(['auth'])->name('question');
+
 
 
 require __DIR__.'/auth.php';

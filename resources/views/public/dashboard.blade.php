@@ -21,7 +21,7 @@
                 </div>
             </div>
             </a>
-            <a href="{{route('users')}}" class="card-dashboard">
+            <a href="{{route('question')}}" class="card-dashboard">
             <div class="card-item">
                 <div class="card-spacing">
                     <div class="card-spacing-text">Preguntes</div>
