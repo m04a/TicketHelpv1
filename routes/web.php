@@ -17,22 +17,33 @@ Route::get('/', function () {
     return view('auth/login');
 });
 
+// ADMIN
 
-Route::get('/dashboard', function () {
-    return view('admin/dashboard');
-})->middleware(['auth'])->name('dashboard');
-
-Route::get('/users', function () {
+Route::get('/admin/users', function () {
     return view('admin/users/index');
+})->middleware(['auth'])->name('admin.users');
+
+Route::get('/admin/users/create', function () {
+    return view('admin/users/create');
+})->middleware(['auth'])->name('admin.users.create');
+
+
+Route::get('/admin/dashboard', function () {
+    return view('admin/dashboard');
 })->middleware(['auth'])->name('users');
 
-Route::get('/devices', function () {
-    return view('admin/devices/index');
-})->middleware(['auth'])->name('devices');
+// USER
 
-Route::get('/questions', function () {
-    return view('admin/questions/index');
+Route::get('/user/dashboard', function () {
+    return view('user/dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+Route::get('/user/questions/list', function () {
+    return view('user/questions/list');
 })->middleware(['auth'])->name('questions');
 
+Route::get('/breakdown', function () {
+    return view('user/breakdown/index');
+})->middleware(['auth'])->name('breakdown');
 
 require __DIR__.'/auth.php';
