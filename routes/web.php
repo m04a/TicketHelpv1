@@ -46,4 +46,9 @@ Route::get('/breakdown', function () {
     return view('user/breakdown/index');
 })->middleware(['auth'])->name('breakdown');
 
+Route::get('/types', function () {
+    return view('admin/types/index');
+})->middleware(['auth'])->name('types');
+
+
 require __DIR__.'/auth.php';
