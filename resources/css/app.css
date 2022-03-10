@@ -646,6 +646,10 @@ td.image-cell .image {
 .textarea {
     @apply px-3 py-2 border border-gray-400;
 }
+.suggestion-text{
+    background-color: rgb(243 244 246 / var(--tw-bg-opacity)) !important;
+    @apply border border-gray-400 rounded-b px-4 py-3 text-gray-700;
+}
 .input, .select select, .file-cta, .file-name {
     @apply h-10;
 }
