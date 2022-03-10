@@ -215,11 +215,11 @@ body {
 }
 
 .card-header {
-    @apply flex items-stretch border-b border-gray-100;
+    @apply flex border-b border-gray-100;
 }
 
 .card-header-title, .card-header-icon {
-    @apply flex items-center py-3 px-4;
+    @apply flex items-center py-3 pl-4;
 }
 
 .card-header-title {
@@ -527,8 +527,12 @@ td.image-cell .image {
 }
 
 .button-table-add{
-  @apply pt-1 m-3 bg-stone-800 hover:bg-stone-600 text-white font-bold w-40 items-center;
+  @apply m-3 bg-stone-800 hover:bg-stone-600 text-white font-bold w-auto ;
 }
+
+.button-table-add-separation{
+    @apply m-1 pr-1 flex flex-row;
+  }
 
 .button-table-edit{
     @apply bg-yellow-400 mr-2 p-2 text-white hover:bg-blue-300;
@@ -670,5 +674,5 @@ td.image-cell .image {
     @apply block mt-4 w-full m-auto;
 }
 .button-create{
-    @apply flex items-center justify-end mt-4;
+    @apply flex items-center justify-end mt-4 mb-2;
 }
