@@ -19,6 +19,10 @@ Route::get('/', function () {
 
 // ADMIN
 
+Route::get('/admin/dashboard', function () {
+    return view('admin/dashboard');
+})->middleware(['auth'])->name('dashboard');
+
 Route::get('/admin/users', function () {
     return view('admin/users/index');
 })->middleware(['auth'])->name('admin.users');
@@ -31,9 +35,9 @@ Route::get('/admin/users/edit', function () {
     return view('admin/users/edit');
 })->middleware(['auth'])->name('admin.users.edit');
 
-Route::get('/admin/dashboard', function () {
-    return view('admin/dashboard');
-})->middleware(['auth'])->name('users');
+Route::get('/admin/suggestions/create', function () {
+    return view('admin/suggestions/create');
+})->middleware(['auth']);
 
 // USER
 
@@ -45,8 +49,8 @@ Route::get('/user/questions/list', function () {
     return view('user/questions/list');
 })->middleware(['auth'])->name('questions');
 
-Route::get('/breakdowns', function () {
-    return view('user/breakdowns/index');
-})->middleware(['auth'])->name('breakdowns');
+Route::get('/user/breakdowns', function () {
+    return view('user/breakdown/index');
+})->middleware(['auth'])->name('breakdown');
 
 require __DIR__.'/auth.php';
