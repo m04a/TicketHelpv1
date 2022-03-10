@@ -215,11 +215,11 @@ body {
 }
 
 .card-header {
-    @apply flex items-stretch border-b border-gray-100;
+    @apply flex border-b border-gray-100;
 }
 
 .card-header-title, .card-header-icon {
-    @apply flex items-center py-3 px-4;
+    @apply flex items-center py-3 pl-4;
 }
 
 .card-header-title {
@@ -527,8 +527,12 @@ td.image-cell .image {
 }
 
 .button-table-add{
-  @apply pt-1 m-3 bg-stone-800 hover:bg-stone-600 text-white font-bold w-40 items-center;
+  @apply m-3 bg-stone-800 hover:bg-stone-600 text-white font-bold w-auto ;
 }
+
+.button-table-add-separation{
+    @apply m-1 pr-1 flex flex-row;
+  }
 
 .button-table-edit{
     @apply bg-yellow-500 mr-2 p-2 text-white hover:bg-yellow-300;
@@ -568,6 +572,97 @@ td.image-cell .image {
     @apply m-1 pr-1 flex flex-row;
 }
 /*Dashboard card*/
+.field:not(:last-child) {
+    @apply mb-3;
+}
+
+.field.spaced:not(:last-child) {
+    @apply mb-6;
+}
+
+.field-body .field .field {
+    @apply mb-0;
+}
+
+.field.addons {
+    @apply flex justify-start;
+}
+
+.field.addons .control.expanded {
+    @apply flex-grow flex-shrink;
+}
+
+.field.addons .control:first-child:not(:only-child) .input,
+.field.addons .control:first-child:not(:only-child) .select select {
+    @apply rounded-r-none border-r-0;
+}
+
+.field.addons .control:last-child:not(:only-child) .input,
+.field.addons .control:last-child:not(:only-child) .select select {
+    @apply rounded-l-none border-l-0;
+}
+
+.field.grouped {
+    @apply flex justify-start;
+}
+
+.field.grouped > .control:not(:last-child) {
+    @apply mr-3;
+}
+
+.field.grouped.multiline {
+    @apply flex-wrap;
+}
+
+.label {
+    @apply block font-bold mb-2;
+}
+
+.control {
+    @apply relative;
+}
+
+.control.icons-left, .control.icons-right {
+    @apply relative;
+}
+
+.input, .select select, .file-cta, .file-name {
+    @apply px-3 py-2 border border-gray-400 rounded;
+}
+.textarea {
+    @apply px-3 py-2 border border-gray-400;
+}
+.input, .select select, .file-cta, .file-name {
+    @apply h-10;
+}
+
+.input, .textarea, .select select {
+    @apply w-full max-w-full focus:border-gray-100 focus:ring focus:outline-none bg-white;
+}
+
+.textarea {
+    @apply h-24;
+}
+
+.help {
+    @apply block text-xs text-gray-500 mt-1;
+}
+/*Toggle*/
+.toggle-checkbox{
+    @apply text-red-600 border-red-600;
+}
+.toggle-checkbox:checked {
+    @apply: right-0 border-green-400;
+    right: 0;
+    border-color: #ffd0d0;
+}
+.toggle-checkbox:checked + .toggle-label {
+    @apply: bg-red-400;
+    background-color: #ffd0d0;
+}
+.toggle-checkbox:focus {
+    @apply: ring-none;
+}
 
 /*Create Card*/
 .content-column{
@@ -583,5 +678,5 @@ td.image-cell .image {
     @apply block mt-4 w-full m-auto;
 }
 .button-create{
-    @apply flex items-center justify-end mt-4;
+    @apply flex items-center justify-end mt-4 mb-2;
 }
