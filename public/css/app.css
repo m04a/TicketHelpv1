@@ -2574,6 +2574,44 @@ td.image-cell .image {
 
 /*Dashboard card*/
 
+/*Create Card*/
+
+.content-column {
+  display: flex;
+  width: 100%;
+  align-items: center;
+}
+
+@media (min-width: 640px) {
+
+  .content-column {
+    justify-content: center;
+  }
+}
+
+.column-left {
+  margin-right: 1.5rem;
+  width: 100%;
+}
+
+.column-right {
+  width: 100%;
+}
+
+.inpunt-content {
+  margin: auto;
+  margin-top: 1rem;
+  display: block;
+  width: 100%;
+}
+
+.button-create {
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
 .hover\:border-gray-300:hover {
   --tw-border-opacity: 1;
   border-color: rgb(209 213 219 / var(--tw-border-opacity));
