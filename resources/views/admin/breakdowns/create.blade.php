@@ -17,8 +17,8 @@
             </div>
 
             <!-- Status Breakdown -->
-            <div class="mt-4 column-right">
-                    <x-label for="rol" :value="__('Estat')" />
+            <div class="column-right">
+                    <x-label for="rol" :value="__('Estat Incidència')" />
                     
                     <x-select class="block mt-4 w-full">
                         <option value="1">Sense Assignar</option>

@@ -13,12 +13,12 @@
             <div class="column-left">
                 <x-label for="usuari" :value="__('Nom Usuari')" />
 
-                <x-input id="nom" class="inpunt-content" type="text" name="nom" required autofocus />
+                <x-input id="nom" class="inpunt-content" type="text" name="nom" value="Iker" required autofocus />
             </div>
 
             <!-- Status Breakdown -->
-            <div class="mt-4 column-right">
-                    <x-label for="rol" :value="__('Estat')" />
+            <div class="column-right">
+                    <x-label for="rol" :value="__('Estat Incidència')" />
                     
                     <x-select class="block mt-4 w-full">
                         <option value="1">Sense Assignar</option>
@@ -31,10 +31,10 @@
                 <div class="mt-4 column-left">
                     <x-label for="assumpte" :value="__('Assumpte')" />
 
-                    <x-input id="assumpte" class="inpunt-content" type="text" name="assumpte" required autofocus />
+                    <x-input id="assumpte" class="inpunt-content" type="text" name="assumpte" value="UNA INCIDENCIA RANDOM" required autofocus />
 
                 </div>
-                <!-- Rol User -->
+                <!-- Department -->
                 <div class="mt-4 column-right">
                     <x-label for="rol" :value="__('Departament')" />
                     
@@ -50,10 +50,10 @@
             </div>
             <div class="button-create">
                 <x-button class="ml-3">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
-                    </svg>
-                    {{ __('Editar Incidència') }}
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                </svg>
+                    {{ __('Guardar Canvis') }}
                 </x-button>
             </div>
         </form>
