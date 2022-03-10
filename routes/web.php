@@ -23,10 +23,15 @@ Route::get('/dashboard', function () {
     return view('public/dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::get('/users', function () {
+
 Route::get('/admin/users', function () {
     return view('admin/users/index');
-})->middleware(['auth'])->name('users');
+})->middleware(['auth'])->name('admin.users');
+
+Route::get('/admin/users/create', function () {
+    return view('admin/users/create');
+})->middleware(['auth'])->name('admin.users.create');
+
 
 Route::get('/admin/dashboard', function () {
     return view('admin/dashboard');
@@ -42,10 +47,13 @@ Route::get('/user/questions/list', function () {
     return view('user/questions/list');
 })->middleware(['auth'])->name('questions');
 
-Route::get('/question', function () {
-    return view('public/question/index');
+Route::get('/public/questions', function () {
+    return view('public/questions/index');
 })->middleware(['auth'])->name('question');
 
 
+Route::get('/breakdown', function () {
+    return view('user/breakdown/index');
+})->middleware(['auth'])->name('breakdown');
 
 require __DIR__.'/auth.php';

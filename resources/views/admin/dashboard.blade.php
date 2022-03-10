@@ -5,6 +5,9 @@
         </h1>
     </x-slot>
     <x-slot name="slot">
+        <x-select>
+            <option value="1">Hola</option>
+        </x-select>
         <div class="card-container">
             <a href="{{route('users')}}" class="card-dashboard">
             <div class="card-item">
@@ -21,7 +24,7 @@
                 </div>
             </div>
             </a>
-            <a href="{{route('question')}}" class="card-dashboard">
+            <a href="{{route('users')}}" class="card-dashboard">
             <div class="card-item">
                 <div class="card-spacing">
                     <div class="card-spacing-text">Preguntes</div>
@@ -31,8 +34,12 @@
         </div>
         </div>
     </x-slot>
+</x-user-layout>
 
 
-       
+        <section class="section main-section">
+        
+        </section>
 
+    </x-slot>
 </x-app-layout>
