@@ -35,6 +35,14 @@ Route::get('/admin/departments', function () {
     return view('admin/departments/index');
 })->middleware(['auth'])->name('departments');
 
+Route::get('/admin/departments/create', function () {
+    return view('admin/departments/create');
+})->middleware(['auth'])->name('admin.departments.create');
+
+Route::get('/admin/departments/edit', function () {
+    return view('admin/departments/edit');
+})->middleware(['auth'])->name('admin.departments.edit');
+
 // USER
 Route::get('/user/dashboard', function () {
     return view('user/dashboard');
