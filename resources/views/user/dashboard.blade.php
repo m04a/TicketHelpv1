@@ -7,6 +7,7 @@
     </x-slot>
     <x-slot name="slot">
         <div class="card-container">
+
             <a href="{{route('dashboard')}}" class="card-dashboard">
             <div class="card-item">
                 <div class="card-spacing">
@@ -15,6 +16,7 @@
                 </div>
             </div>
             </a>
+
             <a href="{{route('dashboard')}}" class="card-dashboard">
             <div class="card-item">
                 <div class="card-spacing">
@@ -22,6 +24,7 @@
                 </div>
             </div>
             </a>
+
             <a href="{{route('user.questions')}}" class="card-dashboard">
             <div class="card-item">
                 <div class="card-spacing">
