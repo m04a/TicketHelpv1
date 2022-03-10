@@ -888,16 +888,16 @@ select {
   border-top-width: 1px;
 }
 
+.border-r {
+  border-right-width: 1px;
+}
+
 .border-b-2 {
   border-bottom-width: 2px;
 }
 
 .border-l-4 {
   border-left-width: 4px;
-}
-
-.border-r {
-  border-right-width: 1px;
 }
 
 .border-gray-300 {
@@ -914,14 +914,14 @@ select {
   border-color: transparent;
 }
 
-.border-indigo-400 {
-  --tw-border-opacity: 1;
-  border-color: rgb(129 140 248 / var(--tw-border-opacity));
-}
-
 .border-gray-400 {
   --tw-border-opacity: 1;
   border-color: rgb(156 163 175 / var(--tw-border-opacity));
+}
+
+.border-indigo-400 {
+  --tw-border-opacity: 1;
+  border-color: rgb(129 140 248 / var(--tw-border-opacity));
 }
 
 .bg-white {
