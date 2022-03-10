@@ -531,7 +531,7 @@ td.image-cell .image {
 }
 
 .button-table-edit{
-    @apply bg-blue-500 mr-2 p-2 text-white hover:bg-blue-300;
+    @apply bg-yellow-400 mr-2 p-2 text-white hover:bg-blue-300;
 }
 
 .button-table-view{
