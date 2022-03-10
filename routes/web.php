@@ -17,19 +17,35 @@ Route::get('/', function () {
     return view('auth/login');
 });
 
-
-Route::get('/dashboard', function () {
-    return view('admin/dashboard');
-})->middleware(['auth'])->name('dashboard');
-
-Route::get('/users', function () {
+// ADMIN
+Route::get('/admin/users', function () {
     return view('admin/users/index');
+})->middleware(['auth'])->name('admin.users');
+
+Route::get('/admin/users/create', function () {
+    return view('admin/users/create');
+})->middleware(['auth'])->name('admin.users.create');
+
+
+Route::get('/admin/dashboard', function () {
+    return view('admin/dashboard');
 })->middleware(['auth'])->name('users');
 
-Route::get('/departments', function () {
+Route::get('/admin/departments', function () {
     return view('admin/departments/index');
 })->middleware(['auth'])->name('departments');
 
+// USER
+Route::get('/user/dashboard', function () {
+    return view('user/dashboard');
+})->middleware(['auth'])->name('dashboard');
 
+Route::get('/user/questions/list', function () {
+    return view('user/questions/list');
+})->middleware(['auth'])->name('questions');
+
+Route::get('/breakdown', function () {
+    return view('user/breakdown/index');
+})->middleware(['auth'])->name('breakdown');
 
 require __DIR__.'/auth.php';
