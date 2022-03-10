@@ -188,7 +188,7 @@ body {
 }
 
 .card-dashboard-question{
-    @apply m-6 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:duration-300 w-3/5;
+    @apply m-6 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:duration-300 w-3/5 mx-12;
 }
 .card.has-table .card-content {
     @apply p-0;

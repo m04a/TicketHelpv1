@@ -1,4 +1,5 @@
 <x-user-layout>
+    @csrf
     <x-slot name="header">
         <h1 class="title">
             Dashboard
@@ -6,7 +7,7 @@
     </x-slot>
     <x-slot name="slot">
         <div class="card-container">
-            <a href="{{route('users')}}" class="card-dashboard">
+            <a href="{{route('dashboard')}}" class="card-dashboard">
             <div class="card-item">
                 <div class="card-spacing">
                     <div class="card-spacing-text">
@@ -14,14 +15,14 @@
                 </div>
             </div>
             </a>
-            <a href="{{route('users')}}" class="card-dashboard">
+            <a href="{{route('dashboard')}}" class="card-dashboard">
             <div class="card-item">
                 <div class="card-spacing">
                     <div class="card-spacing-text">Suggerencies</div>
                 </div>
             </div>
             </a>
-            <a href="{{route('users')}}" class="card-dashboard">
+            <a href="{{route('user.questions')}}" class="card-dashboard">
             <div class="card-item">
                 <div class="card-spacing">
                     <div class="card-spacing-text">Preguntes</div>
