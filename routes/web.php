@@ -39,6 +39,18 @@ Route::get('/admin/suggestions/create', function () {
     return view('admin/suggestions/create');
 })->middleware(['auth']);
 
+Route::get('/admin/breakdown', function () {
+    return view('admin/breakdowns/index');
+})->middleware(['auth'])->name('breakdown');
+
+Route::get('/admin/breakdown/create', function () {
+    return view('admin/breakdowns/create');
+})->middleware(['auth'])->name('admin.breakdowns.create');
+
+Route::get('/admin/breakdown/edit', function () {
+    return view('admin/breakdowns/edit');
+})->middleware(['auth'])->name('admin.breakdowns.edit');
+
 // USER
 
 Route::get('/user/dashboard', function () {
