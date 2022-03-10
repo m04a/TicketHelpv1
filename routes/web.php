@@ -18,7 +18,6 @@ Route::get('/', function () {
 });
 
 // ADMIN
-
 Route::get('/admin/users', function () {
     return view('admin/users/index');
 })->middleware(['auth'])->name('admin.users');
@@ -27,23 +26,67 @@ Route::get('/admin/users/create', function () {
     return view('admin/users/create');
 })->middleware(['auth'])->name('admin.users.create');
 
+Route::get('/admin/users/edit', function () {
+    return view('admin/users/edit');
+})->middleware(['auth'])->name('admin.users.edit');
 
-Route::get('/admin/dashboard', function () {
-    return view('admin/dashboard');
-})->middleware(['auth'])->name('users');
+Route::get('/admin/devices', function () {
+    return view('admin/devices/index');
+})->middleware(['auth'])->name('admin.devices');
+
+Route::get('/admin/devices/create', function () {
+    return view('admin/devices/create');
+})->middleware(['auth'])->name('admin.devices.create');
+
+
+Route::get('/admin/suggestions/create', function () {
+    return view('admin/suggestions/create');
+})->middleware(['auth']);
+
+Route::get('/admin/breakdowns', function () {
+    return view('admin/breakdowns/index');
+})->middleware(['auth'])->name('admin.breakdowns');
+
+Route::get('/admin/breakdowns/create', function () {
+    return view('admin/breakdowns/create');
+})->middleware(['auth'])->name('admin.breakdowns.create');
+
+Route::get('/admin/breakdowns/edit', function () {
+    return view('admin/breakdowns/edit');
+})->middleware(['auth'])->name('admin.breakdowns.edit');
+
+Route::get('/admin/departments', function () {
+    return view('admin/departments/index');
+})->middleware(['auth'])->name('admin.departments');
+
+Route::get('/admin/departments/create', function () {
+    return view('admin/departments/create');
+})->middleware(['auth'])->name('admin.departments.create');
+
+Route::get('/admin/departments/edit', function () {
+    return view('admin/departments/edit');
+})->middleware(['auth'])->name('admin.departments.edit');
 
 // USER
-
 Route::get('/user/dashboard', function () {
     return view('user/dashboard');
-})->middleware(['auth'])->name('dashboard');
+})->middleware(['auth'])->name('user.dashboard');
 
 Route::get('/user/questions/list', function () {
     return view('user/questions/list');
-})->middleware(['auth'])->name('questions');
+})->middleware(['auth'])->name('user.questions');
 
-Route::get('/breakdown', function () {
+Route::get('/user/breakdowns', function () {
     return view('user/breakdown/index');
-})->middleware(['auth'])->name('breakdown');
+})->middleware(['auth'])->name('user.breakdowns');
+
+Route::get('/admin/types', function () {
+    return view('admin/types/index');
+})->middleware(['auth'])->name('user.types');
+
+Route::get('/admin/types/create', function () {
+    return view('admin/types/create');
+})->middleware(['auth'])->name('user.types.create');
+
 
 require __DIR__.'/auth.php';
