@@ -1,23 +1,23 @@
 <x-user-layout>
     <x-slot name="header">
         <h1 class="title">
-            Preguntes
+            Suggeriments
         </h1>
     </x-slot>
     <x-slot name="slot">
-        <div class="card-container-question">
-            <a href="{{route('dashboard')}}" class="card-dashboard-question">
-            <div class="card-item-question">
+        <div class="card-container-index">
+            <a href="{{route('user.suggestions')}}" class="card-dashboard-index">
+            <div class="card-item-index">
                 <div class="card-spacing">
                     <div class="card-spacing-text">
-                    Meves Preguntes</div>
+                    Meus Suggeriments</div>
                 </div>
             </div>
             </a>
-            <a href="{{route('dashboard')}}" class="card-dashboard-question">
-            <div class="card-item-question">
+            <a href="{{route('user.suggestions')}}" class="card-dashboard-index">
+            <div class="card-item-index">
                 <div class="card-spacing">
-                    <div class="card-spacing-text">Nova Pregunta</div>
+                    <div class="card-spacing-text">Nou Suggeriment</div>
                 </div>
             </div>
             </a>
