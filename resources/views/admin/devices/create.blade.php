@@ -41,7 +41,7 @@
             <div class="button-create">
                 <x-button class="ml-3">
                     <svg class="w-6 h-6" data-darkreader-inline-fill="" fill="currentColor"
-                        style="--darkreader-inline-fill: currentColor;" viewBox="0 0 24 24"
+                        style="--darkreader-inline-fill: currentColor;" viewBox="0 -2 24 24"
                         xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd"
                             d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z"
