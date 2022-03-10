@@ -89,4 +89,8 @@ Route::get('/admin/types/create', function () {
 })->middleware(['auth'])->name('user.types.create');
 
 
+Route::get('/user/questions', function () {
+    return view('user/questions/index');
+})->middleware(['auth'])->name('user.questions');
+
 require __DIR__.'/auth.php';
