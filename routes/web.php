@@ -31,6 +31,9 @@ Route::get('/admin/users/create', function () {
     return view('admin/users/create');
 })->middleware(['auth'])->name('admin.users.create');
 
+Route::get('/admin/users/edit', function () {
+    return view('admin/users/edit');
+})->middleware(['auth'])->name('admin.users.edit');
 
 Route::get('/admin/dashboard', function () {
     return view('admin/dashboard');
@@ -51,9 +54,6 @@ Route::get('/breakdown', function () {
 })->middleware(['auth'])->name('breakdown');
 Route::get('/suggestions/create', function () {
     return view('admin/suggestions/create');
-})->middleware(['auth']);
-Route::get('/suggestions/view', function () {
-    return view('admin/suggestions/view');
 })->middleware(['auth']);
 
 require __DIR__.'/auth.php';
