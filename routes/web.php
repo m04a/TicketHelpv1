@@ -27,6 +27,14 @@ Route::get('/admin/users/create', function () {
     return view('admin/users/create');
 })->middleware(['auth'])->name('admin.users.create');
 
+Route::get('/admin/devices', function () {
+    return view('admin/devices/index');
+})->middleware(['auth'])->name('admin.devices');
+
+Route::get('/admin/devices/create', function () {
+    return view('admin/devices/create');
+})->middleware(['auth'])->name('admin.devices.create');
+
 
 Route::get('/admin/dashboard', function () {
     return view('admin/dashboard');
