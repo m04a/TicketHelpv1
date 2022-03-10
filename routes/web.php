@@ -39,6 +39,30 @@ Route::get('/admin/dashboard', function () {
     return view('admin/dashboard');
 })->middleware(['auth'])->name('users');
 
+Route::get('/admin/breakdowns', function () {
+    return view('admin/breakdowns/index');
+})->middleware(['auth'])->name('admin.breakdowns');
+
+Route::get('/admin/breakdowns/create', function () {
+    return view('admin/breakdowns/create');
+})->middleware(['auth'])->name('admin.breakdowns.create');
+
+Route::get('/admin/breakdowns/edit', function () {
+    return view('admin/breakdowns/edit');
+})->middleware(['auth'])->name('admin.breakdowns.edit');
+
+Route::get('/admin/departments', function () {
+    return view('admin/departments/index');
+})->middleware(['auth'])->name('admin.departments');
+
+Route::get('/admin/departments/create', function () {
+    return view('admin/departments/create');
+})->middleware(['auth'])->name('admin.departments.create');
+
+Route::get('/admin/departments/edit', function () {
+    return view('admin/departments/edit');
+})->middleware(['auth'])->name('admin.departments.edit');
+
 // USER
 
 Route::get('/user/dashboard', function () {
@@ -51,9 +75,19 @@ Route::get('/user/questions/list', function () {
 
 Route::get('/breakdown', function () {
     return view('user/breakdown/index');
-})->middleware(['auth'])->name('breakdown');
-Route::get('/suggestions/create', function () {
-    return view('admin/suggestions/create');
-})->middleware(['auth']);
+})->middleware(['auth'])->name('user.breakdowns');
+
+Route::get('/admin/types', function () {
+    return view('admin/types/index');
+})->middleware(['auth'])->name('user.types');
+
+Route::get('/admin/types/create', function () {
+    return view('admin/types/create');
+})->middleware(['auth'])->name('user.types.create');
+
+
+Route::get('/user/questions', function () {
+    return view('user/questions/index');
+})->middleware(['auth'])->name('user.questions');
 
 require __DIR__.'/auth.php';
