@@ -52,5 +52,8 @@ Route::get('/breakdown', function () {
 Route::get('/suggestions/create', function () {
     return view('admin/suggestions/create');
 })->middleware(['auth']);
+Route::get('/suggestions/view', function () {
+    return view('admin/suggestions/view');
+})->middleware(['auth']);
 
 require __DIR__.'/auth.php';
