@@ -186,6 +186,10 @@ body {
 .card-dashboard{
     @apply m-6 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:duration-300;
 }
+
+.card-dashboard-question{
+    @apply m-6 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:duration-300 w-3/5 mx-12;
+}
 .card.has-table .card-content {
     @apply p-0;
 }
@@ -193,18 +197,28 @@ body {
     @apply p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-5
     justify-center items-center h-48;
 }
+.card-container-question{
+    @apply p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-5
+    justify-center items-center h-48 justify-items-center;
+}
 
 .card-content {
     @apply p-6;
 }
+
 .card-item{
     @apply rounded overflow-hidden shadow-lg bg-white;
 }
+
+.card-item-question{
+    @apply rounded overflow-hidden shadow-lg bg-white w-full ;
+}
+
 .card-spacing {
     @apply px-6 py-4 h-48;
 }
 .card-spacing-text{
-    @apply text-3xl font-bold mb-4 mt-0 flex justify-center items-center h-36;
+    @apply text-3xl font-bold mb-4 mt-0 flex justify-center items-center h-36 text-center   ;
 }
 .card-content hr {
     @apply my-6 -mx-6;
