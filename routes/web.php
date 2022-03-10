@@ -65,6 +65,7 @@ Route::middleware(['auth'])->group(function () {
 
         ///////////////////////////////////////////////////
 
+
         Route::get('/admin/breakdowns', function () {
             return view('admin/breakdowns/index');
         })->name('admin.breakdowns');
@@ -116,6 +117,10 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/user/breakdowns', function () {
             return view('user/breakdown/index');
         })->name('user.breakdowns');
+    
+        Route::get('/user/breakdowns/list', function () {
+            return view('user/breakdowns/list');
+        })->name('user.breakdowns.list');
 
         Route::get('/admin/types', function () {
             return view('admin/types/index');
@@ -124,7 +129,6 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/admin/types/create', function () {
             return view('admin/types/create');
         })->name('user.types.create');
-
 
         Route::get('/admin/suggestions/create', function () {
             return view('admin/suggestions/create');
