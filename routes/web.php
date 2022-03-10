@@ -30,6 +30,15 @@ Route::get('/admin/users/edit', function () {
     return view('admin/users/edit');
 })->middleware(['auth'])->name('admin.users.edit');
 
+Route::get('/admin/devices', function () {
+    return view('admin/devices/index');
+})->middleware(['auth'])->name('admin.devices');
+
+Route::get('/admin/devices/create', function () {
+    return view('admin/devices/create');
+})->middleware(['auth'])->name('admin.devices.create');
+
+
 Route::get('/admin/suggestions/create', function () {
     return view('admin/suggestions/create');
 })->middleware(['auth']);
