@@ -5,17 +5,17 @@
         </h1>
     </x-slot>
     <x-slot name="slot">
-        <div class="card-container-question">
-            <a href="{{route('user.questions')}}" class="card-dashboard-question">
-            <div class="card-item-question">
+        <div class="card-container-index">
+            <a href="{{route('user.dashboard')}}" class="card-dashboard-index">
+            <div class="card-item-index">
                 <div class="card-spacing">
                     <div class="card-spacing-text">
                     Meves Preguntes</div>
                 </div>
             </div>
             </a>
-            <a href="{{route('user.questions')}}" class="card-dashboard-question">
-            <div class="card-item-question">
+            <a href="{{route('user.dashboard')}}" class="card-dashboard-index">
+            <div class="card-item-index">
                 <div class="card-spacing">
                     <div class="card-spacing-text">Nova Pregunta</div>
                 </div>

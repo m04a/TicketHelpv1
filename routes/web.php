@@ -105,64 +105,57 @@ Route::middleware(['auth'])->group(function () {
 
     // USER
 
-    Route::get('/user/dashboard', function () {
-        return view('user/dashboard');
-    })->name('user.dashboard');
+        Route::get('/user/dashboard', function () {
+            return view('user/dashboard');
+        })->name('user.dashboard');
 
-    Route::get('/user/questions/list', function () {
-        return view('user/questions/list');
-    })->name('user.questions');
+        Route::get('/user/questions/list', function () {
+            return view('user/questions/list');
+        })->name('user.questions');
 
-    Route::get('/user/breakdowns', function () {
-        return view('user/breakdown/index');
-    })->name('user.breakdowns');
+        Route::get('/user/breakdowns', function () {
+            return view('user/breakdown/index');
+        })->name('user.breakdowns');
 
-Route::get('/admin/suggestions/create', function () {
-    return view('admin/suggestions/create');
-})->middleware(['auth']);
+        Route::get('/admin/types', function () {
+            return view('admin/types/index');
+        })->name('user.types');
 
-Route::get('/admin/departments', function () {
-    return view('admin/departments/index');
-})->middleware(['auth'])->name('departments');
-
-Route::get('/admin/departments/create', function () {
-    return view('admin/departments/create');
-})->middleware(['auth'])->name('admin.departments.create');
-
-Route::get('/admin/departments/edit', function () {
-    return view('admin/departments/edit');
-})->middleware(['auth'])->name('admin.departments.edit');
-
-// USER
-Route::get('/user/dashboard', function () {
-    return view('user/dashboard');
-})->middleware(['auth'])->name('dashboard');
-
-Route::get('/user/questions/list', function () {
-    return view('user/questions/list');
-})->middleware(['auth'])->name('questions');
-
-Route::get('/user/breakdowns', function () {
-    return view('user/breakdown/index');
-})->middleware(['auth'])->name('breakdown');
+        Route::get('/admin/types/create', function () {
+            return view('admin/types/create');
+        })->name('user.types.create');
 
 
-Route::get('/admin/types', function () {
-    return view('admin/types/index');
-})->middleware(['auth'])->name('types');
+        Route::get('/admin/suggestions/create', function () {
+            return view('admin/suggestions/create');
+        })->middleware(['auth']);
 
-Route::get('/admin/types/create', function () {
-    return view('admin/types/create');
-})->middleware(['auth'])->name('types');
+        Route::get('/admin/departments', function () {
+            return view('admin/departments/index');
+        })->name('departments');
 
+        Route::get('/admin/departments/create', function () {
+            return view('admin/departments/create');
+        })->name('admin.departments.create');
+
+        Route::get('/admin/departments/edit', function () {
+            return view('admin/departments/edit');
+        })->name('admin.departments.edit');
+
+        Route::get('/user/questions', function () {
+            return view('user/questions/index');
+        })->name('user.questions');
+    
+
+        Route::get('/user/suggestions', function () {
+            return view('user/suggestions/index');
+        })->name('user.suggestions');
+
+        Route::get('/user/suggestions/list', function () {
+            return view('user/suggestions/list');
+        })->name('suggestions');
+    });
 
 require __DIR__.'/auth.php';
-    Route::get('/user/questions', function () {
-        return view('user/questions/index');
-    })->name('user.questions');
 
-    Route::get('/user/suggestions/list', function () {
-        return view('user/suggestions/list');
-    })->middleware(['auth'])->name('suggestions');
-});
 
