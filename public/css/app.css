@@ -914,10 +914,13 @@ select {
   border-left-width: 4px;
 }
 
+<<<<<<< HEAD
+=======
 .border-solid {
   border-style: solid;
 }
 
+>>>>>>> 8506dfe70b57aa76e88ef0437f1361f942c6561d
 .border-gray-300 {
   --tw-border-opacity: 1;
   border-color: rgb(209 213 219 / var(--tw-border-opacity));
@@ -937,11 +940,19 @@ select {
   border-color: transparent;
 }
 
+.border-gray-400 {
+  --tw-border-opacity: 1;
+  border-color: rgb(156 163 175 / var(--tw-border-opacity));
+}
+
+<<<<<<< HEAD
 .border-indigo-400 {
   --tw-border-opacity: 1;
   border-color: rgb(129 140 248 / var(--tw-border-opacity));
 }
 
+=======
+>>>>>>> 8506dfe70b57aa76e88ef0437f1361f942c6561d
 .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
