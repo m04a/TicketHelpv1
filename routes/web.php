@@ -18,7 +18,12 @@ Route::get('/', function () {
 });
 
 // ADMIN
-Route::get('/admin/users', function () {
+
+Route::get('/dashboard', function () {
+    return view('admin/dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+Route::get('/users', function () {
     return view('admin/users/index');
 })->middleware(['auth'])->name('admin.users');
 
@@ -30,18 +35,9 @@ Route::get('/admin/users/edit', function () {
     return view('admin/users/edit');
 })->middleware(['auth'])->name('admin.users.edit');
 
-Route::get('/admin/devices', function () {
-    return view('admin/devices/index');
-})->middleware(['auth'])->name('admin.devices');
-
-Route::get('/admin/devices/create', function () {
-    return view('admin/devices/create');
-})->middleware(['auth'])->name('admin.devices.create');
-
-
-Route::get('/admin/suggestions/create', function () {
-    return view('admin/suggestions/create');
-})->middleware(['auth']);
+Route::get('/admin/dashboard', function () {
+    return view('admin/dashboard');
+})->middleware(['auth'])->name('users');
 
 Route::get('/admin/breakdowns', function () {
     return view('admin/breakdowns/index');
@@ -68,15 +64,16 @@ Route::get('/admin/departments/edit', function () {
 })->middleware(['auth'])->name('admin.departments.edit');
 
 // USER
+
 Route::get('/user/dashboard', function () {
     return view('user/dashboard');
-})->middleware(['auth'])->name('user.dashboard');
+})->middleware(['auth'])->name('dashboard');
 
 Route::get('/user/questions/list', function () {
     return view('user/questions/list');
-})->middleware(['auth'])->name('user.questions');
+})->middleware(['auth'])->name('questions');
 
-Route::get('/user/breakdowns', function () {
+Route::get('/breakdown', function () {
     return view('user/breakdown/index');
 })->middleware(['auth'])->name('user.breakdowns');
 
