@@ -100,7 +100,6 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/admin/types/create', function () {
             return view('admin/types/create');
         })->name('user.types.create');
-
     });
 
 
@@ -130,4 +129,4 @@ Route::middleware(['auth'])->group(function () {
 
 
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
