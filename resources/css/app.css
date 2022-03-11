@@ -33,9 +33,15 @@ body {
 #navbar-main{
     @apply shadow-md;
 }
+
 .main-section {
     @apply p-6;
 }
+
+.main-section-user {
+    @apply p-6 px-44;
+}
+
 .dropdown {
     @apply cursor-pointer;
 }
@@ -186,10 +192,13 @@ body {
 .card-dashboard{
     @apply m-6 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:duration-300;
 }
+<<<<<<<<< Temporary merge branch 1
+=========
 
 .card-dashboard-index{
     @apply m-6 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:duration-300 w-3/5 ;
 }
+>>>>>>>>> Temporary merge branch 2
 .card.has-table .card-content {
     @apply p-0;
 }
@@ -197,23 +206,28 @@ body {
     @apply p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-5
     justify-center items-center h-48;
 }
+<<<<<<<<< Temporary merge branch 1
+=========
 .card-container-index{
     @apply p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-5
     justify-center items-center h-48 justify-items-center mx-12;
 }
+>>>>>>>>> Temporary merge branch 2
 
 .card-content {
     @apply p-6;
 }
-
 .card-item{
     @apply rounded overflow-hidden shadow-lg bg-white;
 }
+<<<<<<<<< Temporary merge branch 1
+=========
 
 .card-item-index{
     @apply rounded overflow-hidden shadow-lg bg-white w-full ;
 }
 
+>>>>>>>>> Temporary merge branch 2
 .card-spacing {
     @apply px-6 py-4 h-48;
 }
