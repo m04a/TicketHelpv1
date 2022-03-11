@@ -11,14 +11,14 @@
             <div class="">
             <!-- Name User -->
             <div class="mt-4 column-left">
-                <x-label for="usuari" :value="__('Titol Incidència')" />
+                <x-label for="assumpte" :value="__('Assumpte')" />
 
                 <x-input id="nom" class="inpunt-content" type="text" name="nom" required autofocus />
             </div>
                 <!-- Subject -->
                 <div class="mt-4 column-left">
                     
-                    <x-label for="assumpte" :value="__('Assumpte')" />
+                    <x-label for="descripcio" :value="__('Descripció')" />
                     
                     <textarea class="mt-4 textarea"></textarea>
 
