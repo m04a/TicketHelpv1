@@ -13,7 +13,7 @@
                 <div class="column-left">
                     <x-label for="etiqueta" :value="__('Etiqueta del tipus')" />
 
-                    <x-input id="label" class="inpunt-content" type="text" name="label" placeholder="Switch" required
+                    <x-input id="label" class="input-content" type="text" name="label" placeholder="Switch" required
                         autofocus />
                 </div>
 
@@ -21,7 +21,7 @@
                 <div class="column-right">
                     <x-label for="Descipció" :value="__('Descripció')" />
 
-                    <x-input id="Description" class="inpunt-content" type="text" name="Description"
+                    <x-input id="Description" class="input-content" type="text" name="Description"
                         placeholder="És un aparell de xarxes que permet connectar equips en una xarxa." required
                         autofocus />
                 </div>

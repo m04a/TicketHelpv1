@@ -13,7 +13,7 @@
                 <div class="column-left">
                     <x-label for="usuari" :value="__('Assumpte')" />
 
-                    <x-input id="nom" class="inpunt-content" type="text" name="nom" required autofocus />
+                    <x-input id="nom" class="input-content" type="text" name="nom" required autofocus />
                 </div>
             </div>
             <div class="content-column">
