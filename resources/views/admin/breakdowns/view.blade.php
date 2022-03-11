@@ -12,14 +12,14 @@
                 <div class="column-left">
                     <x-label for="title" :value="__('Assumpte')" />
 
-                    <x-input id="title" class="inpunt-content input-disabled" type="text" name="nom" value="La pantalla es queda de color blau" required autofocus disabled/>
+                    <x-input id="title" class="input-content input-disabled" type="text" name="nom" value="La pantalla es queda de color blau" required autofocus disabled/>
                 </div>
 
                 <!-- Status Breakdown -->
                 <div class="column-right">
                     <x-label for="state" :value="__('Estat Incidència')" />
                     
-                    <x-input id="state" class="inpunt-content input-disabled" type="text" name="estat" value="Solucionada" required autofocus disabled/>
+                    <x-input id="state" class="input-content input-disabled" type="text" name="estat" value="Solucionada" required autofocus disabled/>
                 </div>
             </div>
             <div class="content-column">
@@ -28,14 +28,14 @@
 
                     <x-label for="user" :value="__('User')" />
 
-                    <x-input id="user" class="inpunt-content input-disabled" type="text" name="assumpte" value="Jorge" required autofocus disabled/>
+                    <x-input id="user" class="input-content input-disabled" type="text" name="assumpte" value="Jorge" required autofocus disabled/>
 
                 </div>
                 <!-- Department -->
                 <div class="mt-4 column-right">
                     <x-label for="rol" :value="__('Departament')" />
                     
-                    <x-input id="department" class="inpunt-content input-disabled" type="text" name="department" value="Departament Informàtica" required autofocus disabled/>
+                    <x-input id="department" class="input-content input-disabled" type="text" name="department" value="Departament Informàtica" required autofocus disabled/>
 
                 </div>
             </div>
@@ -64,8 +64,8 @@
                 <textarea class="textarea"></textarea>
                 <div class="button-create">
                     <x-button class="ml-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 rotate-180 rotate-90" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
                         </svg>
                         {{ __('Enviar Resposta') }}
                     </x-button>

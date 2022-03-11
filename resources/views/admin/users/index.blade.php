@@ -130,6 +130,7 @@
                     </tr>
                     </tbody>
                 </table>
+                <x-pagination></x-pagination>
             </div>
         </div>
     </section>
