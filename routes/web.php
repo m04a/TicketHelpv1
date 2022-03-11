@@ -62,7 +62,7 @@ Route::middleware(['auth'])->group(function () {
             return view('admin/suggestions/view');
         })->name('admin.suggestions.view');
 
-        Route::get('/admin/suggestions/index', function () {
+        Route::get('/admin/suggestions', function () {
             return view('admin/suggestions/index');
         })->name('admin.suggestions.index');
 
