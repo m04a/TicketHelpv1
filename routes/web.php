@@ -62,9 +62,15 @@ Route::middleware(['auth'])->group(function () {
             return view('admin/suggestions/view');
         })->name('admin.suggestions.view');
 
+        Route::get('/admin/suggestions/index', function () {
+            return view('admin/suggestions/index');
+        })->name('admin.suggestions.index');
+
+        Route::get('/admin/suggestions/edit', function () {
+            return view('admin/suggestions/edit');
+        })->name('admin.suggestions.edit');
 
         ///////////////////////////////////////////////////
-
 
         Route::get('/admin/breakdowns', function () {
             return view('admin/breakdowns/index');
@@ -109,8 +115,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/user/dashboard', function () {
         return view('user/dashboard');
     })->name('user.dashboard');
-
-    ///////////////////////////////////////////////////
 
     Route::get('/user/questions/list', function () {
         return view('user/questions/list');
@@ -178,5 +182,3 @@ Route::middleware(['auth'])->group(function () {
 });
 
 require __DIR__.'/auth.php';
-
-
