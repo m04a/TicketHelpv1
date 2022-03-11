@@ -146,16 +146,6 @@ Route::middleware(['auth'])->group(function () {
 
     ///////////////////////////////////////////////////
 
-    Route::get('/user/questions', function () {
-        return view('user/questions/index');
-    })->name('user.questions');
-
-    Route::get('/user/questions/list', function () {
-        return view('user/questions/list');
-    })->name('user.questions.list');
-
-    ///////////////////////////////////////////////////
-
     Route::get('/user/breakdowns', function () {
         return view('user/breakdown/index');
     })->name('user.breakdowns');
@@ -174,14 +164,14 @@ Route::middleware(['auth'])->group(function () {
         return view('user/questions/index');
     })->name('user.questions');
 
-    Route::get('/user/questions', function () {
-        return view('user/questions/index');
-    })->name('user.questions');
-
     Route::get('/user/questions/create', function () {
         return view('user/questions/create');
     })->name('user.questions.create');
 
+    Route::get('/user/questions/list', function () {
+        return view('user/questions/list');
+    })->name('user.questions');
+    
     ///////////////////////////////////////////////////
 
     Route::get('/user/suggestions', function () {
