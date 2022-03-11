@@ -1,7 +1,7 @@
 <x-user-layout>
     <x-slot name="header">
         <h1 class="title">
-            Preguntes
+            Incidències
         </h1>
     </x-slot>
     <x-slot name="slot">
@@ -11,17 +11,8 @@
             <div class="card has-table">
                 <header class="card-header">
                     <p class="card-header-title">
-                        Preguntes pendents
+                        Incidències pendents
                     </p>
-                    <button class="button-table-add">
-                        <div class="button-table-add-separation">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                            </svg>
-                            <span>Fer una pregunta</span>
-                        </div>
-                    </button>
                 </header>
                 <div class="card-content">
                     <table>
@@ -35,9 +26,9 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td data-label="Assumpte">Lorem ipsum</td>
+                                <td data-label="Assumpte">Assumpte Random 1</td>
                                 <td data-label="Estat">Pendent</td>
-                                <td data-label="Departament">Projectes</td>
+                                <td data-label="Departament">Altres</td>
                                 <td class="actions-cell">
                                     <div class="buttons right nowrap">
 
@@ -61,7 +52,7 @@
             <div class="card has-table">
                 <header class="card-header">
                     <p class="card-header-title">
-                        Preguntes resoltes
+                        Incidències resoltes
                     </p>
                 </header>
                 <div class="card-content">
@@ -71,16 +62,16 @@
                                 <th>Assumpte</th>
                                 <th>Estat</th>
                                 <th>Departament</th>
-                                <th>Gestor</th>
+                                <th>Gerent</th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td data-label="Assumpte">Lorem ipsum</td>
+                                <td data-label="Assumpte">Assumpte Random 2</td>
                                 <td data-label="Estat">Resolt</td>
-                                <td data-label="Departament">Projectes</td>
-                                <td data-label="Gestor">Oriol</td>
+                                <td data-label="Departament">Altres</td>
+                                <td data-label="Gerent">Jorge</td>
                                 <td class="actions-cell">
                                     <div class="buttons right nowrap">
 
