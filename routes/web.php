@@ -102,7 +102,7 @@ Route::middleware(['auth'])->group(function () {
             return view('admin/questions/edit');
         })->name('admin.questions.edit');
 
-        ///////////////////////////////////////////////////
+        ////////////////////////////////////////////////////
 
         Route::get('/admin/departments', function () {
             return view('admin/departments/index');
