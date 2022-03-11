@@ -475,11 +475,13 @@ body {
     @apply pr-0 font-black text-black;
 }
 
-/*Taula*/
+/*Table*/
 table {
   @apply w-full;
 }
-
+.table-pagination {
+    @apply px-6 py-3 border-t border-gray-100;
+}
 thead {
   @apply hidden lg:table-header-group;
 }
