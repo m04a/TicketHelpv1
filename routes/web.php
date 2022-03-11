@@ -65,6 +65,7 @@ Route::middleware(['auth'])->group(function () {
 
         ///////////////////////////////////////////////////
 
+
         Route::get('/admin/breakdowns', function () {
             return view('admin/breakdowns/index');
         })->name('admin.breakdowns');
@@ -109,29 +110,73 @@ Route::middleware(['auth'])->group(function () {
         return view('user/dashboard');
     })->name('user.dashboard');
 
+    ///////////////////////////////////////////////////
+
     Route::get('/user/questions/list', function () {
         return view('user/questions/list');
     })->name('user.questions');
+
+    ///////////////////////////////////////////////////
 
     Route::get('/user/breakdowns', function () {
         return view('user/breakdown/index');
     })->name('user.breakdowns');
 
+    Route::get('/user/breakdowns/list', function () {
+        return view('user/breakdowns/list');
+    })->name('user.breakdowns.list');
+
+    ///////////////////////////////////////////////////
+
+    Route::get('/admin/types', function () {
+        return view('admin/types/index');
+    })->name('user.types');
+
+    Route::get('/admin/types/create', function () {
+        return view('admin/types/create');
+    })->name('user.types.create');
+
+    ///////////////////////////////////////////////////
+
+    Route::get('/admin/suggestions/create', function () {
+        return view('admin/suggestions/create');
+    })->middleware(['auth']);
+
+    ///////////////////////////////////////////////////
+
+    Route::get('/admin/departments', function () {
+        return view('admin/departments/index');
+    })->name('departments');
+
+    Route::get('/admin/departments/create', function () {
+        return view('admin/departments/create');
+    })->name('admin.departments.create');
+
+    Route::get('/admin/departments/edit', function () {
+        return view('admin/departments/edit');
+    })->name('admin.departments.edit');
+
+    ///////////////////////////////////////////////////
+
     Route::get('/user/questions', function () {
         return view('user/questions/index');
     })->name('user.questions');
+    
+    ///////////////////////////////////////////////////
+
+    Route::get('/user/suggestions', function () {
+        return view('user/suggestions/index');
+    })->name('user.suggestions');
 
     Route::get('/user/suggestions/create', function () {
         return view('user/suggestions/create');
     })->name('user.suggestions.create');
-    
 
     Route::get('/user/suggestions/list', function () {
         return view('user/suggestions/list');
     })->name('suggestions');
 });
 
+require __DIR__.'/auth.php';
 
 
-
-require __DIR__ . '/auth.php';
