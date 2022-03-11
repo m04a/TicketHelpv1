@@ -13,7 +13,7 @@
             <div class="column-left">
                 <x-label for="usuari" :value="__('Nom Usuari')" />
 
-                <x-input id="nom" class="inpunt-content" type="text" name="nom" required autofocus />
+                <x-input id="nom" class="input-content" type="text" name="nom" required autofocus />
             </div>
 
             <!-- Status Breakdown -->
@@ -31,7 +31,7 @@
                 <div class="mt-4 column-left">
                     <x-label for="assumpte" :value="__('Assumpte')" />
 
-                    <x-input id="assumpte" class="inpunt-content" type="text" name="assumpte" required autofocus />
+                    <x-input id="assumpte" class="input-content" type="text" name="assumpte" required autofocus />
 
                 </div>
                 <!-- Rol User -->

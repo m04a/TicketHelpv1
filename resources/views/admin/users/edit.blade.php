@@ -13,14 +13,14 @@
             <div class="column-left">
                 <x-label for="usuari" :value="__('Nom Usuari')" />
 
-                <x-input id="nom" class="inpunt-content" type="text" name="nom" value="Mohamed" required autofocus />
+                <x-input id="nom" class="input-content" type="text" name="nom" value="Mohamed" required autofocus />
             </div>
 
             <!-- Email User -->
             <div class="column-right">
                 <x-label for="email" :value="__('Correu Electronic')" />
 
-                <x-input id="email" class="inpunt-content" type="email" name="email" value="mohamed@cendrassos.net" required autofocus />
+                <x-input id="email" class="input-content" type="email" name="email" value="mohamed@cendrassos.net" required autofocus />
             </div>
             </div>
             <div class="content-column">
@@ -28,7 +28,7 @@
                 <div class="mt-4 column-left">
                     <x-label for="password" :value="__('Contrasenya')" />
 
-                    <x-input id="password" class="inpunt-content"
+                    <x-input id="password" class="input-content"
                                     type="password"
                                     name="password"
                                     value="1234567890"
