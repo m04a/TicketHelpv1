@@ -33,9 +33,15 @@ body {
 #navbar-main{
     @apply shadow-md;
 }
+
 .main-section {
     @apply p-6;
 }
+
+.main-section-user {
+    @apply p-6 px-44;
+}
+
 .dropdown {
     @apply cursor-pointer;
 }
