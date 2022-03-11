@@ -89,6 +89,7 @@ Route::middleware(['auth'])->group(function () {
         })->name('admin.breakdowns.view');
 
         ///////////////////////////////////////////////////
+
         Route::get('/admin/questions', function () {
             return view('admin/questions/index');
         })->name('admin.questions');
@@ -172,6 +173,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/user/questions', function () {
         return view('user/questions/index');
     })->name('user.questions');
+
+    Route::get('/user/questions/create', function () {
+        return view('user/questions/create');
+    })->name('user.questions.create');
+
     ///////////////////////////////////////////////////
 
     Route::get('/user/suggestions', function () {
@@ -187,6 +193,4 @@ Route::middleware(['auth'])->group(function () {
     })->name('user.suggestions.list');
 });
 
-require __DIR__.'/auth.php';
-
-
+require __DIR__ . '/auth.php';
