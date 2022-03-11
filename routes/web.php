@@ -102,7 +102,7 @@ Route::middleware(['auth'])->group(function () {
             return view('admin/questions/edit');
         })->name('admin.questions.edit');
 
-        ///////////////////////////////////////////////////
+        ////////////////////////////////////////////////////
 
         Route::get('/admin/departments', function () {
             return view('admin/departments/index');
@@ -146,19 +146,13 @@ Route::middleware(['auth'])->group(function () {
 
     ///////////////////////////////////////////////////
 
-    Route::get('/user/questions', function () {
-        return view('user/questions/index');
-    })->name('user.questions');
-
-    Route::get('/user/questions/list', function () {
-        return view('user/questions/list');
-    })->name('user.questions.list');
-
-    ///////////////////////////////////////////////////
-
     Route::get('/user/breakdowns', function () {
         return view('user/breakdown/index');
     })->name('user.breakdowns');
+
+    Route::get('/user/breakdowns/create', function () {
+        return view('user/breakdowns/create');
+    })->name('user.breakdowns.create');
 
     Route::get('/user/breakdowns/list', function () {
         return view('user/breakdowns/list');
@@ -170,14 +164,14 @@ Route::middleware(['auth'])->group(function () {
         return view('user/questions/index');
     })->name('user.questions');
 
-    Route::get('/user/questions', function () {
-        return view('user/questions/index');
-    })->name('user.questions');
-
     Route::get('/user/questions/create', function () {
         return view('user/questions/create');
     })->name('user.questions.create');
 
+    Route::get('/user/questions/list', function () {
+        return view('user/questions/list');
+    })->name('user.questions');
+    
     ///////////////////////////////////////////////////
 
     Route::get('/user/suggestions', function () {
