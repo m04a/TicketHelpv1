@@ -719,7 +719,11 @@ td.image-cell .image {
     @apply w-full;
 }
 .input-content{
-    @apply block mt-4 w-full m-auto;
+    @apply block mt-4 w-full;
+}
+
+.input-contant-test{
+    @apply block pl-4 mt-4 w-full;
 }
 .button-create{
     @apply flex items-center justify-end mt-4 mb-2;
