@@ -33,9 +33,15 @@ body {
 #navbar-main{
     @apply shadow-md;
 }
+
 .main-section {
     @apply p-6;
 }
+
+.main-section-user {
+    @apply p-6 px-44;
+}
+
 .dropdown {
     @apply cursor-pointer;
 }
@@ -187,6 +193,7 @@ body {
     @apply m-6 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:duration-300;
 }
 
+
 .card-dashboard-index{
     @apply m-6 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:duration-300 w-3/5 ;
 }
@@ -197,6 +204,7 @@ body {
     @apply p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-5
     justify-center items-center h-48;
 }
+
 .card-container-index{
     @apply p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-5
     justify-center items-center h-48 justify-items-center mx-12;
@@ -205,10 +213,10 @@ body {
 .card-content {
     @apply p-6;
 }
-
 .card-item{
     @apply rounded overflow-hidden shadow-lg bg-white;
 }
+
 
 .card-item-index{
     @apply rounded overflow-hidden shadow-lg bg-white w-full ;
@@ -475,6 +483,13 @@ body {
     @apply pr-0 font-black text-black;
 }
 
+/* question styles */
+
+.card-header-question{
+    @apply items-center;
+}
+
+
 /*Taula*/
 table {
   @apply w-full;
@@ -540,6 +555,9 @@ td.image-cell .image {
   @apply w-24 h-24 mx-auto lg:w-6 lg:h-6;
 }
 
+.button-table-view{
+    @apply bg-green-500 mr-2 p-2 text-white hover:bg-green-300;
+}
 .button-table-add{
   @apply m-3 bg-stone-800 hover:bg-stone-600 text-white font-bold w-auto ;
 }
@@ -586,6 +604,15 @@ td.image-cell .image {
     @apply m-1 pr-1 flex flex-row;
 }
 /*Dashboard card*/
+/* question styles */
+.card-header-question{
+    @apply items-center;
+}
+
+.card-header-title-question{
+    @apply items-center;
+}
+
 .field:not(:last-child) {
     @apply mb-3;
 }
