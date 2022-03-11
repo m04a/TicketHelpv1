@@ -128,6 +128,12 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/admin/types/edit', function () {
             return view('admin/types/edit');
         })->name('user.types.edit');
+        ///////////////////////////////////////////////////
+
+        Route::get('/admin/questions/create', function () {
+            return view('admin/questions/create');
+        })->name('admin.questions.create');
+
     });
 
 
