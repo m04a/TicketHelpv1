@@ -62,9 +62,15 @@ Route::middleware(['auth'])->group(function () {
             return view('admin/suggestions/view');
         })->name('admin.suggestions.view');
 
+        Route::get('/admin/suggestions/index', function () {
+            return view('admin/suggestions/index');
+        })->name('admin.suggestions.index');
+
+        Route::get('/admin/suggestions/edit', function () {
+            return view('admin/suggestions/edit');
+        })->name('admin.suggestions.edit');
 
         ///////////////////////////////////////////////////
-
 
         Route::get('/admin/breakdowns', function () {
             return view('admin/breakdowns/index');
@@ -174,12 +180,15 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/user/questions', function () {
         return view('user/questions/index');
     })->name('user.questions');
-
     ///////////////////////////////////////////////////
 
     Route::get('/user/suggestions', function () {
         return view('user/suggestions/index');
     })->name('user.suggestions');
+
+    Route::get('/user/suggestions/create', function () {
+        return view('user/suggestions/create');
+    })->name('user.suggestions.create');
 
     Route::get('/user/suggestions/list', function () {
         return view('user/suggestions/list');

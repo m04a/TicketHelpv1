@@ -33,9 +33,15 @@ body {
 #navbar-main{
     @apply shadow-md;
 }
+
 .main-section {
     @apply p-6;
 }
+
+.main-section-user {
+    @apply p-6 px-44;
+}
+
 .dropdown {
     @apply cursor-pointer;
 }
@@ -186,6 +192,10 @@ body {
 .card-dashboard{
     @apply m-6 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:duration-300;
 }
+
+.card-dashboard-question{
+    @apply m-6 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:duration-300 w-3/5 mx-12;
+}
 .card.has-table .card-content {
     @apply p-0;
 }
@@ -193,18 +203,28 @@ body {
     @apply p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-5
     justify-center items-center h-48;
 }
+.card-container-question{
+    @apply p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-5
+    justify-center items-center h-48 justify-items-center;
+}
 
 .card-content {
     @apply p-6;
 }
+
 .card-item{
     @apply rounded overflow-hidden shadow-lg bg-white;
 }
+
+.card-item-question{
+    @apply rounded overflow-hidden shadow-lg bg-white w-full ;
+}
+
 .card-spacing {
     @apply px-6 py-4 h-48;
 }
 .card-spacing-text{
-    @apply text-3xl font-bold mb-4 mt-0 flex justify-center items-center h-36;
+    @apply text-3xl font-bold mb-4 mt-0 flex justify-center items-center h-36 text-center   ;
 }
 .card-content hr {
     @apply my-6 -mx-6;
@@ -219,7 +239,7 @@ body {
 }
 
 .card-header-title, .card-header-icon {
-    @apply flex items-center py-3 pl-3;
+    @apply flex items-center py-3 pl-4;
 }
 
 .card-header-title {
@@ -229,6 +249,18 @@ body {
 .card-header-icon {
     @apply justify-center;
 }
+
+.card-container-breakdown{
+    @apply p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-5
+    justify-center items-center h-48 justify-items-center;
+}
+.card-item-breakdown{
+    @apply rounded overflow-hidden shadow-lg bg-white w-full ;
+}
+.card-dashboard-breakdown{
+    @apply m-6 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:duration-300 w-3/5;
+}
+
 .widget-label h3 {
     @apply text-lg leading-tight text-gray-500;
 }
@@ -525,17 +557,22 @@ td.image-cell .image {
     @apply bg-green-500 mr-2 p-2 text-white hover:bg-green-300;
 }
 .button-table-add{
-    @apply m-3 bg-stone-800 hover:bg-stone-600 text-white font-bold w-auto ;
-  }
-  
-.button-table-add-separation{
-      @apply m-1 pr-1 flex flex-row;
+  @apply m-3 bg-stone-800 hover:bg-stone-600 text-white font-bold w-auto ;
 }
+
+.button-table-add-separation{
+    @apply m-1 pr-1 flex flex-row;
+  }
+
 .button-table-edit{
-    @apply bg-blue-500 mr-2 p-2 text-white hover:bg-blue-300;
+    @apply bg-yellow-500 mr-2 p-2 text-white hover:bg-yellow-300;
 }
 
 .button-table-view{
+    @apply bg-blue-500 mr-2 p-2 text-white hover:bg-blue-300;
+}
+
+.button-table-reply{
     @apply bg-green-500 mr-2 p-2 text-white hover:bg-green-300;
 }
 
@@ -572,4 +609,117 @@ td.image-cell .image {
 
 .card-header-title-question{
     @apply items-center;
+}
+
+.field:not(:last-child) {
+    @apply mb-3;
+}
+
+.field.spaced:not(:last-child) {
+    @apply mb-6;
+}
+
+.field-body .field .field {
+    @apply mb-0;
+}
+
+.field.addons {
+    @apply flex justify-start;
+}
+
+.field.addons .control.expanded {
+    @apply flex-grow flex-shrink;
+}
+
+.field.addons .control:first-child:not(:only-child) .input,
+.field.addons .control:first-child:not(:only-child) .select select {
+    @apply rounded-r-none border-r-0;
+}
+
+.field.addons .control:last-child:not(:only-child) .input,
+.field.addons .control:last-child:not(:only-child) .select select {
+    @apply rounded-l-none border-l-0;
+}
+
+.field.grouped {
+    @apply flex justify-start;
+}
+
+.field.grouped > .control:not(:last-child) {
+    @apply mr-3;
+}
+
+.field.grouped.multiline {
+    @apply flex-wrap;
+}
+
+.label {
+    @apply block font-bold mb-2;
+}
+
+.control {
+    @apply relative;
+}
+
+.control.icons-left, .control.icons-right {
+    @apply relative;
+}
+
+.input, .select select, .file-cta, .file-name {
+    @apply px-3 py-2 border border-gray-400 rounded;
+}
+.textarea {
+    @apply px-3 py-2 border border-gray-400;
+}
+.suggestion-text{
+    background-color: rgb(243 244 246 / var(--tw-bg-opacity)) !important;
+    @apply border border-gray-400 rounded-b px-4 py-3 text-gray-700;
+}
+.input, .select select, .file-cta, .file-name {
+    @apply h-10;
+}
+
+.input, .textarea, .select select {
+    @apply w-full max-w-full focus:border-gray-100 focus:ring focus:outline-none bg-white;
+}
+
+.textarea {
+    @apply h-24;
+}
+
+.help {
+    @apply block text-xs text-gray-500 mt-1;
+}
+/*Toggle*/
+.toggle-checkbox{
+    @apply text-red-600 border-red-600;
+}
+.toggle-checkbox:checked {
+    @apply: right-0 border-green-400;
+    right: 0;
+    border-color: #ffd0d0;
+}
+.toggle-checkbox:checked + .toggle-label {
+    @apply: bg-red-400;
+    background-color: #ffd0d0;
+}
+.toggle-checkbox:focus {
+    @apply: ring-none;
+}
+
+/*Create Card*/
+.content-column{
+    @apply flex sm:justify-center items-center w-full;
+}
+.column-left{
+    @apply w-full mr-6;
+}
+.column-right{
+    @apply w-full;
+}
+.inpunt-content{
+    @apply block mt-4 w-full m-auto;
+}
+.button-create{
+    @apply flex items-center justify-end mt-4 mb-2;
 }
