@@ -1,5 +1,5 @@
 <div class="logo-dashboard">
     <b class="font-black"> 
-        tu madre
+        TicketHelp
     </b>
 </div>

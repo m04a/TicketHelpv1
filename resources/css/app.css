@@ -481,6 +481,13 @@ body {
     @apply pr-0 font-black text-black;
 }
 
+/* question styles */
+
+.card-header-question{
+    @apply items-center;
+}
+
+
 /*Taula*/
 table {
   @apply w-full;
@@ -546,6 +553,9 @@ td.image-cell .image {
   @apply w-24 h-24 mx-auto lg:w-6 lg:h-6;
 }
 
+.button-table-view{
+    @apply bg-green-500 mr-2 p-2 text-white hover:bg-green-300;
+}
 .button-table-add{
   @apply m-3 bg-stone-800 hover:bg-stone-600 text-white font-bold w-auto ;
 }
@@ -592,6 +602,15 @@ td.image-cell .image {
     @apply m-1 pr-1 flex flex-row;
 }
 /*Dashboard card*/
+/* question styles */
+.card-header-question{
+    @apply items-center;
+}
+
+.card-header-title-question{
+    @apply items-center;
+}
+
 .field:not(:last-child) {
     @apply mb-3;
 }
