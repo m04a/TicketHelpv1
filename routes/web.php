@@ -161,12 +161,16 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/user/questions', function () {
         return view('user/questions/index');
     })->name('user.questions');
-
+    
     ///////////////////////////////////////////////////
 
     Route::get('/user/suggestions', function () {
         return view('user/suggestions/index');
     })->name('user.suggestions');
+
+    Route::get('/user/suggestions/create', function () {
+        return view('user/suggestions/create');
+    })->name('user.suggestions.create');
 
     Route::get('/user/suggestions/list', function () {
         return view('user/suggestions/list');
