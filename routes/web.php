@@ -160,6 +160,10 @@ Route::middleware(['auth'])->group(function () {
         return view('user/breakdown/index');
     })->name('user.breakdowns');
 
+    Route::get('/user/breakdowns/create', function () {
+        return view('user/breakdowns/create');
+    })->name('user.breakdowns.create');
+
     Route::get('/user/breakdowns/list', function () {
         return view('user/breakdowns/list');
     })->name('user.breakdowns.list');
