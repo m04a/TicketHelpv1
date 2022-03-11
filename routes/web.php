@@ -120,6 +120,10 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/admin/types/create', function () {
             return view('admin/types/create');
         })->name('user.types.create');
+
+        Route::get('/admin/types/edit', function () {
+            return view('admin/types/edit');
+        })->name('user.types.edit');
     });
 
 
