@@ -13,7 +13,7 @@
                 <div class="column-left">
                     <x-label for="Nom" :value="__('Nom del dispositiu')" />
 
-                    <x-input id="name" class="inpunt-content" type="text" name="name" placeholder="s-02-01" required
+                    <x-input id="name" class="input-content" type="text" name="name" placeholder="s-02-01" required
                         autofocus />
                 </div>
 

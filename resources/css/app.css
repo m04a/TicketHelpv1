@@ -192,13 +192,11 @@ body {
 .card-dashboard{
     @apply m-6 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:duration-300;
 }
-<<<<<<<<< Temporary merge branch 1
-=========
+
 
 .card-dashboard-index{
     @apply m-6 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:duration-300 w-3/5 ;
 }
->>>>>>>>> Temporary merge branch 2
 .card.has-table .card-content {
     @apply p-0;
 }
@@ -206,13 +204,11 @@ body {
     @apply p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-5
     justify-center items-center h-48;
 }
-<<<<<<<<< Temporary merge branch 1
-=========
+
 .card-container-index{
     @apply p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-5
     justify-center items-center h-48 justify-items-center mx-12;
 }
->>>>>>>>> Temporary merge branch 2
 
 .card-content {
     @apply p-6;
@@ -220,14 +216,12 @@ body {
 .card-item{
     @apply rounded overflow-hidden shadow-lg bg-white;
 }
-<<<<<<<<< Temporary merge branch 1
-=========
+
 
 .card-item-index{
     @apply rounded overflow-hidden shadow-lg bg-white w-full ;
 }
 
->>>>>>>>> Temporary merge branch 2
 .card-spacing {
     @apply px-6 py-4 h-48;
 }
@@ -489,6 +483,13 @@ body {
     @apply pr-0 font-black text-black;
 }
 
+/* question styles */
+
+.card-header-question{
+    @apply items-center;
+}
+
+
 /*Taula*/
 table {
   @apply w-full;
@@ -554,6 +555,9 @@ td.image-cell .image {
   @apply w-24 h-24 mx-auto lg:w-6 lg:h-6;
 }
 
+.button-table-view{
+    @apply bg-green-500 mr-2 p-2 text-white hover:bg-green-300;
+}
 .button-table-add{
   @apply m-3 bg-stone-800 hover:bg-stone-600 text-white font-bold w-auto ;
 }
@@ -600,6 +604,15 @@ td.image-cell .image {
     @apply m-1 pr-1 flex flex-row;
 }
 /*Dashboard card*/
+/* question styles */
+.card-header-question{
+    @apply items-center;
+}
+
+.card-header-title-question{
+    @apply items-center;
+}
+
 .field:not(:last-child) {
     @apply mb-3;
 }
@@ -620,14 +633,9 @@ td.image-cell .image {
     @apply flex-grow flex-shrink;
 }
 
-.field.addons .control:first-child:not(:only-child) .input,
-.field.addons .control:first-child:not(:only-child) .select select {
-    @apply rounded-r-none border-r-0;
-}
-
 .field.addons .control:last-child:not(:only-child) .input,
 .field.addons .control:last-child:not(:only-child) .select select {
-    @apply rounded-l-none border-l-0;
+    @apply border-l-0;
 }
 
 .field.grouped {
@@ -655,26 +663,30 @@ td.image-cell .image {
 }
 
 .input, .select select, .file-cta, .file-name {
-    @apply px-3 py-2 border border-gray-400 rounded;
+    @apply px-3 py-2 border border-gray-300;
 }
+
+.input-disabled {
+    @apply bg-gray-200 border-gray-200
+}
+
 .textarea {
-    @apply px-3 py-2 border border-gray-400;
+    @apply h-24 px-3 py-2 border text-left;
 }
 .suggestion-text{
     background-color: rgb(243 244 246 / var(--tw-bg-opacity)) !important;
-    @apply border border-gray-400 rounded-b px-4 py-3 text-gray-700;
+    @apply border border-gray-400 px-4 py-3 text-gray-700;
 }
+
 .input, .select select, .file-cta, .file-name {
     @apply h-10;
 }
 
 .input, .textarea, .select select {
-    @apply w-full max-w-full focus:border-gray-100 focus:ring focus:outline-none bg-white;
+    @apply w-full max-w-full focus:border-gray-100 focus:ring focus:outline-none;
 }
 
-.textarea {
-    @apply h-24;
-}
+
 
 .help {
     @apply block text-xs text-gray-500 mt-1;
@@ -706,8 +718,12 @@ td.image-cell .image {
 .column-right{
     @apply w-full;
 }
-.inpunt-content{
-    @apply block mt-4 w-full m-auto;
+.input-content{
+    @apply block mt-4 w-full;
+}
+
+.input-contant-test{
+    @apply block pl-4 mt-4 w-full;
 }
 .button-create{
     @apply flex items-center justify-end mt-4 mb-2;
