@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             ZoneSeeder::class,
             DeviceSeeder::class,
             DepartmentSeeder::class,
+            SuggestionSeeder::class,
         ]);
     }
 }
