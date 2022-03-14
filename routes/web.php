@@ -98,6 +98,10 @@ Route::middleware(['auth'])->group(function () {
             return view('admin/questions/create');
         })->name('admin.questions.create');
 
+        Route::get('/admin/questions/view', function () {
+            return view('admin/questions/view');
+        })->name('admin.questions.view');
+
         Route::get('/admin/questions/edit', function () {
             return view('admin/questions/edit');
         })->name('admin.questions.edit');
