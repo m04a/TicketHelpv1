@@ -18,7 +18,7 @@
             <a href="{{route('user.suggestions')}}" class="card-dashboard">
             <div class="card-item">
                 <div class="card-spacing">
-                    <div class="card-spacing-text">Suggerencies</div>
+                    <div class="card-spacing-text">Suggeriments</div>
                 </div>
             </div>
             </a>
