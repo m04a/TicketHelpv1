@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Breakdown;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class BreakdownController extends Controller
@@ -11,11 +13,44 @@ class BreakdownController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+      // $userid = $breakdown['breakdown']->user_id;
+        $idUser = $request->user()->id;
+
+        $userRole = User::where('id', '=', $idUser)->get(['role_id']);
+        $breakdown['breakdownOn'] = Breakdown::where('status', 1)
+            ->paginate(10)
+            ->through(fn ($item) => [
+                "id" => $item->id,
+                "title" => $item->title,
+                "status" => $item->status,
+                "username" => $item->user->username,
+                "department" => $item->department->name,
+                "manager" => $item->manager->username
+            ]);
+        $breakdown['breakdownOff'] = Breakdown::where('status', 0)
+            ->paginate(10)
+            ->through(fn ($item) => [
+                "id" => $item->id,
+                "title" => $item->title,
+                "status" => $item->status,
+                "username" => $item->user->username,
+                "department" => $item->department->name,
+                "manager" => $item->manager->username
+            ]);
+
+        if ($userRole[0]['role_id'] > 1){
+            return view('admin.breakdowns.index',$breakdown);
+        }else{
+            return view('user.breakdowns.list',$breakdown);
+        }
+            //dd($breakdown);
     }
 
+    public function filter(){
+
+    }
     /**
      * Show the form for creating a new resource.
      *
