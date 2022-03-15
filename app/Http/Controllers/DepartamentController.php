@@ -15,8 +15,11 @@ class DepartamentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        //
+    { dd("hola");
+        $departments = Departments::all();
+        dd($departments);
+
+        //return view("admin.departments", ["departments" => $departments]);
     }
 
     /**

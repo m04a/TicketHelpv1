@@ -6,6 +6,7 @@ use App\Http\Controllers\SuggestionController;
 use App\Http\Controllers\DeviceController;
 use App\Http\Controllers\QuestionController;
 
+use app\Http\Controllers\DepartamentController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -109,9 +110,7 @@ Route::middleware(['auth'])->group(function () {
 
         ////////////////////////////////////////////////////
 
-        Route::get('/admin/departments', function () {
-            return view('admin/departments/index');
-        })->name('admin.departments');
+        Route::get('/admin/departments',DepartamentController::class, "index")->name('admin.departments');
 
         Route::get('/admin/departments/create', function () {
             return view('admin/departments/create');
