@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BreakdownController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -72,9 +73,9 @@ Route::middleware(['auth'])->group(function () {
 
         ///////////////////////////////////////////////////
 
-        Route::get('/admin/breakdowns', function () {
-            return view('admin/breakdowns/index');
-        })->name('admin.breakdowns');
+
+        Route::get('/admin/breakdowns',[BreakdownController::class,"index"])
+            ->name('admin.breakdowns');
 
         Route::get('/admin/breakdowns/create', function () {
             return view('admin/breakdowns/create');
@@ -158,9 +159,8 @@ Route::middleware(['auth'])->group(function () {
         return view('user/breakdowns/create');
     })->name('user.breakdowns.create');
 
-    Route::get('/user/breakdowns/list', function () {
-        return view('user/breakdowns/list');
-    })->name('user.breakdowns.list');
+    Route::get('/user/breakdowns/list',[BreakdownController::class,"index"])
+        ->name('user.breakdowns.list');
 
     ///////////////////////////////////////////////////
 
@@ -175,7 +175,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/user/questions/list', function () {
         return view('user/questions/list');
     })->name('user.questions');
-    
+
     ///////////////////////////////////////////////////
 
     Route::get('/user/suggestions', function () {
