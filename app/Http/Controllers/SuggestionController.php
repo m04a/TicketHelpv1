@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Suggestion;
+use App\Models\User;
+use App\Models\Role;
 
 class SuggestionController extends Controller
 {
@@ -11,9 +14,31 @@ class SuggestionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $idUser = $request->user()->id;
+
+        $userRole = User::where('id', '=', $idUser)->get(['role_id']);
+
+        if($userRole[0]['role_id'] > 1){
+            $data['suggestions'] = Suggestion::paginate(5)
+            ->through(fn ($item) => [
+              "id" => $item->id,
+              "title" => $item->title,
+              "description" => $item->description,
+              ]);
+                return view('admin.suggestions.index', $data);
+        }else{
+            $data['suggestions'] = Suggestion::where('user_id', '=', $idUser)
+            ->paginate(5)
+            ->through(fn ($item) => [
+              "title" => $item->title,
+              "description" => $item->description,
+              ]);
+                return view('user.suggestions.list', $data);
+        }
+
+        $data['suggestionsCount'] = Suggestion::count();
     }
 
     /**

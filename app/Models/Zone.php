@@ -11,12 +11,12 @@ class Zone extends Model
 
     public function breakdowns()
     {
-        return $this->hasMany(Breakdown::Class);
+        return $this->hasMany(Breakdown::class);
     }
 
     public function devices()
     {
-        return $this->hasMany(Device::Class);
+        return $this->hasMany(Device::class);
     }
 
     protected $fillable = [

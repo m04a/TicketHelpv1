@@ -11,12 +11,12 @@ class Suggestion extends Model
 
     public function department()
     {
-        return $this->belongsTo(Department::Class);
+        return $this->belongsTo(Department::class);
     }
 
     public function user()
     {
-        return $this->belongsTo(User::Class);
+        return $this->belongsTo(User::class);
     }
 
     protected $fillable = [

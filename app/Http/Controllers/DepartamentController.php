@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Throwable;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\Suggestion;
 
 class DepartamentController extends Controller
 {
