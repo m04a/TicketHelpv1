@@ -63,11 +63,15 @@
                         @for($i = 0; $i < $suggestions->lastPage(); $i++)
                             <div class="buttons">
                                 <a class="pagination-next m-2" href="{{ url('/admin/suggestions?page=' . $i+1) }}" >
+                                    @if($suggestions->currentPage() == $i+1) 
+                                    <button type="button" class="button active">{{ $i+1 }}</button>
+                                    @else
                                     <button type="button" class="button">{{ $i+1 }}</button>
+                                    @endif
                                 </a>
                             </div>
                         @endfor
-                        <small class="number-page">Pàgina {{ $suggestions->currentPage() }} de {{ $suggestions->lastPage() }} </small>
+                        <small class="flex w-full justify-end mr-0.5">Pàgina {{ $suggestions->currentPage() }} de {{ $suggestions->lastPage() }} </small>
                     </x-pagination>
                 </div>
             </div>
