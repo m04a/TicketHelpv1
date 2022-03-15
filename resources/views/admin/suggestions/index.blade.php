@@ -75,13 +75,15 @@
                         </tbody>
                     </table>
                     <x-pagination>
-                        @foreach($suggestions->curr as $suggestion)
-                        <div class="buttons">
-                            <button type="button" class="button active">1</button>
-                        </div>
-                        <small>Pagina 1 of 3</small>
+                        @for($i = 0; $i < $suggestions->lastPage(); $i++)
+                            <div class="buttons">
+                                <a class="pagination-next m-2" href="{{ url('/admin/suggestions?page=' . $i+1) }}" >
+                                    <button type="button" class="button">{{ $i+1 }}</button>
+                                </a>
+                            </div>
+                        @endfor
+                        <small class="number-page">Pàgina {{ $suggestions->currentPage() }} de {{ $suggestions->lastPage() }} </small>
                     </x-pagination>
-                    @endforeach
                 </div>
             </div>
         </section>

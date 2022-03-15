@@ -728,3 +728,7 @@ td.image-cell .image {
 .button-create{
     @apply flex items-center justify-end mt-4 mb-2;
 }
+.number-page{
+    @apply flex w-full justify-end;
+}
+

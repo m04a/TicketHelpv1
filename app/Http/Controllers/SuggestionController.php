@@ -21,22 +21,20 @@ class SuggestionController extends Controller
         $userRole = User::where('id', '=', $idUser)->get(['role_id']);
 
         if($userRole[0]['role_id'] > 1){
-            $data['suggestions'] = Suggestion::paginate(1)
+            $data['suggestions'] = Suggestion::paginate(5)
             ->through(fn ($item) => [
               "id" => $item->id,
               "title" => $item->title,
               "description" => $item->description,
               ]);
-
                 return view('admin.suggestions.index', $data);
         }else{
             $data['suggestions'] = Suggestion::where('user_id', '=', $idUser)
-            ->paginate(10)
+            ->paginate(5)
             ->through(fn ($item) => [
               "title" => $item->title,
               "description" => $item->description,
               ]);
-
                 return view('user.suggestions.list', $data);
         }
 
