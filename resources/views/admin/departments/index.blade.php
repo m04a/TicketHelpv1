@@ -33,7 +33,7 @@
                     <tbody>
                     @foreach($departments as $department)
                         <tr>
-                            <td data-label="Nom">{{ $department->name}}</td>
+                            <td data-label="Nom">{{ $department['name'] }}</td>
                             <td class="actions-cell">
                                 <div class="buttons right nowrap">
                                     <button class="button-table-edit"  data-target="sample-modal-2" type="button">

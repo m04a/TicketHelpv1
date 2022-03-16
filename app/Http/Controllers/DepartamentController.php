@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Throwable;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Models\Suggestion;
+use App\Models\Department;
+use App\Models\User;
+use App\Models\Role;
+
 
 class DepartamentController extends Controller
 {
@@ -14,10 +15,34 @@ class DepartamentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    { dd("hola");
-        $departments = Departments::all();
-        dd($departments);
+    public function index(Request $request)
+    { 
+        $idUser = $request->user()->id;
+
+        $userRole = User::where('id', '=', $idUser)->get(['role_id']);
+
+        if($userRole[0]['role_id'] > 1){
+            $data['departments'] = Department::paginate(5)
+            ->through(fn ($item) => [
+              "name" => $item->name,
+              ]);
+                return view('admin.departments.index', $data);
+        }else{
+            $data['departments'] = Department::where('user_id', '=', $idUser)
+            ->paginate(5)
+            ->through(fn ($item) => [
+                "name" => $item->name,
+              ]);
+                return view('user.departments.list', $data);
+        }
+
+        $data['departmentsCount'] = Department::count();
+
+
+
+        //dd("hola");
+        //$departments = Departments::all();
+        //dd($departments);
 
         //return view("admin.departments", ["departments" => $departments]);
     }
