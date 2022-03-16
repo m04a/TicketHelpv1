@@ -3,6 +3,7 @@
 use App\Http\Controllers\BreakdownController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SuggestionController;
+use App\Http\Controllers\DeviceController;
 use App\Http\Controllers\QuestionController;
 
 /*
@@ -47,9 +48,11 @@ Route::middleware(['auth'])->group(function () {
 
         ///////////////////////////////////////////////////
 
-        Route::get('/admin/devices', function () {
-            return view('admin/devices/index');
-        })->name('admin.devices');
+        //Route::get('/admin/devices', function () {
+        //    return view('admin/devices/index');
+        //})->name('admin.devices');
+
+        Route::get('/admin/devices', [DeviceController::class, 'index'])->name('admin.devices.index');
 
         Route::get('/admin/devices/create', function () {
             return view('admin/devices/create');
@@ -69,8 +72,6 @@ Route::middleware(['auth'])->group(function () {
         //     return view('admin/suggestions/index');
         // })->name('admin.suggestions.index');
         Route::get('/admin/suggestions', [SuggestionController::class, 'index'])->name('admin.suggestions.index');
-
-
 
         Route::get('/admin/suggestions/edit/{id}', [SuggestionController::class, 'edit'])->name('admin.suggestions.edit');
 
