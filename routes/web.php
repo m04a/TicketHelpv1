@@ -193,6 +193,9 @@ Route::middleware(['auth'])->group(function () {
     //     return view('user/suggestions/list');
     // })->name('user.suggestions.list');
     Route::get('/user/suggestions/list', [SuggestionController::class, 'index'])->name('user.suggestions.index');
+    
+    Route::get('/user/suggestions/edit/{id}', [SuggestionController::class, 'edit'])->name('user.suggestions.edit');
+
 
 });
 
