@@ -633,14 +633,9 @@ td.image-cell .image {
     @apply flex-grow flex-shrink;
 }
 
-.field.addons .control:first-child:not(:only-child) .input,
-.field.addons .control:first-child:not(:only-child) .select select {
-    @apply rounded-r-none border-r-0;
-}
-
 .field.addons .control:last-child:not(:only-child) .input,
 .field.addons .control:last-child:not(:only-child) .select select {
-    @apply rounded-l-none border-l-0;
+    @apply border-l-0;
 }
 
 .field.grouped {
@@ -668,26 +663,30 @@ td.image-cell .image {
 }
 
 .input, .select select, .file-cta, .file-name {
-    @apply px-3 py-2 border border-gray-400 rounded;
+    @apply px-3 py-2 border border-gray-300;
 }
+
+.input-disabled {
+    @apply bg-gray-200 border-gray-200
+}
+
 .textarea {
-    @apply px-3 py-2 border border-gray-400;
+    @apply h-24 px-3 py-2 border text-left;
 }
 .suggestion-text{
     background-color: rgb(243 244 246 / var(--tw-bg-opacity)) !important;
-    @apply border border-gray-400 rounded-b px-4 py-3 text-gray-700;
+    @apply border border-gray-400 px-4 py-3 text-gray-700;
 }
+
 .input, .select select, .file-cta, .file-name {
     @apply h-10;
 }
 
 .input, .textarea, .select select {
-    @apply w-full max-w-full focus:border-gray-100 focus:ring focus:outline-none bg-white;
+    @apply w-full max-w-full focus:border-gray-100 focus:ring focus:outline-none;
 }
 
-.textarea {
-    @apply h-24;
-}
+
 
 .help {
     @apply block text-xs text-gray-500 mt-1;
@@ -719,9 +718,17 @@ td.image-cell .image {
 .column-right{
     @apply w-full;
 }
-.inpunt-content{
-    @apply block mt-4 w-full m-auto;
+.input-content{
+    @apply block mt-4 w-full;
+}
+
+.input-contant-test{
+    @apply block pl-4 mt-4 w-full;
 }
 .button-create{
     @apply flex items-center justify-end mt-4 mb-2;
 }
+.number-page{
+    @apply flex w-full justify-end mr-0.5;
+}
+
