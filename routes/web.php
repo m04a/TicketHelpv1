@@ -3,6 +3,7 @@
 use App\Http\Controllers\BreakdownController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SuggestionController;
+use App\Http\Controllers\QuestionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -93,9 +94,7 @@ Route::middleware(['auth'])->group(function () {
 
         ///////////////////////////////////////////////////
 
-        Route::get('/admin/questions', function () {
-            return view('admin/questions/index');
-        })->name('admin.questions');
+        Route::get('/admin/questions' , [QuestionController::class, "index"])->name('admin.questions');
 
         Route::get('/admin/questions/create', function () {
             return view('admin/questions/create');
@@ -174,9 +173,8 @@ Route::middleware(['auth'])->group(function () {
         return view('user/questions/create');
     })->name('user.questions.create');
 
-    Route::get('/user/questions/list', function () {
-        return view('user/questions/list');
-    })->name('user.questions');
+    Route::get('/user/questions/list', [QuestionController::class, 'index'])->name('user.questions.list');
+
 
     ///////////////////////////////////////////////////
 
