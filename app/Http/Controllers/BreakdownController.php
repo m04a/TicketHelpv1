@@ -80,7 +80,13 @@ class BreakdownController extends Controller
      */
     public function show($id)
     {
-        //
+        $breakdownData = Breakdown::where('id', $id)->first();
+
+        $breakdownData['username'] = $breakdownData->user->username;
+
+        $breakdownData['departament'] = $breakdownData->department->name;
+
+        return view('admin.breakdowns.view')->with('breakdownData',$breakdownData);
     }
 
     /**

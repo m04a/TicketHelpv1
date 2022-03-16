@@ -80,10 +80,26 @@ class SuggestionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id, Request $request)
     {
-        //
+
+        $idUser = $request->user()->id;
+
+        $userRole = User::where('id', '=', $idUser)->get(['role_id']);
+
+        if($userRole[0]['role_id'] > 1){
+            $suggestion = Suggestion::findOrFail($id);
+
+            return view('admin.suggestions.edit', ['suggestion' => $suggestion]);
+
+        }else{
+
+            $suggestion = Suggestion::findOrFail($id);
+
+            return view('user.suggestions.edit', ['suggestion' => $suggestion]);
+        }
     }
+    
 
     /**
      * Update the specified resource in storage.

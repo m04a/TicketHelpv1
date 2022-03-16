@@ -39,7 +39,6 @@
                                 <td data-label="Departament">{{ $suggestion['description'] }}</td>
                                 <td class="actions-cell">
                                     <div class="buttons right nowrap">
-
                                         <button class="button-table-edit" data-target="sample-modal-2" type="button">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                                                 <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
@@ -65,7 +64,7 @@
                     <x-pagination>
                         @for($i = 0; $i < $suggestions->lastPage(); $i++)
                             <div class="buttons">
-                                <a class="pagination-next m-2" href="{{ url('/admin/suggestions?page=' . $i+1) }}" >
+                                <a class="pagination-next m-2" href="{{ url('/user/suggestions?page=' . $i+1) }}" >
                                     @if($suggestions->currentPage() == $i+1) 
                                     <button type="button" class="button active">{{ $i+1 }}</button>
                                     @else

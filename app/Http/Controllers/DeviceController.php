@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Device;
 
 class DeviceController extends Controller
 {
@@ -11,9 +12,19 @@ class DeviceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+
+            $data['devices'] = Device::paginate(10)
+                ->through(fn ($item) => [
+                    //"label" => $item->label,
+                    "label" => substr($item->label, 0, 1)."-".str_pad($item->zone_id, 2, 0, STR_PAD_LEFT)."-".str_pad($item->type_id, 2, 0, STR_PAD_LEFT),
+                    "zone" => $item->zone->label,
+                    "type" => $item->type->label,
+                ]);
+            return view('admin.devices.index', $data);
+
+        //$data['devicesCount'] = Device::count();
     }
 
     /**
