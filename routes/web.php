@@ -64,9 +64,7 @@ Route::middleware(['auth'])->group(function () {
             return view('admin/suggestions/create');
         })->name('admin.suggestions.create');
 
-        Route::get('/admin/suggestions/view', function () {
-            return view('admin/suggestions/view');
-        })->name('admin.suggestions.view');
+        Route::get('/admin/suggestions/view/{id}', [SuggestionController::class, 'show'])->name('admin.suggestions.view');
 
         Route::get('/admin/suggestions', [SuggestionController::class, 'index'])->name('admin.suggestions.index');
         Route::delete('/admin/suggestions/{id}', [SuggestionController::class, 'destroy'])->name('admin.suggestions.delete');

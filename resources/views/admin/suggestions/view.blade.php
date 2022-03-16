@@ -14,7 +14,7 @@
                     <div class=" text-black font-bold rounded-t py-2">
                         Assumpte
                     </div>
-                    <input class="input suggestion-text" value="Exemple" disabled>
+                    <input class="input suggestion-text" value="{{ $suggestions->title }}" disabled>
                 </div>
 
                 <!-- Text of the suggestion -->
@@ -22,7 +22,7 @@
                     <div class="text-black font-bold rounded-t py-2">
                         Text de sugerencia
                     </div>
-                    <textarea class="textarea suggestion-text" disabled></textarea>
+                    <textarea class="textarea suggestion-text" disabled>{{ $suggestions->description }}</textarea>
                 </div>
 
 

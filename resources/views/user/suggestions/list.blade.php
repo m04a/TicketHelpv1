@@ -64,7 +64,7 @@
                     <x-pagination>
                         @for($i = 0; $i < $suggestions->lastPage(); $i++)
                             <div class="buttons">
-                                <a class="pagination-next m-2" href="{{ url('/user/suggestions?page=' . $i+1) }}" >
+                                <a class="pagination-next m-2" href="{{ url('/user/suggestions/list?page=' . $i+1) }}" >
                                     @if($suggestions->currentPage() == $i+1) 
                                     <button type="button" class="button active">{{ $i+1 }}</button>
                                     @else
