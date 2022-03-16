@@ -15,11 +15,11 @@ class UserController extends Controller
     public function index()
     {
 
-            $data['suggestions'] = Suggestion::where('user_id', '=', $idUser)
+            $data['users'] = User::where('user_id', '=', $idUser)
             ->paginate(5)
             ->through(fn ($item) => [
-              "title" => $item->title,
-              "description" => $item->description,
+              "username" => $item->username,
+              "email" => $item->email,
               ]);
                 return view('user.users.index', $data);
       
