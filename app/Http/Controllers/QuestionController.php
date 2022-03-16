@@ -115,5 +115,14 @@ class QuestionController extends Controller
     public function destroy($id)
     {
         //
+        $question = Question::findOrFail($id);
+        
+        $result = $question->delete();
+        
+        if ($result) {
+            return redirect('admin/questions')->with('message', 'Pregunta esborrada');
+        }
+
+        return redirect('admin/questions')->with('message', 'Error inesperat. Contacti amb l\'administrador del lloc');
     }
 }
