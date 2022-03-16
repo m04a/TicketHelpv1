@@ -4,6 +4,7 @@ use App\Http\Controllers\BreakdownController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SuggestionController;
 use App\Http\Controllers\DeviceController;
+use App\Http\Controllers\QuestionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -72,11 +73,8 @@ Route::middleware(['auth'])->group(function () {
         // })->name('admin.suggestions.index');
         Route::get('/admin/suggestions', [SuggestionController::class, 'index'])->name('admin.suggestions.index');
 
+        Route::get('/admin/suggestions/edit/{id}', [SuggestionController::class, 'edit'])->name('admin.suggestions.edit');
 
-
-        Route::get('/admin/suggestions/edit', function () {
-            return view('admin/suggestions/edit');
-        })->name('admin.suggestions.edit');
 
         ///////////////////////////////////////////////////
 
@@ -92,15 +90,12 @@ Route::middleware(['auth'])->group(function () {
             return view('admin/breakdowns/edit');
         })->name('admin.breakdowns.edit');
 
-        Route::get('/admin/breakdowns/view', function () {
-            return view('admin/breakdowns/view');
-        })->name('admin.breakdowns.view');
+        Route::get('/admin/breakdowns/view/{id}',
+            [BreakdownController::class,"show"]);
 
         ///////////////////////////////////////////////////
 
-        Route::get('/admin/questions', function () {
-            return view('admin/questions/index');
-        })->name('admin.questions');
+        Route::get('/admin/questions' , [QuestionController::class, "index"])->name('admin.questions');
 
         Route::get('/admin/questions/create', function () {
             return view('admin/questions/create');
@@ -179,9 +174,8 @@ Route::middleware(['auth'])->group(function () {
         return view('user/questions/create');
     })->name('user.questions.create');
 
-    Route::get('/user/questions/list', function () {
-        return view('user/questions/list');
-    })->name('user.questions');
+    Route::get('/user/questions/list', [QuestionController::class, 'index'])->name('user.questions.list');
+
 
     ///////////////////////////////////////////////////
 
@@ -197,6 +191,9 @@ Route::middleware(['auth'])->group(function () {
     //     return view('user/suggestions/list');
     // })->name('user.suggestions.list');
     Route::get('/user/suggestions/list', [SuggestionController::class, 'index'])->name('user.suggestions.index');
+    
+    Route::get('/user/suggestions/edit/{id}', [SuggestionController::class, 'edit'])->name('user.suggestions.edit');
+
 
 });
 

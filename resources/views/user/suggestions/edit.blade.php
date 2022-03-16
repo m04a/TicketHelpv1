@@ -1,11 +1,11 @@
-<x-app-layout>
+<x-user-layout>
 
     <x-slot name="header">
         <h1 class="title">
             Editar sugerencia
         </h1>
     </x-slot>
-    <x-create-card>
+    <x-create-card-user>
         <form method="POST" action="">
             @csrf
             <div class="content-column">
@@ -35,5 +35,5 @@
                 </x-button>
             </div>
         </form>
-    </x-create-card>
-</x-app-layout>
+    </x-create-card-user>
+</x-user-layout>
