@@ -69,7 +69,7 @@ Route::middleware(['auth'])->group(function () {
         // })->name('admin.suggestions.index');
         Route::get('/admin/suggestions', [SuggestionController::class, 'index'])->name('admin.suggestions.index');
 
-        
+
 
         Route::get('/admin/suggestions/edit', function () {
             return view('admin/suggestions/edit');
@@ -89,9 +89,8 @@ Route::middleware(['auth'])->group(function () {
             return view('admin/breakdowns/edit');
         })->name('admin.breakdowns.edit');
 
-        Route::get('/admin/breakdowns/view', function () {
-            return view('admin/breakdowns/view');
-        })->name('admin.breakdowns.view');
+        Route::get('/admin/breakdowns/view/{id}',
+            [BreakdownController::class,"show"]);
 
         ///////////////////////////////////////////////////
 
