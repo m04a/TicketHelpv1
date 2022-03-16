@@ -81,7 +81,9 @@ class SuggestionController extends Controller
      */
     public function edit($id)
     {
-        //
+        $suggestion = Suggestion::findOrFail($id);
+
+        return view('admin.suggestions.edit', ['suggestion' => $suggestion]);
     }
 
     /**
