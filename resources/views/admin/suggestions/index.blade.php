@@ -52,16 +52,14 @@
                             <td data-label="Missatge">{{ $suggestion['description'] }}</td>
                             <td class="actions-cell">
                                 <div class="buttons right nowrap">
-                                <form action="{{ url('/admin/suggestions/view/' . $suggestion['id']) }}" method="GET">
-                                        @csrf
-
+                                    <a href="{{ url('/admin/suggestions/view/' . $suggestion['id']) }}">
                                         <button class="button-table-view"  data-target="sample-modal-2" type="submit">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                                                 <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
                                                 <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd" />
                                             </svg>
                                         </button>
-                                    </form>
+                                    </a>
                                     <button class="button-table-edit"  data-target="sample-modal-2" type="button">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
