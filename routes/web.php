@@ -60,13 +60,8 @@ Route::middleware(['auth'])->group(function () {
             return view('admin/suggestions/create');
         })->name('admin.suggestions.create');
 
-        Route::get('/admin/suggestions/view', function () {
-            return view('admin/suggestions/view');
-        })->name('admin.suggestions.view');
+        Route::get('/admin/suggestions/view/{id}', [SuggestionController::class, 'show'])->name('admin.suggestions.view');
 
-        // Route::get('/admin/suggestions', function () {
-        //     return view('admin/suggestions/index');
-        // })->name('admin.suggestions.index');
         Route::get('/admin/suggestions', [SuggestionController::class, 'index'])->name('admin.suggestions.index');
 
         
@@ -190,9 +185,6 @@ Route::middleware(['auth'])->group(function () {
         return view('user/suggestions/create');
     })->name('user.suggestions.create');
 
-    // Route::get('/user/suggestions/list', function () {
-    //     return view('user/suggestions/list');
-    // })->name('user.suggestions.list');
     Route::get('/user/suggestions/list', [SuggestionController::class, 'index'])->name('user.suggestions.index');
 
 });

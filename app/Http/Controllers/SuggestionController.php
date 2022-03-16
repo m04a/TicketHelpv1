@@ -70,7 +70,9 @@ class SuggestionController extends Controller
      */
     public function show($id)
     {
-        //
+        $suggestion = Suggestion::findOrFail($id);
+
+        return view('admin.suggestions.view', ['suggestions' => $suggestion]);       
     }
 
     /**
