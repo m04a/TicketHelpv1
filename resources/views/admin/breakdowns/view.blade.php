@@ -12,14 +12,14 @@
                 <div class="column-left">
                     <x-label for="title" :value="__('Assumpte')" />
 
-                    <x-input id="title" class="input-content input-disabled" type="text" name="nom" value="La pantalla es queda de color blau" required autofocus disabled/>
+                    <x-input id="title" class="input-content input-disabled" type="text" name="nom" value="{{ $breakdownData->title }}" required autofocus disabled/>
                 </div>
 
                 <!-- Status Breakdown -->
                 <div class="column-right">
                     <x-label for="state" :value="__('Estat Incidència')" />
-                    
-                    <x-input id="state" class="input-content input-disabled" type="text" name="estat" value="Solucionada" required autofocus disabled/>
+
+                    <x-input id="state" class="input-content input-disabled" type="text" name="estat" value="{{ $breakdownData->status==1 ? 'Resolt' : 'Pendent'}}" required autofocus disabled/>
                 </div>
             </div>
             <div class="content-column">
@@ -28,14 +28,14 @@
 
                     <x-label for="user" :value="__('User')" />
 
-                    <x-input id="user" class="input-content input-disabled" type="text" name="assumpte" value="Jorge" required autofocus disabled/>
+                    <x-input id="user" class="input-content input-disabled" type="text" name="assumpte" value="{{ $breakdownData->username }}" required autofocus disabled/>
 
                 </div>
                 <!-- Department -->
                 <div class="mt-4 column-right">
                     <x-label for="rol" :value="__('Departament')" />
-                    
-                    <x-input id="department" class="input-content input-disabled" type="text" name="department" value="Departament Informàtica" required autofocus disabled/>
+
+                    <x-input id="   " class="input-content input-disabled" type="text" name="department" value="{{ $breakdownData->departament }}a" required autofocus disabled/>
 
                 </div>
             </div>
@@ -45,7 +45,7 @@
 
                 <x-label for="description" class="mt-4 mb-4" :value="__('Descripció')" />
 
-                <textarea class="textarea input-disabled" disabled>Bones, quan intento encendre l'ordinador al cap d'uns segons es queda la pantalla en blau.</textarea>
+                <textarea class="textarea input-disabled" disabled>{{ $breakdownData->description }}</textarea>
             </div>
         </x-create-card>
         <x-create-card>
