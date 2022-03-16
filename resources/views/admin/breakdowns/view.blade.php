@@ -19,7 +19,7 @@
                 <div class="column-right">
                     <x-label for="state" :value="__('Estat Incidència')" />
 
-                    <x-input id="state" class="input-content input-disabled" type="text" name="estat" value="@if($breakdownData->status == 0) " required autofocus disabled/>
+                    <x-input id="state" class="input-content input-disabled" type="text" name="estat" value="{{ $breakdownData->status==1 ? 'Resolt' : 'Pendent'}}" required autofocus disabled/>
                 </div>
             </div>
             <div class="content-column">
@@ -28,14 +28,14 @@
 
                     <x-label for="user" :value="__('User')" />
 
-                    <x-input id="user" class="input-content input-disabled" type="text" name="assumpte" value="Jorge" required autofocus disabled/>
+                    <x-input id="user" class="input-content input-disabled" type="text" name="assumpte" value="{{ $breakdownData->username }}" required autofocus disabled/>
 
                 </div>
                 <!-- Department -->
                 <div class="mt-4 column-right">
                     <x-label for="rol" :value="__('Departament')" />
 
-                    <x-input id="department" class="input-content input-disabled" type="text" name="department" value="Departament Informàtica" required autofocus disabled/>
+                    <x-input id="   " class="input-content input-disabled" type="text" name="department" value="{{ $breakdownData->departament }}a" required autofocus disabled/>
 
                 </div>
             </div>
