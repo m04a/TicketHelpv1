@@ -38,13 +38,6 @@ class DepartamentController extends Controller
 
         $data['departmentsCount'] = Department::count();
 
-
-
-        //dd("hola");
-        //$departments = Departments::all();
-        //dd($departments);
-
-        //return view("admin.departments", ["departments" => $departments]);
     }
 
     /**
