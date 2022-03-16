@@ -12,7 +12,7 @@ class Device extends Model
     protected $fillable = [
         'label',
         'type_id',
-        'zone_id', 
+        'zone_id',
     ];
 
     public function zone()
@@ -22,7 +22,7 @@ class Device extends Model
 
     public function type()
     {
-        return $this->belongsTo(Types::class);
+        return $this->belongsTo(Type::class);
     }
 
     public function breakdowns()
