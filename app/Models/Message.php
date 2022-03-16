@@ -11,17 +11,17 @@ class Message extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::Class);
+        return $this->belongsTo(User::class);
     }
 
     public function question()
     {
-        return $this->belongsTo(Question::Class);
+        return $this->belongsTo(Question::class);
     }
 
     public function breakdown()
     {
-        return $this->belongsTo(Question::Class);
+        return $this->belongsTo(Question::class);
     }
 
     protected $fillable = [
