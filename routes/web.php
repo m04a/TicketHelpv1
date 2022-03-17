@@ -102,7 +102,9 @@ Route::middleware(['auth'])->group(function () {
 
         ///////////////////////////////////////////////////
 
-        Route::get('/admin/questions' , [QuestionController::class, "index"])->name('admin.questions');
+        Route::get('/admin/questions' , [QuestionController::class, "index"])->name('admin.questions.index');
+        
+        Route::delete('/admin/questions/{id}' , [QuestionController::class, "destroy"])->name('admin.questions.delete');
 
         Route::get('/admin/questions/create', function () {
             return view('admin/questions/create');
