@@ -33,7 +33,9 @@ class UserController extends Controller
      */
     public function create()
     {
-
+        $input = Request::all();
+        User::create($input);
+        return $input;
     }
 
     /**
