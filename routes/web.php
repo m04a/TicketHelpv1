@@ -56,9 +56,11 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('/admin/devices', [DeviceController::class, 'index'])->name('admin.devices.index');
 
-        Route::get('/admin/devices/create', function () {
-            return view('admin/devices/create');
-        })->name('admin.devices.create');
+        // Route::get('/admin/devices/create', function () {
+        //     return view('admin/devices/create');
+        // })->name('admin.devices.create');
+
+        Route::get('/admin/devices/create', [DeviceController::class, 'create'])->name('admin.devices.create');
 
         Route::delete('/admin/devices/{id}', [DeviceController::class, 'destroy'])->name('admin.devices.delete');
 
