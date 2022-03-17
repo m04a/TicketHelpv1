@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SuggestionController;
 use App\Http\Controllers\DeviceController;
 use App\Http\Controllers\QuestionController;
-
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\DepartamentController;
 /*
 |--------------------------------------------------------------------------
