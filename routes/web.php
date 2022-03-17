@@ -87,6 +87,9 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/admin/breakdowns/edit/{id}',
             [BreakdownController::class,"edit"]);
 
+        Route::post('/admin/breakdowns/edit/{id}',
+            [BreakdownController::class,"update"]);
+
         Route::get('/admin/breakdowns/view/{id}',
             [BreakdownController::class,"show"]);
 

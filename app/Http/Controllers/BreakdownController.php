@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\BreakdownRequest;
 use App\Models\Breakdown;
 use App\Models\User;
 use App\Models\Department;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class BreakdownController extends Controller
 {
@@ -20,6 +22,7 @@ class BreakdownController extends Controller
         $idUser = $request->user()->id;
 
         $userRole = User::where('id', '=', $idUser)->get(['role_id']);
+
         $breakdown['breakdownOn'] = Breakdown::where('status', 1)
             ->paginate(10)
             ->through(fn ($item) => [
@@ -114,11 +117,23 @@ class BreakdownController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(BreakdownRequest $request, $id)
     {
-        //
+        $breakdown = Breakdown::find($id);
+
+        /*Records to update with the request*/
+        $breakdown->status = $request->status;
+        $breakdown->title = $request->title;
+        $breakdown->description = $request->description;
+        $breakdown->department_id = $request->department_id;
+
+        if($breakdown->save()){
+            return back()->with('success',"S'han actualitzat les dades de la incidencia.");
+        }else{
+            return back()->with('error',"No s'han pogut actualitzar les dades de la incidencia.");
+        }
     }
 
     /**
