@@ -6,7 +6,7 @@
         </h1>
     </x-slot>
     <x-create-card>
-        <form method="POST" action="">
+        <form method="GET" action="">
             @csrf
             <div class="content-column">
                 <!-- Name User -->
@@ -22,9 +22,10 @@
                     <x-label for="Tipus" :value="__('tipus')" />
 
                     <x-select class="block mt-4 w-full">
-                        <option value="1">Switch</option>
-                        <option value="2">Router</option>
-                        <option value="3">Ordinador</option>
+
+                        @foreach ($types as $item)
+                            <option value='{{ $item }}'>{{ $item }}</option>
+                        @endforeach
                     </x-select>
                 </div>
 
@@ -32,9 +33,9 @@
                     <x-label for="Aula" :value="__('Aula')" />
 
                     <x-select class="block mt-4 w-full">
-                        <option value="1">Aula 01</option>
-                        <option value="2">Aula 02</option>
-                        <option value="3">Aula 03</option>
+                        @foreach ($zones as $item)
+                            <option value='{{ $item }}'>{{ $item }}</option>
+                        @endforeach
                     </x-select>
                 </div>
             </div>
