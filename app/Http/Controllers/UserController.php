@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class UserController extends Controller
 {
@@ -13,7 +14,16 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+
+            $data['users'] = User::where('user_id', '=', $idUser)
+            ->paginate(5)
+            ->through(fn ($item) => [
+              "username" => $item->username,
+              "email" => $item->email,
+              ]);
+                return view('user.users.index', $data);
+      
+        $data['usersCount'] = User::count();
     }
 
     /**
@@ -23,7 +33,9 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        $input = Request::all();
+        User::create($input);
+        return $input;
     }
 
     /**
@@ -34,7 +46,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
@@ -56,7 +68,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        
     }
 
     /**

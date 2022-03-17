@@ -6,6 +6,7 @@ use App\Http\Controllers\SuggestionController;
 use App\Http\Controllers\DeviceController;
 use App\Http\Controllers\QuestionController;
 
+use App\Http\Controllers\DepartamentController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -69,6 +70,14 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('/admin/suggestions/edit/{id}', [SuggestionController::class, 'edit'])->name('admin.suggestions.edit');
       
+        // Route::get('/admin/suggestions', function () {
+        //     return view('admin/suggestions/index');
+        // })->name('admin.suggestions.index');
+        Route::get('/admin/suggestions', [SuggestionController::class, 'index'])
+        ->name('admin.suggestions.index');
+
+        
+
         Route::get('/admin/suggestions/edit', function () {
             return view('admin/suggestions/edit');
         })->name('admin.suggestions.edit');
@@ -92,7 +101,9 @@ Route::middleware(['auth'])->group(function () {
 
         ///////////////////////////////////////////////////
 
-        Route::get('/admin/questions' , [QuestionController::class, "index"])->name('admin.questions');
+        Route::get('/admin/questions' , [QuestionController::class, "index"])->name('admin.questions.index');
+        
+        Route::delete('/admin/questions/{id}' , [QuestionController::class, "destroy"])->name('admin.questions.delete');
 
         Route::get('/admin/questions/create', function () {
             return view('admin/questions/create');
@@ -108,9 +119,9 @@ Route::middleware(['auth'])->group(function () {
 
         ////////////////////////////////////////////////////
 
-        Route::get('/admin/departments', function () {
-            return view('admin/departments/index');
-        })->name('admin.departments');
+        Route::get('/admin/departments', [DepartamentController::class, 'index'])
+        ->name('admin.departments.index');
+        
 
         Route::get('/admin/departments/create', function () {
             return view('admin/departments/create');
