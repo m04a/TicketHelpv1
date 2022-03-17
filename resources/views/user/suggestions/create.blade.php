@@ -25,7 +25,7 @@
 
 
                 <div class="flex items-center justify-end mt-4">
-                    <x-button class="ml-3">
+                    <x-button type="submit" class="ml-3">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 rotate-180 rotate-90" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
                     </svg>
