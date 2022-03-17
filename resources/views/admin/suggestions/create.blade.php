@@ -22,7 +22,7 @@
             <div class="column-right">
                     <x-label for="rol" :value="__('Estat Incidència')" />
                     
-                    <x-select class="block mt-4 w-full">
+                    <x-select name="department_id" class="block mt-4 w-full">
                         @foreach ($department as $item)
                             <option value="{{ $item->id }} ">{{ $item->name }}</option>
                         @endforeach

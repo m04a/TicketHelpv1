@@ -74,6 +74,7 @@ class SuggestionController extends Controller
             'token' => ['nullable'],
             'title' => ['required', 'string', 'min:10'],
             'description' => ['required', 'string', 'min:10'],
+            'department_id' => ['required', 'integer'],
         ]);
 
         Suggestion::create($create);
