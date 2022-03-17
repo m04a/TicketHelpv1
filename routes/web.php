@@ -61,15 +61,14 @@ Route::middleware(['auth'])->group(function () {
         })->name('admin.devices.create');
 
         ///////////////////////////////////////////////////
-
-        Route::get('/admin/suggestions/create', function () {
-            return view('admin/suggestions/create');
-        })->name('admin.suggestions.create');
+        Route::get('/admin/suggestions/create/', [SuggestionController::class, 'create'])->name('admin.suggestions.create');
 
         Route::get('/admin/suggestions/view/{id}', [SuggestionController::class, 'show'])->name('admin.suggestions.view');
 
         Route::get('/admin/suggestions', [SuggestionController::class, 'index'])->name('admin.suggestions.index');
+
         Route::delete('/admin/suggestions/{id}', [SuggestionController::class, 'destroy'])->name('admin.suggestions.delete');
+
         Route::get('/admin/suggestions/edit/{id}', [SuggestionController::class, 'edit'])->name('admin.suggestions.edit');
       
         // Route::get('/admin/suggestions', function () {
@@ -188,9 +187,7 @@ Route::middleware(['auth'])->group(function () {
         return view('user/suggestions/index');
     })->name('user.suggestions');
 
-    Route::get('/user/suggestions/create', function () {
-        return view('user/suggestions/create');
-    })->name('user.suggestions.create');
+    Route::get('/user/suggestions/create', [SuggestionController::class, 'create'])->name('user.suggestions.create');
 
     Route::get('/user/suggestions/list', [SuggestionController::class, 'index'])->name('user.suggestions.index');
     
