@@ -60,7 +60,19 @@ class SuggestionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $create = $request->validate([
+            'token' => ['nullable'],
+            'title' => ['required', 'string', 'min:10'],
+            'description' => ['required', 'string', 'min:10'],
+        ]);
+
+        Suggestion::create($create);
+
+        if($create){
+             return view('user.suggestions.index');
+        }else{
+             return view('user.suggestions.create');
+        }
     }
 
     /**

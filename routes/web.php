@@ -60,6 +60,7 @@ Route::middleware(['auth'])->group(function () {
         })->name('admin.devices.create');
 
         ///////////////////////////////////////////////////
+        Route::post('/admin/suggestions/store', [SuggestionController::class, 'store'])->name('admin.suggestions.store');
 
         Route::get('/admin/suggestions/create', function () {
             return view('admin/suggestions/create');

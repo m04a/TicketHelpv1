@@ -6,21 +6,34 @@
     </x-slot>
     <x-slot name="slot">
         <x-create-card>
-            <form method="POST" action="">
+            <form action="{{ url('/admin/suggestions/store') }}" method="POST"">
             @csrf
 
             <!-- Title  -->
-                <div>
-                    <x-label class="label" for="assumpte" :value="__('Assumpte')" />
+            <div class="content-column">
+            <!-- Name User -->
+            <div class="column-left-w200">
+                <x-label class="label" for="assumpte" :value="__('Assumpte')" />
 
-                    <x-input id="nom" class="block mt-4 w-full" type="text" name="nom" required autofocus />
+                <x-input id="title" class="block mt-4 w-full" type="text" name="title" required autofocus />
+            </div>
+
+            <!-- Status Breakdown -->
+            <div class="column-right">
+                    <x-label for="rol" :value="__('Estat Incidència')" />
+                    
+                    <x-select class="block mt-4 w-full">
+                        <option value="1">Sense Assignar</option>
+                        <option value="2">En procés</option>
+                    </x-select>
                 </div>
+            </div>
 
                 <!-- Text of the suggestion -->
                 <div class="mt-4">
                     <x-label class="label" for="missatge" :value="__('Missatge')" />
 
-                    <textarea class="textarea" type="text" name="sugerencia" required autofocus></textarea>
+                    <textarea class="textarea" type="text" name="description" required autofocus></textarea>
                 </div>
 
 
@@ -30,7 +43,7 @@
                         <label for="toggle" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 focus:ring-none cursor-pointer"></label>
                     </div>
                     <label for="toggle" class="text-xs text-gray-800">Estat</label>
-                    <x-button class="ml-3">
+                    <x-button type="submit" class="ml-3">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
                         </svg>
