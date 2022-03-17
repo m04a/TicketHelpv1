@@ -56,7 +56,21 @@
 
                     </tbody>
                 </table>
-                <x-pagination></x-pagination>
+                <x-pagination>
+                    @for($i = 0; $i < $users->lastPage(); $i++)
+                            <div class="buttons">
+                                <a class="pagination-next m-2" href="{{ url('/admin/users?page=' . $i+1) }}" >
+                                    @if($users->currentPage() == $i+1) 
+                                    <button type="button" class="button active">{{ $i+1 }}</button>
+                                    @else
+                                    <button type="button" class="button">{{ $i+1 }}</button>
+                                    @endif
+                                </a>
+                            </div>
+                        @endfor
+                        <small class="flex w-full justify-end mr-0.5">Pàgina {{ $users->currentPage() }} de {{ $users->lastPage() }} </small>
+                </x-pagination>
+                
             </div>
         </div>
     </section>
