@@ -112,9 +112,7 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('/admin/questions/create' , [QuestionController::class, "create"])->name('admin.questions.create');
 
-        Route::get('/admin/questions/view', function () {
-            return view('admin/questions/view');
-        })->name('admin.questions.view');
+        Route::get('/admin/questions/view/{id}', [QuestionController::class, 'show'])->name('admin.questions.view');
 
         Route::get('/admin/questions/edit', function () {
             return view('admin/questions/edit');

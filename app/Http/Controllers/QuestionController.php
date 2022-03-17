@@ -91,6 +91,9 @@ class QuestionController extends Controller
     public function show($id)
     {
         //
+        $questions = Question::findOrFail($id);
+
+        return view('admin.questions.view', ['questions' => $questions]);
     }
 
     /**

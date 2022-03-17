@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h1 class="title">
-            Qüestió 213
+            Qüestió {{$questions->id}}
         </h1>
     </x-slot>
     <x-slot name="slot">
@@ -12,7 +12,7 @@
                 <div class="column-right">
                     <x-label for="title" :value="__('Assumpte')" />
 
-                    <x-input id="title" class="input-contant-test input-disabled" type="text" name="nom" value="Puc demanar un swtich?" required autofocus disabled/>
+                    <x-input id="title" class="input-contant-test input-disabled" type="text" name="nom" value="{{$questions->title}}" required autofocus disabled/>
                 </div>
             </div>
             <div class="content-column">
@@ -38,7 +38,7 @@
 
                 <x-label for="description" class="mt-4 mb-4" :value="__('Descripció')" />
 
-                <textarea class="textarea input-disabled" disabled>Puc demanar un switch al professor en cas que necessiti algun per fer proves?</textarea>
+                <textarea class="textarea input-disabled" disabled>{{$questions->description}}</textarea>
             </div>
         </x-create-card>
         <x-create-card>
