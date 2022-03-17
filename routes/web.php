@@ -190,8 +190,10 @@ Route::middleware(['auth'])->group(function () {
     })->name('user.suggestions');
 
     Route::get('/user/suggestions/create', [SuggestionController::class, 'create'])->name('user.suggestions.create');
+    
+    Route::post('/user/suggestions/store', [SuggestionController::class, 'store'])->name('user.suggestions.store');
 
-    Route::get('/user/suggestions/list', [SuggestionController::class, 'index'])->name('user.suggestions.index');
+    Route::get('/user/suggestions/list', [SuggestionController::class, 'index'])->name('user.suggestions.list');
     
     Route::get('/user/suggestions/edit/{id}', [SuggestionController::class, 'edit'])->name('user.suggestions.edit');
 

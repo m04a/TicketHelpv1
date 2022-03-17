@@ -6,7 +6,7 @@
     </x-slot>
     <x-slot name="slot">
         <x-create-card-user>
-        <form action="{{ url('/admin/suggestions/store') }}" method="POST"">
+        <form action="{{ url('/user/suggestions/store') }}" method="POST"">
             @csrf
 
             <!-- Title  -->
@@ -22,7 +22,7 @@
             <div class="column-right">
                     <x-label for="rol" :value="__('Estat Incidència')" />
                     
-                    <x-select class="block mt-4 w-full">
+                    <x-select name="department_id" class="block mt-4 w-full">
                         @foreach ($department as $item)
                             <option value="{{ $item->id }} ">{{ $item->name }}</option>
                         @endforeach

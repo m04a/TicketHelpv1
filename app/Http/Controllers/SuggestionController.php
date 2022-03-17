@@ -21,7 +21,7 @@ class SuggestionController extends Controller
         $userRole = User::where('id', '=', $idUser)->get(['role_id']);
 
         if($userRole[0]['role_id'] > 1){
-            $data['suggestions'] = Suggestion::paginate(5)
+            $data['suggestions'] = Suggestion::paginate(10)
             ->through(fn ($item) => [
               "id" => $item->id,
               "title" => $item->title,
@@ -30,7 +30,7 @@ class SuggestionController extends Controller
                 return view('admin.suggestions.index', $data);
         }else{
             $data['suggestions'] = Suggestion::where('user_id', '=', $idUser)
-            ->paginate(5)
+            ->paginate(10)
             ->through(fn ($item) => [
               "id" => $item->id,
               "title" => $item->title,
@@ -70,6 +70,8 @@ class SuggestionController extends Controller
      */
     public function store(Request $request)
     {
+        $idUser = $request->user()->id;
+
         $create = $request->validate([
             'token' => ['nullable'],
             'title' => ['required', 'string', 'min:10'],
@@ -77,13 +79,33 @@ class SuggestionController extends Controller
             'department_id' => ['required', 'integer'],
         ]);
 
-        Suggestion::create($create);
+        $userRole = User::where('id', '=', $idUser)->get(['role_id']);
 
-        if($create){
-             return view('user.suggestions.index');
+        if($userRole[0]['role_id'] > 1){
+
+            $create['user_id'] = $idUser;
+
+            Suggestion::create($create);
+    
+            if($create){
+                 return redirect('/admin/suggestions')->with('message', 'el suggeriment a sigut creat i enviat!');
+            }else{
+                 return redirect('/admin/suggestions/create')->with($create);
+            }   
+
         }else{
-             return view('user.suggestions.create');
-        }
+
+            $create['user_id'] = $idUser;
+
+            Suggestion::create($create);
+
+            if($create){
+                return redirect('/user/suggestions/list');
+            }else{
+                return redirect('/user/suggestions/create');
+            }  
+        }  
+
     }
 
     /**
