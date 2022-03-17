@@ -6,7 +6,7 @@
             </h1>
         </x-slot>
 <x-create-card>
-        <form method="POST" action="">
+        <form method="POST" action=" {{ route('admin.departments.create') }}">
             @csrf
             <!-- Name Department -->
             <div class="column-left">
