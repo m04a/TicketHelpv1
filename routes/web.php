@@ -62,6 +62,8 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('/admin/devices/create', [DeviceController::class, 'create'])->name('admin.devices.create');
 
+        Route::delete('/admin/devices/{id}', [DeviceController::class, 'destroy'])->name('admin.devices.delete');
+
         ///////////////////////////////////////////////////
         Route::get('/admin/suggestions/create/', [SuggestionController::class, 'create'])->name('admin.suggestions.create');
 

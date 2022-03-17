@@ -17,7 +17,6 @@ class DeviceController extends Controller
      */
     public function index()
     {
-
         $devices = Device::paginate(10)
             ->through(fn ($item) => [
                 "label" => $item->label,
@@ -97,6 +96,13 @@ class DeviceController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $Device = Device::findOrFail($id);
+        $result = $Device->delete();
+
+        if ($result) {
+            return redirect('/admin/devices')->with('message', 'Dispositiu esborrat!');
+        } else {
+            return redirect('/admin/devices')->with('message', 'hi hagut un error al esborrar el dispositiu!');
+        }
     }
 }
