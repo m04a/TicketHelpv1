@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Suggestion;
 use App\Models\User;
-use App\Models\Role;
+use App\Models\Department;
 
 class SuggestionController extends Controller
 {
@@ -49,14 +49,16 @@ class SuggestionController extends Controller
      */
     public function create(Request $request)
     {
+        $department = Department::all();
+
         $idUser = $request->user()->id;
 
         $userRole = User::where('id', '=', $idUser)->get(['role_id']);
         
         if($userRole[0]['role_id'] > 1){
-            return view('admin.suggestions.create');    
+            return view('admin.suggestions.create', ['department' => $department]);    
         }else{
-            return view('user.suggestions.create');    
+            return view('user.suggestions.create', ['department' => $department]);    
         }   
     }
 
