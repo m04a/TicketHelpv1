@@ -21,14 +21,14 @@
 
                     <x-label for="user" :value="__('User')" />
 
-                    <x-input id="user" class="input-content input-disabled" type="text" name="assumpte" value="Moha" required autofocus disabled/>
+                    <x-input id="user" class="input-content input-disabled" type="text" name="assumpte" value="{{$questions->username}}" required autofocus disabled/>
 
                 </div>
                 <!-- Department -->
                 <div class="mt-4 column-right">
                     <x-label for="rol" :value="__('Departament')" />
                     
-                    <x-input id="department" class="input-content input-disabled" type="text" name="department" value="Departament Informàtica" required autofocus disabled/>
+                    <x-input id="department" class="input-content input-disabled" type="text" name="department" value="{{$questions->department}}" required autofocus disabled/>
 
                 </div>
             </div>

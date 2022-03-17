@@ -28,8 +28,8 @@ class QuestionController extends Controller
               "title" => $item->title,
               "description" => $item->description,
               "status" => $item->status,
-              "department_id" => $item->department_id,
-              "user_id" => $item->user_id,
+              "department_id" => $item->department->name,
+              "user_id" => $item->user->username,
               "manager_id" => $item->manager_id,
               ]);
                 return view('admin.questions.index', $data);
@@ -41,8 +41,8 @@ class QuestionController extends Controller
                 "title" => $item->title,
                 "description" => $item->description,
                 "status" => $item->status,
-                "department_id" => $item->department_id,
-                "user_id" => $item->user_id,
+                "department_id" => $item->department->name,
+                "user_id" => $item->user->username,
                 "manager_id" => $item->manager_id,
               ]);
                 return view('user.questions.list', $data);
@@ -92,6 +92,10 @@ class QuestionController extends Controller
     {
         //
         $questions = Question::findOrFail($id);
+
+        $questions['username'] = $questions->user->username;
+        
+        $questions['department'] = $questions->department->name;
 
         return view('admin.questions.view', ['questions' => $questions]);
     }
