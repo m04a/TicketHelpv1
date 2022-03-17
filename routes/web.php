@@ -8,7 +8,6 @@ use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\DepartamentController;
 
 
-use App\Http\Controllers\DepartamentController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
