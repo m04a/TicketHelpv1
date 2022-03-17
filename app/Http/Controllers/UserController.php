@@ -15,7 +15,7 @@ class UserController extends Controller
     public function index()
     {
 
-        $users = User::paginate(5)
+        $users['users'] = User::paginate(5)
         ->through(fn ($item) => [
             "username" => $item->username,
             "email" => $item->email,
