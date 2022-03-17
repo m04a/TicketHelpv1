@@ -56,9 +56,13 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('/admin/devices', [DeviceController::class, 'index'])->name('admin.devices.index');
 
-        Route::get('/admin/devices/create', function () {
-            return view('admin/devices/create');
-        })->name('admin.devices.create');
+        // Route::get('/admin/devices/create', function () {
+        //     return view('admin/devices/create');
+        // })->name('admin.devices.create');
+
+        Route::get('/admin/devices/create', [DeviceController::class, 'create'])->name('admin.devices.create');
+
+        Route::delete('/admin/devices/{id}', [DeviceController::class, 'destroy'])->name('admin.devices.delete');
 
         ///////////////////////////////////////////////////
         Route::get('/admin/suggestions/create/', [SuggestionController::class, 'create'])->name('admin.suggestions.create');
@@ -70,14 +74,14 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/admin/suggestions/{id}', [SuggestionController::class, 'destroy'])->name('admin.suggestions.delete');
 
         Route::get('/admin/suggestions/edit/{id}', [SuggestionController::class, 'edit'])->name('admin.suggestions.edit');
-      
+
         // Route::get('/admin/suggestions', function () {
         //     return view('admin/suggestions/index');
         // })->name('admin.suggestions.index');
         Route::get('/admin/suggestions', [SuggestionController::class, 'index'])
         ->name('admin.suggestions.index');
 
-        
+
 
         Route::get('/admin/suggestions/edit', function () {
             return view('admin/suggestions/edit');
@@ -103,7 +107,7 @@ Route::middleware(['auth'])->group(function () {
         ///////////////////////////////////////////////////
 
         Route::get('/admin/questions' , [QuestionController::class, "index"])->name('admin.questions.index');
-        
+
         Route::delete('/admin/questions/{id}' , [QuestionController::class, "destroy"])->name('admin.questions.delete');
 
         Route::get('/admin/questions/create' , [QuestionController::class, "create"])->name('admin.questions.create');
@@ -120,7 +124,7 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('/admin/departments', [DepartamentController::class, 'index'])
         ->name('admin.departments.index');
-        
+
 
         Route::get('/admin/departments/create',[DepartamentController::class,"create"])
             ->name('admin.departments.create');
@@ -190,7 +194,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/user/suggestions/create', [SuggestionController::class, 'create'])->name('user.suggestions.create');
 
     Route::get('/user/suggestions/list', [SuggestionController::class, 'index'])->name('user.suggestions.index');
-    
+
     Route::get('/user/suggestions/edit/{id}', [SuggestionController::class, 'edit'])->name('user.suggestions.edit');
 
 
