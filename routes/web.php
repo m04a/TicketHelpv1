@@ -7,6 +7,7 @@ use App\Http\Controllers\DeviceController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DepartamentController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -124,9 +125,8 @@ Route::middleware(['auth'])->group(function () {
         ->name('admin.departments.index');
         
 
-        Route::get('/admin/departments/create', function () {
-            return view('admin/departments/create');
-        })->name('admin.departments.create');
+        Route::get('/admin/departments/create',[DepartamentController::class,"create"])
+            ->name('admin.departments.create');
 
         Route::get('/admin/departments/edit', function () {
             return view('admin/departments/edit');
