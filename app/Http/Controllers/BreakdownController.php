@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Breakdown;
 use App\Models\User;
+use App\Models\Department;
 use Illuminate\Http\Request;
 
 class BreakdownController extends Controller
@@ -97,7 +98,15 @@ class BreakdownController extends Controller
      */
     public function edit($id)
     {
-        //
+        $breakdownData = Breakdown::where('id', $id)->first();
+
+        $breakdownData['username'] = $breakdownData->user->username;
+
+        $breakdownData['departament'] = $breakdownData->department->name;
+
+        $department = Department::all();
+
+        return view('admin.breakdowns.edit',['department' => $department])->with('breakdownData',$breakdownData);
     }
 
     /**
