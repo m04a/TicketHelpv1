@@ -15,14 +15,15 @@ class DeviceController extends Controller
     public function index(Request $request)
     {
 
-            $data['devices'] = Device::paginate(10)
-                ->through(fn ($item) => [
-                    //"label" => $item->label,
-                    "label" => substr($item->label, 0, 1)."-".str_pad($item->zone_id, 2, 0, STR_PAD_LEFT)."-".str_pad($item->type_id, 2, 0, STR_PAD_LEFT),
-                    "zone" => $item->zone->label,
-                    "type" => $item->type->label,
-                ]);
-            return view('admin.devices.index', $data);
+        $data['devices'] = Device::paginate(10)
+            ->through(fn ($item) => [
+                "id" => $item->id,
+                "label" => $item->label,
+                //"label" => substr($item->label, 0, 1) . "-" . str_pad($item->zone_id, 2, 0, STR_PAD_LEFT) . "-" . str_pad($item->type_id, 2, 0, STR_PAD_LEFT),
+                "zone" => $item->zone->label,
+                "type" => $item->type->label,
+            ]);
+        return view('admin.devices.index', $data);
 
         //$data['devicesCount'] = Device::count();
     }
@@ -90,6 +91,13 @@ class DeviceController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $Device = Device::findOrFail($id);
+        $result = $Device->delete();
+
+        if ($result) {
+            return redirect('/admin/devices')->with('message', 'Dispositiu esborrat!');
+        } else {
+            return redirect('/admin/devices')->with('message', 'hi hagut un error al esborrar el dispositiu!');
+        }
     }
 }
