@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SuggestionController;
 use App\Http\Controllers\DeviceController;
 use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\DepartamentController;
+
 
 use App\Http\Controllers\DepartamentController;
 /*
@@ -124,9 +126,8 @@ Route::middleware(['auth'])->group(function () {
         ->name('admin.departments.index');
         
 
-        Route::get('/admin/departments/create', function () {
-            return view('admin/departments/create');
-        })->name('admin.departments.create');
+        Route::get('/admin/departments/create',[DepartamentController::class,"create"])
+            ->name('admin.departments.create');
 
         Route::get('/admin/departments/edit', function () {
             return view('admin/departments/edit');
