@@ -8,7 +8,6 @@ use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\DepartamentController;
 
 
-use App\Http\Controllers\DepartamentController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -108,9 +107,7 @@ Route::middleware(['auth'])->group(function () {
         
         Route::delete('/admin/questions/{id}' , [QuestionController::class, "destroy"])->name('admin.questions.delete');
 
-        Route::get('/admin/questions/create', function () {
-            return view('admin/questions/create');
-        })->name('admin.questions.create');
+        Route::get('/admin/questions/create' , [QuestionController::class, "create"])->name('admin.questions.create');
 
         Route::get('/admin/questions/view', function () {
             return view('admin/questions/view');
@@ -148,9 +145,7 @@ Route::middleware(['auth'])->group(function () {
         })->name('user.types.edit');
         ///////////////////////////////////////////////////
 
-        Route::get('/admin/questions/create', function () {
-            return view('admin/questions/create');
-        })->name('admin.questions.create');
+        Route::get('/user/questions/create' , [QuestionController::class, "create"])->name('user.questions.create');
 
     });
 
