@@ -26,14 +26,15 @@
                 <table>
                     <thead>
                     <tr>
+                        <th>Id</th>
                         <th>Nom</th>
-                        <th></th>
                     </tr>
                     </thead>
                     <tbody>
                     @foreach($departments as $department)
                         <tr>
-                            <td data-label="Nom">{{ $department['name'] }}</td>
+                            <td data-label="id"> {{ $department['id'] }} </td>
+                            <td data-label="Nom"> {{ $department['name'] }} </td>
                             <td class="actions-cell">
                                 <div class="buttons right nowrap">
                                     <button class="button-table-edit"  data-target="sample-modal-2" type="button">
@@ -52,6 +53,20 @@
                     @endforeach
                     </tbody>
                 </table>
+                 <x-pagination>
+                        @for($i = 0; $i < $departments->lastPage(); $i++)
+                            <div class="buttons">
+                                <a class="pagination-next m-2" href="{{ url('/admin/departments?page=' . $i+1) }}" >
+                                    @if($departments->currentPage() == $i+1) 
+                                    <button type="button" class="button active">{{ $i+1 }}</button>
+                                    @else
+                                    <button type="button" class="button">{{ $i+1 }}</button>
+                                    @endif
+                                </a>
+                            </div>
+                        @endfor
+                        <small class="flex w-full justify-end mr-0.5">Pàgina {{ $departments->currentPage() }} de {{ $departments->lastPage() }} </small>
+                    </x-pagination>
             </div>
         </div>
     </section>

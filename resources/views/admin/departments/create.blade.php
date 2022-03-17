@@ -6,13 +6,13 @@
             </h1>
         </x-slot>
 <x-create-card>
-        <form method="POST" action=" {{ route('admin.departments.create') }}">
+        <form method="POST" action="{{ route('admin.departments.store') }}">
             @csrf
             <!-- Name Department -->
             <div class="column-left">
-                <x-label for="departament" :value="__('Nom Departament')" />
+                <x-label for="departament1" :value="__('Nom Departament')" />
 
-                <x-input id="departament" class="input-content" type="text" name="departament" placeholder="Secretaria" required autofocus />
+                <x-input id="departament" class="input-content" type="text" name="departament" for="depa" placeholder="Secretaria" required autofocus />
             </div>
             <div class="button-create">
                 <x-button class="ml-3">

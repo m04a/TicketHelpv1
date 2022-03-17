@@ -22,15 +22,17 @@ class DepartamentController extends Controller
         $userRole = User::where('id', '=', $idUser)->get(['role_id']);
 
         if($userRole[0]['role_id'] > 1){
-            $data['departments'] = Department::paginate(6)
+            $data['departments'] = Department::paginate(10)
             ->through(fn ($item) => [
+              "id" => $item->id,
               "name" => $item->name,
               ]);
                 return view('admin.departments.index', $data);
         }else{
             $data['departments'] = Department::where('user_id', '=', $idUser)
-            ->paginate(6)
+            ->paginate(10)
             ->through(fn ($item) => [
+              "id" => $item->id,
                 "name" => $item->name,
               ]);
                 return view('user.departments.list', $data);
@@ -58,12 +60,15 @@ class DepartamentController extends Controller
      */
     public function store(Request $request)
     {
-        $departments = new Department();
+        $validated = $request->validate(
+            ["departament" => "required"
+        ]);
 
-        $departments->name = $request->get('departament');
+        $departments = new Department();
+        $departments->name = $validated["departament"];
 
         $departments->save();
-
+        return redirect(route("admin.departments.index"));   
     }
 
     /**
