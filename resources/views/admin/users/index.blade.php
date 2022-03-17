@@ -29,7 +29,6 @@
                         <th>Nom</th>
                         <th>Email</th>
                         <th>Rol</th>
-                        <th></th>
                     </tr>
                     </thead>
                     <tbody>

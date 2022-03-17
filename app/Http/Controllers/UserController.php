@@ -22,9 +22,9 @@ class UserController extends Controller
             "role_name" => $item->role->label
         ]);
         
-        dd($users);
+        // dd($users);
 
-        return view('user.users.index', $users);      
+        return view('admin.users.index', $users);      
     }
 
     /**
