@@ -38,9 +38,7 @@ Route::middleware(['auth'])->group(function () {
             return view('admin/users/index');
         })->name('admin.users');
 
-        Route::get('/admin/users/create', function () {
-            return view('admin/users/create');
-        })->name('admin.users.create');
+        Route::get('/admin/users/create', [UserController::class, 'index'])->name('admin.users.create');
 
         Route::get('/admin/users/edit', function () {
             return view('admin/users/edit');
