@@ -54,8 +54,6 @@
                     </tr>
                     @endforeach
 
-
-
                     </tbody>
                 </table>
                 <x-pagination></x-pagination>
