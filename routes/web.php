@@ -5,8 +5,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SuggestionController;
 use App\Http\Controllers\DeviceController;
 use App\Http\Controllers\QuestionController;
-
 use App\Http\Controllers\DepartamentController;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -62,14 +63,14 @@ Route::middleware(['auth'])->group(function () {
         ///////////////////////////////////////////////////
         Route::post('/admin/suggestions/store', [SuggestionController::class, 'store'])->name('admin.suggestions.store');
 
-        Route::get('/admin/suggestions/create', function () {
-            return view('admin/suggestions/create');
-        })->name('admin.suggestions.create');
+        Route::get('/admin/suggestions/create/', [SuggestionController::class, 'create'])->name('admin.suggestions.create');
 
         Route::get('/admin/suggestions/view/{id}', [SuggestionController::class, 'show'])->name('admin.suggestions.view');
 
         Route::get('/admin/suggestions', [SuggestionController::class, 'index'])->name('admin.suggestions.index');
+
         Route::delete('/admin/suggestions/{id}', [SuggestionController::class, 'destroy'])->name('admin.suggestions.delete');
+
         Route::get('/admin/suggestions/edit/{id}', [SuggestionController::class, 'edit'])->name('admin.suggestions.edit');
       
         // Route::get('/admin/suggestions', function () {
@@ -107,9 +108,7 @@ Route::middleware(['auth'])->group(function () {
         
         Route::delete('/admin/questions/{id}' , [QuestionController::class, "destroy"])->name('admin.questions.delete');
 
-        Route::get('/admin/questions/create', function () {
-            return view('admin/questions/create');
-        })->name('admin.questions.create');
+        Route::get('/admin/questions/create' , [QuestionController::class, "create"])->name('admin.questions.create');
 
         Route::get('/admin/questions/view', function () {
             return view('admin/questions/view');
@@ -125,9 +124,8 @@ Route::middleware(['auth'])->group(function () {
         ->name('admin.departments.index');
         
 
-        Route::get('/admin/departments/create', function () {
-            return view('admin/departments/create');
-        })->name('admin.departments.create');
+        Route::get('/admin/departments/create',[DepartamentController::class,"create"])
+            ->name('admin.departments.create');
 
         Route::get('/admin/departments/edit', function () {
             return view('admin/departments/edit');
@@ -148,9 +146,7 @@ Route::middleware(['auth'])->group(function () {
         })->name('user.types.edit');
         ///////////////////////////////////////////////////
 
-        Route::get('/admin/questions/create', function () {
-            return view('admin/questions/create');
-        })->name('admin.questions.create');
+        Route::get('/user/questions/create' , [QuestionController::class, "create"])->name('user.questions.create');
 
     });
 
@@ -193,9 +189,7 @@ Route::middleware(['auth'])->group(function () {
         return view('user/suggestions/index');
     })->name('user.suggestions');
 
-    Route::get('/user/suggestions/create', function () {
-        return view('user/suggestions/create');
-    })->name('user.suggestions.create');
+    Route::get('/user/suggestions/create', [SuggestionController::class, 'create'])->name('user.suggestions.create');
 
     Route::get('/user/suggestions/list', [SuggestionController::class, 'index'])->name('user.suggestions.index');
     
