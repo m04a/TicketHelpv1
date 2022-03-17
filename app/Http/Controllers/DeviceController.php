@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Device;
+use App\Models\Type;
+use App\Models\Zone;
+use Illuminate\Support\Facades\DB;
 
 class DeviceController extends Controller
 {
@@ -12,17 +15,17 @@ class DeviceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
 
-            $data['devices'] = Device::paginate(10)
-                ->through(fn ($item) => [
-                    //"label" => $item->label,
-                    "label" => substr($item->label, 0, 1)."-".str_pad($item->zone_id, 2, 0, STR_PAD_LEFT)."-".str_pad($item->type_id, 2, 0, STR_PAD_LEFT),
-                    "zone" => $item->zone->label,
-                    "type" => $item->type->label,
-                ]);
-            return view('admin.devices.index', $data);
+        $devices = Device::paginate(10)
+            ->through(fn ($item) => [
+                "label" => $item->label,
+                //"label" => substr($item->label, 0, 1) . "-" . str_pad($item->zone_id, 2, 0, STR_PAD_LEFT) . "-" . str_pad($item->type_id, 2, 0, STR_PAD_LEFT),
+                "zone" => $item->zone->label,
+                "type" => $item->type->label,
+            ]);
+        return view('admin.devices.index', $devices);
 
         //$data['devicesCount'] = Device::count();
     }
@@ -32,9 +35,13 @@ class DeviceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $list = [
+            "types" => Type::pluck('label', 'id'),
+            "zones" => Zone::pluck('label', 'id'),
+        ];
+        return view('admin.devices.create', $list);
     }
 
     /**
