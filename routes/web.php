@@ -70,14 +70,6 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('/admin/suggestions/edit/{id}', [SuggestionController::class, 'edit'])->name('admin.suggestions.edit');
 
-        // Route::get('/admin/suggestions', function () {
-        //     return view('admin/suggestions/index');
-        // })->name('admin.suggestions.index');
-        Route::get('/admin/suggestions', [SuggestionController::class, 'index'])
-        ->name('admin.suggestions.index');
-
-
-
         Route::get('/admin/suggestions/edit', function () {
             return view('admin/suggestions/edit');
         })->name('admin.suggestions.edit');
@@ -92,9 +84,11 @@ Route::middleware(['auth'])->group(function () {
             return view('admin/breakdowns/create');
         })->name('admin.breakdowns.create');
 
-        Route::get('/admin/breakdowns/edit', function () {
-            return view('admin/breakdowns/edit');
-        })->name('admin.breakdowns.edit');
+        Route::get('/admin/breakdowns/edit/{id}',
+            [BreakdownController::class,"edit"]);
+
+        Route::post('/admin/breakdowns/edit/{id}',
+            [BreakdownController::class,"update"]);
 
         Route::get('/admin/breakdowns/view/{id}',
             [BreakdownController::class,"show"]);
