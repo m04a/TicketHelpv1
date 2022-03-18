@@ -8,6 +8,11 @@
 
 
         <section class="section main-section-user">
+            @if(session('success'))
+                <x-success-alert id="message" class="transition-success-messages">
+                    {{ session('success') }}
+                </x-success-alert>
+            @endif
             <div class="card has-table">
                 <header class="card-header">
                     <p class="card-header-title">
@@ -19,7 +24,7 @@
                                 viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                             </svg>
-                            <a href="/user/suggestions/create"">Afegir Suggerencia</a>
+                            <a href="/user/suggestions/create">Afegir Suggerencia</a>
                         </div>
                     </button>
                 </header>
@@ -47,7 +52,7 @@
                                         </button>
                                         <form action="{{ url('/user/suggestions/list/' . $suggestion['id']) }}" method="POST">
                                         @csrf
-                                        {{ method_field('DELETE') }} 
+                                        {{ method_field('DELETE') }}
 
                                         <button class="button-table-delete" data-target="sample-modal" type="submit" onclick="return confirm('Estàs Segur?')">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -65,7 +70,7 @@
                         @for($i = 0; $i < $suggestions->lastPage(); $i++)
                             <div class="buttons">
                                 <a class="pagination-next m-2" href="{{ url('/user/suggestions/list?page=' . $i+1) }}" >
-                                    @if($suggestions->currentPage() == $i+1) 
+                                    @if($suggestions->currentPage() == $i+1)
                                     <button type="button" class="button active">{{ $i+1 }}</button>
                                     @else
                                     <button type="button" class="button">{{ $i+1 }}</button>

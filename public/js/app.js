@@ -5689,6 +5689,15 @@ Array.from(document.getElementsByClassName('--jb-notification-dismiss')).forEach
     e.currentTarget.closest('.notification').classList.add('hidden');
   });
 });
+var message = document.getElementById('message');
+
+window.onload = function (event) {
+  setTimeout(function () {
+    event.preventDefault();
+    message.classList.remove('opacity-100');
+    message.classList.add('hidden');
+  }, 5000);
+};
 
 /***/ }),
 

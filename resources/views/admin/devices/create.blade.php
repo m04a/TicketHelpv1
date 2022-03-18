@@ -5,14 +5,33 @@
             Crear nou dispositiu
         </h1>
     </x-slot>
+    @if ($errors->any())
+            <x-error-alert id="message" class="transition-error-messages">
+                <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+                </ul>
+            </x-error-alert>
+        @endif
+            @if (session('success'))
+                <x-success-alert id="message" class="transition-success-messages">
+                    {{ session('success') }}
+                </x-success-alert>
+            @endif
+            @if (session('message'))
+                <x-error-alert id="message" class="transition-error-messages">
+                    {{ session('message') }}
+                </x-error-alert>
+            @endif
     <x-create-card>
-        <form method="GET" action="">
+        <form method="POST" action="">
             @csrf
+
             <div class="content-column">
                 <!-- Name User -->
                 <div class="column-left">
                     <x-label for="Nom" :value="__('Nom del dispositiu')" />
-
                     <x-input id="name" class="input-content" type="text" name="name" placeholder="s-02-01" required
                         autofocus />
                 </div>
@@ -21,10 +40,10 @@
                 <div class="column-left">
                     <x-label for="Tipus" :value="__('tipus')" />
 
-                    <x-select class="block mt-4 w-full">
+                    <x-select class="block mt-4 w-full" name="type" id="zone">
 
                         @foreach ($types as $item)
-                            <option value='{{ $item }}'>{{ $item }}</option>
+                            <option value='{{ $item->id }}'>{{ $item->label }}</option>
                         @endforeach
                     </x-select>
                 </div>
@@ -32,9 +51,9 @@
                 <div class="column-right">
                     <x-label for="Aula" :value="__('Aula')" />
 
-                    <x-select class="block mt-4 w-full">
+                    <x-select class="block mt-4 w-full" name="zone" name="zone">
                         @foreach ($zones as $item)
-                            <option value='{{ $item }}'>{{ $item }}</option>
+                            <option value='{{ $item->id }}'>{{ $item->label }}</option>
                         @endforeach
                     </x-select>
                 </div>

@@ -21,7 +21,7 @@ class SuggestionController extends Controller
         $userRole = User::where('id', '=', $idUser)->get(['role_id']);
 
         if($userRole[0]['role_id'] > 1){
-            $data['suggestions'] = Suggestion::paginate(5)
+            $data['suggestions'] = Suggestion::paginate(10)
             ->through(fn ($item) => [
               "id" => $item->id,
               "title" => $item->title,
@@ -30,7 +30,7 @@ class SuggestionController extends Controller
                 return view('admin.suggestions.index', $data);
         }else{
             $data['suggestions'] = Suggestion::where('user_id', '=', $idUser)
-            ->paginate(5)
+            ->paginate(10)
             ->through(fn ($item) => [
               "id" => $item->id,
               "title" => $item->title,
@@ -54,12 +54,12 @@ class SuggestionController extends Controller
         $idUser = $request->user()->id;
 
         $userRole = User::where('id', '=', $idUser)->get(['role_id']);
-        
+
         if($userRole[0]['role_id'] > 1){
-            return view('admin.suggestions.create', ['department' => $department]);    
+            return view('admin.suggestions.create', ['department' => $department]);
         }else{
-            return view('user.suggestions.create', ['department' => $department]);    
-        }   
+            return view('user.suggestions.create', ['department' => $department]);
+        }
     }
 
     /**
@@ -70,7 +70,46 @@ class SuggestionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $idUser = $request->user()->id;
+
+        $create = $request->validate([
+            'token' => ['nullable'],
+            'title' => ['required', 'string', 'min:5'],
+            'description' => ['required', 'string', 'min:10'],
+            'department_id' => ['required', 'integer'],
+        ], [
+            'title.required' => 'Falta el assumpte',
+            'description.required' => 'Falta una descripció',
+            'department_id.required' => 'Posa un departament no siguis hacker',
+            'title.min' => 'Posa com a minim 5 caracters en el assumpte',
+            'description.min' => 'Posa com a minim 10 caracters en la descripció'
+        ]);
+
+        $userRole = User::where('id', '=', $idUser)->get(['role_id']);
+
+        if($userRole[0]['role_id'] > 1){
+
+            $create['user_id'] = $idUser;
+
+            Suggestion::create($create);
+
+            if($create){
+                 return redirect('/admin/suggestions')->with('success', 'el suggeriment a sigut creat');
+            }
+
+        }else{
+
+            $create['user_id'] = $idUser;
+
+            Suggestion::create($create);
+
+            if($create){
+                return redirect('/user/suggestions/list')->with('success', 'el suggeriment a sigut creat i enviat!');;
+            }else{
+                return redirect('/user/suggestions/create')->with('message', "el suggeriment no s'''ha pogut crear");
+            }
+        }
+
     }
 
     /**
@@ -83,7 +122,7 @@ class SuggestionController extends Controller
     {
         $suggestion = Suggestion::findOrFail($id);
 
-        return view('admin.suggestions.view', ['suggestions' => $suggestion]);       
+        return view('admin.suggestions.view', ['suggestions' => $suggestion]);
     }
 
     /**
@@ -111,7 +150,7 @@ class SuggestionController extends Controller
             return view('user.suggestions.edit', ['suggestion' => $suggestion]);
         }
     }
-    
+
 
     /**
      * Update the specified resource in storage.
@@ -141,7 +180,7 @@ class SuggestionController extends Controller
             $suggestion = Suggestion::findOrFail($id);+
 
             $result = $suggestion->delete();
-            
+
             if ($result) {
                 return redirect('/admin/suggestions')->with('message', 'Sugerencia esborrada!');
             }else{
@@ -151,7 +190,7 @@ class SuggestionController extends Controller
             $suggestion = Suggestion::findOrFail($id);
 
             $result = $suggestion->delete();
-            
+
             if ($result) {
                 return redirect('/user/suggestions/list')->with('message', 'Sugerencia esborrada!');
             }else{
