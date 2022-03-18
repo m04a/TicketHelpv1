@@ -15,15 +15,17 @@ class UserController extends Controller
     public function index()
     {
 
-            $data['users'] = User::where('user_id', '=', $idUser)
-            ->paginate(5)
-            ->through(fn ($item) => [
-              "username" => $item->username,
-              "email" => $item->email,
-              ]);
-                return view('user.users.index', $data);
-      
-        $data['usersCount'] = User::count();
+        $users['users'] = User::paginate(10)
+        ->through(fn ($item) => [
+            "id"=> $item->id,
+            "username" => $item->username,
+            "email" => $item->email,
+            "role_name" => $item->role->label
+        ]);
+        
+        // dd($users);
+
+        return view('admin.users.index', $users); 
     }
 
     /**
@@ -64,9 +66,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit()
+    public function edit(Request $request,$id)
     {
-        $users['users'] = User::findOrFail();
+        $users['users'] = User::findOrFail($id);
 
         return view('admin.users.edit', ['users' => $users]);
     }

@@ -42,7 +42,7 @@ Route::middleware(['auth'])->group(function () {
             return view('admin/users/create');
         })->name('admin.users.create');
 
-        Route::get('/admin/users/edit', [UserController::class, 'edit'])->name('admin.users.edit');
+        Route::get('/admin/users/edit/{id}', [UserController::class, 'edit'])->name('admin.users.edit');
 
         ///////////////////////////////////////////////////
 
