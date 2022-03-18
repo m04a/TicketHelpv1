@@ -36,17 +36,13 @@ Route::middleware(['auth'])->group(function () {
 
         ///////////////////////////////////////////////////
 
-        Route::get('/admin/users', function () {
-            return view('admin/users/index');
-        })->name('admin.users');
+        Route::get('/admin/users', [UserController::class, 'index'])->name('admin.users.index');
 
         Route::get('/admin/users/create', function () {
             return view('admin/users/create');
         })->name('admin.users.create');
 
-        Route::get('/admin/users/edit', function () {
-            return view('admin/users/edit');
-        })->name('admin.users.edit');
+        Route::get('/admin/users/edit', [UserController::class, 'edit'])->name('admin.users.edit');
 
         ///////////////////////////////////////////////////
 

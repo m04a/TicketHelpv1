@@ -5,7 +5,7 @@
                 Editar Usuari
             </h1>
         </x-slot>
-<x-create-card>
+    <x-create-card>
         <form method="POST" action="">
             @csrf
             <div class="content-column">
@@ -13,14 +13,14 @@
             <div class="column-left">
                 <x-label for="usuari" :value="__('Nom Usuari')" />
 
-                <x-input id="nom" class="input-content" type="text" name="nom" value="Mohamed" required autofocus />
+                <x-input id="nom" class="input-content" type="text" name="nom" value="{{ $users->username }}" required autofocus />
             </div>
 
             <!-- Email User -->
             <div class="column-right">
                 <x-label for="email" :value="__('Correu Electronic')" />
 
-                <x-input id="email" class="input-content" type="email" name="email" value="mohamed@cendrassos.net" required autofocus />
+                <x-input id="email" class="input-content" type="email" name="email" value="{{ $users->email }}" required autofocus />
             </div>
             </div>
             <div class="content-column">
