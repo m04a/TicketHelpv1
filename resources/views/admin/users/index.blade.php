@@ -35,9 +35,9 @@
                     <tbody>
                     @foreach($users as $user)
                     <tr>
-                        <td data-label="Nom">{{$user->username}}</td>
-                        <td data-label="Email">{{$user->email}}</td>@.net</td>
-                        <td data-label="Rol">{{$user->role}}</td>
+                        <td data-label="Nom">{{ $user['username'] }}</td>
+                        <td data-label="Email">{{ $user['email'] }}</td>
+                        <td data-label="Rol">{{ $user['role_name'] }}</td>
                         <td class="actions-cell">
                             <div class="buttons right nowrap">
                                 <a href="{{ url('/admin/users/edit/' . $user['id']) }}">

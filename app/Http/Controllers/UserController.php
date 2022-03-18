@@ -23,7 +23,7 @@ class UserController extends Controller
             "role_name" => $item->role->label
         ]);
         
-        // dd($users);
+        // dd($users);die();
 
         return view('admin.users.index', $users); 
     }
@@ -66,10 +66,11 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request,$id)
+    public function edit($id, Request $request)
     {
-        $users['users'] = User::findOrFail($id);
 
+        //$idUser = $request->user()->id;
+        $users = User::findOrFail($id);
         return view('admin.users.edit', ['users' => $users]);
     }
 
