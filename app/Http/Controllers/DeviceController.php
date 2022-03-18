@@ -15,7 +15,7 @@ class DeviceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $data['devices'] = Device::paginate(10)
             ->through(fn ($item) => [
@@ -56,7 +56,7 @@ class DeviceController extends Controller
     {
         $input = $request->validate([
             'token' => ['nullable'],
-            'name' => ['required', 'string', 'min:5', 'max:120'],
+            'name' => ['required', 'string', 'min:3', 'max:120'],
             'type' => ['required', 'integer'],
             'zone' => ['required', 'integer'],
         ], [
@@ -68,8 +68,7 @@ class DeviceController extends Controller
         $device->label=$input['name'];
         $device->type_id=$input['type'];
         $device->zone_id=$input['zone'];
-        //$result=$device->save();
-        $result=true;
+        $result=$device->save();
         if ($result) {
             return redirect('/admin/devices/create')->with('success', "El dispositiu s'ha creat correctament");
         } else {

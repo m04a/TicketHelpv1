@@ -5,18 +5,29 @@
             Crear nou dispositiu
         </h1>
     </x-slot>
+    @if ($errors->any())
+            <x-error-alert id="message" class="transition-error-messages">
+                <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+                </ul>
+            </x-error-alert>
+        @endif
+            @if (session('success'))
+                <x-success-alert id="message" class="transition-success-messages">
+                    {{ session('success') }}
+                </x-success-alert>
+            @endif
+            @if (session('message'))
+                <x-error-alert id="message" class="transition-error-messages">
+                    {{ session('message') }}
+                </x-error-alert>
+            @endif
     <x-create-card>
         <form method="POST" action="">
             @csrf
-            @if ($errors->any())
-                <x-error-alert id="message" class="transition-error-messages">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </x-error-alert>
-            @endif
+
             <div class="content-column">
                 <!-- Name User -->
                 <div class="column-left">
