@@ -137,8 +137,6 @@ Route::middleware(['auth'])->group(function () {
         })->name('user.types.edit');
         ///////////////////////////////////////////////////
 
-        Route::get('/user/questions/create' , [QuestionController::class, "create"])->name('user.questions.create');
-
     });
 
 
@@ -163,15 +161,14 @@ Route::middleware(['auth'])->group(function () {
 
     ///////////////////////////////////////////////////
 
-    Route::get('/user/questions', function () {
-        return view('user/questions/index');
-    })->name('user.questions');
-
-    Route::get('/user/questions/create', function () {
-        return view('user/questions/create');
-    })->name('user.questions.create');
+    Route::get('/user/questions' , [QuestionController::class, "index"])->name('user.questions.index');
 
     Route::get('/user/questions/list', [QuestionController::class, 'index'])->name('user.questions.list');
+
+    Route::get('/user/questions/create' , [QuestionController::class, "create"])->name('user.questions.create');
+
+    Route::post('/user/questions/create' , [QuestionController::class, "store"])->name('user.questions.store');
+
 
 
     ///////////////////////////////////////////////////

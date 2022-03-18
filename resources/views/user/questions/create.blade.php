@@ -6,11 +6,23 @@
     </x-slot>
     <x-slot name="slot">
         <x-create-card-user>
-            <form method="POST" action="">
+            <form method="POST" action="{{ route('user.questions.store') }}">
             @csrf
 
+            <div class="column-left mt-4">
+                <x-label for="Tipus" :value="__('Departament')" />
+
+                <x-select class="block mt-4 w-full">
+                    <option value="1">Departament Informàtica</option>
+                    <option value="2">Consergeria</option>
+                    <option value="3">Secretaria</option>
+                    <option value="4">Direcció</option>
+                    <option value="5">Altres</option>
+                </x-select>
+            </div>
+
             <!-- Title  -->
-                <div>
+                <div class="mt-4">
                     <x-label class="title" for="assumpte" :value="__('Assumpte')" />
 
                     <x-input id="title" class="block mt-4 w-full" type="text" name="title" placeholder="Sense Assumpte" required autofocus />

@@ -80,6 +80,27 @@ class QuestionController extends Controller
     public function store(Request $request)
     {
         //
+        $idUser = $request->user()->id;
+
+        $validated = $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'department_id' => 'required',
+        ]);
+
+        $questions = new Question;
+
+        $questions->title = $validated['title'];
+        $questions->description = $validated['description'];
+        $questions->status = '0';
+        $questions->department_id = $validated['department_id'];
+        $questions->user_id = $idUser;
+        $questions->manager_id = '1';
+
+
+        $questions->save();
+
+        return view('/user/questions/create');
     }
 
     /**

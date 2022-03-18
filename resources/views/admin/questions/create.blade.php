@@ -31,9 +31,11 @@
                     <x-label for="Tipus" :value="__('Departament')" />
 
                     <x-select class="block mt-4 w-full">
-                        <option value="1">Informatica</option>
+                        <option value="1">Departament Informàtica</option>
                         <option value="2">Consergeria</option>
                         <option value="3">Secretaria</option>
+                        <option value="4">Direcció</option>
+                        <option value="5">Altres</option>
                     </x-select>
                 </div>
 
