@@ -125,9 +125,9 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/admin/departments/create',[DepartamentController::class,"store"])
            ->name('admin.departments.store');
 
-        Route::get('/admin/departments/edit', function () {
-            return view('admin/departments/edit');
-        })->name('admin.departments.edit');
+        Route::get('/admin/departments/edit/{id}',[DepartamentController::class,"edit"])
+            ->name('admin.departments.edit');
+
 
         ///////////////////////////////////////////////////
 
