@@ -24,6 +24,11 @@ class Question extends Model
         return $this->hasMany(Message::class);
     }
 
+    public function manager()
+    {
+        return $this->belongsTo(User::class, 'manager_id');
+    }
+
     protected $fillable = [
         'id',
         'tittle',

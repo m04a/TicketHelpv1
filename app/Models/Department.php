@@ -13,17 +13,17 @@ class Department extends Model
 
     public function questions()
     {
-        return $this->hasMany(Question::class);
+        return $this->hasMany(Question::Class);
     }
 
     public function suggestions()
     {
-        return $this->hasMany(Suggestion::class);
+        return $this->hasMany(Suggestion::Class);
     }
 
     public function breakdowns()
     {
-        return $this->hasMany(Breakdown::class);
+        return $this->hasMany(Breakdown::Class);
     }
 
     protected $fillable = [

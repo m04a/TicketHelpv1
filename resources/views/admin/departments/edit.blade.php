@@ -12,7 +12,7 @@
             <div class="column-left">
                 <x-label for="departament" :value="__('Nom Departament')" />
 
-                <x-input id="departament" class="input-content" type="text" name="departament" placeholder="Secretaria" value="Plàstica" required autofocus />
+                <x-input id="departament" class="input-content" type="text" name="departament" placeholder="{{$department->name}}" value="" required autofocus />
             </div>
             <div class="button-create">
                 <x-button class="ml-3">
