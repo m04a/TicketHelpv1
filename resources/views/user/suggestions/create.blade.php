@@ -7,7 +7,7 @@
     <x-slot name="slot">
 
        @if ($errors->any())
-            <x-error-alert id="message" class="transition-error-messages">
+            <x-error-alert id="message" class="transition-error-messages-users">
                 <ul>
                 @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
@@ -17,7 +17,7 @@
         @endif
 
         <x-create-card-user>
-        <form action="{{ url('/user/suggestions/store') }}" method="POST"">
+        <form action="{{ url('/user/suggestions/store') }}" method="POST">
             @csrf
 
             <!-- Title  -->
@@ -32,7 +32,7 @@
             <!-- Status Breakdown -->
             <div class="column-right">
                     <x-label for="rol" :value="__('Estat Incidència')" />
-                    
+
                     <x-select name="department_id" class="block mt-4 w-full">
                         @foreach ($department as $item)
                             <option value="{{ $item->id }} ">{{ $item->name }}</option>

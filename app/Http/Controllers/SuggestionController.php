@@ -54,12 +54,12 @@ class SuggestionController extends Controller
         $idUser = $request->user()->id;
 
         $userRole = User::where('id', '=', $idUser)->get(['role_id']);
-        
+
         if($userRole[0]['role_id'] > 1){
-            return view('admin.suggestions.create', ['department' => $department]);    
+            return view('admin.suggestions.create', ['department' => $department]);
         }else{
-            return view('user.suggestions.create', ['department' => $department]);    
-        }   
+            return view('user.suggestions.create', ['department' => $department]);
+        }
     }
 
     /**
@@ -92,12 +92,10 @@ class SuggestionController extends Controller
             $create['user_id'] = $idUser;
 
             Suggestion::create($create);
-    
+
             if($create){
                  return redirect('/admin/suggestions')->with('success', 'el suggeriment a sigut creat');
-            }else{
-                 return redirect('/admin/suggestions/create')->with('message', "el suggeriment no s'''ha pogut crear");
-            }   
+            }
 
         }else{
 
@@ -109,8 +107,8 @@ class SuggestionController extends Controller
                 return redirect('/user/suggestions/list')->with('success', 'el suggeriment a sigut creat i enviat!');;
             }else{
                 return redirect('/user/suggestions/create')->with('message', "el suggeriment no s'''ha pogut crear");
-            }  
-        }  
+            }
+        }
 
     }
 
@@ -124,7 +122,7 @@ class SuggestionController extends Controller
     {
         $suggestion = Suggestion::findOrFail($id);
 
-        return view('admin.suggestions.view', ['suggestions' => $suggestion]);       
+        return view('admin.suggestions.view', ['suggestions' => $suggestion]);
     }
 
     /**
@@ -152,7 +150,7 @@ class SuggestionController extends Controller
             return view('user.suggestions.edit', ['suggestion' => $suggestion]);
         }
     }
-    
+
 
     /**
      * Update the specified resource in storage.
@@ -182,7 +180,7 @@ class SuggestionController extends Controller
             $suggestion = Suggestion::findOrFail($id);+
 
             $result = $suggestion->delete();
-            
+
             if ($result) {
                 return redirect('/admin/suggestions')->with('message', 'Sugerencia esborrada!');
             }else{
@@ -192,7 +190,7 @@ class SuggestionController extends Controller
             $suggestion = Suggestion::findOrFail($id);
 
             $result = $suggestion->delete();
-            
+
             if ($result) {
                 return redirect('/user/suggestions/list')->with('message', 'Sugerencia esborrada!');
             }else{
