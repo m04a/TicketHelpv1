@@ -79,9 +79,11 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/admin/breakdowns',[BreakdownController::class,"index"])
             ->name('admin.breakdowns');
 
-        Route::get('/admin/breakdowns/create', function () {
-            return view('admin/breakdowns/create');
-        })->name('admin.breakdowns.create');
+        Route::get('/admin/breakdowns/create',
+            [BreakdownController::class,"create"]);
+
+        Route::post('/admin/breakdowns/create',
+            [BreakdownController::class,"store"]);
 
         Route::get('/admin/breakdowns/edit/{id}',
             [BreakdownController::class,"edit"]);
@@ -91,6 +93,8 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('/admin/breakdowns/view/{id}',
             [BreakdownController::class,"show"]);
+        Route::delete('/admin/breakdowns/{id}',
+            [BreakdownController::class,"destroy"]);
 
         ///////////////////////////////////////////////////
 
@@ -109,13 +113,13 @@ Route::middleware(['auth'])->group(function () {
         ////////////////////////////////////////////////////
 
         Route::get('/admin/departments', [DepartamentController::class, 'index'])
-        ->name('admin.departments.index');
+            ->name('admin.departments.index');
 
         Route::get('/admin/departments/create',[DepartamentController::class,"create"])
-           ->name('admin.departments.create');
+            ->name('admin.departments.create');
 
         Route::post('/admin/departments/create',[DepartamentController::class,"store"])
-           ->name('admin.departments.store');
+            ->name('admin.departments.store');
 
         Route::get('/admin/departments/edit/{id}',[DepartamentController::class,"edit"])
             ->name('admin.departments.edit');
@@ -194,4 +198,3 @@ Route::middleware(['auth'])->group(function () {
 });
 
 require __DIR__ . '/auth.php';
-
