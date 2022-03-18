@@ -5,9 +5,12 @@
         </h1>
     </x-slot>
     <x-slot name="slot">
-
-
         <section class="section main-section">
+        @if(session('success'))
+            <x-success-alert id="message" class="transition-success-messages">
+                {{ session('success') }}
+            </x-success-alert>
+         @endif
             <div class="card has-table">
                 <header class="card-header">
                     <p class="card-header-title">
@@ -60,11 +63,13 @@
                                             </svg>
                                         </button>
                                     </a>
-                                    <button class="button-table-edit"  data-target="sample-modal-2" type="button">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                                        </svg>
-                                    </button>
+                                    <a href="{{ url('/admin/suggestions/edit/' . $suggestion['id']) }}">
+                                        <button class="button-table-edit"  data-target="sample-modal-2" type="button">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                                            </svg>
+                                        </button>
+                                    </a>
                                     <form action="{{ url('/admin/suggestions/' . $suggestion['id']) }}" method="POST">
                                         @csrf
                                         {{ method_field('DELETE') }} 

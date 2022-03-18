@@ -21,7 +21,7 @@ class Suggestion extends Model
 
     protected $fillable = [
         'id',
-        'tittle',
+        'title',
         'description',
         'department_id',
         'user_id'
