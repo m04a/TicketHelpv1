@@ -123,9 +123,11 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/admin/departments', [DepartamentController::class, 'index'])
         ->name('admin.departments.index');
 
-
         Route::get('/admin/departments/create',[DepartamentController::class,"create"])
-            ->name('admin.departments.create');
+           ->name('admin.departments.create');
+
+        Route::post('/admin/departments/create',[DepartamentController::class,"store"])
+           ->name('admin.departments.store');
 
         Route::get('/admin/departments/edit', function () {
             return view('admin/departments/edit');
