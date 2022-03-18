@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Question;
+use App\Models\User;
+use App\Models\Role;
 
 class QuestionController extends Controller
 {
@@ -11,9 +14,41 @@ class QuestionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
+        $idUser = $request->user()->id;
+
+        $userRole = User::where('id', '=', $idUser)->get(['role_id']);
+
+        if($userRole[0]['role_id'] > 1){
+            $data['questions'] = Question::paginate(5)
+            ->through(fn ($item) => [
+              "id" => $item->id,
+              "title" => $item->title,
+              "description" => $item->description,
+              "status" => $item->status,
+              "department_id" => $item->department_id,
+              "user_id" => $item->user_id,
+              "manager_id" => $item->manager_id,
+              ]);
+                return view('admin.questions.index', $data);
+        }else{
+            $data['questions'] = Question::where('user_id', '=', $idUser)
+            ->paginate(5)
+            ->through(fn ($item) => [
+                "id" => $item->id,
+                "title" => $item->title,
+                "description" => $item->description,
+                "status" => $item->status,
+                "department_id" => $item->department_id,
+                "user_id" => $item->user_id,
+                "manager_id" => $item->manager_id,
+              ]);
+                return view('user.questions.list', $data);
+        }
+
+        $data['questionsCount'] = Question::count();
     }
 
     /**
@@ -21,9 +56,19 @@ class QuestionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         //
+        $idUser = $request->user()->id;
+
+        $userRole = User::where('id', '=', $idUser)->get(['role_id']);
+
+        if ($userRole[0]['role_id'] > 1){
+            return view('admin/questions/create');
+        } else {
+            return view('user/questions/create');
+        }
+
     }
 
     /**
@@ -80,5 +125,14 @@ class QuestionController extends Controller
     public function destroy($id)
     {
         //
+        $question = Question::findOrFail($id);
+        
+        $result = $question->delete();
+        
+        if ($result) {
+            return redirect('admin/questions')->with('message', 'Pregunta esborrada');
+        }
+
+        return redirect('admin/questions')->with('message', 'Error inesperat. Contacti amb l\'administrador del lloc');
     }
 }

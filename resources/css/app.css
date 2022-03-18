@@ -715,6 +715,9 @@ td.image-cell .image {
 .column-left{
     @apply w-full mr-6;
 }
+.column-left-w200{
+    @apply w-[200%] mr-6;
+}
 .column-right{
     @apply w-full;
 }
