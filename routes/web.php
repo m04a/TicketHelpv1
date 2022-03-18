@@ -3,10 +3,10 @@
 use App\Http\Controllers\BreakdownController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SuggestionController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\DeviceController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\DepartamentController;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -36,9 +36,7 @@ Route::middleware(['auth'])->group(function () {
 
         ///////////////////////////////////////////////////
 
-        Route::get('/admin/users', function () {
-            return view('admin/users/index');
-        })->name('admin.users');
+        Route::get('/admin/users', [UserController::class, 'index'])->name('admin.users.index');
 
         Route::get('/admin/users/create', [UserController::class, 'index'])->name('admin.users.create');
 
@@ -123,9 +121,11 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/admin/departments', [DepartamentController::class, 'index'])
         ->name('admin.departments.index');
 
-
         Route::get('/admin/departments/create',[DepartamentController::class,"create"])
-            ->name('admin.departments.create');
+           ->name('admin.departments.create');
+
+        Route::post('/admin/departments/create',[DepartamentController::class,"store"])
+           ->name('admin.departments.store');
 
         Route::get('/admin/departments/edit', function () {
             return view('admin/departments/edit');
@@ -202,3 +202,4 @@ Route::middleware(['auth'])->group(function () {
 });
 
 require __DIR__ . '/auth.php';
+
