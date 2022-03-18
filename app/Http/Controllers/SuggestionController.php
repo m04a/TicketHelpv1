@@ -74,9 +74,13 @@ class SuggestionController extends Controller
 
         $create = $request->validate([
             'token' => ['nullable'],
-            'title' => ['required', 'string', 'min:10'],
+            'title' => ['required', 'string', 'min:5'],
             'description' => ['required', 'string', 'min:10'],
             'department_id' => ['required', 'integer'],
+        ], [
+            'title.required' => 'Ta faltat el assumpte',
+            'description.required' => 'Falta una descripció',
+            'department_id.required' => 'Posa un departament no siguis hacker'
         ]);
 
         $userRole = User::where('id', '=', $idUser)->get(['role_id']);
@@ -88,9 +92,9 @@ class SuggestionController extends Controller
             Suggestion::create($create);
     
             if($create){
-                 return redirect('/admin/suggestions')->with('message', 'el suggeriment a sigut creat i enviat!');
+                 return redirect('/admin/suggestions')->with('success', 'el suggeriment a sigut creat i enviat!');
             }else{
-                 return redirect('/admin/suggestions/create')->with($create);
+                 return redirect('/admin/suggestions/create')->with('message', "el suggeriment no s'''ha pogut crear");
             }   
 
         }else{

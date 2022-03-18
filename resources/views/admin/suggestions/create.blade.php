@@ -8,14 +8,28 @@
         <x-create-card>
             <form action="{{ url('/admin/suggestions/store') }}" method="POST"">
             @csrf
-
+            @error('title')
+                <x-error-alert class="mb-2 ">
+                    {{ $message }}
+                </x-error-alert>
+             @enderror
+             @error('description')
+                <x-error-alert class="mb-2 ">
+                    {{ $message }}
+                </x-error-alert>
+             @enderror
+             @error('department_id')
+                <x-error-alert class="mb-2 ">
+                    {{ $message }}
+                </x-error-alert>
+             @enderror
             <!-- Title  -->
             <div class="content-column">
             <!-- Name User -->
             <div class="column-left-w200">
                 <x-label class="label" for="assumpte" :value="__('Assumpte')" />
 
-                <x-input id="title" class="block mt-4 w-full" type="text" name="title" required autofocus />
+                <x-input id="title" class="block mt-4 w-full" type="text" name="title" autofocus />
             </div>
 
             <!-- Status Breakdown -->
@@ -34,7 +48,7 @@
                 <div class="mt-4">
                     <x-label class="label" for="missatge" :value="__('Missatge')" />
 
-                    <textarea class="textarea" type="text" name="description" required autofocus></textarea>
+                    <textarea class="textarea" type="text" name="description" autofocus></textarea>
                 </div>
 
 
