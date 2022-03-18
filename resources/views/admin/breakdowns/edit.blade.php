@@ -48,9 +48,9 @@
             <div class="content-column">
                 <!-- Subject -->
                 <div class="mt-4 column-left">
-                    <x-label for="assumpte" :value="__('Assumpte')" />
+                    <x-label for="title" :value="__('Assumpte')" />
 
-                    <x-input id="assumpte" class="input-content" type="text" name="title" value="{{ $breakdownData->title }}" autofocus />
+                    <x-input id="title" class="input-content" type="text" name="title" value="{{ $breakdownData->title }}" autofocus />
 
                 </div>
                 <!-- Department -->
