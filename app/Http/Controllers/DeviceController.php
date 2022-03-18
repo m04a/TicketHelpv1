@@ -17,14 +17,15 @@ class DeviceController extends Controller
      */
     public function index()
     {
-        $devices = Device::paginate(10)
+        $data['devices'] = Device::paginate(10)
             ->through(fn ($item) => [
+                "id" => $item->id,
                 "label" => $item->label,
                 //"label" => substr($item->label, 0, 1) . "-" . str_pad($item->zone_id, 2, 0, STR_PAD_LEFT) . "-" . str_pad($item->type_id, 2, 0, STR_PAD_LEFT),
                 "zone" => $item->zone->label,
                 "type" => $item->type->label,
             ]);
-        return view('admin.devices.index', $devices);
+        return view('admin.devices.index', $data);
 
         //$data['devicesCount'] = Device::count();
     }
@@ -36,9 +37,11 @@ class DeviceController extends Controller
      */
     public function create(Request $request)
     {
+        $value = $request->session()->pull('DeviceStore');
         $list = [
-            "types" => Type::pluck('label', 'id'),
-            "zones" => Zone::pluck('label', 'id'),
+            "types" => Type::all(),
+            "zones" => Zone::all(),
+            "message" => $value
         ];
         return view('admin.devices.create', $list);
     }
@@ -51,7 +54,20 @@ class DeviceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->all();
+        $device = new Device;
+        $device->label=$input['name'];
+        $device->type_id=$input['type'];
+        $device->zone_id=$input['zone'];
+        //$device->save()
+        $worked=0;
+        if(true){
+            $worked=1;
+        }else{
+            $worked=2;
+        }
+        $request->session()->push('DeviceStore', $worked);
+        return redirect('/admin/devices/create');
     }
 
     /**

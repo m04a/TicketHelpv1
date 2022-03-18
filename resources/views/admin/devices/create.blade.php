@@ -6,13 +6,22 @@
         </h1>
     </x-slot>
     <x-create-card>
-        <form method="GET" action="">
+        <form method="POST" action="">
             @csrf
+
+            @if(isset($message))
+                @if ($message == 1)
+                    <p>true</p>
+                @else
+                    <p>fALSE</p>
+                @endif
+
+            @endif
+
             <div class="content-column">
                 <!-- Name User -->
                 <div class="column-left">
                     <x-label for="Nom" :value="__('Nom del dispositiu')" />
-
                     <x-input id="name" class="input-content" type="text" name="name" placeholder="s-02-01" required
                         autofocus />
                 </div>
@@ -21,10 +30,10 @@
                 <div class="column-left">
                     <x-label for="Tipus" :value="__('tipus')" />
 
-                    <x-select class="block mt-4 w-full">
+                    <x-select class="block mt-4 w-full" name="type" id="zone">
 
                         @foreach ($types as $item)
-                            <option value='{{ $item }}'>{{ $item }}</option>
+                            <option value='{{ $item->id }}'>{{ $item->label }}</option>
                         @endforeach
                     </x-select>
                 </div>
@@ -32,9 +41,9 @@
                 <div class="column-right">
                     <x-label for="Aula" :value="__('Aula')" />
 
-                    <x-select class="block mt-4 w-full">
+                    <x-select class="block mt-4 w-full" name="zone" name="zone">
                         @foreach ($zones as $item)
-                            <option value='{{ $item }}'>{{ $item }}</option>
+                            <option value='{{ $item->id }}'>{{ $item->label }}</option>
                         @endforeach
                     </x-select>
                 </div>
