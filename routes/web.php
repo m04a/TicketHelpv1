@@ -125,6 +125,9 @@ Route::middleware(['auth'])->group(function () {
             ->name('admin.departments.edit');
 
 
+        Route::get('/admin/departments/edit',[DepartamentController::class,"update"])
+        ->name('admin.departments.edit');
+
         ///////////////////////////////////////////////////
 
         Route::get('/admin/types', function () {

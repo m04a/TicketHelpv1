@@ -117,7 +117,16 @@ class DepartamentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate(
+            ["departament" => "required"
+        ]);
+
+        $department = Departament::find(id);
+
+        $department->name = $request->get('name');
+
+        $department->save();
+        return redirect(route("admin.departments.index")); 
     }
 
     /**
