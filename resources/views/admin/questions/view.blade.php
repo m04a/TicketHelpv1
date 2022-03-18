@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h1 class="title">
-            Qüestió 213
+            Qüestió {{$questions->id}}
         </h1>
     </x-slot>
     <x-slot name="slot">
@@ -12,7 +12,7 @@
                 <div class="column-right">
                     <x-label for="title" :value="__('Assumpte')" />
 
-                    <x-input id="title" class="input-contant-test input-disabled" type="text" name="nom" value="Puc demanar un swtich?" required autofocus disabled/>
+                    <x-input id="title" class="input-contant-test input-disabled" type="text" name="nom" value="{{$questions->title}}" required autofocus disabled/>
                 </div>
             </div>
             <div class="content-column">
@@ -21,14 +21,14 @@
 
                     <x-label for="user" :value="__('User')" />
 
-                    <x-input id="user" class="input-content input-disabled" type="text" name="assumpte" value="Moha" required autofocus disabled/>
+                    <x-input id="user" class="input-content input-disabled" type="text" name="assumpte" value="{{$questions->username}}" required autofocus disabled/>
 
                 </div>
                 <!-- Department -->
                 <div class="mt-4 column-right">
                     <x-label for="rol" :value="__('Departament')" />
                     
-                    <x-input id="department" class="input-content input-disabled" type="text" name="department" value="Departament Informàtica" required autofocus disabled/>
+                    <x-input id="department" class="input-content input-disabled" type="text" name="department" value="{{$questions->department}}" required autofocus disabled/>
 
                 </div>
             </div>
@@ -38,16 +38,16 @@
 
                 <x-label for="description" class="mt-4 mb-4" :value="__('Descripció')" />
 
-                <textarea class="textarea input-disabled" disabled>Puc demanar un switch al professor en cas que necessiti algun per fer proves?</textarea>
+                <textarea class="textarea input-disabled" disabled>{{$questions->description}}</textarea>
             </div>
         </x-create-card>
         <x-create-card>
             <p class="font-bold mb-3 text-xl">Respostes</p>
 
-            <x-label for="manager" class="mt-4 mb-4" :value="__('Manager')" />
+            <x-label for="manager" class="mt-4 mb-4" value="Manager : {{$questions->manager}}" />
             <textarea class="textarea input-disabled" disabled>Pots demanar, però el has de tornar igual que tel han donat</textarea>
 
-            <x-label for="manager" class="mt-4 mb-4" :value="__('Moha')" />
+            <x-label for="manager" class="mt-4 mb-4" value="{{$questions->username}}" />
             <textarea class="textarea input-disabled" disabled>Vale me sirve</textarea>
         </x-create-card>
 

@@ -3,6 +3,7 @@
 use App\Http\Controllers\BreakdownController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SuggestionController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\DeviceController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\UserController;
@@ -38,9 +39,7 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('/admin/users', [UserController::class, 'index'])->name('admin.users.index');
 
-        Route::get('/admin/users/create', function () {
-            return view('admin/users/create');
-        })->name('admin.users.create');
+        Route::get('/admin/users/create', [UserController::class, 'index'])->name('admin.users.create');
 
         Route::get('/admin/users/edit/{id}', [UserController::class, 'edit'])->name('admin.users.edit');
 
@@ -108,9 +107,7 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('/admin/questions/create' , [QuestionController::class, "create"])->name('admin.questions.create');
 
-        Route::get('/admin/questions/view', function () {
-            return view('admin/questions/view');
-        })->name('admin.questions.view');
+        Route::get('/admin/questions/view/{id}', [QuestionController::class, 'show'])->name('admin.questions.view');
 
         Route::get('/admin/questions/edit', function () {
             return view('admin/questions/edit');
@@ -121,13 +118,15 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/admin/departments', [DepartamentController::class, 'index'])
         ->name('admin.departments.index');
 
-
         Route::get('/admin/departments/create',[DepartamentController::class,"create"])
-            ->name('admin.departments.create');
+           ->name('admin.departments.create');
 
-        Route::get('/admin/departments/edit', function () {
-            return view('admin/departments/edit');
-        })->name('admin.departments.edit');
+        Route::post('/admin/departments/create',[DepartamentController::class,"store"])
+           ->name('admin.departments.store');
+
+        Route::get('/admin/departments/edit/{id}',[DepartamentController::class,"edit"])
+            ->name('admin.departments.edit');
+
 
         ///////////////////////////////////////////////////
 
@@ -200,3 +199,4 @@ Route::middleware(['auth'])->group(function () {
 });
 
 require __DIR__ . '/auth.php';
+
