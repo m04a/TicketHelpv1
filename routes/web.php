@@ -3,10 +3,11 @@
 use App\Http\Controllers\BreakdownController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SuggestionController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\DeviceController;
 use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\DepartamentController;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -36,17 +37,11 @@ Route::middleware(['auth'])->group(function () {
 
         ///////////////////////////////////////////////////
 
-        Route::get('/admin/users', function () {
-            return view('admin/users/index');
-        })->name('admin.users');
+        Route::get('/admin/users', [UserController::class, 'index'])->name('admin.users.index');
 
-        Route::get('/admin/users/create', function () {
-            return view('admin/users/create');
-        })->name('admin.users.create');
+        Route::get('/admin/users/create', [UserController::class, 'index'])->name('admin.users.create');
 
-        Route::get('/admin/users/edit', function () {
-            return view('admin/users/edit');
-        })->name('admin.users.edit');
+        Route::get('/admin/users/edit/{id}', [UserController::class, 'edit'])->name('admin.users.edit');
 
         ///////////////////////////////////////////////////
 
@@ -56,9 +51,13 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('/admin/devices', [DeviceController::class, 'index'])->name('admin.devices.index');
 
-        Route::get('/admin/devices/create', function () {
-            return view('admin/devices/create');
-        })->name('admin.devices.create');
+        // Route::get('/admin/devices/create', function () {
+        //     return view('admin/devices/create');
+        // })->name('admin.devices.create');
+
+        Route::get('/admin/devices/create', [DeviceController::class, 'create'])->name('admin.devices.create');
+
+        Route::delete('/admin/devices/{id}', [DeviceController::class, 'destroy'])->name('admin.devices.delete');
 
         ///////////////////////////////////////////////////
         Route::post('/admin/suggestions/store', [SuggestionController::class, 'store'])->name('admin.suggestions.store');
@@ -72,14 +71,6 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/admin/suggestions/{id}', [SuggestionController::class, 'destroy'])->name('admin.suggestions.delete');
 
         Route::get('/admin/suggestions/edit/{id}', [SuggestionController::class, 'edit'])->name('admin.suggestions.edit');
-      
-        // Route::get('/admin/suggestions', function () {
-        //     return view('admin/suggestions/index');
-        // })->name('admin.suggestions.index');
-        Route::get('/admin/suggestions', [SuggestionController::class, 'index'])
-        ->name('admin.suggestions.index');
-
-        
 
         Route::get('/admin/suggestions/edit', function () {
             return view('admin/suggestions/edit');
@@ -95,9 +86,11 @@ Route::middleware(['auth'])->group(function () {
             return view('admin/breakdowns/create');
         })->name('admin.breakdowns.create');
 
-        Route::get('/admin/breakdowns/edit', function () {
-            return view('admin/breakdowns/edit');
-        })->name('admin.breakdowns.edit');
+        Route::get('/admin/breakdowns/edit/{id}',
+            [BreakdownController::class,"edit"]);
+
+        Route::post('/admin/breakdowns/edit/{id}',
+            [BreakdownController::class,"update"]);
 
         Route::get('/admin/breakdowns/view/{id}',
             [BreakdownController::class,"show"]);
@@ -105,14 +98,12 @@ Route::middleware(['auth'])->group(function () {
         ///////////////////////////////////////////////////
 
         Route::get('/admin/questions' , [QuestionController::class, "index"])->name('admin.questions.index');
-        
+
         Route::delete('/admin/questions/{id}' , [QuestionController::class, "destroy"])->name('admin.questions.delete');
 
         Route::get('/admin/questions/create' , [QuestionController::class, "create"])->name('admin.questions.create');
 
-        Route::get('/admin/questions/view', function () {
-            return view('admin/questions/view');
-        })->name('admin.questions.view');
+        Route::get('/admin/questions/view/{id}', [QuestionController::class, 'show'])->name('admin.questions.view');
 
         Route::get('/admin/questions/edit', function () {
             return view('admin/questions/edit');
@@ -122,14 +113,16 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('/admin/departments', [DepartamentController::class, 'index'])
         ->name('admin.departments.index');
-        
 
         Route::get('/admin/departments/create',[DepartamentController::class,"create"])
-            ->name('admin.departments.create');
+           ->name('admin.departments.create');
 
-        Route::get('/admin/departments/edit', function () {
-            return view('admin/departments/edit');
-        })->name('admin.departments.edit');
+        Route::post('/admin/departments/create',[DepartamentController::class,"store"])
+           ->name('admin.departments.store');
+
+        Route::get('/admin/departments/edit/{id}',[DepartamentController::class,"edit"])
+            ->name('admin.departments.edit');
+
 
         ///////////////////////////////////////////////////
 
@@ -204,3 +197,4 @@ Route::middleware(['auth'])->group(function () {
 });
 
 require __DIR__ . '/auth.php';
+

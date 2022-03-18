@@ -28,9 +28,9 @@ class QuestionController extends Controller
               "title" => $item->title,
               "description" => $item->description,
               "status" => $item->status,
-              "department_id" => $item->department_id,
-              "user_id" => $item->user_id,
-              "manager_id" => $item->manager_id,
+              "department_id" => $item->department->name,
+              "user_id" => $item->user->username,
+              "manager_id" => $item->manager->username,
               ]);
                 return view('admin.questions.index', $data);
         }else{
@@ -41,9 +41,9 @@ class QuestionController extends Controller
                 "title" => $item->title,
                 "description" => $item->description,
                 "status" => $item->status,
-                "department_id" => $item->department_id,
-                "user_id" => $item->user_id,
-                "manager_id" => $item->manager_id,
+                "department_id" => $item->department->name,
+                "user_id" => $item->user->username,
+                "manager_id" => $item->manager->username,
               ]);
                 return view('user.questions.list', $data);
         }
@@ -91,6 +91,15 @@ class QuestionController extends Controller
     public function show($id)
     {
         //
+        $questions = Question::findOrFail($id);
+
+        $questions['username'] = $questions->user->username;
+        
+        $questions['department'] = $questions->department->name;
+        
+        $questions['manager'] = $questions->manager->username;
+
+        return view('admin.questions.view', ['questions' => $questions]);
     }
 
     /**
