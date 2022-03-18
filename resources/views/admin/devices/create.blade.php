@@ -8,7 +8,15 @@
     <x-create-card>
         <form method="POST" action="">
             @csrf
-
+            @if ($errors->any())
+                <x-error-alert id="message" class="transition-error-messages">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </x-error-alert>
+            @endif
             <div class="content-column">
                 <!-- Name User -->
                 <div class="column-left">
