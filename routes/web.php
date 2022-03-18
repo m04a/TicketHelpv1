@@ -125,13 +125,12 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/admin/departments', [DepartamentController::class, 'index'])
         ->name('admin.departments.index');
 
-
         Route::get('/admin/departments/create',[DepartamentController::class,"create"])
             ->name('admin.departments.create');
 
-        Route::get('/admin/departments/edit', function () {
-            return view('admin/departments/edit');
-        })->name('admin.departments.edit');
+        Route::get('/admin/departments/edit/{id}',[DepartamentController::class,"edit"])
+            ->name('admin.departments.edit');
+
 
         ///////////////////////////////////////////////////
 
