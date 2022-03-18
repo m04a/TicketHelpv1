@@ -17,14 +17,15 @@ class UserController extends Controller
 
         $users['users'] = User::paginate(10)
         ->through(fn ($item) => [
+            "id"=> $item->id,
             "username" => $item->username,
             "email" => $item->email,
             "role_name" => $item->role->label
         ]);
         
-        // dd($users);
+        // dd($users);die();
 
-        return view('admin.users.index', $users);      
+        return view('admin.users.index', $users); 
     }
 
     /**
@@ -65,9 +66,12 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id, Request $request)
     {
-        
+
+        //$idUser = $request->user()->id;
+        $users = User::findOrFail($id);
+        return view('admin.users.edit', ['users' => $users]);
     }
 
     /**

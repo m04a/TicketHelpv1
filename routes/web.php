@@ -6,6 +6,7 @@ use App\Http\Controllers\SuggestionController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DeviceController;
 use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\DepartamentController;
 
 /*
@@ -40,9 +41,7 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('/admin/users/create', [UserController::class, 'index'])->name('admin.users.create');
 
-        Route::get('/admin/users/edit', function () {
-            return view('admin/users/edit');
-        })->name('admin.users.edit');
+        Route::get('/admin/users/edit/{id}', [UserController::class, 'edit'])->name('admin.users.edit');
 
         ///////////////////////////////////////////////////
 
