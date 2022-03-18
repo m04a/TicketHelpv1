@@ -3,10 +3,10 @@
 use App\Http\Controllers\BreakdownController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SuggestionController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\DeviceController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\DepartamentController;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -36,9 +36,7 @@ Route::middleware(['auth'])->group(function () {
 
         ///////////////////////////////////////////////////
 
-        Route::get('/admin/users', function () {
-            return view('admin/users/index');
-        })->name('admin.users');
+        Route::get('/admin/users', [UserController::class, 'index'])->name('admin.users.index');
 
         Route::get('/admin/users/create', function () {
             return view('admin/users/create');
@@ -204,3 +202,4 @@ Route::middleware(['auth'])->group(function () {
 });
 
 require __DIR__ . '/auth.php';
+

@@ -15,15 +15,16 @@ class UserController extends Controller
     public function index()
     {
 
-            $data['users'] = User::where('user_id', '=', $idUser)
-            ->paginate(5)
-            ->through(fn ($item) => [
-              "username" => $item->username,
-              "email" => $item->email,
-              ]);
-                return view('user.users.index', $data);
-      
-        $data['usersCount'] = User::count();
+        $users['users'] = User::paginate(10)
+        ->through(fn ($item) => [
+            "username" => $item->username,
+            "email" => $item->email,
+            "role_name" => $item->role->label
+        ]);
+        
+        // dd($users);
+
+        return view('admin.users.index', $users);      
     }
 
     /**
