@@ -56,9 +56,19 @@ class QuestionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         //
+        $idUser = $request->user()->id;
+
+        $userRole = User::where('id', '=', $idUser)->get(['role_id']);
+
+        if ($userRole[0]['role_id'] > 1){
+            return view('admin/questions/create');
+        } else {
+            return view('user/questions/create');
+        }
+
     }
 
     /**
@@ -115,5 +125,14 @@ class QuestionController extends Controller
     public function destroy($id)
     {
         //
+        $question = Question::findOrFail($id);
+        
+        $result = $question->delete();
+        
+        if ($result) {
+            return redirect('admin/questions')->with('message', 'Pregunta esborrada');
+        }
+
+        return redirect('admin/questions')->with('message', 'Error inesperat. Contacti amb l\'administrador del lloc');
     }
 }
