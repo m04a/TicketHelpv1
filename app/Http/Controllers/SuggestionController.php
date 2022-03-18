@@ -78,9 +78,11 @@ class SuggestionController extends Controller
             'description' => ['required', 'string', 'min:10'],
             'department_id' => ['required', 'integer'],
         ], [
-            'title.required' => 'Ta faltat el assumpte',
+            'title.required' => 'Falta el assumpte',
             'description.required' => 'Falta una descripció',
-            'department_id.required' => 'Posa un departament no siguis hacker'
+            'department_id.required' => 'Posa un departament no siguis hacker',
+            'title.min' => 'Posa com a minim 5 caracters en el assumpte',
+            'description.min' => 'Posa com a minim 10 caracters en la descripció'
         ]);
 
         $userRole = User::where('id', '=', $idUser)->get(['role_id']);
@@ -92,7 +94,7 @@ class SuggestionController extends Controller
             Suggestion::create($create);
     
             if($create){
-                 return redirect('/admin/suggestions')->with('success', 'el suggeriment a sigut creat i enviat!');
+                 return redirect('/admin/suggestions')->with('success', 'el suggeriment a sigut creat');
             }else{
                  return redirect('/admin/suggestions/create')->with('message', "el suggeriment no s'''ha pogut crear");
             }   
@@ -104,9 +106,9 @@ class SuggestionController extends Controller
             Suggestion::create($create);
 
             if($create){
-                return redirect('/user/suggestions/list');
+                return redirect('/user/suggestions/list')->with('success', 'el suggeriment a sigut creat i enviat!');;
             }else{
-                return redirect('/user/suggestions/create');
+                return redirect('/user/suggestions/create')->with('message', "el suggeriment no s'''ha pogut crear");
             }  
         }  
 

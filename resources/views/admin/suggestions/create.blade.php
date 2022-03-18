@@ -5,24 +5,20 @@
         </h1>
     </x-slot>
     <x-slot name="slot">
+
+        @if ($errors->any())
+            <x-error-alert id="message" class="transition-error-messages">
+                <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+                </ul>
+            </x-error-alert>
+        @endif
+
         <x-create-card>
             <form action="{{ url('/admin/suggestions/store') }}" method="POST"">
             @csrf
-            @error('title')
-                <x-error-alert class="mb-2 ">
-                    {{ $message }}
-                </x-error-alert>
-             @enderror
-             @error('description')
-                <x-error-alert class="mb-2 ">
-                    {{ $message }}
-                </x-error-alert>
-             @enderror
-             @error('department_id')
-                <x-error-alert class="mb-2 ">
-                    {{ $message }}
-                </x-error-alert>
-             @enderror
             <!-- Title  -->
             <div class="content-column">
             <!-- Name User -->

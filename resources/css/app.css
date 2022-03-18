@@ -734,4 +734,11 @@ td.image-cell .image {
 .number-page{
     @apply flex w-full justify-end mr-0.5;
 }
+.transition-error-messages{
+    @apply mr-[16.3%] ml-[16.3%] m-6 transition-all duration-500 ease-in-out;
+}
+
+.transition-success-messages{
+    @apply mb-6 transition-all duration-500 ease-in-out;
+}
 

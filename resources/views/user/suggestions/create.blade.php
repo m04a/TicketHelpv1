@@ -5,6 +5,17 @@
         </h1>
     </x-slot>
     <x-slot name="slot">
+
+       @if ($errors->any())
+            <x-error-alert id="message" class="transition-error-messages">
+                <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+                </ul>
+            </x-error-alert>
+        @endif
+
         <x-create-card-user>
         <form action="{{ url('/user/suggestions/store') }}" method="POST"">
             @csrf
@@ -15,7 +26,7 @@
             <div class="column-left-w200">
                 <x-label class="label" for="assumpte" :value="__('Assumpte')" />
 
-                <x-input id="title" class="block mt-4 w-full" type="text" name="title" required autofocus />
+                <x-input id="title" class="block mt-4 w-full" type="text" name="title" autofocus />
             </div>
 
             <!-- Status Breakdown -->
@@ -34,7 +45,7 @@
                 <div class="mt-4">
                     <x-label class="label" for="missatge" :value="__('Missatge')" />
 
-                    <textarea class="textarea" type="text" name="description" required autofocus></textarea>
+                    <textarea class="textarea" type="text" name="description" autofocus></textarea>
                 </div>
 
 
