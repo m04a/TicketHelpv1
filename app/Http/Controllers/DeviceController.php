@@ -54,20 +54,26 @@ class DeviceController extends Controller
      */
     public function store(Request $request)
     {
-        $input = $request->all();
+        $input = $request->validate([
+            'token' => ['nullable'],
+            'name' => ['required', 'string', 'min:5', 'max:120'],
+            'type' => ['required', 'integer'],
+            'zone' => ['required', 'integer'],
+        ], [
+            'title.required' => 'Et faltat el nom',
+            'type.required' => 'Tipus no seleccionat, ¿com ho has aconseguit?',
+            'zone.required' => 'Aula sense seleccionar'
+        ]);
         $device = new Device;
         $device->label=$input['name'];
         $device->type_id=$input['type'];
         $device->zone_id=$input['zone'];
-        //$device->save()
-        $worked=0;
-        if(true){
-            $worked=1;
-        }else{
-            $worked=2;
+        $result=$device->save();
+        if ($result) {
+            return redirect('/admin/devices/create')->with('success', "El dispositiu s'ha creat correctament");
+        } else {
+            return redirect('/admin/devices/create')->with('message', "Hi ha hagut algun error");
         }
-        $request->session()->push('DeviceStore', $worked);
-        return redirect('/admin/devices/create');
     }
 
     /**

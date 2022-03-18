@@ -9,15 +9,6 @@
         <form method="POST" action="">
             @csrf
 
-            @if(isset($message))
-                @if ($message == 1)
-                    <p>true</p>
-                @else
-                    <p>fALSE</p>
-                @endif
-
-            @endif
-
             <div class="content-column">
                 <!-- Name User -->
                 <div class="column-left">
