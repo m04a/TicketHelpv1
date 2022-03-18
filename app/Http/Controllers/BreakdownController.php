@@ -122,7 +122,6 @@ class BreakdownController extends Controller
     public function update(BreakdownRequest $request, $id)
     {
         $breakdown = Breakdown::find($id);
-
         /*Records to update with the request*/
         $breakdown->status = $request->status;
         $breakdown->title = $request->title;
@@ -131,8 +130,6 @@ class BreakdownController extends Controller
 
         if($breakdown->save()){
             return back()->with('success',"S'han actualitzat les dades de la incidencia.");
-        }else{
-            return back()->with('error',"No s'han pogut actualitzar les dades de la incidencia.");
         }
     }
 

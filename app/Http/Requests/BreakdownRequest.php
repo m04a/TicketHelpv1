@@ -33,4 +33,13 @@ class BreakdownRequest extends FormRequest
             'department_id' => ['required', 'numeric'],
         ];
     }
+    public function messages()
+    {
+        return [
+            'title.required' => 'El assumpte és invalid, revisa les dades introduïdes',
+            'description.required' => 'La descripció és invalida, revisa les dades introduïdes',
+            'status.required' => 'El estat és invalid, revisa les dades introduïdes',
+            'department_id.required' => 'El departament és invalid, revisa les dades introduïdes'
+        ];
+    }
 }

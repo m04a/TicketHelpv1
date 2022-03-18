@@ -13,11 +13,19 @@
                     {{ session('success') }}
                 </x-success-alert>
             @endif
-            @if(session('error'))
-                            <x-error-alert class="mb-2">
-                                {{ session('error') }}
-                            </x-error-alert>
-             @endif
+            @if ($errors->any())
+
+                        <x-error-alert class="mb-2">
+                            <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                            </ul>
+                        </x-error-alert>
+
+            @endif
+
+
             <div class="content-column">
                 <!-- Name User -->
 
@@ -42,7 +50,7 @@
                 <div class="mt-4 column-left">
                     <x-label for="assumpte" :value="__('Assumpte')" />
 
-                    <x-input id="assumpte" class="input-content" type="text" name="title" value="{{ $breakdownData->title }}" required autofocus />
+                    <x-input id="assumpte" class="input-content" type="text" name="title" value="{{ $breakdownData->title }}" autofocus />
 
                 </div>
                 <!-- Department -->
@@ -59,7 +67,7 @@
             <div class="mt-4">
                 <x-label class="label" for="description" name="description" :value="__('Missatge')" />
 
-                <textarea class="textarea" type="text" name="description" required autofocus>{{ $breakdownData->description }}</textarea>
+                <textarea class="textarea" type="text" name="description" autofocus>{{ $breakdownData->description }}</textarea>
             </div>
             <div class="button-create">
                 <x-button class="ml-3">
