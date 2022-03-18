@@ -30,7 +30,7 @@ class QuestionController extends Controller
               "status" => $item->status,
               "department_id" => $item->department->name,
               "user_id" => $item->user->username,
-              "manager_id" => $item->manager_id,
+              "manager_id" => $item->manager->username,
               ]);
                 return view('admin.questions.index', $data);
         }else{
@@ -43,7 +43,7 @@ class QuestionController extends Controller
                 "status" => $item->status,
                 "department_id" => $item->department->name,
                 "user_id" => $item->user->username,
-                "manager_id" => $item->manager_id,
+                "manager_id" => $item->manager->username,
               ]);
                 return view('user.questions.list', $data);
         }
@@ -96,6 +96,8 @@ class QuestionController extends Controller
         $questions['username'] = $questions->user->username;
         
         $questions['department'] = $questions->department->name;
+        
+        $questions['manager'] = $questions->manager->username;
 
         return view('admin.questions.view', ['questions' => $questions]);
     }

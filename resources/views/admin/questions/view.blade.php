@@ -44,10 +44,10 @@
         <x-create-card>
             <p class="font-bold mb-3 text-xl">Respostes</p>
 
-            <x-label for="manager" class="mt-4 mb-4" :value="__('Manager')" />
+            <x-label for="manager" class="mt-4 mb-4" value="Manager : {{$questions->manager}}" />
             <textarea class="textarea input-disabled" disabled>Pots demanar, però el has de tornar igual que tel han donat</textarea>
 
-            <x-label for="manager" class="mt-4 mb-4" :value="__('Moha')" />
+            <x-label for="manager" class="mt-4 mb-4" value="{{$questions->username}}" />
             <textarea class="textarea input-disabled" disabled>Vale me sirve</textarea>
         </x-create-card>
 

@@ -29,7 +29,6 @@
                             <th>Assumpte</th>
                             <th>Estat</th>
                             <th>Departament</th>
-                            <th>Usuari</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -37,6 +36,7 @@
                         <tr>
                             <td data-label="Títol">{{ $question['title'] }}</td>
                             <td data-label="Departament">{{ $question['description'] }}</td>
+                            <td data-label="Departament">{{ $question['department_id'] }}</td>
                             <td class="actions-cell">
                                 <div class="buttons right nowrap">
 
