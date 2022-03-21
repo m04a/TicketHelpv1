@@ -7,6 +7,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\DeviceController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\DepartamentController;
+use App\Http\Controllers\MessageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -142,10 +143,10 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/admin/departments/edit/{id}', [DepartamentController::class, "edit"])
             ->name('admin.departments.edit');
 
-        Route::put('/admin/departments/edit/{id}',[DepartamentController::class,"update"])
-        ->name('admin.departments.update');
+        Route::put('/admin/departments/edit/{id}', [DepartamentController::class, "update"])
+            ->name('admin.departments.update');
 
-        Route::delete('/admin/departments/destroy/{id}' , [DepartamentController::class, "destroy"])
+        Route::delete('/admin/departments/destroy/{id}', [DepartamentController::class, "destroy"])
             ->name('admin.departments.delete');
 
         ///////////////////////////////////////////////////
@@ -219,7 +220,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/user/suggestions/list', [SuggestionController::class, 'index'])->name('user.suggestions.list');
 
     Route::get('/user/suggestions/edit/{id}', [SuggestionController::class, 'edit'])->name('user.suggestions.edit');
-
 
     Route::delete('/user/suggestions/list/{id}', [SuggestionController::class, 'destroy'])->name('user.suggestions.delete');
 });

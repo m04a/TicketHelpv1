@@ -60,7 +60,9 @@
 
         <x-create-card>
             <p class="font-bold mb-3 text-xl">Nova Resposta</p>
-            <form action="">
+
+            <form method="POST" action="{{ url("/admin/messages/".$breakdownData->id) }}">
+                @csrf
                 <textarea id="content" name="content" class="textarea"></textarea>
                 <div class="button-create">
                     <x-button class="ml-3">
