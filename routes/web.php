@@ -56,6 +56,8 @@ Route::middleware(['auth'])->group(function () {
 
         Route::delete('/admin/devices/{id}', [DeviceController::class, 'destroy'])->name('admin.devices.delete');
 
+        Route::put('/admin/devices/edit/{id}', [DeviceController::class, 'update'])->name('admin.devices.update');
+
         Route::get('/admin/devices/edit/{id}', [DeviceController::class, 'edit'])->name('admin.devices.edit');
 
         ///////////////////////////////////////////////////
@@ -81,11 +83,15 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/admin/breakdowns', [BreakdownController::class, "index"])
             ->name('admin.breakdowns');
 
-        Route::get('/admin/breakdowns/create',
-            [BreakdownController::class,"create"]);
+        Route::get(
+            '/admin/breakdowns/create',
+            [BreakdownController::class, "create"]
+        );
 
-        Route::post('/admin/breakdowns/create',
-            [BreakdownController::class,"store"]);
+        Route::post(
+            '/admin/breakdowns/create',
+            [BreakdownController::class, "store"]
+        );
 
         Route::get(
             '/admin/breakdowns/edit/{id}',
@@ -97,10 +103,14 @@ Route::middleware(['auth'])->group(function () {
             [BreakdownController::class, "update"]
         );
 
-        Route::get('/admin/breakdowns/view/{id}',
-            [BreakdownController::class,"show"]);
-        Route::delete('/admin/breakdowns/{id}',
-            [BreakdownController::class,"destroy"]);
+        Route::get(
+            '/admin/breakdowns/view/{id}',
+            [BreakdownController::class, "show"]
+        );
+        Route::delete(
+            '/admin/breakdowns/{id}',
+            [BreakdownController::class, "destroy"]
+        );
 
         ///////////////////////////////////////////////////
 
@@ -111,8 +121,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/admin/questions/create', [QuestionController::class, "create"])->name('admin.questions.create');
 
         Route::get('/admin/questions/view/{id}', [QuestionController::class, 'show'])->name('admin.questions.view');
-        
-        Route::post('/admin/questions/create' , [QuestionController::class, "store"])->name('admin.questions.store');
+
+        Route::post('/admin/questions/create', [QuestionController::class, "store"])->name('admin.questions.store');
 
         Route::get('/admin/questions/edit', function () {
             return view('admin/questions/edit');
@@ -138,8 +148,6 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/admin/departments/destroy/{id}' , [DepartamentController::class, "destroy"])
             ->name('admin.departments.delete');
 
-
-
         ///////////////////////////////////////////////////
 
         Route::get('/admin/types', function () {
@@ -153,7 +161,6 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/admin/types/edit', function () {
             return view('admin/types/edit');
         })->name('user.types.edit');
-
     });
 
 
@@ -178,16 +185,16 @@ Route::middleware(['auth'])->group(function () {
 
     ///////////////////////////////////////////////////
 
-    Route::get('/user/questions' , [QuestionController::class, "index"])->name('user.questions.index');
+    Route::get('/user/questions', [QuestionController::class, "index"])->name('user.questions.index');
 
     Route::get('/user/questions/list', [QuestionController::class, 'index'])->name('user.questions.list');
 
-    Route::put('/user/questions/edit/{id}',[QuestionController::class,"update"])->name('user.questions.update');
-  
+    Route::put('/user/questions/edit/{id}', [QuestionController::class, "update"])->name('user.questions.update');
+
     Route::get('/user/questions/edit/{id}', [QuestionController::class, 'edit'])->name('user.questions.edit');
-  
-    Route::post('/user/questions/create' , [QuestionController::class, "store"])->name('user.questions.store');
-    
+
+    Route::post('/user/questions/create', [QuestionController::class, "store"])->name('user.questions.store');
+
     Route::get('/user/questions/create', [QuestionController::class, "create"])->name('user.questions.create');
 
     ///////////////////////////////////////////////////
