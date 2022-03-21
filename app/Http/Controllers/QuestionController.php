@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Question;
 use App\Models\User;
+use App\Models\Department;
 use App\Models\Role;
 
 class QuestionController extends Controller
@@ -88,7 +89,7 @@ class QuestionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id , Request $request)
+    public function show($id)
     {
         //
         $questions = Question::findOrFail($id);
@@ -111,8 +112,13 @@ class QuestionController extends Controller
     public function edit($id)
     {
         //
-        $questions = Question::findOrFail($id);
-        return view('user.questions.edit' , ['questions' => $questions]);
+        $questions = Question::where('id', $id)->first();
+
+        $questions['department'] = $questions->department->name;
+
+        $departments = Department::all();
+
+        return view('user.questions.edit' , ['departments' => $departments])->with('questions',$questions);
     }
 
     /**
