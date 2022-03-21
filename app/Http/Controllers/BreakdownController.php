@@ -21,7 +21,7 @@ class BreakdownController extends Controller
      */
     public function index(Request $request)
     {
-      // $userid = $breakdown['breakdown']->user_id;
+        // $userid = $breakdown['breakdown']->user_id;
         $idUser = $request->user()->id;
 
         $userRole = User::where('id', '=', $idUser)->get(['role_id']);
@@ -52,7 +52,7 @@ class BreakdownController extends Controller
         }else{
             return view('user.breakdowns.list',$breakdown);
         }
-            //dd($breakdown);
+        //dd($breakdown);
     }
 
     public function filter(){
@@ -77,9 +77,9 @@ class BreakdownController extends Controller
 
         return view('admin.breakdowns.create',
             ['department' => $department,
-            'manager' => $manager,
-            'devices' => $devices,
-            'zones' => $zones,
+              'manager' => $manager,
+              'devices' => $devices,
+              'zones' => $zones,
             ])->with('userLoggedIn',$userLoggedIn);
     }
 
@@ -173,6 +173,10 @@ class BreakdownController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $breakdown = Breakdown::find($id);
+
+        if($breakdown->delete()){
+            return back()->with('success',"S'ha esborrat la seva incidencia satisfactoriament");
+        }
     }
 }
