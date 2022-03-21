@@ -39,8 +39,9 @@ class MessageController extends Controller
     {
         $message = new Message;
         $message->content=$request->content;
-        $message->user_id=Auth::user()->user_id;
+        $message->user_id=Auth::user()->id;
         $message->breakdown_id=$id;
+        $message->question_id=NULL;
         if ($message->save()) {
             return back()->with('success', "El missatge ha sigut enviat");
         } else {
