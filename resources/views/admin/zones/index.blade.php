@@ -27,7 +27,8 @@
                     <thead>
                     <tr>
                         <th>Id</th>
-                        <th>etiqueta</th>
+                        <th>Etiqueta</th>
+                        <th>Descripció</th>
                     </tr>
                     </thead>
                     <tbody>
