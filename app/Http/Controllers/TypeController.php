@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Type;
 
 
 class TypeController extends Controller
@@ -36,6 +37,20 @@ class TypeController extends Controller
     public function store(Request $request)
     {
         //
+        $validated = $request->validate([
+            'label' => 'required',
+            'description' => 'required',
+        ]);
+
+        $types = new Type;
+
+        $types->label = $validated['label'];
+        $types->description = $validated['description'];
+
+        if($types->save()){
+            return redirect("/admin/types");
+        }
+
     }
 
     /**
