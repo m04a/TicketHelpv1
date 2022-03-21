@@ -8,6 +8,7 @@ use App\Http\Controllers\DeviceController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\DepartamentController;
 use App\Http\Controllers\TypeController;
+use App\Http\Controllers\ZoneController;
 
 /*
 |--------------------------------------------------------------------------
@@ -152,11 +153,22 @@ Route::middleware(['auth'])->group(function () {
             ->name('admin.departments.delete');
 
         ///////////////////////////////////////////////////
+
+
+         Route::get('/admin/zones', [ZoneController::class, 'index'])
+         ->name('admin.zones.index');
+
+        ///////////////////////////////////////////////////
+
         Route::get('/admin/types' , [TypeController::class, "index"])->name('admin.types.index');
 
-        Route::get('/admin/types/create', [TypeController::class, 'create'])->name('admin.types.create');
+        Route::get('/admin/types', function () {
+            return view('admin/types/index');
+        })->name('user.types');
 
-        Route::post('/admin/types/create', [TypeController::class, "store"])->name('admin.types.store');
+        Route::get('/admin/types/create', function () {
+            return view('admin/types/create');
+        })->name('user.types.create');
 
         Route::get('/admin/types/edit', function () {
             return view('admin/types/edit');
