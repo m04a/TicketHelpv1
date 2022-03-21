@@ -144,7 +144,7 @@ Route::middleware(['auth'])->group(function () {
 
         Route::put('/admin/departments/edit/{id}',[DepartamentController::class,"update"])
         ->name('admin.departments.update');
-        
+
         Route::delete('/admin/departments/destroy/{id}' , [DepartamentController::class, "destroy"])
             ->name('admin.departments.delete');
 
@@ -161,6 +161,15 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/admin/types/edit', function () {
             return view('admin/types/edit');
         })->name('user.types.edit');
+
+        ///////////////////////////////////////////////////
+
+        Route::post('/admin/messages/{id}', [MessageController::class, "store"])
+            ->name('admin.messages.store');
+
+        //Route::delete('/admin/messages/{id}',[MessageController::class,"destroy"])
+        //->name('admin.messages.delete');
+
     });
 
 
