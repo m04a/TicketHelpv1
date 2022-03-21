@@ -46,7 +46,17 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $user = new User();
+
+        $user->username = $request->username;
+        $user->email = $request->email;
+        $user->password = $request->password;
+        /*Obtain the user currently logged*/
+        // $user->id = Auth::user()->id;
+
+        if($user->save()){
+            return back()->with('success',"Usuari creat correctament");
+        }
     }
 
     /**
