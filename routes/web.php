@@ -184,13 +184,11 @@ Route::middleware(['auth'])->group(function () {
 
     ///////////////////////////////////////////////////
 
-    Route::get('/user/breakdowns', function () {
-        return view('user/breakdown/index');
-    })->name('user.breakdowns');
+    Route::get('/user/breakdowns/create',
+        [BreakdownController::class,"create"]);
 
-    Route::get('/user/breakdowns/create', function () {
-        return view('user/breakdowns/create');
-    })->name('user.breakdowns.create');
+    Route::post('/user/breakdowns/create',
+        [BreakdownController::class,"store"]);
 
     Route::get('/user/breakdowns/list', [BreakdownController::class, "index"])
         ->name('user.breakdowns.list');
@@ -211,9 +209,8 @@ Route::middleware(['auth'])->group(function () {
 
     ///////////////////////////////////////////////////
 
-    Route::get('/user/suggestions', function () {
-        return view('user/suggestions/index');
-    })->name('user.suggestions');
+
+
 
     Route::get('/user/suggestions/create', [SuggestionController::class, 'create'])->name('user.suggestions.create');
 
