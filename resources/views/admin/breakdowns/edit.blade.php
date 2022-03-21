@@ -65,6 +65,34 @@
                 </div>
             </div>
             <div class="mt-4">
+                <x-label for="rol" :value="__('Administrador')" />
+
+                <x-select name="manager_id" class="block mt-4 w-full">
+                    @foreach ($manager as $item)
+                        <option {{$breakdownData->manager_id==$item->id ? 'selected' : '' }} value="{{$item->id}} ">{{ $item->username }}</option>
+                    @endforeach
+                </x-select>
+            </div>
+            <div class="mt-4">
+                <x-label for="rol" :value="__('Dispositus')" />
+
+                <x-select name="device_id" class="block mt-4 w-full">
+                    @foreach ($devices as $item)
+                        <option {{$breakdownData->device_id==$item->id ? 'selected' : '' }} value="{{$item->id}} ">{{ $item->label }}</option>
+                    @endforeach
+                </x-select>
+            </div>
+            <div class="mt-4">
+                <x-label for="rol" :value="__('Zona')" />
+
+                <x-select name="zone_id" class="block mt-4 w-full">
+                    @foreach ($zones as $item)
+                        <option {{$breakdownData->zone_id==$item->id ? 'selected' : '' }} value="{{$item->id}} ">{{ $item->label }}</option>
+                    @endforeach
+                </x-select>
+            </div>
+
+            <div class="mt-4">
                 <x-label class="label" for="description" name="description" :value="__('Missatge')" />
 
                 <textarea class="textarea" type="text" name="description" autofocus>{{ $breakdownData->description }}</textarea>
