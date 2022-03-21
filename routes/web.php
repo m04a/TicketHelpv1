@@ -156,6 +156,8 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('/admin/types/create', [TypeController::class, 'create'])->name('admin.types.create');
 
+        Route::post('/admin/types/create', [TypeController::class, "store"])->name('admin.types.store');
+
         Route::get('/admin/types/edit', function () {
             return view('admin/types/edit');
         })->name('user.types.edit');
