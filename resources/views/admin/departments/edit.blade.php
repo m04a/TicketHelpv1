@@ -6,13 +6,30 @@
             </h1>
         </x-slot>
 <x-create-card>
-        <form method="POST" action="">
+        <form method="POST" action="{{ url('/admin/departments/edit/' . $department['id']) }}">
+            @method('PUT') 
             @csrf
+            @if(session('success'))
+                <x-success-alert class="mb-2">
+                    {{ session('success') }}
+                </x-success-alert>
+            @endif
+            @if ($errors->any())
+
+                        <x-error-alert class="mb-2">
+                            <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                            </ul>
+                        </x-error-alert>
+
+            @endif
             <!-- Name Department -->
             <div class="column-left">
                 <x-label for="departament" :value="__('Nom Departament')" />
 
-                <x-input id="departament" class="input-content" type="text" name="departament" placeholder="{{$department->name}}" value="" required autofocus />
+                <x-input id="departament" class="input-content" type="text" name="name" placeholder="{{$department->name}}" value="" autofocus />
             </div>
             <div class="button-create">
                 <x-button class="ml-3">

@@ -31,6 +31,9 @@ class BreakdownRequest extends FormRequest
             'description' => ['required', 'string'],
             'status' => ['required', 'boolean'],
             'department_id' => ['required', 'numeric'],
+            'manager_id' => ['required', 'numeric'],
+            'zone_id' => ['required', 'numeric'],
+            'device_id' => ['required', 'numeric'],
         ];
     }
     public function messages()
@@ -39,7 +42,10 @@ class BreakdownRequest extends FormRequest
             'title.required' => 'El assumpte és invalid, revisa les dades introduïdes',
             'description.required' => 'La descripció és invalida, revisa les dades introduïdes',
             'status.required' => 'El estat és invalid, revisa les dades introduïdes',
-            'department_id.required' => 'El departament és invalid, revisa les dades introduïdes'
+            'department_id.required' => 'El departament és invalid, revisa les dades introduïdes',
+            'manager_id.required' => 'El manager és invalid, revisa les dades introduïdes',
+            'zone_id.required' => 'La zone és invalida, revisa les dades introduïdes',
+            'device_id.required' => 'El dispositiu és invalid, revisa les dades introduïdes',
         ];
     }
 }

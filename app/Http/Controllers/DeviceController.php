@@ -95,7 +95,13 @@ class DeviceController extends Controller
      */
     public function edit($id)
     {
-        //
+        $deviceData = Device::where('id', $id)->first();
+        $list = [
+            "types" => Type::all(),
+            "zones" => Zone::all(),
+        ];
+
+        return view('admin.devices.edit',['list' => $list])->with('deviceData',$deviceData);
     }
 
     /**
