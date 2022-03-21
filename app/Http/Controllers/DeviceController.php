@@ -105,11 +105,10 @@ class DeviceController extends Controller
         $device->label=$request->name;
         $device->type_id=$request->type;
         $device->zone_id=$request->zone;
-        $result=$device->save();
-        if ($result) {
-            return redirect('/admin/devices/create')->with('success', "El dispositiu s'ha creat correctament");
+        if ($device->save()) {
+            return back()->with('success', "El dispositiu s'ha modificat correctament");
         } else {
-            return redirect('/admin/devices/create')->with('message', "Hi ha hagut algun error");
+            return back()->with('message', "Hi ha hagut algun error");
         }
     }
 

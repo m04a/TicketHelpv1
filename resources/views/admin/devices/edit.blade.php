@@ -25,7 +25,8 @@
         </x-error-alert>
     @endif
     <x-create-card>
-        <form method="PUT" action="">
+        <form method="POST" action="{{ url("/admin/devices/edit/".$deviceData->id) }}">
+            @method('PUT')
             @csrf
 
             <div class="content-column">
