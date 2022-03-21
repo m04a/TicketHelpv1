@@ -134,6 +134,11 @@ Route::middleware(['auth'])->group(function () {
 
         Route::put('/admin/departments/edit/{id}',[DepartamentController::class,"update"])
         ->name('admin.departments.update');
+        
+        Route::delete('/admin/departments/destroy/{id}' , [DepartamentController::class, "destroy"])
+            ->name('admin.departments.delete');
+
+
 
         ///////////////////////////////////////////////////
 

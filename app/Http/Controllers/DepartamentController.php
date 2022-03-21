@@ -135,6 +135,10 @@ class DepartamentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $department = Department::find($id);
+
+        $department->delete();
+
+        return redirect(route("admin.departments.index"));   
     }
 }
