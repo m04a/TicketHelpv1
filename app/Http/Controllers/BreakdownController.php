@@ -133,15 +133,26 @@ class BreakdownController extends Controller
      */
     public function edit($id)
     {
+        $department = Department::all();
+
+        $devices = Device::all();
+
+        $zones = Zone::all();
+
+        $manager = User::where('role_id',3)->orderBy('role_id')->get();
+
         $breakdownData = Breakdown::where('id', $id)->first();
 
         $breakdownData['username'] = $breakdownData->user->username;
 
         $breakdownData['departament'] = $breakdownData->department->name;
 
-        $department = Department::all();
-
-        return view('admin.breakdowns.edit',['department' => $department])->with('breakdownData',$breakdownData);
+        return view('admin.breakdowns.edit',
+            ['department' => $department,
+                'manager' => $manager,
+                'devices' => $devices,
+                'zones' => $zones,
+            ])->with('breakdownData', $breakdownData);
     }
 
     /**
@@ -158,6 +169,9 @@ class BreakdownController extends Controller
         $breakdown->status = $request->status;
         $breakdown->title = $request->title;
         $breakdown->description = $request->description;
+        $breakdown->manager_id = $request->manager_id;
+        $breakdown->device_id = $request->device_id;
+        $breakdown->zone_id = $request->zone_id;
         $breakdown->department_id = $request->department_id;
 
         if($breakdown->save()){
