@@ -39,10 +39,12 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('/admin/users', [UserController::class, 'index'])->name('admin.users.index');
 
-        Route::get('/admin/users/create', [UserController::class, 'index'])->name('admin.users.create');
+        Route::get('/admin/users/create', [UserController::class, 'create'])->name('admin.users.create');
 
         Route::get('/admin/users/edit/{id}', [UserController::class, 'edit'])->name('admin.users.edit');
 
+        Route::post('/admin/users/store', [UserController::class, 'store'])->name('admin.users.store');
+        
         ///////////////////////////////////////////////////
 
         //Route::get('/admin/devices', function () {
@@ -150,14 +152,9 @@ Route::middleware(['auth'])->group(function () {
             ->name('admin.departments.delete');
 
         ///////////////////////////////////////////////////
+        Route::get('/admin/types' , [TypeController::class, "index"])->name('admin.types.index');
 
-        Route::get('/admin/types', function () {
-            return view('admin/types/index');
-        })->name('user.types');
-
-        Route::get('/admin/types/create', function () {
-            return view('admin/types/create');
-        })->name('user.types.create');
+        Route::get('/admin/types/create', [TypeController::class, 'create'])->name('admin.types.create');
 
         Route::post('/admin/types/create', [TypeController::class, "store"])->name('admin.types.store');
 
