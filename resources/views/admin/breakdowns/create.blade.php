@@ -81,7 +81,7 @@
             </x-select>
         </div>
             <div class="mt-4">
-                <x-label for="rol" :value="__('Administrador')" />
+                <x-label for="rol" :value="__('Zona')" />
 
                 <x-select name="zone_id" class="block mt-4 w-full">
                     @foreach ($zones as $item)
