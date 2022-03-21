@@ -177,12 +177,13 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/user/questions/list', [QuestionController::class, 'index'])->name('user.questions.list');
 
+    Route::put('/user/questions/edit/{id}',[QuestionController::class,"update"])->name('user.questions.update');
+  
     Route::get('/user/questions/edit/{id}', [QuestionController::class, 'edit'])->name('user.questions.edit');
   
     Route::post('/user/questions/create' , [QuestionController::class, "store"])->name('user.questions.store');
     
     Route::get('/user/questions/create', [QuestionController::class, "create"])->name('user.questions.create');
-
 
     ///////////////////////////////////////////////////
 

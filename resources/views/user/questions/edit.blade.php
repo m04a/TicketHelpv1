@@ -6,7 +6,7 @@
     </x-slot>
     <x-slot name="slot">
         <x-create-card-user>
-            <form method="POST" action="">
+            <form method="POST" action="{{ url("/user/questions/edit/".$questions->id) }}">
             @csrf
 
             <!-- Department -->

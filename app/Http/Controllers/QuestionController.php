@@ -158,6 +158,15 @@ class QuestionController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $questions = Question::findOrFail($id);
+
+        $questions->title = $request->title;
+        $questions->description = $request->description;
+        $questions->department_id = $request->department;
+
+        if($questions->save()){
+            return back();
+        }
     }
 
     /**
