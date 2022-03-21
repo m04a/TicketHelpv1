@@ -173,6 +173,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/admin/types/edit', function () {
             return view('admin/types/edit');
         })->name('user.types.edit');
+
+        Route::delete('/admin/types/{id}', [TypeController::class, "destroy"])->name('admin.types.delete');
     });
 
 

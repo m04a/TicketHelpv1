@@ -112,5 +112,12 @@ class TypeController extends Controller
     public function destroy($id)
     {
         //
+        $types = Type::findOrFail($id);
+        
+        $result = $types->delete();
+        
+        if ($result) {
+            return redirect('admin/types');
+        }
     }
 }
