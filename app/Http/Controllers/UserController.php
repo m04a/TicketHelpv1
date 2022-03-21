@@ -2,8 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Role;
+use App\Models\Message;
+use App\Models\Question;
+use App\Models\Suggestion;
+use App\Models\Breakdown;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
@@ -23,8 +30,6 @@ class UserController extends Controller
             "role_name" => $item->role->label
         ]);
         
-        // dd($users);die();
-
         return view('admin.users.index', $users); 
     }
 
@@ -35,7 +40,9 @@ class UserController extends Controller
      */
     public function create()
     {
+
         return view('admin/users/create');
+
     }
 
     /**
@@ -46,7 +53,17 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $user = new User();
+
+        $user->username = $request->username;
+        $user->email = $request->email;
+        $user->password = $request->password;
+        /*Obtain the user currently logged*/
+        // $user->id = Auth::user()->id;
+
+        if($user->save()){
+            return back()->with('success',"Usuari creat correctament");
+        }
     }
 
     /**
