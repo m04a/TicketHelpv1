@@ -51,7 +51,7 @@
                 <div class="column-right">
                     <x-label for="Aula" :value="__('Aula')" />
 
-                    <x-select class="block mt-4 w-full" name="zone" name="zone">
+                    <x-select class="block mt-4 w-full" name="zone">
                         @foreach ($zones as $item)
                             <option value='{{ $item->id }}'>{{ $item->label }}</option>
                         @endforeach
