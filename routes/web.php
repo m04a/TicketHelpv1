@@ -38,7 +38,7 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('/admin/users', [UserController::class, 'index'])->name('admin.users.index');
 
-        Route::get('/admin/users/create', [UserController::class, 'index'])->name('admin.users.create');
+        Route::get('/admin/users/create', [UserController::class, 'create'])->name('admin.users.create');
 
         Route::get('/admin/users/edit/{id}', [UserController::class, 'edit'])->name('admin.users.edit');
 
