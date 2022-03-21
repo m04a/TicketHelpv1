@@ -77,9 +77,9 @@ class BreakdownController extends Controller
 
         return view('admin.breakdowns.create',
             ['department' => $department,
-                'manager' => $manager,
-                'devices' => $devices,
-                'zones' => $zones,
+              'manager' => $manager,
+              'devices' => $devices,
+              'zones' => $zones,
             ])->with('userLoggedIn',$userLoggedIn);
     }
 
