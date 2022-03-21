@@ -7,6 +7,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\DeviceController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\DepartamentController;
+use App\Http\Controllers\TypeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -154,9 +155,7 @@ Route::middleware(['auth'])->group(function () {
             return view('admin/types/index');
         })->name('user.types');
 
-        Route::get('/admin/types/create', function () {
-            return view('admin/types/create');
-        })->name('user.types.create');
+        Route::get('/admin/types/create', [TypeController::class, 'create'])->name('admin.types.create');
 
         Route::get('/admin/types/edit', function () {
             return view('admin/types/edit');
