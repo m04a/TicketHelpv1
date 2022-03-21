@@ -12,7 +12,7 @@
             <div class="column-left mt-4">
                 <x-label for="Tipus" :value="__('Departament')" />
 
-                <x-select class="block mt-4 w-full">
+                <x-select class="block mt-4 w-full" name="departament">
                     <option value="1">Departament Informàtica</option>
                     <option value="2">Consergeria</option>
                     <option value="3">Secretaria</option>

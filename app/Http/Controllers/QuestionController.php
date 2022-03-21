@@ -81,11 +81,12 @@ class QuestionController extends Controller
     {
         //
         $idUser = $request->user()->id;
+        $userRole = User::where('id', '=', $idUser)->get(['role_id']);
 
         $validated = $request->validate([
             'title' => 'required',
             'description' => 'required',
-            'department_id' => 'required',
+            'departament' => 'required',
         ]);
 
         $questions = new Question;
@@ -93,14 +94,19 @@ class QuestionController extends Controller
         $questions->title = $validated['title'];
         $questions->description = $validated['description'];
         $questions->status = '0';
-        $questions->department_id = $validated['department_id'];
+        $questions->department_id = $validated['departament'];
         $questions->user_id = $idUser;
         $questions->manager_id = '1';
 
 
         $questions->save();
 
-        return view('/user/questions/create');
+        if ($userRole[0]['role_id'] > 1){
+            return redirect('admin/questions/create');
+        } else {
+            return redirect('user/questions/create');
+        }
+        
     }
 
     /**

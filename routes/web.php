@@ -6,7 +6,6 @@ use App\Http\Controllers\SuggestionController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DeviceController;
 use App\Http\Controllers\QuestionController;
-use App\Http\Controllers\UserController;
 use App\Http\Controllers\DepartamentController;
 
 /*
@@ -102,6 +101,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/admin/questions/create' , [QuestionController::class, "create"])->name('admin.questions.create');
 
         Route::get('/admin/questions/view/{id}', [QuestionController::class, 'show'])->name('admin.questions.view');
+        
+        Route::post('/admin/questions/create' , [QuestionController::class, "store"])->name('admin.questions.store');
 
         Route::get('/admin/questions/edit', function () {
             return view('admin/questions/edit');
