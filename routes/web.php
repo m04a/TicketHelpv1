@@ -126,6 +126,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/admin/departments/edit/{id}',[DepartamentController::class,"edit"])
             ->name('admin.departments.edit');
 
+        Route::put('/admin/departments/edit/{id}',[DepartamentController::class,"update"])
+        ->name('admin.departments.update');
 
         ///////////////////////////////////////////////////
 
