@@ -61,7 +61,7 @@
                     </x-select>
                 </div>
             </div>
-        <div class="columns-3">
+        <div class="columns">
         <div class="mt-4">
             <x-label for="rol" :value="__('Administrador')" />
 
