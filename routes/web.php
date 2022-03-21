@@ -56,6 +56,8 @@ Route::middleware(['auth'])->group(function () {
 
         Route::delete('/admin/devices/{id}', [DeviceController::class, 'destroy'])->name('admin.devices.delete');
 
+        Route::get('/admin/devices/edit/{id}', [DeviceController::class, 'edit'])->name('admin.devices.edit');
+
         ///////////////////////////////////////////////////
         Route::post('/admin/suggestions/store', [SuggestionController::class, 'store'])->name('admin.suggestions.store');
 
@@ -76,7 +78,7 @@ Route::middleware(['auth'])->group(function () {
         ///////////////////////////////////////////////////
 
 
-        Route::get('/admin/breakdowns',[BreakdownController::class,"index"])
+        Route::get('/admin/breakdowns', [BreakdownController::class, "index"])
             ->name('admin.breakdowns');
 
         Route::get('/admin/breakdowns/create',
@@ -85,11 +87,15 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/admin/breakdowns/create',
             [BreakdownController::class,"store"]);
 
-        Route::get('/admin/breakdowns/edit/{id}',
-            [BreakdownController::class,"edit"]);
+        Route::get(
+            '/admin/breakdowns/edit/{id}',
+            [BreakdownController::class, "edit"]
+        );
 
-        Route::post('/admin/breakdowns/edit/{id}',
-            [BreakdownController::class,"update"]);
+        Route::post(
+            '/admin/breakdowns/edit/{id}',
+            [BreakdownController::class, "update"]
+        );
 
         Route::get('/admin/breakdowns/view/{id}',
             [BreakdownController::class,"show"]);
@@ -98,11 +104,11 @@ Route::middleware(['auth'])->group(function () {
 
         ///////////////////////////////////////////////////
 
-        Route::get('/admin/questions' , [QuestionController::class, "index"])->name('admin.questions.index');
+        Route::get('/admin/questions', [QuestionController::class, "index"])->name('admin.questions.index');
 
-        Route::delete('/admin/questions/{id}' , [QuestionController::class, "destroy"])->name('admin.questions.delete');
+        Route::delete('/admin/questions/{id}', [QuestionController::class, "destroy"])->name('admin.questions.delete');
 
-        Route::get('/admin/questions/create' , [QuestionController::class, "create"])->name('admin.questions.create');
+        Route::get('/admin/questions/create', [QuestionController::class, "create"])->name('admin.questions.create');
 
         Route::get('/admin/questions/view/{id}', [QuestionController::class, 'show'])->name('admin.questions.view');
         
@@ -117,13 +123,13 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/admin/departments', [DepartamentController::class, 'index'])
             ->name('admin.departments.index');
 
-        Route::get('/admin/departments/create',[DepartamentController::class,"create"])
+        Route::get('/admin/departments/create', [DepartamentController::class, "create"])
             ->name('admin.departments.create');
 
-        Route::post('/admin/departments/create',[DepartamentController::class,"store"])
+        Route::post('/admin/departments/create', [DepartamentController::class, "store"])
             ->name('admin.departments.store');
 
-        Route::get('/admin/departments/edit/{id}',[DepartamentController::class,"edit"])
+        Route::get('/admin/departments/edit/{id}', [DepartamentController::class, "edit"])
             ->name('admin.departments.edit');
 
         Route::put('/admin/departments/edit/{id}',[DepartamentController::class,"update"])
@@ -142,7 +148,6 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/admin/types/edit', function () {
             return view('admin/types/edit');
         })->name('user.types.edit');
-        ///////////////////////////////////////////////////
 
     });
 
@@ -163,7 +168,7 @@ Route::middleware(['auth'])->group(function () {
         return view('user/breakdowns/create');
     })->name('user.breakdowns.create');
 
-    Route::get('/user/breakdowns/list',[BreakdownController::class,"index"])
+    Route::get('/user/breakdowns/list', [BreakdownController::class, "index"])
         ->name('user.breakdowns.list');
 
     ///////////////////////////////////////////////////
@@ -175,7 +180,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/user/questions/edit/{id}', [QuestionController::class, 'edit'])->name('user.questions.edit');
   
     Route::post('/user/questions/create' , [QuestionController::class, "store"])->name('user.questions.store');
-
+    
+    Route::get('/user/questions/create', [QuestionController::class, "create"])->name('user.questions.create');
 
 
     ///////////////////////////////////////////////////
@@ -194,8 +200,6 @@ Route::middleware(['auth'])->group(function () {
 
 
     Route::delete('/user/suggestions/list/{id}', [SuggestionController::class, 'destroy'])->name('user.suggestions.delete');
-
-
 });
 
 require __DIR__ . '/auth.php';
