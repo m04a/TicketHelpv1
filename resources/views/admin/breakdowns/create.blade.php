@@ -43,12 +43,15 @@
                 </div>
             </div>
             <div class="content-column">
-                <!-- Subject -->
+                <!-- Zone -->
                 <div class="mt-4 column-left">
-                    <x-label for="title" :value="__('Assumpte')" />
+                    <x-label for="rol" :value="__('Zona')" />
 
-                    <x-input id="title" class="input-content" type="text" name="title" autofocus />
-
+                    <x-select name="zone_id" class="block mt-4 w-full">
+                        @foreach ($zones as $item)
+                            <option value="{{$item->id}} ">{{ $item->label }}</option>
+                        @endforeach
+                    </x-select>
                 </div>
                 <!-- Rol User -->
                 <div class="mt-4 column-right">
@@ -61,36 +64,40 @@
                     </x-select>
                 </div>
             </div>
-        <div class="columns">
-        <div class="mt-4">
-            <x-label for="rol" :value="__('Administrador')" />
+        <div class="content-column">
+            <!-- Name User -->
+            <div class="column-left">
+                <div class="mt-4">
+                    <x-label for="rol" :value="__('Administrador')" />
 
-            <x-select name="manager_id" class="block mt-4 w-full">
-                @foreach ($manager as $item)
-                    <option value="{{$item->id}} ">{{ $item->username }}</option>
-                @endforeach
-            </x-select>
-        </div>
-        <div class="mt-4">
-            <x-label for="rol" :value="__('Dispositus')" />
+                    <x-select name="manager_id" class="block mt-4 w-full">
+                        @foreach ($manager as $item)
+                            <option value="{{$item->id}} ">{{ $item->username }}</option>
+                        @endforeach
+                    </x-select>
+                </div>
+            </div>
+            <!-- Status Breakdown -->
+            <div class="column-right">
+                <div class="mt-4">
+                    <x-label for="rol" :value="__('Dispositus')" />
 
-            <x-select name="device_id" class="block mt-4 w-full">
-                @foreach ($devices as $item)
-                    <option value="{{$item->id}} ">{{ $item->label }}</option>
-                @endforeach
-            </x-select>
-        </div>
-            <div class="mt-4">
-                <x-label for="rol" :value="__('Zona')" />
-
-                <x-select name="zone_id" class="block mt-4 w-full">
-                    @foreach ($zones as $item)
-                        <option value="{{$item->id}} ">{{ $item->label }}</option>
-                    @endforeach
-                </x-select>
+                    <x-select name="device_id" class="block mt-4 w-full">
+                        @foreach ($devices as $item)
+                            <option value="{{$item->id}} ">{{ $item->label }}</option>
+                        @endforeach
+                    </x-select>
+                </div>
             </div>
         </div>
 
+        <!-- Subject -->
+        <div class="mt-4 column-left">
+            <x-label for="title" :value="__('Assumpte')" />
+
+            <x-input id="title" class="input-content" type="text" name="title" autofocus />
+
+        </div>
         <div class="mt-4">
             <x-label class="label" for="description" name="description" :value="__('Missatge')" />
 
