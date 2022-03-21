@@ -41,6 +41,7 @@ class TypeController extends Controller
     public function create()
     {
         //
+        return view('admin.types.create');
     }
 
     /**
@@ -52,6 +53,20 @@ class TypeController extends Controller
     public function store(Request $request)
     {
         //
+        $validated = $request->validate([
+            'label' => 'required',
+            'description' => 'required',
+        ]);
+
+        $types = new Type;
+
+        $types->label = $validated['label'];
+        $types->description = $validated['description'];
+
+        if($types->save()){
+            return redirect("/admin/types");
+        }
+
     }
 
     /**
