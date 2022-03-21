@@ -176,6 +176,9 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/user/questions/list', [QuestionController::class, 'index'])->name('user.questions.list');
 
+    Route::get('/user/questions/edit/{id}', [QuestionController::class, 'edit'])->name('user.questions.edit');
+
+
 
     ///////////////////////////////////////////////////
 

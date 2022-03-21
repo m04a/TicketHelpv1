@@ -88,7 +88,7 @@ class QuestionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id , Request $request)
     {
         //
         $questions = Question::findOrFail($id);
@@ -111,6 +111,8 @@ class QuestionController extends Controller
     public function edit($id)
     {
         //
+        $questions = Question::findOrFail($id);
+        return view('user.questions.edit' , ['questions' => $questions]);
     }
 
     /**
