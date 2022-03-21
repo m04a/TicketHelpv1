@@ -79,9 +79,11 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/admin/breakdowns',[BreakdownController::class,"index"])
             ->name('admin.breakdowns');
 
-        Route::get('/admin/breakdowns/create', function () {
-            return view('admin/breakdowns/create');
-        })->name('admin.breakdowns.create');
+        Route::get('/admin/breakdowns/create',
+            [BreakdownController::class,"create"]);
+
+        Route::post('/admin/breakdowns/create',
+            [BreakdownController::class,"store"]);
 
         Route::get('/admin/breakdowns/edit/{id}',
             [BreakdownController::class,"edit"]);
