@@ -176,6 +176,8 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/user/questions/list', [QuestionController::class, 'index'])->name('user.questions.list');
 
+    Route::post('/user/questions/edit/{id}',[QuestionController::class,"update"])->name('user.questions.update');
+
 
     ///////////////////////////////////////////////////
 
