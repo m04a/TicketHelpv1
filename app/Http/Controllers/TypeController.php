@@ -89,6 +89,9 @@ class TypeController extends Controller
     public function edit($id)
     {
         //
+        $types = Type::findOrFail($id);
+
+        return view('admin.types.edit', ['types' => $types]);
     }
 
     /**
