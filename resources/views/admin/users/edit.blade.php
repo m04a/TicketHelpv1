@@ -8,12 +8,29 @@
     <x-create-card>
         <form method="POST" action="">
             @csrf
+            @method('PUT')
+            @if(session('success'))
+                <x-success-alert class="mb-2">
+                    {{ session('success') }}
+                </x-success-alert>
+            @endif
+            @if ($errors->any())
+
+                        <x-error-alert class="mb-2">
+                            <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                            </ul>
+                        </x-error-alert>
+
+            @endif
             <div class="content-column">
             <!-- Name User -->
             <div class="column-left">
                 <x-label for="usuari" :value="__('Nom Usuari')" />
 
-                <x-input id="nom" class="input-content" type="text" name="nom" value="{{ $users->username }}" required autofocus />
+                <x-input id="nom" class="input-content" type="text" name="username" value="{{ $users->username }}" required autofocus />
             </div>
 
             <!-- Email User -->

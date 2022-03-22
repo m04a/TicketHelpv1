@@ -42,6 +42,8 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('/admin/users/edit/{id}', [UserController::class, 'edit'])->name('admin.users.edit');
 
+        Route::put('/admin/users/edit/{id}', [UserController::class, 'update'])->name('admin.devices.update');
+
         ///////////////////////////////////////////////////
 
         //Route::get('/admin/devices', function () {

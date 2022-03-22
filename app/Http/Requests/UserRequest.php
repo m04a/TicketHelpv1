@@ -30,7 +30,6 @@ class UserRequest extends FormRequest
             'username' => ['required', 'string'],
             'email' => ['required', 'string'],
             'password' => ['required', 'string'],
-            // 'value' => ['required', 'numeric'],
         ];
     }
     public function messages()
