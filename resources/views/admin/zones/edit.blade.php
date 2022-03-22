@@ -2,11 +2,11 @@
 
         <x-slot name="header">
             <h1 class="title">
-                Editar Departament
+                Editar Zona
             </h1>
         </x-slot>
 <x-create-card>
-        <form method="POST" action="{{ url('/admin/departments/edit/' . $department['id']) }}">
+        <form method="POST" action="{{ url('/admin/zones/edit/' . $zone['id']) }}">
             @method('PUT') 
             @csrf
             @if(session('success'))
@@ -25,11 +25,24 @@
                         </x-error-alert>
 
             @endif
-            <!-- Name Department -->
-            <div class="column-left">
-                <x-label for="departament" :value="__('Nom Departament')" />
+            <!-- Name Zona -->
+            <div class="content-column">
+                <!-- Name User -->
+                <div class="column-left">
+                    <x-label for="usuari" :value="__('Nom')" />
 
-                <x-input id="departament" class="input-content" type="text" name="name" placeholder="{{$department->name}}" value="" autofocus />
+                    <x-input id="nom" class="input-content" type="text" name="nom" value="{{ $zone->label }}" required autofocus />
+                </div>
+            </div>
+            <div class="content-column">
+                <div class="column-left">
+                <div class="mb-6" >
+                    <div class="text-black font-bold rounded-t py-2">
+                        Descripció de la zona
+                    </div>
+                    <textarea class="textarea">{{ $zone->description }}</textarea>
+                </div>
+                </div>
             </div>
             <div class="button-create">
                 <x-button class="ml-3">
