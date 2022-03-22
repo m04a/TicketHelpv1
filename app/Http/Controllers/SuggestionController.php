@@ -94,7 +94,7 @@ class SuggestionController extends Controller
             Suggestion::create($create);
 
             if($create){
-                 return redirect('/admin/suggestions')->with('success', 'el suggeriment a sigut creat');
+                 return redirect('/admin/suggestions/create')->with('success', 'el suggeriment a sigut creat');
             }
 
         }else{
@@ -104,7 +104,7 @@ class SuggestionController extends Controller
             Suggestion::create($create);
 
             if($create){
-                return redirect('/user/suggestions/list')->with('success', 'el suggeriment a sigut creat i enviat!');;
+                return redirect('/user/suggestions/create')->with('success', 'el suggeriment a sigut creat i enviat!');;
             }else{
                 return redirect('/user/suggestions/create')->with('message', "el suggeriment no s'''ha pogut crear");
             }
