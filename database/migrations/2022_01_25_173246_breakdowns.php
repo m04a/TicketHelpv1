@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('breakdowns', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('description');
+            $table->text('description');
             $table->boolean('status');
             
             $table->unsignedBigInteger('department_id');
