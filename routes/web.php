@@ -158,6 +158,9 @@ Route::middleware(['auth'])->group(function () {
          Route::get('/admin/zones', [ZoneController::class, 'index'])
          ->name('admin.zones.index');
 
+         Route::get('/admin/zones/create', [ZoneController::class, "create"])
+            ->name('admin.zones.create');
+
         ///////////////////////////////////////////////////
 
         Route::get('/admin/types' , [TypeController::class, "index"])->name('admin.types.index');

@@ -50,7 +50,7 @@ class ZoneController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin/zones/create');
     }
 
     /**
