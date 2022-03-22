@@ -81,9 +81,23 @@ class ZoneController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
-        //
+        $idUser = $request->user()->id;
+
+        $userRole = User::where('id', '=', $idUser)->get(['role_id']);
+
+        if($userRole[0]['role_id'] > 1){
+            $zone = Zone::findOrFail($id);
+
+            return view('admin.zones.edit', ['zone' => $zone]);
+
+        }else{
+
+            $zone = Zone::findOrFail($id);
+
+            return view('user.zones.edit', ['zone' => $zone]);
+        }
     }
 
     /**

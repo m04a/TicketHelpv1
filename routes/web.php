@@ -165,6 +165,9 @@ Route::middleware(['auth'])->group(function () {
 
          Route::get('/admin/zones/create', [ZoneController::class, "create"])
             ->name('admin.zones.create');
+            
+        Route::get('/admin/zones/edit/{id}', [ZoneController::class, "edit"])
+            ->name('admin.zones.edit');
 
         ///////////////////////////////////////////////////
 
