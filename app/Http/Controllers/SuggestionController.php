@@ -127,6 +127,8 @@ class SuggestionController extends Controller
     public function edit($id, Request $request)
     {
 
+        $department = Department::all();
+
         $idUser = $request->user()->id;
 
         $userRole = User::where('id', '=', $idUser)->get(['role_id']);
@@ -134,13 +136,13 @@ class SuggestionController extends Controller
         if($userRole[0]['role_id'] > 1){
             $suggestion = Suggestion::findOrFail($id);
 
-            return view('admin.suggestions.edit', ['suggestion' => $suggestion]);
+            return view('admin.suggestions.edit', ['suggestion' => $suggestion],['department' => $department]);
 
         }else{
 
             $suggestion = Suggestion::findOrFail($id);
 
-            return view('user.suggestions.edit', ['suggestion' => $suggestion]);
+            return view('user.suggestions.edit', ['suggestion' => $suggestion],['department' => $department]);
         }
     }
 
@@ -154,15 +156,19 @@ class SuggestionController extends Controller
      */
     public function update(SuggestionRequest $request, $id)
     {
+        $department = Department::all();
+
+        $idUser = Auth::user()->id;
+
         $suggestion = Suggestion::find($id);
         /*Records to update with the request*/
-        $suggestion->status = $request->status;
         $suggestion->title = $request->title;
-        $suggestion->description = $request->description;
         $suggestion->department_id = $request->department_id;
+        $suggestion->description = $request->description;
+        $suggestion->user_id = $idUser;
 
         if($suggestion->save()){
-            return redirect('/admin/suggestions/edit')->with('message', "S'''han actualitzat les dades de la incidencia.");
+            return back()->with('success', "S'han actualitzat les dades de la incidencia.");
         }
     }
 

@@ -69,10 +69,8 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('/admin/suggestions/edit/{id}', [SuggestionController::class, 'edit'])->name('admin.suggestions.edit');
 
-        Route::get('/admin/suggestions/edit', function () {
-            return view('admin/suggestions/edit');
-        })->name('admin.suggestions.edit');
-
+        Route::put('/admin/suggestions/update/{id}', [SuggestionController::class, 'update'])->name('admin.suggestions.update');
+        
         ///////////////////////////////////////////////////
 
 

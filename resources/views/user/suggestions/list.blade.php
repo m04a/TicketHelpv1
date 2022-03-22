@@ -8,11 +8,6 @@
 
 
         <section class="section main-section-user">
-            @if(session('success'))
-                <x-success-alert id="message" class="transition-success-messages">
-                    {{ session('success') }}
-                </x-success-alert>
-            @endif
             <div class="card has-table">
                 <header class="card-header">
                     <p class="card-header-title">
