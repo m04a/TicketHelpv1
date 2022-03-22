@@ -100,7 +100,15 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::find($id);
+        /*Records to update with the request*/
+        $user->username = $request->username;
+        $user->email = $request->email;
+        $user->password = $request->password;
+
+        if($user->save()){
+            return back()->with('success','S\'han actualitzat les dades de l\'usuari.');
+        }
     }
 
     /**
