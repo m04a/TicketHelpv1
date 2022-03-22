@@ -2,13 +2,13 @@
 
         <x-slot name="header">
             <h1 class="title">
-                Crear Zona
+                Crear Zonaa
             </h1>
         </x-slot>
 <x-create-card>
         <form method="POST" action="#">
             @csrf
-            <!-- Name Department -->
+            <!-- Name Zone -->
                 <!-- Name User -->
                 <div class="column-left">
                     <x-label for="usuari" :value="__('Nom')" />
@@ -16,7 +16,7 @@
                     <x-input id="nom" class="input-content" type="text" name="nom" required autofocus />
                 </div>
 
-                <!-- Email User -->
+                <!-- Missatge -->
                 <div class="mt-4">
                     <x-label class="label" for="missatge" :value="__('Missatge')" />
 
