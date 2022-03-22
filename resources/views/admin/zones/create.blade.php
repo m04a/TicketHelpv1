@@ -2,7 +2,7 @@
 
         <x-slot name="header">
             <h1 class="title">
-                Crear Zona
+                Crear Zonaa
             </h1>
         </x-slot>
 <x-create-card>
