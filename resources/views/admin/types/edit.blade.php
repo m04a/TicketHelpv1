@@ -6,7 +6,8 @@
         </h1>
     </x-slot>
     <x-create-card>
-        <form method="POST" action="">
+        <form method="POST" action="{{ url("/admin/types/edit/".$types->id) }}">
+            @method('PUT')
             @csrf
             <div class="content-column">
                 <!-- Name User -->
