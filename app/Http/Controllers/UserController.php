@@ -30,8 +30,6 @@ class UserController extends Controller
             "role_name" => $item->role->label
         ]);
         
-        // dd($users);die();
-
         return view('admin.users.index', $users); 
     }
 
@@ -42,7 +40,9 @@ class UserController extends Controller
      */
     public function create()
     {
+
         return view('admin/users/create');
+
     }
 
     /**

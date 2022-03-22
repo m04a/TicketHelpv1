@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\ZoneRequest;
+use App\Models\Zone;
+use App\Models\User;
+use App\Models\Role;
 
 class ZoneController extends Controller
 {
@@ -11,9 +15,32 @@ class ZoneController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $idUser = $request->user()->id;
+
+        $userRole = User::where('id', '=', $idUser)->get(['role_id']);
+
+        if($userRole[0]['role_id'] > 1){
+            $data['zones'] = Zone::paginate(10)
+            ->through(fn ($item) => [
+                "id" => $item->id,
+                "label" => $item->label,
+                "description" => $item->description
+              ]);
+                return view('admin.zones.index', $data);
+        }else{
+            $data['zones'] = Zone::where('user_id', '=', $idUser)
+            ->paginate(10)
+            ->through(fn ($item) => [
+                "id" => $item->id,
+                "name" => $item->name,
+              ]);
+                return view('user.zones.list', $data);
+        }
+
+        $data['zonesCount'] = Zone::count();
+
     }
 
     /**
@@ -23,7 +50,7 @@ class ZoneController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin/zones/create');
     }
 
     /**

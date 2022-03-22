@@ -3296,6 +3296,29 @@ td.image-cell .image {
   justify-content: flex-end;
 }
 
+.transition-error-messages {
+  margin: 1.5rem;
+  transition-property: all;
+  transition-duration: 500ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.transition-success-messages {
+  margin: 1.5rem;
+  transition-property: all;
+  transition-duration: 500ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.transition-error-messages-users {
+  margin: 1.5rem;
+  margin-right: 16.3%;
+  margin-left: 16.3%;
+  transition-property: all;
+  transition-duration: 500ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 @-webkit-keyframes bounce {
 
   0%, 100% {
@@ -3660,5 +3683,4 @@ td.image-cell .image {
     padding-right: 2rem;
   }
 }
-
 

@@ -6,7 +6,7 @@
         </h1>
     </x-slot>
     <x-create-card>
-        <form method="POST" action="">
+        <form method="POST" action="{{ route('admin.types.store') }}">
             @csrf
             <div class="content-column">
                 <!-- Name User -->
@@ -21,7 +21,7 @@
                 <div class="column-right">
                     <x-label for="Descipció" :value="__('Descripció')" />
 
-                    <x-input id="Description" class="input-content" type="text" name="Description"
+                    <x-input id="Description" class="input-content" type="text" name="description"
                         placeholder="És un aparell de xarxes que permet connectar equips en una xarxa." required
                         autofocus />
                 </div>
