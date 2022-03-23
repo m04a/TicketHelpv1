@@ -173,6 +173,9 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/admin/zones/view/{id}', [ZoneController::class, 'show'])
         ->name('admin.zones.view');
 
+        Route::delete('/admin/zones/destroy/{id}', [ZoneController::class, "destroy"])
+            ->name('admin.zones.delete');
+
 
         ///////////////////////////////////////////////////
 
