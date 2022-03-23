@@ -81,7 +81,9 @@ class ZoneController extends Controller
      */
     public function show($id)
     {
-        //
+        $zone = Zone::findOrFail($id);
+
+        return view('admin.zones.view', ['zones' => $zone]);
     }
 
     /**

@@ -169,6 +169,10 @@ Route::middleware(['auth'])->group(function () {
 
         Route::post('/admin/zones/create', [ZoneController::class, "store"])
             ->name('admin.zones.store');
+            
+        Route::get('/admin/zones/view/{id}', [ZoneController::class, 'show'])
+        ->name('admin.zones.view');
+
 
         ///////////////////////////////////////////////////
 
