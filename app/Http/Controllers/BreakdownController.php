@@ -90,7 +90,7 @@ class BreakdownController extends Controller
 
         $userLoggedIn = Auth::user()->username;
 
-        if ($idUser == 3 ){
+        if ($idUser > 1 ){
             return view('admin.breakdowns.create',
                 ['department' => $department,
                     'manager' => $manager,
