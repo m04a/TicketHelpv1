@@ -168,6 +168,9 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/admin/zones/edit/{id}', [ZoneController::class, "edit"])
             ->name('admin.zones.edit');
 
+        Route::post('/admin/zones/create', [ZoneController::class, "store"])
+            ->name('admin.zones.store');
+
         ///////////////////////////////////////////////////
 
         Route::get('/admin/types' , [TypeController::class, "index"])->name('admin.types.index');
