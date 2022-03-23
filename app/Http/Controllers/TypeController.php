@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Type;
+use App\Models\User;
+use App\Models\Role;
 
 
 class TypeController extends Controller
@@ -12,9 +15,22 @@ class TypeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
+        $idUser = $request->user()->id;
+
+        $userRole = User::where('id', '=', $idUser)->get(['role_id']);
+
+        if($userRole[0]['role_id'] > 1){
+            $data['types'] = Type::paginate(5)
+            ->through(fn ($item) => [
+              "id" => $item->id,
+              "label" => $item->label,
+              "description" => $item->description
+              ]);
+                return view('admin.types.index', $data);
+            }
     }
 
     /**
@@ -25,6 +41,7 @@ class TypeController extends Controller
     public function create()
     {
         //
+        return view('admin.types.create');
     }
 
     /**
@@ -36,6 +53,20 @@ class TypeController extends Controller
     public function store(Request $request)
     {
         //
+        $validated = $request->validate([
+            'label' => 'required',
+            'description' => 'required',
+        ]);
+
+        $types = new Type;
+
+        $types->label = $validated['label'];
+        $types->description = $validated['description'];
+
+        if($types->save()){
+            return redirect("/admin/types");
+        }
+
     }
 
     /**
@@ -47,6 +78,9 @@ class TypeController extends Controller
     public function show($id)
     {
         //
+        $types = Type::findOrFail($id);
+
+        return view('admin.types.view', ['types' => $types]);
     }
 
     /**
@@ -58,6 +92,9 @@ class TypeController extends Controller
     public function edit($id)
     {
         //
+        $types = Type::findOrFail($id);
+
+        return view('admin.types.edit', ['types' => $types]);
     }
 
     /**
@@ -70,6 +107,15 @@ class TypeController extends Controller
     public function update(Request $request, $id)
     {
         //
+        
+        $types = Type::findOrFail($id);
+
+        $types->label = $request->label;
+        $types->description = $request->description;
+
+        if($types->save()){
+            return back();
+        }
     }
 
     /**
@@ -81,5 +127,12 @@ class TypeController extends Controller
     public function destroy($id)
     {
         //
+        $types = Type::findOrFail($id);
+        
+        $result = $types->delete();
+        
+        if ($result) {
+            return redirect('admin/types');
+        }
     }
 }

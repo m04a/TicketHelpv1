@@ -47,6 +47,6 @@ class Breakdown extends Model
 
     public function zone()
     {
-        return $this->belongsTo(Device::class, 'zone_id');
+        return $this->belongsTo(Zone::class, 'zone_id');
     }
 }

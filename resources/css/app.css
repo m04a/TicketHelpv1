@@ -671,7 +671,7 @@ td.image-cell .image {
 }
 
 .textarea {
-    @apply h-24 px-3 py-2 border text-left;
+    @apply h-24 px-3 py-2 border text-left mt-4;
 }
 .suggestion-text{
     background-color: rgb(243 244 246 / var(--tw-bg-opacity)) !important;
@@ -683,7 +683,7 @@ td.image-cell .image {
 }
 
 .input, .textarea, .select select {
-    @apply w-full max-w-full focus:border-gray-100 focus:ring focus:outline-none;
+    @apply w-full max-w-full focus:border-gray-100 focus:ring focus:outline-none mt-4;
 }
 
 

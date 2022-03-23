@@ -65,6 +65,8 @@ class BreakdownController extends Controller
      */
     public function create()
     {
+        $idUser = Auth::user()->id;
+
         $department = Department::all();
 
         $devices = Device::all();
@@ -75,12 +77,22 @@ class BreakdownController extends Controller
 
         $userLoggedIn = Auth::user()->username;
 
-        return view('admin.breakdowns.create',
-            ['department' => $department,
-              'manager' => $manager,
-              'devices' => $devices,
-              'zones' => $zones,
-            ])->with('userLoggedIn',$userLoggedIn);
+        if ($idUser == 3 ){
+            return view('admin.breakdowns.create',
+                ['department' => $department,
+                    'manager' => $manager,
+                    'devices' => $devices,
+                    'zones' => $zones,
+                ])->with('userLoggedIn',$userLoggedIn);
+        }else{
+            return view('user.breakdowns.create',
+                ['department' => $department,
+                    'manager' => $manager,
+                    'devices' => $devices,
+                    'zones' => $zones,
+                ])->with('userLoggedIn',$userLoggedIn);
+        }
+
     }
 
     /**
@@ -116,11 +128,20 @@ class BreakdownController extends Controller
      */
     public function show($id)
     {
+
         $breakdownData = Breakdown::where('id', $id)->first();
 
         $breakdownData['username'] = $breakdownData->user->username;
 
         $breakdownData['departament'] = $breakdownData->department->name;
+
+        $breakdownData['username'] = $breakdownData->user->username;
+
+        $breakdownData['manager_username'] = $breakdownData->manager->username;
+
+        $breakdownData['zone_name'] = $breakdownData->zone->label;
+
+        $breakdownData['device_name'] = $breakdownData->device->label;
 
         return view('admin.breakdowns.view')->with('breakdownData',$breakdownData);
     }
