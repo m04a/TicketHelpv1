@@ -19,10 +19,10 @@ return new class extends Migration
             $table->string('label');
 
             $table->unsignedBigInteger('type_id');
-            $table->foreign('type_id')->references('id')->on('types');
+            $table->foreign('type_id')->references('id')->on('types')->onDelete('cascade');
 
             $table->unsignedBigInteger('zone_id');
-            $table->foreign('zone_id')->references('id')->on('zones');
+            $table->foreign('zone_id')->references('id')->on('zones')->onDelete('cascade');
 
             $table->timestamps();
 
