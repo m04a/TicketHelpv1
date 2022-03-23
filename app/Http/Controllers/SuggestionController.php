@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\SuggestionRequest;
 use App\Models\Suggestion;
 use App\Models\User;
 use App\Models\Department;
+use Illuminate\Support\Facades\Auth;
 
 class SuggestionController extends Controller
 {
@@ -68,43 +70,37 @@ class SuggestionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SuggestionRequest $request)
     {
-        $idUser = $request->user()->id;
+        $idUser = Auth::user()->id;
 
-        $create = $request->validate([
-            'token' => ['nullable'],
-            'title' => ['required', 'string', 'min:5'],
-            'description' => ['required', 'string', 'min:10'],
-            'department_id' => ['required', 'integer'],
-        ], [
-            'title.required' => 'Falta el assumpte',
-            'description.required' => 'Falta una descripció',
-            'department_id.required' => 'Posa un departament no siguis hacker',
-            'title.min' => 'Posa com a minim 5 caracters en el assumpte',
-            'description.min' => 'Posa com a minim 10 caracters en la descripció'
-        ]);
+        $create = $request;
 
         $userRole = User::where('id', '=', $idUser)->get(['role_id']);
 
         if($userRole[0]['role_id'] > 1){
+            $suggestion = new Suggestion();
 
-            $create['user_id'] = $idUser;
+            $suggestion->title = $request->title;
+            $suggestion->department_id = $request->department_id;
+            $suggestion->description = $request->description;
+            $suggestion->user_id = $idUser;
 
-            Suggestion::create($create);
-
-            if($create){
-                 return redirect('/admin/suggestions')->with('success', 'el suggeriment a sigut creat');
+            if($suggestion->save()){
+                 return redirect('/admin/suggestions/create')->with('success', 'el suggeriment a sigut creat');
             }
 
         }else{
 
-            $create['user_id'] = $idUser;
+            $suggestion = new Suggestion();
 
-            Suggestion::create($create);
+            $suggestion->title = $request->title;
+            $suggestion->department_id = $request->department_id;
+            $suggestion->description = $request->description;
+            $suggestion->user_id = $idUser;
 
-            if($create){
-                return redirect('/user/suggestions/list')->with('success', 'el suggeriment a sigut creat i enviat!');;
+            if($suggestion->save()){
+                return redirect('/user/suggestions/create')->with('success', 'el suggeriment a sigut creat i enviat!');;
             }else{
                 return redirect('/user/suggestions/create')->with('message', "el suggeriment no s'''ha pogut crear");
             }
@@ -134,6 +130,8 @@ class SuggestionController extends Controller
     public function edit($id, Request $request)
     {
 
+        $department = Department::all();
+
         $idUser = $request->user()->id;
 
         $userRole = User::where('id', '=', $idUser)->get(['role_id']);
@@ -141,13 +139,13 @@ class SuggestionController extends Controller
         if($userRole[0]['role_id'] > 1){
             $suggestion = Suggestion::findOrFail($id);
 
-            return view('admin.suggestions.edit', ['suggestion' => $suggestion]);
+            return view('admin.suggestions.edit', ['suggestion' => $suggestion],['department' => $department]);
 
         }else{
 
             $suggestion = Suggestion::findOrFail($id);
 
-            return view('user.suggestions.edit', ['suggestion' => $suggestion]);
+            return view('user.suggestions.edit', ['suggestion' => $suggestion],['department' => $department]);
         }
     }
 
@@ -159,9 +157,37 @@ class SuggestionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(SuggestionRequest $request, $id)
     {
-        //
+
+        $idUser = Auth::user()->id;
+
+        $userRole = User::where('id', '=', $idUser)->get(['role_id']);
+        
+        if($userRole[0]['role_id'] > 1){
+            $suggestion = Suggestion::find($id);
+            /*Records to update with the request*/
+            $suggestion->title = $request->title;
+            $suggestion->department_id = $request->department_id;
+            $suggestion->description = $request->description;
+            $suggestion->user_id = $idUser;
+    
+            if($suggestion->save()){
+                return back()->with('success', "S'han actualitzat les dades de la incidencia.");
+            }
+
+        }else{
+            $suggestion = Suggestion::find($id);
+            /*Records to update with the request*/
+            $suggestion->title = $request->title;
+            $suggestion->department_id = $request->department_id;
+            $suggestion->description = $request->description;
+            $suggestion->user_id = $idUser;
+    
+            if($suggestion->save()){
+                return back()->with('success', "S'han actualitzat les dades de la incidencia.");
+            }
+        }
     }
 
     /**

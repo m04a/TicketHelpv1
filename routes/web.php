@@ -83,10 +83,8 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('/admin/suggestions/edit/{id}', [SuggestionController::class, 'edit'])->name('admin.suggestions.edit');
 
-        Route::get('/admin/suggestions/edit', function () {
-            return view('admin/suggestions/edit');
-        })->name('admin.suggestions.edit');
-
+        Route::put('/admin/suggestions/update/{id}', [SuggestionController::class, 'update'])->name('admin.suggestions.update');
+        
         ///////////////////////////////////////////////////
 
 
@@ -245,6 +243,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/user/suggestions/edit/{id}', [SuggestionController::class, 'edit'])->name('user.suggestions.edit');
 
     Route::delete('/user/suggestions/list/{id}', [SuggestionController::class, 'destroy'])->name('user.suggestions.delete');
+    
+    Route::put('/user/suggestions/update/{id}', [SuggestionController::class, 'update'])->name('user.suggestions.update');
+
 });
 
 require __DIR__ . '/auth.php';
