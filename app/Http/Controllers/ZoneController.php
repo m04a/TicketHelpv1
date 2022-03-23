@@ -7,6 +7,8 @@ use App\Http\Requests\ZoneRequest;
 use App\Models\Zone;
 use App\Models\User;
 use App\Models\Role;
+use Illuminate\Support\Facades\Auth;
+
 
 class ZoneController extends Controller
 {
@@ -61,7 +63,14 @@ class ZoneController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $zone = new Zone();
+
+        $zone->label = $request->label;
+        $zone->description = $request->description;
+
+        if($zone->save()){
+            return back()->with('success',"S'han creat la seva zona satisfactoriament");
+        }
     }
 
     /**
