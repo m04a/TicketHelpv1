@@ -32,7 +32,7 @@
                 <div class="column-left">
                     <x-label for="usuari" :value="__('Nom Usuari')" />
 
-                    <x-input id="nom" class="input-content" type="text" value="{{ $breakdownData->username }}" disabled autofocus />
+                    <x-input id="nom" class="input-content input-disabled" type="text" value="{{ $breakdownData->username }}" disabled autofocus />
                 </div>
 
                 <!-- Status Breakdown -->
@@ -46,12 +46,14 @@
                 </div>
             </div>
             <div class="content-column">
-                <!-- Subject -->
                 <div class="mt-4 column-left">
-                    <x-label for="assumpte" :value="__('Assumpte')" />
+                    <x-label for="rol" :value="__('Zona')" />
 
-                    <x-input id="assumpte" class="input-content" type="text" name="title" value="{{ $breakdownData->title }}" autofocus />
-
+                    <x-select name="zone_id" class="block mt-4 w-full">
+                        @foreach ($zones as $item)
+                            <option {{$breakdownData->zone_id==$item->id ? 'selected' : '' }} value="{{$item->id}} ">{{ $item->label }}</option>
+                        @endforeach
+                    </x-select>
                 </div>
                 <!-- Department -->
                 <div class="mt-4 column-right">
@@ -63,6 +65,38 @@
                         @endforeach
                     </x-select>
                 </div>
+            </div>
+            <div class="content-column">
+                <!-- Name User -->
+
+                <div class="mt-4 column-left">
+                    <x-label for="rol" :value="__('Administrador')" />
+
+                    <x-select name="manager_id" class="block mt-4 w-full">
+                        @foreach ($manager as $item)
+                            <option {{$breakdownData->manager_id==$item->id ? 'selected' : '' }} value="{{$item->id}} ">{{ $item->username }}</option>
+                        @endforeach
+                    </x-select>
+                </div>
+
+                <!-- Status Breakdown -->
+                <div class="mt-4 column-right">
+                    <x-label for="rol" :value="__('Dispositus')" />
+
+                    <x-select name="device_id" class="block mt-4 w-full">
+                        @foreach ($devices as $item)
+                            <option {{$breakdownData->device_id==$item->id ? 'selected' : '' }} value="{{$item->id}} ">{{ $item->label }}</option>
+                        @endforeach
+                    </x-select>
+                </div>
+            </div>
+
+            <!-- Subject -->
+            <div class="mt-4 column-left">
+                <x-label for="title" :value="__('Assumpte')" />
+
+                <x-input id="title" class="input-content" type="text" name="title" value="{{ $breakdownData->title }}" autofocus />
+
             </div>
             <div class="mt-4">
                 <x-label class="label" for="description" name="description" :value="__('Missatge')" />

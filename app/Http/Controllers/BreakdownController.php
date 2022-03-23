@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\BreakdownRequest;
 use App\Models\Breakdown;
+use App\Models\Device;
 use App\Models\User;
 use App\Models\Department;
+use App\Models\Zone;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class BreakdownController extends Controller
@@ -18,7 +21,7 @@ class BreakdownController extends Controller
      */
     public function index(Request $request)
     {
-      // $userid = $breakdown['breakdown']->user_id;
+        // $userid = $breakdown['breakdown']->user_id;
         $idUser = $request->user()->id;
 
         $userRole = User::where('id', '=', $idUser)->get(['role_id']);
@@ -49,7 +52,7 @@ class BreakdownController extends Controller
         }else{
             return view('user.breakdowns.list',$breakdown);
         }
-            //dd($breakdown);
+        //dd($breakdown);
     }
 
     public function filter(){
@@ -62,7 +65,34 @@ class BreakdownController extends Controller
      */
     public function create()
     {
-        //
+        $idUser = Auth::user()->id;
+
+        $department = Department::all();
+
+        $devices = Device::all();
+
+        $zones = Zone::all();
+
+        $manager = User::where('role_id',3)->orderBy('role_id')->get();
+
+        $userLoggedIn = Auth::user()->username;
+
+        if ($idUser == 3 ){
+            return view('admin.breakdowns.create',
+                ['department' => $department,
+                    'manager' => $manager,
+                    'devices' => $devices,
+                    'zones' => $zones,
+                ])->with('userLoggedIn',$userLoggedIn);
+        }else{
+            return view('user.breakdowns.create',
+                ['department' => $department,
+                    'manager' => $manager,
+                    'devices' => $devices,
+                    'zones' => $zones,
+                ])->with('userLoggedIn',$userLoggedIn);
+        }
+
     }
 
     /**
@@ -71,9 +101,23 @@ class BreakdownController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(BreakdownRequest $request)
     {
-        //
+        $breakdown = new Breakdown();
+
+        $breakdown->status = $request->status;
+        $breakdown->title = $request->title;
+        $breakdown->description = $request->description;
+        $breakdown->department_id = $request->department_id;
+        $breakdown->manager_id = $request->manager_id;
+        $breakdown->device_id = $request->device_id;
+        $breakdown->zone_id = $request->zone_id;
+        /*Obtain the user currently logged*/
+        $breakdown->user_id = Auth::user()->id;
+
+        if($breakdown->save()){
+            return back()->with('success',"S'han creat la seva incidencia satisfactoriament");
+        }
     }
 
     /**
@@ -84,11 +128,20 @@ class BreakdownController extends Controller
      */
     public function show($id)
     {
+
         $breakdownData = Breakdown::where('id', $id)->first();
 
         $breakdownData['username'] = $breakdownData->user->username;
 
         $breakdownData['departament'] = $breakdownData->department->name;
+
+        $breakdownData['username'] = $breakdownData->user->username;
+
+        $breakdownData['manager_username'] = $breakdownData->manager->username;
+
+        $breakdownData['zone_name'] = $breakdownData->zone->label;
+
+        $breakdownData['device_name'] = $breakdownData->device->label;
 
         return view('admin.breakdowns.view')->with('breakdownData',$breakdownData);
     }
@@ -101,15 +154,26 @@ class BreakdownController extends Controller
      */
     public function edit($id)
     {
+        $department = Department::all();
+
+        $devices = Device::all();
+
+        $zones = Zone::all();
+
+        $manager = User::where('role_id',3)->orderBy('role_id')->get();
+
         $breakdownData = Breakdown::where('id', $id)->first();
 
         $breakdownData['username'] = $breakdownData->user->username;
 
         $breakdownData['departament'] = $breakdownData->department->name;
 
-        $department = Department::all();
-
-        return view('admin.breakdowns.edit',['department' => $department])->with('breakdownData',$breakdownData);
+        return view('admin.breakdowns.edit',
+            ['department' => $department,
+                'manager' => $manager,
+                'devices' => $devices,
+                'zones' => $zones,
+            ])->with('breakdownData', $breakdownData);
     }
 
     /**
@@ -126,6 +190,9 @@ class BreakdownController extends Controller
         $breakdown->status = $request->status;
         $breakdown->title = $request->title;
         $breakdown->description = $request->description;
+        $breakdown->manager_id = $request->manager_id;
+        $breakdown->device_id = $request->device_id;
+        $breakdown->zone_id = $request->zone_id;
         $breakdown->department_id = $request->department_id;
 
         if($breakdown->save()){
@@ -141,6 +208,10 @@ class BreakdownController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $breakdown = Breakdown::find($id);
+
+        if($breakdown->delete()){
+            return back()->with('success',"S'ha esborrat la seva incidencia satisfactoriament");
+        }
     }
 }

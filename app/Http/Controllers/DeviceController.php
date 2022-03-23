@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Http\Requests\DeviceRequest;
 use Illuminate\Http\Request;
 use App\Models\Device;
 use App\Models\Type;
@@ -37,11 +37,9 @@ class DeviceController extends Controller
      */
     public function create(Request $request)
     {
-        $value = $request->session()->pull('DeviceStore');
         $list = [
             "types" => Type::all(),
             "zones" => Zone::all(),
-            "message" => $value
         ];
         return view('admin.devices.create', $list);
     }
@@ -52,22 +50,12 @@ class DeviceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(DeviceRequest $request)
     {
-        $input = $request->validate([
-            'token' => ['nullable'],
-            'name' => ['required', 'string', 'min:3', 'max:120'],
-            'type' => ['required', 'integer'],
-            'zone' => ['required', 'integer'],
-        ], [
-            'title.required' => 'Et faltat el nom',
-            'type.required' => 'Tipus no seleccionat, ¿com ho has aconseguit?',
-            'zone.required' => 'Aula sense seleccionar'
-        ]);
         $device = new Device;
-        $device->label=$input['name'];
-        $device->type_id=$input['type'];
-        $device->zone_id=$input['zone'];
+        $device->label=$request->name;
+        $device->type_id=$request->type;
+        $device->zone_id=$request->zone;
         $result=$device->save();
         if ($result) {
             return redirect('/admin/devices/create')->with('success', "El dispositiu s'ha creat correctament");
@@ -95,7 +83,13 @@ class DeviceController extends Controller
      */
     public function edit($id)
     {
-        //
+        $deviceData = Device::where('id', $id)->first();
+        $list = [
+            "types" => Type::all(),
+            "zones" => Zone::all(),
+        ];
+
+        return view('admin.devices.edit',['list' => $list])->with('deviceData',$deviceData);
     }
 
     /**
@@ -105,9 +99,17 @@ class DeviceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(DeviceRequest $request, $id)
     {
-        //
+        $device = Device::where('id', $id)->first();;
+        $device->label=$request->name;
+        $device->type_id=$request->type;
+        $device->zone_id=$request->zone;
+        if ($device->save()) {
+            return back()->with('success', "El dispositiu s'ha modificat correctament");
+        } else {
+            return back()->with('message', "Hi ha hagut algun error");
+        }
     }
 
     /**

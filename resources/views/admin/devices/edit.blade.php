@@ -2,48 +2,49 @@
 
     <x-slot name="header">
         <h1 class="title">
-            Crear nou dispositiu
+            Editar dispositiu
         </h1>
     </x-slot>
     @if ($errors->any())
-            <x-error-alert id="message" class="transition-error-messages">
-                <ul>
+        <x-error-alert id="message" class="transition-error-messages">
+            <ul>
                 @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
                 @endforeach
-                </ul>
-            </x-error-alert>
-        @endif
-            @if (session('success'))
-                <x-success-alert id="message" class="transition-success-messages">
-                    {{ session('success') }}
-                </x-success-alert>
-            @endif
-            @if (session('message'))
-                <x-error-alert id="message" class="transition-error-messages">
-                    {{ session('message') }}
-                </x-error-alert>
-            @endif
+            </ul>
+        </x-error-alert>
+    @endif
+    @if (session('success'))
+        <x-success-alert id="message" class="transition-success-messages">
+            {{ session('success') }}
+        </x-success-alert>
+    @endif
+    @if (session('message'))
+        <x-error-alert id="message" class="transition-error-messages">
+            {{ session('message') }}
+        </x-error-alert>
+    @endif
     <x-create-card>
-        <form method="POST" action="">
+        <form method="POST" action="{{ url("/admin/devices/edit/".$deviceData->id) }}">
+            @method('PUT')
             @csrf
 
             <div class="content-column">
                 <!-- Name User -->
                 <div class="column-left">
                     <x-label for="Nom" :value="__('Nom del dispositiu')" />
-                    <x-input id="name" class="input-content" type="text" name="name" placeholder="s-02-01" required
-                        autofocus />
+                    <x-input id="name" class="input-content" type="text" name="name" placeholder="s-02-01"
+                        value='{{ $deviceData->label }}' required autofocus />
                 </div>
 
                 <!-- Email User -->
                 <div class="column-left">
                     <x-label for="Tipus" :value="__('tipus')" />
 
-                    <x-select class="block mt-4 w-full" name="type" id="zone">
-
-                        @foreach ($types as $item)
-                            <option value='{{ $item->id }}'>{{ $item->label }}</option>
+                    <x-select name="type" class="block mt-4 w-full">
+                        @foreach ($list['types'] as $item)
+                            <option {{ $deviceData->type_id == $item->id ? 'selected' : '' }}
+                                value='{{ $item->id }}'>{{ $item->label }}</option>
                         @endforeach
                     </x-select>
                 </div>
@@ -51,9 +52,10 @@
                 <div class="column-right">
                     <x-label for="Aula" :value="__('Aula')" />
 
-                    <x-select class="block mt-4 w-full" name="zone">
-                        @foreach ($zones as $item)
-                            <option value='{{ $item->id }}'>{{ $item->label }}</option>
+                    <x-select name="zone" class="block mt-4 w-full">
+                        @foreach ($list['zones'] as $item)
+                            <option {{ $deviceData->zone_id == $item->id ? 'selected' : '' }}
+                                value="{{ $item->id }} ">{{ $item->label }}</option>
                         @endforeach
                     </x-select>
                 </div>
@@ -67,7 +69,7 @@
                             d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z"
                             clip-rule="evenodd"></path>
                     </svg>
-                    {{ __('Crear Dispositiu') }}
+                    {{ __('Guardar Canvis') }}
                 </x-button>
             </div>
         </form>

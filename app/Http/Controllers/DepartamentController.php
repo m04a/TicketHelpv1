@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\DepartmentRequest;
 use App\Models\Department;
 use App\Models\User;
 use App\Models\Role;
@@ -115,9 +116,15 @@ class DepartamentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(DepartmentRequest $request, $id)
     {
-        //
+        $department = Department::find($id);
+
+        $department->name = $request->name;
+
+        if($department->save()){
+            return back()->with('success',"S'han actualitzat les dades de la incidencia.");
+        }
     }
 
     /**
@@ -128,6 +135,10 @@ class DepartamentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $department = Department::find($id);
+
+        $department->delete();
+
+        return redirect(route("admin.departments.index"));   
     }
 }

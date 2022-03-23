@@ -9,18 +9,12 @@
             <p class="font-bold mb-3 text-xl">Dades</p>
             <div class="content-column">
                 <!-- Subject -->
-                <div class="column-left">
+                <div class="column w-full">
                     <x-label for="title" :value="__('Assumpte')" />
 
                     <x-input id="title" class="input-content input-disabled" type="text" name="nom" value="{{ $breakdownData->title }}" required autofocus disabled/>
                 </div>
 
-                <!-- Status Breakdown -->
-                <div class="column-right">
-                    <x-label for="state" :value="__('Estat Incidència')" />
-
-                    <x-input id="state" class="input-content input-disabled" type="text" name="estat" value="{{ $breakdownData->status==1 ? 'Resolt' : 'Pendent'}}" required autofocus disabled/>
-                </div>
             </div>
             <div class="content-column">
                 <!-- User -->
@@ -35,11 +29,43 @@
                 <div class="mt-4 column-right">
                     <x-label for="rol" :value="__('Departament')" />
 
-                    <x-input id="   " class="input-content input-disabled" type="text" name="department" value="{{ $breakdownData->departament }}a" required autofocus disabled/>
+                    <x-input id="   " class="input-content input-disabled" type="text" name="department" value="{{ $breakdownData->departament }}" required autofocus disabled/>
 
                 </div>
             </div>
+            <div class="content-column">
+                <!-- User -->
+                <div class="mt-4 column-left">
 
+                    <x-label for="user" :value="__('Administrador')" />
+
+                    <x-input id="user" class="input-content input-disabled" type="text" name="assumpte" value="{{ $breakdownData->manager_username }}" required autofocus disabled/>
+
+                </div>
+                <!-- Department -->
+                <div class="mt-4 column-right">
+                    <x-label for="rol" :value="__('Zona')" />
+
+                    <x-input id="   " class="input-content input-disabled" type="text" name="department" value="{{ $breakdownData->zone_name }}a" required autofocus disabled/>
+
+                </div>
+            </div>
+            <div class="content-column">
+                <!-- User -->
+                <div class="mt-4 column-left">
+
+                    <x-label for="user" :value="__('Dispositiu')" />
+
+                    <x-input id="user" class="input-content input-disabled" type="text" name="assumpte" value="{{ $breakdownData->device_name }}" required autofocus disabled/>
+
+                </div>
+                <!-- Status Breakdown -->
+                <div class="mt-4 column-right">
+                    <x-label for="state" :value="__('Estat Incidència')" />
+
+                    <x-input id="state" class="input-content input-disabled" type="text" name="estat" value="{{ $breakdownData->status==1 ? 'Resolt' : 'Pendent'}}" required autofocus disabled/>
+                </div>
+            </div>
             <div>
                 <!-- Description -->
 
@@ -60,8 +86,10 @@
 
         <x-create-card>
             <p class="font-bold mb-3 text-xl">Nova Resposta</p>
-            <form action="">
-                <textarea class="textarea"></textarea>
+
+            <form method="POST" action="{{ url("/admin/messages/".$breakdownData->id) }}">
+                @csrf
+                <textarea id="content" name="content" class="textarea"></textarea>
                 <div class="button-create">
                     <x-button class="ml-3">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 rotate-180 rotate-90" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">

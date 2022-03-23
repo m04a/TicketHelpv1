@@ -6,14 +6,14 @@
             </h1>
         </x-slot>
 <x-create-card>
-        <form method="POST" action="">
+        <form method="POST" action="{{ url('admin/users/store') }}">
             @csrf
             <div class="content-column">
             <!-- Name User -->
             <div class="column-left">
                 <x-label for="usuari" :value="__('Nom Usuari')" />
 
-                <x-input id="nom" class="input-content" type="text" name="nom" required autofocus />
+                <x-input id="nom" class="input-content" type="text" name="username" required autofocus />
             </div>
 
             <!-- Email User -->

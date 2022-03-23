@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Question;
 use App\Models\User;
+use App\Models\Department;
 use App\Models\Role;
 
 class QuestionController extends Controller
@@ -80,6 +81,33 @@ class QuestionController extends Controller
     public function store(Request $request)
     {
         //
+        $idUser = $request->user()->id;
+        $userRole = User::where('id', '=', $idUser)->get(['role_id']);
+
+        $validated = $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'departament' => 'required',
+        ]);
+
+        $questions = new Question;
+
+        $questions->title = $validated['title'];
+        $questions->description = $validated['description'];
+        $questions->status = '0';
+        $questions->department_id = $validated['departament'];
+        $questions->user_id = $idUser;
+        $questions->manager_id = '1';
+
+
+        $questions->save();
+
+        if ($userRole[0]['role_id'] > 1){
+            return redirect('admin/questions/create');
+        } else {
+            return redirect('user/questions/create');
+        }
+        
     }
 
     /**
@@ -111,6 +139,13 @@ class QuestionController extends Controller
     public function edit($id)
     {
         //
+        $questions = Question::where('id', $id)->first();
+
+        $questions['department'] = $questions->department->name;
+
+        $departments = Department::all();
+
+        return view('user.questions.edit' , ['departments' => $departments])->with('questions',$questions);
     }
 
     /**
@@ -123,6 +158,15 @@ class QuestionController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $questions = Question::findOrFail($id);
+
+        $questions->title = $request->title;
+        $questions->description = $request->description;
+        $questions->department_id = $request->department;
+
+        if($questions->save()){
+            return back();
+        }
     }
 
     /**

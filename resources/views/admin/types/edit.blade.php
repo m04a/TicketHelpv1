@@ -6,14 +6,15 @@
         </h1>
     </x-slot>
     <x-create-card>
-        <form method="POST" action="">
+        <form method="POST" action="{{ url("/admin/types/edit/".$types->id) }}">
+            @method('PUT')
             @csrf
             <div class="content-column">
                 <!-- Name User -->
                 <div class="column-left">
                     <x-label for="etiqueta" :value="__('Etiqueta del tipus')" />
 
-                    <x-input id="label" class="input-content" type="text" name="label" placeholder="Switch" value="Monitor" required
+                    <x-input id="label" class="input-content" type="text" name="label" placeholder="Switch" value="{{$types->label}}" required
                         autofocus />
                 </div>
 
@@ -21,8 +22,7 @@
                 <div class="column-right">
                     <x-label for="Descipció" :value="__('Descripció')" />
 
-                    <x-input id="Description" class="input-content" type="text" name="Description"
-                        placeholder="És un aparell de xarxes que permet connectar equips en una xarxa." value="monitors LG pro max institut" required
+                    <x-input id="Description" class="input-content" type="text" name="description" value="{{$types->description}}" required
                         autofocus />
                 </div>
             </div>
