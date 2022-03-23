@@ -26,7 +26,9 @@ class BreakdownController extends Controller
 
         $userRole = User::where('id', '=', $idUser)->get(['role_id']);
 
-        $breakdown['breakdownOn'] = Breakdown::where('status', 1)
+
+
+        $breakdown['unassigned'] = Breakdown::where('status', 1)
             ->paginate(10)
             ->through(fn ($item) => [
                 "id" => $item->id,
@@ -36,7 +38,7 @@ class BreakdownController extends Controller
                 "department" => $item->department->name,
                 "manager" => $item->manager->username
             ]);
-        $breakdown['breakdownOff'] = Breakdown::where('status', 0)
+        $breakdown['assigned'] = Breakdown::where('status', 2)
             ->paginate(10)
             ->through(fn ($item) => [
                 "id" => $item->id,
@@ -47,12 +49,23 @@ class BreakdownController extends Controller
                 "manager" => $item->manager->username
             ]);
 
+        $breakdown['done'] = Breakdown::where('status', 3)
+                    ->paginate(10)
+                    ->through(fn ($item) => [
+                        "id" => $item->id,
+                        "title" => $item->title,
+                        "status" => $item->status,
+                        "username" => $item->user->username,
+                        "department" => $item->department->name,
+                        "manager" => $item->manager->username
+                    ]);
+
         if ($userRole[0]['role_id'] > 1){
             return view('admin.breakdowns.index',$breakdown);
         }else{
             return view('user.breakdowns.list',$breakdown);
         }
-        //dd($breakdown);
+
     }
 
     public function filter(){
