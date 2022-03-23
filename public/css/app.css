@@ -1313,6 +1313,16 @@ select {
   color: rgb(67 56 202 / var(--tw-text-opacity));
 }
 
+.text-orange-600 {
+  --tw-text-opacity: 1;
+  color: rgb(234 88 12 / var(--tw-text-opacity));
+}
+
+.text-red-400 {
+  --tw-text-opacity: 1;
+  color: rgb(248 113 113 / var(--tw-text-opacity));
+}
+
 .underline {
   -webkit-text-decoration-line: underline;
           text-decoration-line: underline;
@@ -3128,6 +3138,15 @@ td.image-cell .image {
 }
 
 .transition-error-messages-users {
+  margin: 1.5rem;
+  margin-right: 16.3%;
+  margin-left: 16.3%;
+  transition-property: all;
+  transition-duration: 500ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.transition-success-messages-users {
   margin: 1.5rem;
   margin-right: 16.3%;
   margin-left: 16.3%;
