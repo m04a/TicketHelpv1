@@ -7,8 +7,8 @@
         </x-slot>
 <x-create-card>
         <form method="POST" action="{{ url('/admin/zones/edit/' . $zone['id']) }}">
-            @method('PUT') 
-            @csrf
+        @method('PUT') 
+        @csrf
             @if(session('success'))
                 <x-success-alert class="mb-2">
                     {{ session('success') }}
@@ -31,7 +31,7 @@
                 <div class="column-left">
                     <x-label for="usuari" :value="__('Nom')" />
 
-                    <x-input id="nom" class="input-content" type="text" name="nom" value="{{ $zone->label }}" required autofocus />
+                    <x-input id="nom" class="input-content" type="text" name="label" value="{{ $zone->label }}" required autofocus />
                 </div>
             </div>
             <div class="content-column">
@@ -40,7 +40,7 @@
                     <div class="text-black font-bold rounded-t py-2">
                         Descripció de la zona
                     </div>
-                    <textarea class="textarea">{{ $zone->description }}</textarea>
+                    <textarea class="textarea" name="description">{{ $zone->description }}</textarea>
                 </div>
                 </div>
             </div>
