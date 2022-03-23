@@ -79,6 +79,20 @@
                         @endforeach
                         </tbody>
                     </table>
+                    <x-pagination>
+                        @for($i = 0; $i < $questions->lastPage(); $i++)
+                            <div class="buttons">
+                                <a class="pagination-next m-2" href="{{ url('/admin/questions?page=' . $i+1) }}" >
+                                    @if($questions->currentPage() == $i+1) 
+                                    <button type="button" class="button active">{{ $i+1 }}</button>
+                                    @else
+                                    <button type="button" class="button">{{ $i+1 }}</button>
+                                    @endif
+                                </a>
+                            </div>
+                        @endfor
+                        <small class="flex w-full justify-end mr-0.5">Pàgina {{ $questions->currentPage() }} de {{ $questions->lastPage() }} </small>
+                    </x-pagination>
                 </div>
             </div>
         </section>
@@ -152,6 +166,20 @@
                         @endforeach
                         </tbody>
                     </table>
+                    <x-pagination>
+                        @for($i = 0; $i < $breakdownOn->lastPage(); $i++)
+                            <div class="buttons">
+                                <a class="pagination-next m-2" href="{{ url('/admin/breakdowns?page=' . $i+1) }}" >
+                                    @if($breakdownOn->currentPage() == $i+1) 
+                                    <button type="button" class="button active">{{ $i+1 }}</button>
+                                    @else
+                                    <button type="button" class="button">{{ $i+1 }}</button>
+                                    @endif
+                                </a>
+                            </div>
+                        @endfor
+                        <small class="flex w-full justify-end mr-0.5">Pàgina {{ $breakdownOn->currentPage() }} de {{ $breakdownOn->lastPage() }} </small>
+                    </x-pagination>
                 </div>
             </div>
         </section>
