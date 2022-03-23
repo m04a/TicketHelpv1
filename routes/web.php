@@ -3,6 +3,7 @@
 use App\Http\Controllers\BreakdownController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SuggestionController;
+use App\Http\Controllers\HomePage;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DeviceController;
 use App\Http\Controllers\QuestionController;
@@ -22,9 +23,7 @@ use App\Http\Controllers\ZoneController;
 |
 */
 
-Route::get('/', function () {
-    return view('auth/login');
-});
+Route::get('/', [HomePage::class, 'index'])->name('homepage.index');
 
 
 Route::middleware(['auth'])->group(function () {
