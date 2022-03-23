@@ -92,11 +92,14 @@ class SuggestionController extends Controller
 
         }else{
 
-            $create['user_id'] = $idUser;
+            $suggestion = new Suggestion();
 
-            Suggestion::create($create);
+            $suggestion->title = $request->title;
+            $suggestion->department_id = $request->department_id;
+            $suggestion->description = $request->description;
+            $suggestion->user_id = $idUser;
 
-            if($create){
+            if($suggestion->save()){
                 return redirect('/user/suggestions/create')->with('success', 'el suggeriment a sigut creat i enviat!');;
             }else{
                 return redirect('/user/suggestions/create')->with('message', "el suggeriment no s'''ha pogut crear");
@@ -156,19 +159,34 @@ class SuggestionController extends Controller
      */
     public function update(SuggestionRequest $request, $id)
     {
-        $department = Department::all();
 
         $idUser = Auth::user()->id;
 
-        $suggestion = Suggestion::find($id);
-        /*Records to update with the request*/
-        $suggestion->title = $request->title;
-        $suggestion->department_id = $request->department_id;
-        $suggestion->description = $request->description;
-        $suggestion->user_id = $idUser;
+        $userRole = User::where('id', '=', $idUser)->get(['role_id']);
+        
+        if($userRole[0]['role_id'] > 1){
+            $suggestion = Suggestion::find($id);
+            /*Records to update with the request*/
+            $suggestion->title = $request->title;
+            $suggestion->department_id = $request->department_id;
+            $suggestion->description = $request->description;
+            $suggestion->user_id = $idUser;
+    
+            if($suggestion->save()){
+                return back()->with('success', "S'han actualitzat les dades de la incidencia.");
+            }
 
-        if($suggestion->save()){
-            return back()->with('success', "S'han actualitzat les dades de la incidencia.");
+        }else{
+            $suggestion = Suggestion::find($id);
+            /*Records to update with the request*/
+            $suggestion->title = $request->title;
+            $suggestion->department_id = $request->department_id;
+            $suggestion->description = $request->description;
+            $suggestion->user_id = $idUser;
+    
+            if($suggestion->save()){
+                return back()->with('success', "S'han actualitzat les dades de la incidencia.");
+            }
         }
     }
 

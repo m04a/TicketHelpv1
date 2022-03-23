@@ -14,9 +14,9 @@ class SuggestionRequest extends FormRequest
      */
     public function authorize()
     {
-        if(Auth::user()->role_id > 1){
+        
             return true;
-        }
+        
     }
 
     /**

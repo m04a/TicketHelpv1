@@ -187,7 +187,8 @@ Route::middleware(['auth'])->group(function () {
 
 
     Route::delete('/user/suggestions/list/{id}', [SuggestionController::class, 'destroy'])->name('user.suggestions.delete');
-
+    
+    Route::put('/user/suggestions/update/{id}', [SuggestionController::class, 'update'])->name('user.suggestions.update');
 
 });
 

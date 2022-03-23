@@ -6,7 +6,7 @@
     </x-slot>
     <x-slot name="slot">
         @if(session('success'))
-                    <x-success-alert id="message" class="transition-success-messages">
+                    <x-success-alert id="message" class="transition-success-messages-users">
                         {{ session('success') }}
                     </x-success-alert>
         @endif
