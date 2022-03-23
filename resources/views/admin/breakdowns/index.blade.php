@@ -38,16 +38,18 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach ($breakdownOff as $item)
+                        @foreach ($unassigned as $item)
                             <tr>
                                 <td data-label="Nom">#</td>
                                 <td data-label="Nom">{{ $item['title']  }}</td>
                                 <td data-label="Nom">
-                                    @if($item['status'] ==0)
-                                        <span class="border text-center py-2 px-2 text-orange-400 bg-orange-100">No assignat</span>
+                                    @if($item['status'] ==1)
+                                        <span class="border text-center py-2 px-2 text-red-400 bg-red-100">No assignat</span>
+                                    @elseif($item['status'] ==2)
+                                        <span class="border text-center py-2 px-2 text-orange-600 bg-orange-100">Assignat</span>
                                     @else
-                                        <span class="border text-center py-2 px-2 text-green-600 bg-green-100">Assignat</span>
-                                    @endif
+                                    <span class="border text-center py-2 px-2 text-green-600 bg-green-100">Finalitzat</span>
+                                     @endif
                                 </td>
                                 <td data-label="Nom">{{$item['username'] }}</td>
                                 <td data-label="Nom">{{$item['department'] }}</td>
@@ -80,10 +82,10 @@
                         </tbody>
                     </table>
                     <x-pagination>
-                        @for($i = 0; $i < $breakdownOn->lastPage(); $i++)
+                        @for($i = 0; $i < $unassigned->lastPage(); $i++)
                             <div class="buttons">
                                 <a class="pagination-next m-2" href="{{ url('/admin/breakdowns?page=' . $i+1) }}" >
-                                    @if($breakdownOn->currentPage() == $i+1) 
+                                    @if($unassigned->currentPage() == $i+1) 
                                     <button type="button" class="button active">{{ $i+1 }}</button>
                                     @else
                                     <button type="button" class="button">{{ $i+1 }}</button>
@@ -91,7 +93,7 @@
                                 </a>
                             </div>
                         @endfor
-                        <small class="flex w-full justify-end mr-0.5">Pàgina {{ $breakdownOn->currentPage() }} de {{ $breakdownOn->lastPage() }} </small>
+                        <small class="flex w-full justify-end mr-0.5">Pàgina {{ $unassigned->currentPage() }} de {{ $unassigned->lastPage() }} </small>
                     </x-pagination>
                 </div>
             </div>
@@ -103,14 +105,6 @@
                     <p class="card-header-title">
                         Assignades
                     </p>
-                    <a href="{{ url("/admin/breakdowns/create") }}" class="button-table-add">
-                        <div class="button-table-add-separation">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                            </svg>
-                            <span>Afegir Incidència</span>
-                        </div>
-                    </a>
                 </header>
                 <div class="card-content">
                     <table>
@@ -125,16 +119,18 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach ($breakdownOn as $item)
+                        @foreach ($assigned as $item)
                             <tr>
                                 <td data-label="Nom">#</td>
                                 <td data-label="Nom">{{ $item['title']  }}</td>
                                 <td data-label="Nom">
-                                    @if($item['status'] ==0)
-                                        <span class="border text-center py-2 px-2 text-orange-400 bg-orange-100">No assignat</span>
+                                    @if($item['status'] ==1)
+                                        <span class="border text-center py-2 px-2 text-red-400 bg-red-100">No assignat</span>
+                                    @elseif($item['status'] ==2)
+                                        <span class="border text-center py-2 px-2 text-orange-600 bg-orange-100">Assignat</span>
                                     @else
-                                        <span class="border text-center py-2 px-2 text-green-600 bg-green-100">Assignat</span>
-                                    @endif
+                                    <span class="border text-center py-2 px-2 text-green-600 bg-green-100">Finalitzat</span>
+                                     @endif
                                 </td>
                                 <td data-label="Nom">{{$item['username'] }}</td>
                                 <td data-label="Nom">{{$item['department'] }}</td>
@@ -167,10 +163,10 @@
                         </tbody>
                     </table>
                     <x-pagination>
-                        @for($i = 0; $i < $breakdownOn->lastPage(); $i++)
+                        @for($i = 0; $i < $assigned->lastPage(); $i++)
                             <div class="buttons">
                                 <a class="pagination-next m-2" href="{{ url('/admin/breakdowns?page=' . $i+1) }}" >
-                                    @if($breakdownOn->currentPage() == $i+1) 
+                                    @if($assigned->currentPage() == $i+1) 
                                     <button type="button" class="button active">{{ $i+1 }}</button>
                                     @else
                                     <button type="button" class="button">{{ $i+1 }}</button>
@@ -178,7 +174,7 @@
                                 </a>
                             </div>
                         @endfor
-                        <small class="flex w-full justify-end mr-0.5">Pàgina {{ $breakdownOn->currentPage() }} de {{ $breakdownOn->lastPage() }} </small>
+                        <small class="flex w-full justify-end mr-0.5">Pàgina {{ $assigned->currentPage() }} de {{ $assigned->lastPage() }} </small>
                     </x-pagination>
                 </div>
             </div>
@@ -190,14 +186,6 @@
                     <p class="card-header-title">
                         Acabades
                     </p>
-                    <a href="{{ url("/admin/breakdowns/create") }}" class="button-table-add">
-                        <div class="button-table-add-separation">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                            </svg>
-                            <span>Afegir Incidència</span>
-                        </div>
-                    </a>
                 </header>
                 <div class="card-content">
                     <table>
@@ -212,16 +200,18 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach ($breakdownOn as $item)
+                        @foreach ($done as $item)
                             <tr>
                                 <td data-label="Nom">#</td>
                                 <td data-label="Nom">{{ $item['title']  }}</td>
                                 <td data-label="Nom">
-                                    @if($item['status'] ==0)
-                                        <span class="border text-center py-2 px-2 text-orange-400 bg-orange-100">No assignat</span>
-                                    @else
-                                        <span class="border text-center py-2 px-2 text-green-600 bg-green-100">Assignat</span>
-                                    @endif
+                                    @if($item['status'] ==1)
+                                    <span class="border text-center py-2 px-2 text-red-400 bg-red-100">No assignat</span>
+                                @elseif($item['status'] ==2)
+                                    <span class="border text-center py-2 px-2 text-orange-600 bg-orange-100">Assignat</span>
+                                @else
+                                <span class="border text-center py-2 px-2 text-green-600 bg-green-100">Finalitzat</span>
+                                 @endif
                                 </td>
                                 <td data-label="Nom">{{$item['username'] }}</td>
                                 <td data-label="Nom">{{$item['department'] }}</td>
@@ -254,10 +244,10 @@
                         </tbody>
                     </table>
                     <x-pagination>
-                        @for($i = 0; $i < $breakdownOn->lastPage(); $i++)
+                        @for($i = 0; $i < $done->lastPage(); $i++)
                             <div class="buttons">
                                 <a class="pagination-next m-2" href="{{ url('/admin/breakdowns?page=' . $i+1) }}" >
-                                    @if($breakdownOn->currentPage() == $i+1) 
+                                    @if($done->currentPage() == $i+1) 
                                     <button type="button" class="button active">{{ $i+1 }}</button>
                                     @else
                                     <button type="button" class="button">{{ $i+1 }}</button>
@@ -265,7 +255,7 @@
                                 </a>
                             </div>
                         @endfor
-                        <small class="flex w-full justify-end mr-0.5">Pàgina {{ $breakdownOn->currentPage() }} de {{ $breakdownOn->lastPage() }} </small>
+                        <small class="flex w-full justify-end mr-0.5">Pàgina {{ $done->currentPage() }} de {{ $done->lastPage() }} </small>
                     </x-pagination>
                 </div>
             </div>
