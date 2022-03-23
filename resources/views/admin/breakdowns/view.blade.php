@@ -86,8 +86,10 @@
 
         <x-create-card>
             <p class="font-bold mb-3 text-xl">Nova Resposta</p>
-            <form action="">
-                <textarea class="textarea"></textarea>
+
+            <form method="POST" action="{{ url("/admin/messages/".$breakdownData->id) }}">
+                @csrf
+                <textarea id="content" name="content" class="textarea"></textarea>
                 <div class="button-create">
                     <x-button class="ml-3">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 rotate-180 rotate-90" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">

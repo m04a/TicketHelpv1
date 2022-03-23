@@ -1,7 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Http\Requests\MessageRequest;
+use App\Models\Message;
+use App\Models\Breakdown;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class MessageController extends Controller
@@ -32,9 +35,18 @@ class MessageController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(MessageRequest $request, $id)
     {
-        //
+        $message = new Message;
+        $message->content=$request->content;
+        $message->user_id=Auth::user()->id;
+        $message->breakdown_id=$id;
+        $message->question_id=NULL;
+        if ($message->save()) {
+            return back()->with('success', "El missatge ha sigut enviat");
+        } else {
+            return back()->with('message', "Hi ha hagut algun error");
+        }
     }
 
     /**

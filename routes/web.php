@@ -7,6 +7,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\DeviceController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\DepartamentController;
+use App\Http\Controllers\MessageController;
 use App\Http\Controllers\TypeController;
 use App\Http\Controllers\ZoneController;
 
@@ -151,10 +152,10 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/admin/departments/edit/{id}', [DepartamentController::class, "edit"])
             ->name('admin.departments.edit');
 
-        Route::put('/admin/departments/edit/{id}',[DepartamentController::class,"update"])
-        ->name('admin.departments.update');
-        
-        Route::delete('/admin/departments/destroy/{id}' , [DepartamentController::class, "destroy"])
+        Route::put('/admin/departments/edit/{id}', [DepartamentController::class, "update"])
+            ->name('admin.departments.update');
+
+        Route::delete('/admin/departments/destroy/{id}', [DepartamentController::class, "destroy"])
             ->name('admin.departments.delete');
 
         ///////////////////////////////////////////////////
@@ -179,7 +180,19 @@ Route::middleware(['auth'])->group(function () {
 
         Route::post('/admin/types/create' , [TypeController::class, "store"])->name('admin.types.store');
 
-        Route::get('/admin/types/edit/{id}', [TypeController::class, 'edit'])->name('admin.types.edit');
+        Route::get('/admin/types/edit', function () {
+            return view('admin/types/edit');
+        })->name('user.types.edit');
+
+        ///////////////////////////////////////////////////
+
+        Route::post('/admin/messages/{id}', [MessageController::class, "store"])
+            ->name('admin.messages.store');
+
+        //Route::delete('/admin/messages/{id}',[MessageController::class,"destroy"])
+        //->name('admin.messages.delete');
+
+      Route::get('/admin/types/edit/{id}', [TypeController::class, 'edit'])->name('admin.types.edit');
 
         Route::put('/admin/types/edit/{id}', [TypeController::class, 'update'])->name('admin.types.update');
 
@@ -230,7 +243,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/user/suggestions/list', [SuggestionController::class, 'index'])->name('user.suggestions.list');
 
     Route::get('/user/suggestions/edit/{id}', [SuggestionController::class, 'edit'])->name('user.suggestions.edit');
-
 
     Route::delete('/user/suggestions/list/{id}', [SuggestionController::class, 'destroy'])->name('user.suggestions.delete');
 });
