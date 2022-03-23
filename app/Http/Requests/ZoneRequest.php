@@ -3,7 +3,7 @@
 namespace App\Http\Requests;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Http\FormRequest;
-class DepartmentRequest extends FormRequest
+class ZoneRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,12 +25,12 @@ class DepartmentRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', 'string'],
+            'label' => ['required', 'string'],
         ];
     }
     public function messages(){
         return [
-        'name.required' => 'El deparatament és invalid, revisa les dades introduïdes',
+        'label.required' => 'La zona és invalida, revisa les dades introduïdes',
         ];
     }
 }

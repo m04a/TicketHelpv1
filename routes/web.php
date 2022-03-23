@@ -176,6 +176,8 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/admin/zones/destroy/{id}', [ZoneController::class, "destroy"])
             ->name('admin.zones.delete');
 
+        Route::put('/admin/zones/edit/{id}', [ZoneController::class, "update"])
+            ->name('admin.zones.update');
 
         ///////////////////////////////////////////////////
 

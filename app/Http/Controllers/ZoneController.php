@@ -118,9 +118,16 @@ class ZoneController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ZoneRequest $request, $id)
     {
-        //
+        $zone = Zone::find($id);
+
+        $zone->label = $request->label;
+        $zone->description = $request->description;
+
+        if($zone->save()){
+            return back()->with('success',"S'han actualitzat les dades de la zona.");
+        }
     }
 
     /**
