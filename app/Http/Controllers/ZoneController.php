@@ -131,6 +131,14 @@ class ZoneController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $zone = Zone::find($id);
+
+        $zone->delete();
+
+        if($zone->delete()){
+            return back()->with('success',"S'ha esborrat la seva zona satisfactoriament");
+        }
+
+        return redirect(route("admin.zones.index")); 
     }
 }
