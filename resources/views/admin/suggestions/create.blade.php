@@ -5,6 +5,11 @@
         </h1>
     </x-slot>
     <x-slot name="slot">
+        @if(session('success'))
+            <x-success-alert id="message" class="transition-success-messages">
+                {{ session('success') }}
+            </x-success-alert>
+         @endif
 
         @if ($errors->any())
             <x-error-alert id="message" class="transition-error-messages">

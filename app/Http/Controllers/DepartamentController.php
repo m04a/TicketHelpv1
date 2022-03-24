@@ -123,7 +123,7 @@ class DepartamentController extends Controller
         $department->name = $request->name;
 
         if($department->save()){
-            return back()->with('success',"S'han actualitzat les dades de la incidencia.");
+            return back()->with('success',"S'han actualitzat les dades del departament.");
         }
     }
 

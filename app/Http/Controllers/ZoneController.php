@@ -7,6 +7,8 @@ use App\Http\Requests\ZoneRequest;
 use App\Models\Zone;
 use App\Models\User;
 use App\Models\Role;
+use Illuminate\Support\Facades\Auth;
+
 
 class ZoneController extends Controller
 {
@@ -50,7 +52,7 @@ class ZoneController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin/zones/create');
     }
 
     /**
@@ -61,7 +63,14 @@ class ZoneController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $zone = new Zone();
+
+        $zone->label = $request->label;
+        $zone->description = $request->description;
+
+        if($zone->save()){
+            return back()->with('success',"S'han creat la seva zona satisfactoriament");
+        }
     }
 
     /**
@@ -72,7 +81,9 @@ class ZoneController extends Controller
      */
     public function show($id)
     {
-        //
+        $zone = Zone::findOrFail($id);
+
+        return view('admin.zones.view', ['zones' => $zone]);
     }
 
     /**
@@ -81,9 +92,23 @@ class ZoneController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
-        //
+        $idUser = $request->user()->id;
+
+        $userRole = User::where('id', '=', $idUser)->get(['role_id']);
+
+        if($userRole[0]['role_id'] > 1){
+            $zone = Zone::findOrFail($id);
+
+            return view('admin.zones.edit', ['zone' => $zone]);
+
+        }else{
+
+            $zone = Zone::findOrFail($id);
+
+            return view('user.zones.edit', ['zone' => $zone]);
+        }
     }
 
     /**
@@ -93,9 +118,16 @@ class ZoneController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ZoneRequest $request, $id)
     {
-        //
+        $zone = Zone::find($id);
+
+        $zone->label = $request->label;
+        $zone->description = $request->description;
+
+        if($zone->save()){
+            return back()->with('success',"S'han actualitzat les dades de la zona.");
+        }
     }
 
     /**
@@ -106,6 +138,14 @@ class ZoneController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $zone = Zone::find($id);
+
+        $zone->delete();
+
+        if($zone->delete()){
+            return back()->with('success',"S'ha esborrat la seva zona satisfactoriament");
+        }
+
+        return redirect(route("admin.zones.index")); 
     }
 }
