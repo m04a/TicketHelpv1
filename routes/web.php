@@ -28,7 +28,7 @@ use Laravel\Socialite\Facades\Socialite;
 
 Route::get('/auth/github/redirect', function () {
     return Socialite::driver('github')->redirect();
-});
+})->name('github');
 
 Route::get('/auth/github/callback', function () {
     $user = Socialite::driver('github')->user();
@@ -37,7 +37,7 @@ Route::get('/auth/github/callback', function () {
 });
 Route::get('/auth/google/redirect', function () {
     return Socialite::driver('google')->redirect();
-});
+})->name('google');
 
 Route::get('/auth/google/callback', function () {
     $user = Socialite::driver('google')->user();

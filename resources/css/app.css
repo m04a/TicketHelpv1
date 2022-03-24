@@ -115,7 +115,7 @@ body {
 }
 
 .menu-list li.active > a {
-    @apply bg-gray-300;
+    @apply bg-red-300;
 }
 .menu-list li ul {
     @apply hidden;
@@ -126,7 +126,7 @@ body {
 }
 
 .menu-list li.active ul {
-    @apply block bg-gray-600;
+    @apply block bg-red-600;
 }
 .button {
     @apply inline-flex bg-white text-black border-gray-50 border cursor-pointer justify-center px-4 py-2 text-center
