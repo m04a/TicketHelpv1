@@ -35,6 +35,15 @@ Route::get('/auth/github/callback', function () {
     dd($user);
     // $user->token
 });
+Route::get('/auth/google/redirect', function () {
+    return Socialite::driver('google')->redirect();
+});
+
+Route::get('/auth/google/callback', function () {
+    $user = Socialite::driver('google')->user();
+    dd($user);
+    // $user->token
+});
 
 Route::get('/', [HomePage::class, 'index'])->name('homepage.index');
 
