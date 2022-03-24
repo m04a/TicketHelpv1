@@ -5,31 +5,29 @@
                 Editar Departament
             </h1>
         </x-slot>
-<x-create-card>
-        <form method="POST" action="{{ url('/admin/departments/edit/' . $department['id']) }}">
-            @method('PUT') 
-            @csrf
-            @if(session('success'))
-                <x-success-alert class="mb-2">
+        @if(session('success'))
+                <x-success-alert id="message" class="m-6">
                     {{ session('success') }}
                 </x-success-alert>
             @endif
             @if ($errors->any())
-
-                        <x-error-alert class="mb-2">
-                            <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                            </ul>
-                        </x-error-alert>
-
+                <x-error-alert id="message" class="m-6">
+                    <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                    </ul>
+                </x-error-alert>
             @endif
+<x-create-card>
+        <form method="POST" action="{{ url('/admin/departments/edit/' . $department['id']) }}">
+            @method('PUT') 
+            @csrf
             <!-- Name Department -->
             <div class="column-left">
                 <x-label for="departament" :value="__('Nom Departament')" />
 
-                <x-input id="departament" class="input-content" type="text" name="name" placeholder="{{$department->name}}" value="" autofocus />
+                <x-input id="departament" class="input-content" type="text" name="name" value="{{$department->name}}" autofocus />
             </div>
             <div class="button-create">
                 <x-button class="ml-3">
