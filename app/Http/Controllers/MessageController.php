@@ -91,6 +91,12 @@ class MessageController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $Message = Message::findOrFail($id);
+
+        if ($Message->delete()) {
+            return back()->with('message', 'Missatge esborrat!');
+        } else {
+            return back()->with('message', 'Hi hagut un error al esborrar el missatge!');
+        }
     }
 }
