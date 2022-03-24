@@ -26,6 +26,8 @@ class MessageRequest extends FormRequest
     {
         return [
             'content' => ['required', 'string'],
+            'breakdown_id' => ['nullable','integer'],
+            'question_id' => ['nullable','integer']
         ];
     }
     public function messages(){

@@ -107,7 +107,7 @@ class QuestionController extends Controller
         } else {
             return redirect('user/questions/create');
         }
-        
+
     }
 
     /**
@@ -121,10 +121,12 @@ class QuestionController extends Controller
         //
         $questions = Question::findOrFail($id);
 
+        $questions['id'] = $questions->id;
+
         $questions['username'] = $questions->user->username;
-        
+
         $questions['department'] = $questions->department->name;
-        
+
         $questions['manager'] = $questions->manager->username;
 
         return view('admin.questions.view', ['questions' => $questions]);
@@ -179,9 +181,9 @@ class QuestionController extends Controller
     {
         //
         $question = Question::findOrFail($id);
-        
+
         $result = $question->delete();
-        
+
         if ($result) {
             return redirect('admin/questions')->with('message', 'Pregunta esborrada');
         }

@@ -35,13 +35,13 @@ class MessageController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(MessageRequest $request, $id)
+    public function store(MessageRequest $request)
     {
         $message = new Message;
         $message->content=$request->content;
         $message->user_id=Auth::user()->id;
-        $message->breakdown_id=$id;
-        $message->question_id=NULL;
+        $message->breakdown_id=$request->breakdown_id;
+        $message->question_id=$request->question_id;
         if ($message->save()) {
             return back()->with('success', "El missatge ha sigut enviat");
         } else {
@@ -91,6 +91,12 @@ class MessageController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $Message = Message::findOrFail($id);
+
+        if ($Message->delete()) {
+            return back()->with('message', 'Missatge esborrat!');
+        } else {
+            return back()->with('message', 'Hi hagut un error al esborrar el missatge!');
+        }
     }
 }
