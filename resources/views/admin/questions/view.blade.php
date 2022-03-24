@@ -27,7 +27,7 @@
                 <!-- Department -->
                 <div class="mt-4 column-right">
                     <x-label for="rol" :value="__('Departament')" />
-                    
+
                     <x-input id="department" class="input-content input-disabled" type="text" name="department" value="{{$questions->department}}" required autofocus disabled/>
 
                 </div>
@@ -53,8 +53,10 @@
 
         <x-create-card>
             <p class="font-bold mb-3 text-xl">Nova Resposta</p>
-            <form action="">
-                <textarea class="textarea"></textarea>
+            <form method="POST" action="{{ url("/admin/messages/".$questions->id) }}">
+                @csrf
+                <textarea name="content" class="textarea"></textarea>
+                <input type="hidden" name="question_id" value="{{ $questions->id }}"/>
                 <div class="button-create">
                     <x-button class="ml-3">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 rotate-180 rotate-90" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
