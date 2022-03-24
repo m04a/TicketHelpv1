@@ -44,6 +44,9 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('/admin/users/edit/{id}', [UserController::class, 'edit'])->name('admin.users.edit');
 
+        Route::get('/admin/profile/', [UserController::class, 'show'])->name('admin.profile.index');
+
+
 
         Route::put('/admin/users/edit/{id}', [UserController::class, 'update'])->name('admin.devices.update');
 
@@ -257,6 +260,11 @@ Route::middleware(['auth'])->group(function () {
     
     Route::put('/user/suggestions/update/{id}', [SuggestionController::class, 'update'])->name('user.suggestions.update');
 
+
+
+    ///////////////////////////////////////////////////
+    Route::get('/user/profile/', [UserController::class, 'show'])->name('user.profile.index');
+    
 });
 
 require __DIR__ . '/auth.php';
