@@ -36,6 +36,7 @@ Route::get('/auth/github/callback', function () {
     // $user->token
 });
 
+
 Route::get('/', [HomePage::class, 'index'])->name('homepage.index');
 
 
