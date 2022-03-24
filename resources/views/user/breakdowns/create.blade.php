@@ -4,34 +4,32 @@
             Crear Incidència
         </h1>
     </x-slot>
-    @if(session('success'))
-                <x-success-alert class="m-6">
+        @if(session('success'))
+                <x-success-alert id="message" class="transition-success-messages-users">
                     {{ session('success') }}
                 </x-success-alert>
-            @endif
-            @if ($errors->any())
-
-                <x-error-alert class="m-6">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </x-error-alert>
-
-            @endif
-    <x-create-card>
-        <form method="POST" action="{{ url('/admin/breakdowns/create') }}">
+        @endif
+        @if ($errors->any())
+            <x-error-alert id="message" class="transition-error-messages-users">
+                <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+                </ul>
+            </x-error-alert>
+        @endif
+    <x-create-card-user>
+        <form method="POST" action="{{ url('/user/breakdowns/create') }}">
             @csrf
-            <div class="content-column">
-                <!-- Name User -->
+            <!-- <div class="content-column">
+                Name User
                 <div class="column-left">
                     <x-label for="usuari" :value="__('Nom Usuari')" />
 
                     <x-input id="nom" class="input-content input-disabled" type="text" name="nom" value="{{ $userLoggedIn }}" autofocus  disabled/>
                 </div>
 
-                <!-- Status Breakdown -->
+                Status Breakdown
                 <div class="column-right">
                     <x-label for="rol" :value="__('Estat Incidència')" />
 
@@ -40,7 +38,7 @@
                         <option value="1">En procés</option>
                     </x-select>
                 </div>
-            </div>
+            </div> -->
             <div class="content-column">
                 <!-- Subject -->
                 <div class="mt-4 column-left">
@@ -105,7 +103,7 @@
                         {{ __('Llistat') }}
                     </x-button>
                 </a>
-                <x-button class="ml-3">
+                <x-button type="submit" class="ml-3">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
                     </svg>
@@ -113,5 +111,5 @@
                 </x-button>
             </div>
         </form>
-    </x-create-card>
+    </x-create-card-user>
 </x-user-layout>

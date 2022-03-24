@@ -37,8 +37,8 @@
                     <x-label for="rol" :value="__('Estat Incidència')" />
 
                     <x-select name="status" class="block mt-4 w-full">
-                        <option value="0">Sense Assignar</option>
-                        <option value="1">En procés</option>
+                        <option value="1">Sense Assignar</option>
+                        <option value="2">En procés</option>
                     </x-select>
                 </div>
             </div>

@@ -7,7 +7,7 @@
     <x-slot name="slot">
 
 
-        <section class="section main-section">
+        <section class="section main-section-user">
         <div class="card has-table">
             <header class="card-header">
                 <p class="card-header-title">

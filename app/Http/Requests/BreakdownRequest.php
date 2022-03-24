@@ -14,9 +14,7 @@ class BreakdownRequest extends FormRequest
      */
     public function authorize()
     {
-        if(Auth::user()->role_id > 1){
             return true;
-        }
     }
 
     /**
@@ -29,7 +27,7 @@ class BreakdownRequest extends FormRequest
         return [
             'title' => ['required', 'string'],
             'description' => ['required', 'string'],
-            'status' => ['required', 'boolean'],
+            'status' => ['nullable', 'numeric'],
             'department_id' => ['required', 'numeric'],
             'manager_id' => ['required', 'numeric'],
             'zone_id' => ['required', 'numeric'],
@@ -41,7 +39,6 @@ class BreakdownRequest extends FormRequest
         return [
             'title.required' => 'El assumpte és invalid, revisa les dades introduïdes',
             'description.required' => 'La descripció és invalida, revisa les dades introduïdes',
-            'status.required' => 'El estat és invalid, revisa les dades introduïdes',
             'department_id.required' => 'El departament és invalid, revisa les dades introduïdes',
             'manager_id.required' => 'El manager és invalid, revisa les dades introduïdes',
             'zone_id.required' => 'La zone és invalida, revisa les dades introduïdes',

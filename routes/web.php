@@ -221,6 +221,16 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/user/breakdowns/create',
         [BreakdownController::class,"store"]);
 
+    Route::delete(
+        '/user/breakdowns/{id}',
+        [BreakdownController::class, "destroy"]
+    );
+
+    Route::get(
+        '/user/breakdowns/view/{id}',
+        [BreakdownController::class, "show"]
+    );
+
     Route::get('/user/breakdowns/list', [BreakdownController::class, "index"])
         ->name('user.breakdowns.list');
 
