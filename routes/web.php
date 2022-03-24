@@ -8,6 +8,7 @@ use App\Http\Controllers\DeviceController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\DepartamentController;
 use App\Http\Controllers\TypeController;
+use App\Http\Controllers\ZoneController;
 
 /*
 |--------------------------------------------------------------------------
@@ -152,15 +153,24 @@ Route::middleware(['auth'])->group(function () {
             ->name('admin.departments.delete');
 
         ///////////////////////////////////////////////////
+
+
+         Route::get('/admin/zones', [ZoneController::class, 'index'])
+         ->name('admin.zones.index');
+
+        ///////////////////////////////////////////////////
+
         Route::get('/admin/types' , [TypeController::class, "index"])->name('admin.types.index');
+        
+        Route::get('/admin/types/create', [TypeController::class, 'create'])->name('admin.types.create');
 
-        Route::get('/admin/types/create', function () {
-            return view('admin/types/create');
-        })->name('user.types.create');
+        Route::post('/admin/types/create' , [TypeController::class, "store"])->name('admin.types.store');
 
-        Route::get('/admin/types/edit', function () {
-            return view('admin/types/edit');
-        })->name('user.types.edit');
+        Route::get('/admin/types/edit/{id}', [TypeController::class, 'edit'])->name('admin.types.edit');
+
+        Route::put('/admin/types/edit/{id}', [TypeController::class, 'update'])->name('admin.types.update');
+
+        Route::delete('/admin/types/{id}', [TypeController::class, "destroy"])->name('admin.types.delete');
     });
 
 
@@ -172,13 +182,11 @@ Route::middleware(['auth'])->group(function () {
 
     ///////////////////////////////////////////////////
 
-    Route::get('/user/breakdowns', function () {
-        return view('user/breakdown/index');
-    })->name('user.breakdowns');
+    Route::get('/user/breakdowns/create',
+        [BreakdownController::class,"create"]);
 
-    Route::get('/user/breakdowns/create', function () {
-        return view('user/breakdowns/create');
-    })->name('user.breakdowns.create');
+    Route::post('/user/breakdowns/create',
+        [BreakdownController::class,"store"]);
 
     Route::get('/user/breakdowns/list', [BreakdownController::class, "index"])
         ->name('user.breakdowns.list');
@@ -199,9 +207,8 @@ Route::middleware(['auth'])->group(function () {
 
     ///////////////////////////////////////////////////
 
-    Route::get('/user/suggestions', function () {
-        return view('user/suggestions/index');
-    })->name('user.suggestions');
+
+
 
     Route::get('/user/suggestions/create', [SuggestionController::class, 'create'])->name('user.suggestions.create');
 

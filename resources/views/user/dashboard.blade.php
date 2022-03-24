@@ -15,7 +15,7 @@
                 </div>
             </div>
             </a>
-            <a href="{{route('user.suggestions')}}" class="card-dashboard">
+            <a href="{{route('user.suggestions.list')}}" class="card-dashboard">
             <div class="card-item">
                 <div class="card-spacing">
                     <div class="card-spacing-text">Suggeriments</div>
