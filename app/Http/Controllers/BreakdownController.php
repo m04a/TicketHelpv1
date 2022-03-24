@@ -27,7 +27,7 @@ class BreakdownController extends Controller
         if ($userRole[0]['role_id'] > 1){
             
         $breakdown['unassigned'] = Breakdown::where('status', 1)
-        ->paginate(10)
+        ->paginate(10, ["*"], "unassigned")
         ->through(fn ($item) => [
             "id" => $item->id,
             "title" => $item->title,
@@ -38,7 +38,7 @@ class BreakdownController extends Controller
             "manager" => $item->manager->username
         ]);
     $breakdown['assigned'] = Breakdown::where('status', 2)
-        ->paginate(10)
+        ->paginate(10, ["*"], "assigned")
         ->through(fn ($item) => [
             "id" => $item->id,
             "title" => $item->title,
@@ -50,7 +50,7 @@ class BreakdownController extends Controller
         ]);
 
     $breakdown['done'] = Breakdown::where('status', 3)
-                ->paginate(10)
+                ->paginate(10, ["*"], "done")
                 ->through(fn ($item) => [
                     "id" => $item->id,
                     "title" => $item->title,

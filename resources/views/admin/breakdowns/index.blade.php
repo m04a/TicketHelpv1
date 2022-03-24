@@ -86,7 +86,7 @@
                     <x-pagination>
                         @for($i = 0; $i < $unassigned->lastPage(); $i++)
                             <div class="buttons">
-                                <a class="pagination-next m-2" href="{{ url('/admin/breakdowns?page=' . $i+1) }}" >
+                                <a class="pagination-next m-2" href="{{ url('/admin/breakdowns?unassigned=' . $i+1) }}" >
                                     @if($unassigned->currentPage() == $i+1) 
                                     <button type="button" class="button active">{{ $i+1 }}</button>
                                     @else
@@ -169,7 +169,7 @@
                     <x-pagination>
                         @for($i = 0; $i < $assigned->lastPage(); $i++)
                             <div class="buttons">
-                                <a class="pagination-next m-2" href="{{ url('/admin/breakdowns?page=' . $i+1) }}" >
+                                <a class="pagination-next m-2" href="{{ url('/admin/breakdowns?assigned=' . $i+1) }}" >
                                     @if($assigned->currentPage() == $i+1) 
                                     <button type="button" class="button active">{{ $i+1 }}</button>
                                     @else
@@ -252,7 +252,7 @@
                     <x-pagination>
                         @for($i = 0; $i < $done->lastPage(); $i++)
                             <div class="buttons">
-                                <a class="pagination-next m-2" href="{{ url('/admin/breakdowns?page=' . $i+1) }}" >
+                                <a class="pagination-next m-2" href="{{ url('/admin/breakdowns?done=' . $i+1) }}" >
                                     @if($done->currentPage() == $i+1) 
                                     <button type="button" class="button active">{{ $i+1 }}</button>
                                     @else

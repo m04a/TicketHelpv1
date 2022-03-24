@@ -81,7 +81,7 @@
                             </div>
                         @endfor
                         <small class="flex w-full justify-end mr-0.5">Pàgina {{ $departments->currentPage() }} de {{ $departments->lastPage() }} </small>
-                    </x-pagination>
+                </x-pagination>
             </div>
         </div>
     </section>

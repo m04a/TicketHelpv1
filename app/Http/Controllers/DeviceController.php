@@ -53,14 +53,12 @@ class DeviceController extends Controller
     public function store(DeviceRequest $request)
     {
         $device = new Device;
-        $device->label=$request->name;
+        $device->label=$request->title;
         $device->type_id=$request->type;
         $device->zone_id=$request->zone;
         $result=$device->save();
         if ($result) {
             return redirect('/admin/devices/create')->with('success', "El dispositiu s'ha creat correctament");
-        } else {
-            return redirect('/admin/devices/create')->with('message', "Hi ha hagut algun error");
         }
     }
 
@@ -102,13 +100,11 @@ class DeviceController extends Controller
     public function update(DeviceRequest $request, $id)
     {
         $device = Device::where('id', $id)->first();;
-        $device->label=$request->name;
+        $device->label=$request->title;
         $device->type_id=$request->type;
         $device->zone_id=$request->zone;
         if ($device->save()) {
             return back()->with('success', "El dispositiu s'ha modificat correctament");
-        } else {
-            return back()->with('message', "Hi ha hagut algun error");
         }
     }
 
@@ -124,9 +120,7 @@ class DeviceController extends Controller
         $result = $Device->delete();
 
         if ($result) {
-            return redirect('/admin/devices')->with('message', 'Dispositiu esborrat!');
-        } else {
-            return redirect('/admin/devices')->with('message', 'hi hagut un error al esborrar el dispositiu!');
+            return redirect('/admin/devices')->with('success', 'Dispositiu esborrat!');
         }
     }
 }
