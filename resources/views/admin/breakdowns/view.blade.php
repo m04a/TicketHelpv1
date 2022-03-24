@@ -90,6 +90,7 @@
             <form method="POST" action="{{ url("/admin/messages/".$breakdownData->id) }}">
                 @csrf
                 <textarea id="content" name="content" class="textarea"></textarea>
+                <input type="hidden" name="breakdown_id" value="{{ $breakdownData->id }}"/>
                 <div class="button-create">
                     <x-button class="ml-3">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 rotate-180 rotate-90" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
