@@ -11,6 +11,7 @@ use App\Http\Controllers\DepartamentController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\TypeController;
 use App\Http\Controllers\ZoneController;
+use Laravel\Socialite\Facades\Socialite;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,18 @@ use App\Http\Controllers\ZoneController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+/*O-AUTH routes*/
+
+Route::get('/auth/redirect', function () {
+    return Socialite::driver('github')->redirect();
+});
+
+Route::get('/auth/callback', function () {
+    $user = Socialite::driver('github')->user();
+    dd($user);
+    // $user->token
+});
 
 Route::get('/', [HomePage::class, 'index'])->name('homepage.index');
 
@@ -49,7 +62,7 @@ Route::middleware(['auth'])->group(function () {
 
 
         Route::post('/admin/users/store', [UserController::class, 'store'])->name('admin.users.store');
-        
+
 
         ///////////////////////////////////////////////////
 
@@ -83,7 +96,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/admin/suggestions/edit/{id}', [SuggestionController::class, 'edit'])->name('admin.suggestions.edit');
 
         Route::put('/admin/suggestions/update/{id}', [SuggestionController::class, 'update'])->name('admin.suggestions.update');
-        
+
         ///////////////////////////////////////////////////
 
 
@@ -163,13 +176,13 @@ Route::middleware(['auth'])->group(function () {
 
          Route::get('/admin/zones/create', [ZoneController::class, "create"])
             ->name('admin.zones.create');
-            
+
         Route::get('/admin/zones/edit/{id}', [ZoneController::class, "edit"])
             ->name('admin.zones.edit');
 
         Route::post('/admin/zones/create', [ZoneController::class, "store"])
             ->name('admin.zones.store');
-            
+
         Route::get('/admin/zones/view/{id}', [ZoneController::class, 'show'])
         ->name('admin.zones.view');
 
@@ -180,7 +193,7 @@ Route::middleware(['auth'])->group(function () {
         ///////////////////////////////////////////////////
 
         Route::get('/admin/types' , [TypeController::class, "index"])->name('admin.types.index');
-        
+
         Route::get('/admin/types/create', [TypeController::class, 'create'])->name('admin.types.create');
 
         Route::get('/admin/types/view/{id}', [TypeController::class, 'show'])->name('admin.types.view');
@@ -252,7 +265,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/user/suggestions/edit/{id}', [SuggestionController::class, 'edit'])->name('user.suggestions.edit');
 
     Route::delete('/user/suggestions/list/{id}', [SuggestionController::class, 'destroy'])->name('user.suggestions.delete');
-    
+
     Route::put('/user/suggestions/update/{id}', [SuggestionController::class, 'update'])->name('user.suggestions.update');
 
 });
