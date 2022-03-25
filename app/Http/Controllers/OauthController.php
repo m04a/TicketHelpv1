@@ -10,14 +10,19 @@ class OauthController extends Controller
 {
     public static function store($user,$provider){
 
-        $oauth = Service_oauth::where('id',Auth::user()->id)
-        ->where('provider_label',$provider)->get();
-        dd($oauth);
-       if($oauth){
-           dd("User exists");
-       }else{
-           dd("User doesn't exist");
+        $user_id = Auth::user()->id;
 
+        $oauth = Service_oauth::where('id',$user_id)
+        ->where('provider_label',$provider)->get();
+
+       if($oauth){
+           dd("dsfdsaf");
+       }else{
+           $vinculations = Service_oauth::create([
+               'provider_label' => $provider,
+               'mail' => $user->email,
+               'user_id' => $user_id,
+           ]);
        }
         Service_oauth::user()->id;
         dd($user->email);
