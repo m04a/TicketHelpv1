@@ -39,6 +39,8 @@ class PasswordResetLinkController extends Controller
             $request->only('email')
         );
 
+        $request->session()->flush();
+
         return $status == Password::RESET_LINK_SENT
                     ? back()->with('status', __($status))
                     : back()->withInput($request->only('email'))
