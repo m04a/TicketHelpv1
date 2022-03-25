@@ -27,7 +27,7 @@ class OauthController extends Controller
                'mail' => $user->email,
                'user_id' => $user_id,
            ]);
-               return back()->with('success',"S'han afegit la teva vinculació!");
+               return view('admin.profile.index')->with('success',"S'han afegit la teva vinculació amb -> $provider");
        }
         dd($user->email);
 
