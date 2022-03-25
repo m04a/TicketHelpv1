@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('service_oauth', function (Blueprint $table) {
+        Schema::create('service_oauths', function (Blueprint $table) {
             $table->id();
             $table->string('mail');
             $table->string('provider_label');
@@ -32,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('service_oauth');
+        Schema::dropIfExists('service_oauths');
     }
 };
