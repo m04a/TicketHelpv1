@@ -12,6 +12,8 @@ use App\Http\Controllers\MessageController;
 use App\Http\Controllers\TypeController;
 use App\Http\Controllers\ZoneController;
 use App\Http\Controllers\GuideController;
+use App\Http\Controllers\Auth\PasswordResetLinkController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -49,9 +51,15 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('/admin/profile/', [UserController::class, 'show'])->name('admin.profile.index');
 
+        Route::put('/admin/profile/{id}', [UserController::class, 'update'])->name('admin.profile.update');
+
         Route::put('/admin/users/edit/{id}', [UserController::class, 'update'])->name('admin.devices.update');
 
         Route::post('/admin/users/store', [UserController::class, 'store'])->name('admin.users.store');
+
+        Route::post('/admin/profile/reset', [PasswordResetLinkController::class, 'store'])
+        ->name('password.email');
+        
 
         ///////////////////////////////////////////////////
 
@@ -261,6 +269,7 @@ Route::middleware(['auth'])->group(function () {
     ///////////////////////////////////////////////////
     Route::get('/user/profile/', [UserController::class, 'show'])->name('user.profile.index');
     
+    Route::put('/user/profile/{id}', [UserController::class, 'update'])->name('user.profile.update');
 });
 
 require __DIR__ . '/auth.php';
