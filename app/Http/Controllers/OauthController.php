@@ -5,10 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\Service_oauth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Laravel\Socialite\Facades\Socialite;
 
 class OauthController extends Controller
 {
-    public static function store($user,$provider){
+    public static function store($provider){
+
+        dd($provider);
+        $user = Socialite::driver('google')->user();
 
         $user_id = Auth::user()->id;
 

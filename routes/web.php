@@ -33,17 +33,13 @@ Route::get('/auth/github/redirect', function () {
 
 Route::get('/auth/github/callback', function () {
     $user = Socialite::driver('github')->user();
-   OauthController::store($user,$provider="github");
+   OauthController::store($provider="github");
 });
 Route::get('/auth/google/redirect', function () {
     return Socialite::driver('google')->redirect();
 })->name('google');
 
-Route::get('/auth/google/callback', function () {
-    $user = Socialite::driver('google')->user();
-    OauthController::store($user,$provider="google");
-    // $user->token
-});
+Route::get('/auth/google/callback', [OauthController::class, 'store',$provider="github"])->name('admin.users.index');
 
 Route::get('/', [HomePage::class, 'index'])->name('homepage.index');
 
