@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BreakdownController;
+use App\Http\Controllers\OauthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SuggestionController;
 use App\Http\Controllers\HomePage;
@@ -32,7 +33,6 @@ Route::get('/auth/github/redirect', function () {
 Route::get('/auth/github/callback', function () {
     $user = Socialite::driver('github')->user();
    OauthController::store($user);
-    // $user->token
 });
 Route::get('/auth/google/redirect', function () {
     return Socialite::driver('google')->redirect();
@@ -40,7 +40,7 @@ Route::get('/auth/google/redirect', function () {
 
 Route::get('/auth/google/callback', function () {
     $user = Socialite::driver('google')->user();
-    dd($user);
+    OauthController::store($user);
     // $user->token
 });
 
