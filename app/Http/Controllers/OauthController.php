@@ -8,11 +8,11 @@ use Illuminate\Support\Facades\Auth;
 
 class OauthController extends Controller
 {
-    public static function store($user){
-        $checkEmail = Service_oauth::all();
+    public static function store($user,$provider){
 
-        $oauth = $checkEmail->find(Auth::user()->id);
-
+        $oauth = Service_oauth::where('id',Auth::user()->id)
+        ->where('provider',$provider)->get();
+        dd($oauth);
        if($oauth){
            dd("User exists");
        }else{
