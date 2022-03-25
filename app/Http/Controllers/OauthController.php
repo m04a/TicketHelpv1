@@ -14,7 +14,7 @@ class OauthController extends Controller
 
         $oauth = Service_oauth::where('id',$user_id)
         ->where('provider_label',$provider)->get();
-       if($oauth->isEmpty()){
+       if(!$oauth->isEmpty()){
            dd("dsfdsaf");
        }else{
            $vinculations = Service_oauth::create([
