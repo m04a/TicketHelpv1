@@ -15,15 +15,22 @@ class OauthController extends Controller
         $oauth = Service_oauth::where('id',$user_id)
         ->where('provider_label',$provider)->get();
        if(!$oauth->isEmpty()){
-           dd("dsfdsaf");
+           $oauth->mail = $user->email;
+           if($oauth->save()){
+               return back()->with('success',"S'han actualitzat les dades satisfactoriament");
+           }else{
+               return back()->with('error',"No s'han pogut actualitzar les dades");
+           }
        }else{
-           $vinculations = Service_oauth::create([
+           $vinculation = Service_oauth::create([
                'provider_label' => $provider,
                'mail' => $user->email,
                'user_id' => $user_id,
            ]);
+           if($vinculation){
+               return back()->with('success',"S'han afegit la teva vinculació amb -> $provider");
+           }
        }
-        Service_oauth::user()->id;
         dd($user->email);
 
     }
