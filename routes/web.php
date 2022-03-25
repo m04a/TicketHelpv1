@@ -12,6 +12,7 @@ use App\Http\Controllers\DepartamentController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\TypeController;
 use App\Http\Controllers\ZoneController;
+use Laravel\Socialite\Facades\Socialite;
 
 /*
 |--------------------------------------------------------------------------

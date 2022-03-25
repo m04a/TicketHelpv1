@@ -8,7 +8,8 @@ use Illuminate\Support\Facades\Auth;
 class OauthController extends Controller
 {
     public static function store($user){
-        dd(Auth::user()->id);
+        Auth::user()->id;
+
         dd($user->email);
 
     }
