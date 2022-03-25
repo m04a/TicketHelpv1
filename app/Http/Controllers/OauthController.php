@@ -11,7 +11,7 @@ class OauthController extends Controller
     public static function store($user,$provider){
 
         $oauth = Service_oauth::where('id',Auth::user()->id)
-        ->where('provider',$provider)->get();
+        ->where('provider_label',$provider)->get();
         dd($oauth);
        if($oauth){
            dd("User exists");
