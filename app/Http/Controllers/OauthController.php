@@ -5,14 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Service_oauth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Laravel\Socialite\Facades\Socialite;
 
 class OauthController extends Controller
 {
-    public static function store($provider){
-
-        dd($provider);
-        $user = Socialite::driver('google')->user();
+    public static function store($user,$provider){
 
         $user_id = Auth::user()->id;
 
@@ -26,13 +22,14 @@ class OauthController extends Controller
                return back()->with('error',"No s'han pogut actualitzar les dades");
            }
        }else{
-            Service_oauth::create([
+           $vinculation = Service_oauth::create([
                'provider_label' => $provider,
                'mail' => $user->email,
                'user_id' => $user_id,
            ]);
-           return redirect('/admin/profile')->with('status', 'Profile updated!');
-              // return view('admin.profile.index')->with('success',"S'han afegit la teva vinculació nova!");
+           if($vinculation){
+               return view('admin.profile.index')->with('success',"S'han afegit la teva vinculació amb -> $provider");
+           }
        }
         dd($user->email);
 
