@@ -14,6 +14,7 @@ class OauthController extends Controller
 
         $oauth = Service_oauth::where('id',$user_id)
         ->where('provider_label',$provider)->get();
+        dd($oauth);
        if(!$oauth->isEmpty()){
            $oauth->mail = $user->email;
            if($oauth->save()){
