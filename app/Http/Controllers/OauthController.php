@@ -29,6 +29,8 @@ class OauthController extends Controller
            ]);
            if($vinculation){
                return view('admin.profile.index')->with('success',"S'han afegit la teva vinculació amb -> $provider");
+           }else{
+               dd("hola");
            }
        }
         dd($user->email);
