@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\BreakdownController;
-use App\Http\Controllers\OauthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SuggestionController;
 use App\Http\Controllers\HomePage;
@@ -12,7 +11,6 @@ use App\Http\Controllers\DepartamentController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\TypeController;
 use App\Http\Controllers\ZoneController;
-use Laravel\Socialite\Facades\Socialite;
 
 /*
 |--------------------------------------------------------------------------
@@ -67,11 +65,19 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('/admin/users/edit/{id}', [UserController::class, 'edit'])->name('admin.users.edit');
 
+        Route::get('/admin/profile/', [UserController::class, 'show'])->name('admin.profile.index');
+
+        Route::put('/admin/profile/{id}', [UserController::class, 'update'])->name('admin.profile.update');
 
         Route::put('/admin/users/edit/{id}', [UserController::class, 'update'])->name('admin.devices.update');
 
 
         Route::post('/admin/users/store', [UserController::class, 'store'])->name('admin.users.store');
+
+
+
+        Route::post('/admin/profile/reset', [PasswordResetLinkController::class, 'store'])
+        ->name('password.email');
 
 
         ///////////////////////////////////////////////////
@@ -278,6 +284,12 @@ Route::middleware(['auth'])->group(function () {
 
     Route::put('/user/suggestions/update/{id}', [SuggestionController::class, 'update'])->name('user.suggestions.update');
 
+
+
+    ///////////////////////////////////////////////////
+    Route::get('/user/profile/', [UserController::class, 'show'])->name('user.profile.index');
+
+    Route::put('/user/profile/{id}', [UserController::class, 'update'])->name('user.profile.update');
 });
 
 require __DIR__ . '/auth.php';

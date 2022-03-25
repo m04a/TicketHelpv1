@@ -227,4 +227,28 @@ class BreakdownController extends Controller
             return back()->with('success',"S'ha esborrat la seva incidencia satisfactoriament");
         }
     }
+
+    public function graph1() {
+
+        $standby = Breakdown::where("status", 1)->count();
+
+        $inprocess = Breakdown::where("status", 2)->count();
+
+        $resolveds = Breakdown::where("status", 3)->count();
+
+        return response()->json([
+            [
+              "name" => "Resoltes",
+              "value" => $resolveds
+            ],
+            [
+              "name"=> "En proces",
+              "value"=> $inprocess
+            ],
+            [
+              "name"=> "Pendents",
+              "value"=> $standby
+            ],
+        ]);
+    }
 }
