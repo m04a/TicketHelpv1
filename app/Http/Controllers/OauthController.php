@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class OauthController extends Controller
 {
-    static public function store($user){
+    public static function store($user){
         dd($user);
     }
 }
