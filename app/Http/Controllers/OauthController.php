@@ -27,7 +27,8 @@ class OauthController extends Controller
                'mail' => $user->email,
                'user_id' => $user_id,
            ]);
-               return view('admin.profile.index')->with('success',"S'han afegit la teva vinculació nova!");
+            redirect("google.es");
+              // return view('admin.profile.index')->with('success',"S'han afegit la teva vinculació nova!");
        }
         dd($user->email);
 
