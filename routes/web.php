@@ -11,6 +11,7 @@ use App\Http\Controllers\DepartamentController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\TypeController;
 use App\Http\Controllers\ZoneController;
+use App\Http\Controllers\GuideController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +25,8 @@ use App\Http\Controllers\ZoneController;
 */
 
 Route::get('/', [HomePage::class, 'index'])->name('homepage.index');
+
+Route::get('/guides', [GuideController::class, 'index'])->name('guide.index');
 
 
 Route::middleware(['auth'])->group(function () {
@@ -46,13 +49,9 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('/admin/profile/', [UserController::class, 'show'])->name('admin.profile.index');
 
-
-
         Route::put('/admin/users/edit/{id}', [UserController::class, 'update'])->name('admin.devices.update');
 
-
         Route::post('/admin/users/store', [UserController::class, 'store'])->name('admin.users.store');
-        
 
         ///////////////////////////////////////////////////
 
@@ -244,9 +243,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/user/questions/create', [QuestionController::class, "create"])->name('user.questions.create');
 
     ///////////////////////////////////////////////////
-
-
-
 
     Route::get('/user/suggestions/create', [SuggestionController::class, 'create'])->name('user.suggestions.create');
 
