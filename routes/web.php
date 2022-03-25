@@ -33,7 +33,7 @@ Route::get('/auth/github/redirect', function () {
 
 Route::get('/auth/github/callback', function () {
     $user = Socialite::driver('github')->user();
-   OauthController::store('user', $user);
+   OauthController::store($user);
     // $user->token
 });
 Route::get('/auth/google/redirect', function () {
