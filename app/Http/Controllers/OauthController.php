@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Oauth;
+use App\Models\Service_oauth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class OauthController extends Controller
 {
     public static function store($user){
-        $checkEmail = Oauth::all();
+        $checkEmail = Service_oauth::all();
 
         $oauth = $checkEmail->find(Auth::user()->id);
 
@@ -19,7 +19,7 @@ class OauthController extends Controller
            dd("User doesn't exist");
 
        }
-        Oauth::user()->id;
+        Service_oauth::user()->id;
         dd($user->email);
 
     }
