@@ -22,14 +22,12 @@ class OauthController extends Controller
                return back()->with('error',"No s'han pogut actualitzar les dades");
            }
        }else{
-           $vinculation = Service_oauth::create([
+            Service_oauth::create([
                'provider_label' => $provider,
                'mail' => $user->email,
                'user_id' => $user_id,
            ]);
-           if($vinculation){
-               return back()->with('success',"S'han afegit la teva vinculació amb -> $provider");
-           }
+               return back()->with('success',"S'han afegit la teva vinculació!");
        }
         dd($user->email);
 
