@@ -23,7 +23,7 @@ class OauthController extends Controller
         $checkMailoauth = Service_oauth::where('mail',$user_email)
             ->where('provider_label',$provider)->first();
 
-        if($checkMailoauth){
+        if(!$checkMailoauth){
           if($checkUserAuth){
            $oauthObjectModel = Service_oauth::find($checkUserAuth->id);
 
