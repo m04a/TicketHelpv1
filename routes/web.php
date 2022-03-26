@@ -25,24 +25,7 @@ use Laravel\Socialite\Facades\Socialite;
 |
 */
 
-/*O-AUTH routes*/
 
-Route::get('/auth/github/redirect', function () {
-    return Socialite::driver('github')->redirect();
-})->name('github');
-
-Route::get('/auth/github/callback', function () {
-    $user = Socialite::driver('github')->user();
-   OauthController::store($user,$provider="github");
-});
-Route::get('/auth/google/redirect', function () {
-    return Socialite::driver('google')->redirect();
-})->name('google');
-
-Route::get('/auth/google/callback', function () {
-    $user = Socialite::driver('google')->user();
-    OauthController::store($user,$provider="google");
-});
 
 Route::get('/', [HomePage::class, 'index'])->name('homepage.index');
 
@@ -290,6 +273,24 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/user/profile/', [UserController::class, 'show'])->name('user.profile.index');
 
     Route::put('/user/profile/{id}', [UserController::class, 'update'])->name('user.profile.update');
+    /*O-AUTH routes*/
+
+    Route::get('/auth/github/redirect', function () {
+        return Socialite::driver('github')->redirect();
+    })->name('github');
+
+    Route::get('/auth/github/callback', function () {
+        $user = Socialite::driver('github')->user();
+        OauthController::store($user,$provider="github");
+    });
+    Route::get('/auth/google/redirect', function () {
+        return Socialite::driver('google')->redirect();
+    })->name('google');
+
+    Route::get('/auth/google/callback', function () {
+        $user = Socialite::driver('google')->user();
+        OauthController::store($user,$provider="google");
+    });
 });
 
 require __DIR__ . '/auth.php';
