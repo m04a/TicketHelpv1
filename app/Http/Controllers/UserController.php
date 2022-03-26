@@ -30,8 +30,8 @@ class UserController extends Controller
             "email" => $item->email,
             "role_name" => $item->role->label
         ]);
-        
-        return view('admin.users.index', $users); 
+
+        return view('admin.users.index', $users);
     }
 
     /**
