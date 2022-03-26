@@ -19,10 +19,9 @@ class OauthController extends Controller
 
            $oauthObjectModel->mail = $user->email;
            if($oauthObjectModel->save()){
-               dd('fnunciono');
-               return view('admin.profile.index')->with('success',"S'han actualitzat les dades del proveidor");
+               return redirect()->route('admin.profile.index');
            }else{
-               return view('admin.profile.index')->with('error',"No s'han pogut actualitzar les dades");
+                dd('lol');
            }
        }else{
            $vinculation = Service_oauth::create([
