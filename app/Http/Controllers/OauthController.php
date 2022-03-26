@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Service_oauth;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,7 +20,12 @@ class OauthController extends Controller
 
            $oauthObjectModel->mail = $user->email;
            if($oauthObjectModel->save()){
-               return redirect()->route('admin.profile.index');
+
+               $idUser = Auth::user()->id;
+
+               $users = User::where('id', '=', $idUser)->get();
+
+               return view('admin.profile.index' , ['users' => $users]);
            }else{
                 dd('lol');
            }
