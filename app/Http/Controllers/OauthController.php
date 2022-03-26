@@ -14,8 +14,10 @@ class OauthController extends Controller
 
         $oauth = Service_oauth::where('user_id',$user_id)
         ->where('provider_label',$provider)->get();
-
+        dd($oauth);
        if(!$oauth->isEmpty()){
+           Service_oauth::find($oauth->id);
+
            $oauth->mail = $user->email;
            if($oauth->save()){
                return back()->with('success',"S'han actualitzat les dades satisfactoriament");
