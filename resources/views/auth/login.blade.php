@@ -2,9 +2,6 @@
 
     <x-auth-card>
         <x-slot name="logo">
-            <a href="/">
-                TicketHelp
-            </a>
         </x-slot>
 
         <!-- Session Status -->

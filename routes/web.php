@@ -15,6 +15,9 @@ use App\Http\Controllers\MessageController;
 use App\Http\Controllers\TypeController;
 use App\Http\Controllers\ZoneController;
 use Laravel\Socialite\Facades\Socialite;
+use App\Http\Controllers\GuideController;
+use App\Http\Controllers\Auth\PasswordResetLinkController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -47,6 +50,8 @@ Route::get('/auth/google/callback', function () {
 });
 
 Route::get('/', [HomePage::class, 'index'])->name('homepage.index');
+
+Route::get('/guides', [GuideController::class, 'index'])->name('guide.index');
 
 
 Route::middleware(['auth'])->group(function () {
@@ -207,6 +212,8 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/admin/zones/destroy/{id}', [ZoneController::class, "destroy"])
             ->name('admin.zones.delete');
 
+        Route::put('/admin/zones/edit/{id}', [ZoneController::class, "update"])
+            ->name('admin.zones.update');
 
         ///////////////////////////////////////////////////
 
