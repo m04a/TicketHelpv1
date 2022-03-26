@@ -73,9 +73,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request)
     {
-        $idUser = Auth::user()->id;
+        //
+        $idUser = $request->user()->id;
 
         $users = User::where('id', '=', $idUser)->get();
 
