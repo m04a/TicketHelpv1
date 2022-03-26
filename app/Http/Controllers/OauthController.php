@@ -14,7 +14,7 @@ class OauthController extends Controller
 
         $oauth = Service_oauth::where('user_id',$user_id)
         ->where('provider_label',$provider)->get();
-        dd($oauth);
+        dd($oauth->id);
        if(!$oauth->isEmpty()){
            Service_oauth::find($oauth->id);
 
