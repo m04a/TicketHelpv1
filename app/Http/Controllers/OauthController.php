@@ -32,14 +32,15 @@ class OauthController extends Controller
            if($oauthObjectModel->save()){
                dd("Saved data");
            }
-       }else{
+          }else{
            $vinculation = Service_oauth::create([
                'provider_label' => $provider,
                'mail' => $user->email,
                'user_id' => $user_id,
            ]);
+
            if($vinculation){
-               return view('admin.profile.index')->with('success',"S'han afegit la teva vinculació amb -> $provider");
+            dd("Created new Oauth");
            }
        }
         }else{
