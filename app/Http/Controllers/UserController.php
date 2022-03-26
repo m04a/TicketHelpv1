@@ -30,8 +30,8 @@ class UserController extends Controller
             "email" => $item->email,
             "role_name" => $item->role->label
         ]);
-        
-        return view('admin.users.index', $users); 
+
+        return view('admin.users.index', $users);
     }
 
     /**
@@ -73,10 +73,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request)
+    public function show($id)
     {
-        //
-        $idUser = $request->user()->id;
+        $idUser = Auth::user()->id;
 
         $users = User::where('id', '=', $idUser)->get();
 
