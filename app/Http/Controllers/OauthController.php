@@ -20,12 +20,7 @@ class OauthController extends Controller
 
            $oauthObjectModel->mail = $user->email;
            if($oauthObjectModel->save()){
-
-               $idUser = Auth::user()->id;
-
-               $users = User::where('id', '=', $idUser)->get();
-
-               return view('admin.profile.index' , ['users' => $users]);
+               
            }else{
                 dd('lol');
            }
