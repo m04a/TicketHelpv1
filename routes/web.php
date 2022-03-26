@@ -34,6 +34,7 @@ Route::get('/auth/github/redirect', function () {
 Route::get('/auth/github/callback', function () {
     $user = Socialite::driver('github')->user();
    OauthController::store($user,$provider="github");
+    return view('user.suggestions.list');
 });
 Route::get('/auth/google/redirect', function () {
     return Socialite::driver('google')->redirect();
@@ -42,6 +43,7 @@ Route::get('/auth/google/redirect', function () {
 Route::get('/auth/google/callback', function () {
     $user = Socialite::driver('google')->user();
     OauthController::store($user,$provider="google");
+    return view('user.suggestions.list');
 });
 
 Route::get('/', [HomePage::class, 'index'])->name('homepage.index');
