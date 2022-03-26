@@ -22,13 +22,15 @@ class OauthController extends Controller
         /*We check if the mail is stored in the database with the same provider*/
         $checkMailoauth = Service_oauth::where('mail',$user_email)
             ->where('provider_label',$provider)->first();
+
         if(!$checkMailoauth){
-       if($checkUserAuth){
+          if($checkUserAuth){
            $oauthObjectModel = Service_oauth::find($checkUserAuth->id);
 
            $oauthObjectModel->mail = $user->email;
-           if($oauthObjectModel->save()){
 
+           if($oauthObjectModel->save()){
+               dd("Saved data");
            }
        }else{
            $vinculation = Service_oauth::create([
@@ -41,12 +43,7 @@ class OauthController extends Controller
            }
        }
         }else{
-            dd("Mail already exists");
+            dd("Mail already exists in the database");
         }
-        $idUser = Auth::user()->id;
-
-        $users = User::where('id', '=', $idUser)->get();
-
-        return view('admin.profile.index' , ['users' => $users]);
     }
 }
