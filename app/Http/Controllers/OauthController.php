@@ -13,7 +13,7 @@ class OauthController extends Controller
 
         $user_id = Auth::user()->id;
 
-        $user_email = Auth::user()->email;
+        $user_email = $user->email;
 
         /*We check if the user is stored in the database with the same provider*/
         $checkUserAuth = Service_oauth::where('user_id',$user_id)
@@ -23,7 +23,7 @@ class OauthController extends Controller
         $checkMailoauth = Service_oauth::where('mail',$user_email)
             ->where('provider_label',$provider)->first();
 
-        if($checkMailoauth){
+        if(!$checkMailoauth){
           if($checkUserAuth){
            $oauthObjectModel = Service_oauth::find($checkUserAuth->id);
 
