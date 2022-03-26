@@ -20,7 +20,7 @@ class OauthController extends Controller
 
            $oauthObjectModel->mail = $user->email;
            if($oauthObjectModel->save()){
-               
+
            }else{
                 dd('lol');
            }
@@ -36,7 +36,10 @@ class OauthController extends Controller
                dd("hola");
            }
        }
-        dd($user->email);
+        $idUser = Auth::user()->id;
 
+        $users = User::where('id', '=', $idUser)->get();
+
+        return view('admin.profile.index' , ['users' => $users]);
     }
 }
