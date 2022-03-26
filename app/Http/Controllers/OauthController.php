@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 class OauthController extends Controller
 {
-    public static function store($user,$provider){
+    public function store($user,$provider){
 
         $user_id = Auth::user()->id;
 
