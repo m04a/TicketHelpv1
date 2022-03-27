@@ -36,6 +36,9 @@ use App\Http\Controllers\Auth\PasswordResetLinkController;
 
 Route::get('/auth/{provider}/redirect',[OauthController::class, 'redirectProvider']);
 
+Route::get('/auth/{provider}/callback',[OauthController::class, 'store']);
+
+
 /*Like this it works
 Route::get('/auth/github/redirect', function () {
     return Socialite::driver('github')->redirect();

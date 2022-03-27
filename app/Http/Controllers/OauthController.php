@@ -10,7 +10,9 @@ use Laravel\Socialite\Facades\Socialite;
 
 class OauthController extends Controller
 {
-    public static function store($user,$provider){
+    public static function store($provider){
+
+        $user = Socialite::driver($provider)->user();
 
         $user_id = Auth::user()->id;
 
