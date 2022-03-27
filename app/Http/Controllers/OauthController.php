@@ -33,7 +33,7 @@ class OauthController extends Controller
            $oauthObjectModel->mail = $user->email;
 
            if($oauthObjectModel->save()){
-               return back()->with('success','S\'han actualitzat les dades de l\'usuari.');
+               return redirect('/admin/profile/')->with('success','S\'han actualitzat les dades de l\'usuari.');
            }
           }else{
            $vinculation = Service_oauth::create([
@@ -43,11 +43,11 @@ class OauthController extends Controller
            ]);
 
            if($vinculation){
-               return back()->with('success','S\'han creat les dades de vinculació l\'usuari.');
+               return redirect('/admin/profile/')->with('success','S\'han creat les dades de vinculació l\'usuari.');
            }
        }
         }else{
-            return back()->with('success','No s\'han creat les dades de vinculació l\'usuari.');
+            return redirect('/admin/profile/')->with('success','No s\'han creat les dades de vinculació l\'usuari.');
         }
     }
     public function redirectProvider($provider){
