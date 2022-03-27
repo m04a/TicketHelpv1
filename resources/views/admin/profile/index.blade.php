@@ -14,6 +14,11 @@
                 {{ session('success') }}
             </x-success-alert>
         @endif
+        @if(session('error'))
+            <x-error-alert class="mb-2">
+                {{ session('error') }}
+            </x-error-alert>
+        @endif
         @if ($errors->any())
 
                     <x-error-alert class="mb-2">
