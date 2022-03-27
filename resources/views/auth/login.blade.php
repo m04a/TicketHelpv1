@@ -9,7 +9,11 @@
 
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
-
+        @if(session('error'))
+            <x-error-alert class="mb-2">
+                {{ session('error') }}
+            </x-error-alert>
+        @endif
         <form method="POST" action="{{ route('login') }}">
             @csrf
 
