@@ -58,7 +58,8 @@ class OauthController extends Controller
         }
         }else{
             if($checkMailoauth){
-                dd($checkMailoauth->user_id);
+                Auth::loginUsingId($checkMailoauth->user_id);
+                return redirect('/');
             }
             else{
                 dd("No access guaranteed");
