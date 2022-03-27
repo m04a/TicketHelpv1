@@ -6,6 +6,7 @@ use App\Models\Service_oauth;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Laravel\Socialite\Facades\Socialite;
 
 class OauthController extends Controller
 {
@@ -46,5 +47,8 @@ class OauthController extends Controller
         }else{
             dd("Mail already exists in the database");
         }
+    }
+    public function redirectProvider($provider){
+        return Socialite::driver($provider)->redirect();
     }
 }
