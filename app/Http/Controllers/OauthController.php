@@ -47,7 +47,7 @@ class OauthController extends Controller
            }
        }
         }else{
-            return redirect('/admin/profile/')->with('success','No s\'han creat les dades de vinculació l\'usuari.');
+            return redirect('/admin/profile/')->with('error','No s\'han creat les dades de vinculació l\'usuari.');
         }
     }
     public function redirectProvider($provider){
