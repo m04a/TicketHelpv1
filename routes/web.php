@@ -34,7 +34,7 @@ use App\Http\Controllers\Auth\PasswordResetLinkController;
 
 Route::get('/auth/{provider}/redirect',[OauthController::class, 'redirectProvider']);
 
-Route::get('/auth/{provider}/callback',[OauthController::class, 'store']);
+Route::get('/auth/{provider}/callback',[OauthController::class, 'authUserOauth']);
 
 
 Route::get('/', [HomePage::class, 'index'])->name('homepage.index');

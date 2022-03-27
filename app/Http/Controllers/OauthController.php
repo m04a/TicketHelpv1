@@ -10,10 +10,13 @@ use Laravel\Socialite\Facades\Socialite;
 
 class OauthController extends Controller
 {
-    public static function store($provider){
+    public function authUserOauth($provider){
 
         $user = Socialite::driver($provider)->user();
 
+        /*If the user it's already logged in it means that he want's to add an account.
+        Then we make a little autentification check*/
+        if(Auth::check()){
         $user_id = Auth::user()->id;
 
         $user_email = $user->email;
@@ -47,7 +50,10 @@ class OauthController extends Controller
            }
        }
         }else{
-            return redirect('/admin/profile/')->with('error','No s\'han creat les dades de vinculació l\'usuari.');
+            return redirect('/admin/profile/')->with('error','No s\'han creat les dades de vinculació l\'usuari. El email ja està vinculat amb aquesta un altre compte');
+        }
+        }else{
+            dd("User no logged in");
         }
     }
     public function redirectProvider($provider){
