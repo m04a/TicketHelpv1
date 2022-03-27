@@ -62,7 +62,7 @@ class OauthController extends Controller
                 return redirect('/');
             }
             else{
-                return view('auth.login')->with('error','El email no està vinculat amb aquest cap proveidor de correus');
+                return redirect('login')->with('error','El email no està vinculat amb aquest cap proveidor de correus');
             }
         }
     }
