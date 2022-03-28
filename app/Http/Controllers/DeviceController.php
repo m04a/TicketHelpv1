@@ -132,14 +132,13 @@ class DeviceController extends Controller
     }
     public function graph4(){
 
-        $types = Type::all()->toArray();
-        dd($types);
-        foreach($types as $index=>$opt){
-            foreach($opt as $key => $value)
-            {
-                $optvar[$index][$key]['sk_id'] = $value;
-            }
+        $devices = Device::all()->toJson();
+        dd($devices);
+        foreach ($types as $item){
+            $data[$item->zone->id];
         }
+        dd($types);
+
 
         print '<pre>';
         print_r($optvar);
