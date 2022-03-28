@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Http\Requests\DeviceRequest;
+use App\Models\Breakdown;
 use Illuminate\Http\Request;
 use App\Models\Device;
 use App\Models\Type;
@@ -128,5 +129,27 @@ class DeviceController extends Controller
         } else {
             return redirect('/admin/devices')->with('message', 'hi hagut un error al esborrar el dispositiu!');
         }
+    }
+    public function graph4(){
+        $standby = Breakdown::where("status", 1)->count();
+
+        $inprocess = Breakdown::where("status", 2)->count();
+
+        $resolveds = Breakdown::where("status", 3)->count();
+
+        return response()->json([
+            [
+                "name" => "Resoltes",
+                "value" => $resolveds
+            ],
+            [
+                "name"=> "En proces",
+                "value"=> $inprocess
+            ],
+            [
+                "name"=> "Pendents",
+                "value"=> $standby
+            ],
+        ]);
     }
 }
