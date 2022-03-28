@@ -479,6 +479,12 @@ body {
         padding-left: 0;
     }
 }
+@media (max-width: 1024px){
+    .main-section-user {
+        @apply p-6;
+    }
+}
+
 .is-title-bar li:last-child {
     @apply pr-0 font-black text-black;
 }
@@ -748,4 +754,8 @@ td.image-cell .image {
 
 .transition-success-messages-users{
     @apply mr-[16.3%] ml-[16.3%] m-6 transition-all duration-500 ease-in-out;
+}
+
+.transition-messages-questions-user{
+    @apply mr-[12.3%] ml-[12.3%] m-6 transition-all duration-500 ease-in-out;
 }

@@ -7,6 +7,11 @@
     <x-slot name="slot">
 
         <section class="section main-section">
+        @if(session('success'))
+            <x-success-alert id="message" class="mb-6">
+                {{ session('success') }}
+            </x-success-alert>
+        @endif
         <div class="card has-table">
             <header class="card-header">
                 <p class="card-header-title">
@@ -25,19 +30,31 @@
                 <table>
                     <thead>
                         <tr>
+                            <th>ID</th>
                             <th>Assumpte</th>
                             <th>Estat</th>
                             <th>Departament</th>
                             <th>Usuari</th>
+                            <th>Manager</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($questions as $question)
+                        @foreach ($unassigned as $question)
                     <tr>
+                        <td data-label="Assumpte"># {{ $question['id']}}</td>
                         <td data-label="Assumpte">{{ $question['title']}}</td>
-                        <td data-label="Estat">{{ $question['status']}}</td>
+                        <td data-label="Nom">
+                            @if($question['status'] ==1)
+                                <span class="border text-center py-2 px-2 text-red-400 bg-red-100">No assignat</span>
+                            @elseif($question['status'] ==2)
+                                <span class="border text-center py-2 px-2 text-orange-600 bg-orange-100">Assignat</span>
+                            @else
+                            <span class="border text-center py-2 px-2 text-green-600 bg-green-100">Finalitzat</span>
+                            @endif
+                        </td> 
                         <td data-label="Departament">{{ $question['department_id']}}</td>
                         <td data-label="Usuari">{{ $question['user_id']}}</td>
+                        <td data-label="Usuari">{{ $question['manager_id']}}</td>
                         <td class="actions-cell">
                             <div class="buttons right nowrap">
 
@@ -49,7 +66,11 @@
                                         </svg>
                                     </button>
                                 </a>
-
+                                <a href="{{ url('/admin/questions/edit/' . $question['id']) }}" class="button-table-edit"  data-target="sample-modal-2" type="button">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                                    </svg>
+                                </a>
                                 <form action="{{ url('/admin/questions/' . $question['id']) }}" method="POST">
                                     @csrf
                                     {{ method_field('DELETE') }}
@@ -66,10 +87,10 @@
                     </tbody>
                 </table>
                 <x-pagination>
-                    @for($i = 0; $i < $questions->lastPage(); $i++)
+                    @for($i = 0; $i < $unassigned->lastPage(); $i++)
                         <div class="buttons">
-                            <a class="pagination-next m-2" href="{{ url('/admin/questions?page=' . $i+1) }}" >
-                                @if($questions->currentPage() == $i+1) 
+                            <a class="pagination-next m-2" href="{{ url('/admin/questions?unassigned=' . $i+1) }}" >
+                                @if($unassigned->currentPage() == $i+1) 
                                 <button type="button" class="button active">{{ $i+1 }}</button>
                                 @else
                                 <button type="button" class="button">{{ $i+1 }}</button>
@@ -77,7 +98,7 @@
                             </a>
                         </div>
                     @endfor
-                    <small class="flex w-full justify-end mr-0.5">Pàgina {{ $questions->currentPage() }} de {{ $questions->lastPage() }} </small>
+                    <small class="flex w-full justify-end mr-0.5">Pàgina {{ $unassigned->currentPage() }} de {{ $unassigned->lastPage() }} </small>
                 </x-pagination>
             </div>
         </div>
@@ -94,6 +115,7 @@
                 <table>
                     <thead>
                         <tr>
+                            <th>ID</th>
                             <th>Assumpte</th>
                             <th>Estat</th>
                             <th>Departament</th>
@@ -102,10 +124,19 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($questions as $question)
+                        @foreach ($assigned as $question)
                     <tr>
+                        <td data-label="Assumpte"># {{ $question['id']}}</td>
                         <td data-label="Assumpte">{{ $question['title']}}</td>
-                        <td data-label="Estat">{{ $question['status']}}</td>
+                        <td data-label="Nom">
+                            @if($question['status'] ==1)
+                                <span class="border text-center py-2 px-2 text-red-400 bg-red-100">No assignat</span>
+                            @elseif($question['status'] ==2)
+                                <span class="border text-center py-2 px-2 text-orange-600 bg-orange-100">Assignat</span>
+                            @else
+                            <span class="border text-center py-2 px-2 text-green-600 bg-green-100">Finalitzat</span>
+                            @endif
+                        </td>                        
                         <td data-label="Departament">{{ $question['department_id']}}</td>
                         <td data-label="Usuari">{{ $question['user_id']}}</td>
                         <td data-label="Manager">{{ $question['manager_id']}}</td>
@@ -118,6 +149,11 @@
                                             <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd" />
                                         </svg>
                                     </button>
+                                </a>
+                                <a href="{{ url('/admin/questions/edit/' . $question['id']) }}" class="button-table-edit"  data-target="sample-modal-2" type="button">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                                    </svg>
                                 </a>
                                 <form action="{{ url('/admin/questions/' . $question['id']) }}" method="POST">
                                     @csrf
@@ -135,10 +171,10 @@
                     </tbody>
                 </table>
                 <x-pagination>
-                        @for($i = 0; $i < $questions->lastPage(); $i++)
+                        @for($i = 0; $i < $assigned->lastPage(); $i++)
                             <div class="buttons">
-                                <a class="pagination-next m-2" href="{{ url('/admin/questions?page=' . $i+1) }}" >
-                                    @if($questions->currentPage() == $i+1) 
+                                <a class="pagination-next m-2" href="{{ url('/admin/questions?assigned=' . $i+1) }}" >
+                                    @if($assigned->currentPage() == $i+1) 
                                     <button type="button" class="button active">{{ $i+1 }}</button>
                                     @else
                                     <button type="button" class="button">{{ $i+1 }}</button>
@@ -146,7 +182,7 @@
                                 </a>
                             </div>
                         @endfor
-                        <small class="flex w-full justify-end mr-0.5">Pàgina {{ $questions->currentPage() }} de {{ $questions->lastPage() }} </small>
+                        <small class="flex w-full justify-end mr-0.5">Pàgina {{ $assigned->currentPage() }} de {{ $assigned->lastPage() }} </small>
                     </x-pagination>
             </div>
         </div>
@@ -163,6 +199,7 @@
                 <table>
                     <thead>
                         <tr>
+                            <th>ID</th>
                             <th>Assumpte</th>
                             <th>Estat</th>
                             <th>Departament</th>
@@ -171,10 +208,19 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($questions as $question)
+                        @foreach ($done as $question)
                     <tr>
+                        <td data-label="Assumpte"># {{ $question['id']}}</td>
                         <td data-label="Assumpte">{{ $question['title']}}</td>
-                        <td data-label="Estat">{{ $question['status']}}</td>
+                        <td data-label="Nom">
+                            @if($question['status'] ==1)
+                                <span class="border text-center py-2 px-2 text-red-400 bg-red-100">No assignat</span>
+                            @elseif($question['status'] ==2)
+                                <span class="border text-center py-2 px-2 text-orange-600 bg-orange-100">Assignat</span>
+                            @else
+                            <span class="border text-center py-2 px-2 text-green-600 bg-green-100">Finalitzat</span>
+                            @endif
+                        </td> 
                         <td data-label="Departament">{{ $question['department_id']}}</td>
                         <td data-label="Usuari">{{ $question['user_id']}}</td>
                         <td data-label="Manager">{{ $question['manager_id']}}</td>
@@ -187,6 +233,11 @@
                                             <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd" />
                                         </svg>
                                     </button>
+                                </a>
+                                <a href="{{ url('/admin/questions/edit/' . $question['id']) }}" class="button-table-edit"  data-target="sample-modal-2" type="button">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                                    </svg>
                                 </a>
                                 <form action="{{ url('/admin/questions/' . $question['id']) }}" method="POST">
                                     @csrf
@@ -204,10 +255,10 @@
                     </tbody>
                 </table>
                 <x-pagination>
-                        @for($i = 0; $i < $questions->lastPage(); $i++)
+                        @for($i = 0; $i < $done->lastPage(); $i++)
                             <div class="buttons">
-                                <a class="pagination-next m-2" href="{{ url('/admin/questions?page=' . $i+1) }}" >
-                                    @if($questions->currentPage() == $i+1) 
+                                <a class="pagination-next m-2" href="{{ url('/admin/questions?done=' . $i+1) }}" >
+                                    @if($done->currentPage() == $i+1) 
                                     <button type="button" class="button active">{{ $i+1 }}</button>
                                     @else
                                     <button type="button" class="button">{{ $i+1 }}</button>
@@ -215,7 +266,7 @@
                                 </a>
                             </div>
                         @endfor
-                        <small class="flex w-full justify-end mr-0.5">Pàgina {{ $questions->currentPage() }} de {{ $questions->lastPage() }} </small>
+                        <small class="flex w-full justify-end mr-0.5">Pàgina {{ $done->currentPage() }} de {{ $done->lastPage() }} </small>
                     </x-pagination>
             </div>
         </div>

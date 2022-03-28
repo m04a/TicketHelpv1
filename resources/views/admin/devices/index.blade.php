@@ -5,9 +5,16 @@
         </h1>
     </x-slot>
     <x-slot name="slot">
-
-
         <section class="section main-section">
+            @if(session('success'))
+                <x-success-alert id="message" class="mb-6 ml-6 mr-6">
+                    {{ session('success') }}
+                </x-success-alert>
+            @elseif(session('error'))
+                <x-error-alert id="message" class="mb-6 mr-6 ml-6">
+                    {{ session('error') }}
+                </x-error-alert>
+            @endif
             <div class="card has-table">
                 <header class="card-header">
                     <p class="card-header-title">
@@ -71,6 +78,20 @@
                             @endforeach
                         </tbody>
                     </table>
+                    <x-pagination>
+                        @for($i = 0; $i < $devices->lastPage(); $i++)
+                            <div class="buttons">
+                                <a class="pagination-next m-2" href="{{ url('/admin/devices?page=' . $i+1) }}" >
+                                    @if($devices->currentPage() == $i+1) 
+                                    <button type="button" class="button active">{{ $i+1 }}</button>
+                                    @else
+                                    <button type="button" class="button">{{ $i+1 }}</button>
+                                    @endif
+                                </a>
+                            </div>
+                        @endfor
+                        <small class="flex w-full justify-end mr-0.5">Pàgina {{ $devices->currentPage() }} de {{ $devices->lastPage() }} </small>
+                    </x-pagination>
                 </div>
             </div>
         </section>

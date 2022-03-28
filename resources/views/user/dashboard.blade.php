@@ -7,7 +7,7 @@
     </x-slot>
     <x-slot name="slot">
         <div class="card-container">
-            <a href="{{route('user.dashboard')}}" class="card-dashboard">
+            <a href="{{route('user.breakdowns.index')}}" class="card-dashboard">
             <div class="card-item">
                 <div class="card-spacing">
                     <div class="card-spacing-text">
@@ -15,7 +15,7 @@
                 </div>
             </div>
             </a>
-            <a href="{{route('user.suggestions.list')}}" class="card-dashboard">
+            <a href="{{route('user.suggestions.index')}}" class="card-dashboard">
             <div class="card-item">
                 <div class="card-spacing">
                     <div class="card-spacing-text">Suggeriments</div>
