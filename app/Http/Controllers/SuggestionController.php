@@ -208,9 +208,9 @@ class SuggestionController extends Controller
             $result = $suggestion->delete();
 
             if ($result) {
-                return redirect('/admin/suggestions')->with('message', 'Sugerencia esborrada!');
+                return redirect('/admin/suggestions')->with('success', 'Sugerencia esborrada!');
             }else{
-                return redirect('/admin/suggestions')->with('message', 'hi hagut un error al esborrar la sugerencia!');
+                return redirect('/admin/suggestions')->with('error', 'hi hagut un error al esborrar la sugerencia!');
             }
         }else{
             $suggestion = Suggestion::findOrFail($id);
@@ -218,9 +218,9 @@ class SuggestionController extends Controller
             $result = $suggestion->delete();
             if($suggestion['user_id'] == $idUser){
                 if ($result) {
-                    return redirect('/user/suggestions/list')->with('message', 'Sugerencia esborrada!');
+                    return redirect('/user/suggestions/list')->with('success', 'Sugerencia esborrada!');
                 }else{
-                    return redirect('/user/suggestions/list')->with('message', 'hi hagut un error al esborrar la sugerencia!');
+                    return redirect('/user/suggestions/list')->with('error', 'hi hagut un error al esborrar la sugerencia!');
                 }
             }
         }

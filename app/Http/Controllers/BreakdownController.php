@@ -231,28 +231,60 @@ class BreakdownController extends Controller
      */
     public function edit($id)
     {
-        $department = Department::all();
+        $idUser = Auth::user()->id;
 
-        $devices = Device::all();
+        $userRole = User::where('id', '=', $idUser)->get(['role_id']);
 
-        $zones = Zone::all();
+        if ($userRole[0]['role_id'] > 1){
+            
+            $department = Department::all();
 
-        $manager = User::where('role_id',3)
-        ->orWhere('role_id',2)
-        ->orderBy('role_id')->get();
+            $devices = Device::all();
+    
+            $zones = Zone::all();
+    
+            $manager = User::where('role_id',3)
+            ->orWhere('role_id',2)
+            ->orderBy('role_id')->get();
+    
+            $breakdownData = Breakdown::where('id', $id)->first();
+    
+            $breakdownData['username'] = $breakdownData->user->username;
+    
+            $breakdownData['departament'] = $breakdownData->department->name;
+    
+            return view('admin.breakdowns.edit',
+                ['department' => $department,
+                    'manager' => $manager,
+                    'devices' => $devices,
+                    'zones' => $zones,
+                ])->with('breakdownData', $breakdownData);
+            
+        }else{
+            
+            $department = Department::all();
 
-        $breakdownData = Breakdown::where('id', $id)->first();
-
-        $breakdownData['username'] = $breakdownData->user->username;
-
-        $breakdownData['departament'] = $breakdownData->department->name;
-
-        return view('admin.breakdowns.edit',
-            ['department' => $department,
-                'manager' => $manager,
-                'devices' => $devices,
-                'zones' => $zones,
-            ])->with('breakdownData', $breakdownData);
+            $devices = Device::all();
+    
+            $zones = Zone::all();
+    
+            $manager = User::where('role_id',3)
+            ->orWhere('role_id',2)
+            ->orderBy('role_id')->get();
+    
+            $breakdownData = Breakdown::where('id', $id)->first();
+    
+            $breakdownData['username'] = $breakdownData->user->username;
+    
+            $breakdownData['departament'] = $breakdownData->department->name;
+    
+            return view('user.breakdowns.edit',
+                ['department' => $department,
+                    'manager' => $manager,
+                    'devices' => $devices,
+                    'zones' => $zones,
+                ])->with('breakdownData', $breakdownData);
+            }
     }
 
     /**
@@ -264,18 +296,42 @@ class BreakdownController extends Controller
      */
     public function update(BreakdownRequest $request, $id)
     {
-        $breakdown = Breakdown::find($id);
-        /*Records to update with the request*/
-        $breakdown->status = $request->status;
-        $breakdown->title = $request->title;
-        $breakdown->description = $request->description;
-        $breakdown->manager_id = $request->manager_id;
-        $breakdown->device_id = $request->device_id;
-        $breakdown->zone_id = $request->zone_id;
-        $breakdown->department_id = $request->department_id;
+        $idUser = Auth::user()->id;
 
-        if($breakdown->save()){
-            return back()->with('success',"S'han actualitzat les dades de la incidencia.");
+        $userRole = User::where('id', '=', $idUser)->get(['role_id']);
+
+        if ($userRole[0]['role_id'] > 1){
+            
+            $breakdown = Breakdown::find($id);
+            /*Records to update with the request*/
+            $breakdown->status = $request->status;
+            $breakdown->title = $request->title;
+            $breakdown->description = $request->description;
+            $breakdown->manager_id = $request->manager_id;
+            $breakdown->device_id = $request->device_id;
+            $breakdown->zone_id = $request->zone_id;
+            $breakdown->department_id = $request->department_id;
+    
+            if($breakdown->save()){
+                return back()->with('success',"S'han actualitzat les dades de la incidencia.");
+            }
+            
+        }else{
+
+            $breakdown = Breakdown::find($id);
+            /*Records to update with the request*/
+            $breakdown->status = $request->status;
+            $breakdown->title = $request->title;
+            $breakdown->description = $request->description;
+            $breakdown->manager_id = $request->manager_id;
+            $breakdown->device_id = $request->device_id;
+            $breakdown->zone_id = $request->zone_id;
+            $breakdown->department_id = $request->department_id;
+    
+            if($breakdown->save()){
+                return back()->with('success',"S'han actualitzat les dades de la incidencia.");
+            }
+
         }
     }
 

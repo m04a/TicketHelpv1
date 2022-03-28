@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Requests;
-use Illuminate\Support\Facades\Auth;
+
 use Illuminate\Foundation\Http\FormRequest;
-class ZoneRequest extends FormRequest
+
+class TypeRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -12,9 +13,7 @@ class ZoneRequest extends FormRequest
      */
     public function authorize()
     {
-        if(Auth::user()->role_id > 0){
-            return true;
-        }
+        return true;
     }
 
     /**
@@ -25,14 +24,15 @@ class ZoneRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', 'string'],
-            'description' => ['required', 'string'],
+            'label' => 'required',
+            'description' => 'required',
         ];
     }
-    public function messages(){
+    public function messages()
+    {
         return [
-            'name.required' => 'el nom es invalid!',
-            'description.required' => 'Falta una descripció!'
+            'label.required' => 'Falta el assumpte',
+            'description.required' => 'Falta una descripció'
         ];
     }
 }

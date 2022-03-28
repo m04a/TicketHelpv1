@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\TypeRequest;
 use App\Models\Type;
 use App\Models\User;
 use App\Models\Role;
@@ -50,21 +51,17 @@ class TypeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TypeRequest $request)
     {
         //
-        $validated = $request->validate([
-            'label' => 'required',
-            'description' => 'required',
-        ]);
 
         $types = new Type;
 
-        $types->label = $validated['label'];
-        $types->description = $validated['description'];
+        $types->label=$request->label;
+        $types->description=$request->description;
 
         if($types->save()){
-            return redirect("/admin/types");
+            return redirect("/admin/types")->with('success', "El Tipus de dispositiu s'ha creat correctament");
         }
 
     }
@@ -104,7 +101,7 @@ class TypeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(TypeRequest $request, $id)
     {
         //
         
@@ -114,7 +111,7 @@ class TypeController extends Controller
         $types->description = $request->description;
 
         if($types->save()){
-            return back();
+            return back()->with('success', "s'ha actualizat les dades correctament");
         }
     }
 
@@ -132,7 +129,7 @@ class TypeController extends Controller
         $result = $types->delete();
         
         if ($result) {
-            return redirect('admin/types');
+            return redirect('admin/types')->with('success', "Tipus de dispositiu esborrat!");
         }
     }
 }

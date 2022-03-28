@@ -5,18 +5,18 @@
         </h1>
     </x-slot>
         @if(session('success'))
-                <x-success-alert-user id="message" class="transition-success-messages-users">
+                <x-success-alert id="message" class="transition-messages-questions-user">
                     {{ session('success') }}
-                </x-success-alert-user>
+                </x-success-alert>
         @endif
         @if ($errors->any())
-            <x-error-alert-user id="message" class="transition-error-messages-users">
+            <x-error-alert id="message" class="transition-messages-questions-user">
                 <ul>
                 @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
                 @endforeach
                 </ul>
-            </x-error-alert-user>
+            </x-error-alert>
         @endif
     <x-create-card-user>
         <form method="POST" action="{{ url('/user/breakdowns/create') }}">

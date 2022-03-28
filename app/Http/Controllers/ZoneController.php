@@ -61,11 +61,11 @@ class ZoneController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ZoneRequest $request)
     {
         $zone = new Zone();
 
-        $zone->label = $request->label;
+        $zone->label = $request->name;
         $zone->description = $request->description;
 
         if($zone->save()){
@@ -118,9 +118,17 @@ class ZoneController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ZoneRequest $request, $id)
     {
         //
+        $zone = Zone::find($id);
+        /*Records to update with the request*/
+        $zone->label = $request->name;
+        $zone->description = $request->description;
+
+        if($zone->save()){
+            return back()->with('success','S\'han actualitzat les dades de la zona!');
+        }
     }
 
     /**
@@ -132,8 +140,6 @@ class ZoneController extends Controller
     public function destroy($id)
     {
         $zone = Zone::find($id);
-
-        $zone->delete();
 
         if($zone->delete()){
             return back()->with('success',"S'ha esborrat la seva zona satisfactoriament");

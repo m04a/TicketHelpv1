@@ -479,6 +479,12 @@ body {
         padding-left: 0;
     }
 }
+@media (max-width: 1024px){
+    .main-section-user {
+        @apply p-6;
+    }
+}
+
 .is-title-bar li:last-child {
     @apply pr-0 font-black text-black;
 }

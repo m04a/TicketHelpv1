@@ -6,6 +6,11 @@
     </x-slot>
     <x-slot name="slot">
         <section class="section main-section">
+            @if(session('success'))
+                <x-success-alert id="message" class="mb-6">
+                    {{ session('success') }}
+                </x-success-alert>
+            @endif
             <div class="card has-table">
                 <header class="card-header">
                     <p class="card-header-title">
