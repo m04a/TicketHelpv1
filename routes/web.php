@@ -28,7 +28,7 @@ use App\Http\Controllers\Auth\PasswordResetLinkController;
 
 Route::get('/', [HomePage::class, 'index'])->name('homepage.index');
 
-Route::get('/guides', [GuideController::class, 'index'])->name('guide.index');
+Route::get('/guides', [GuideController::class, 'listPublic'])->name('guide.index');
 
 
 Route::middleware(['auth'])->group(function () {
@@ -211,11 +211,17 @@ Route::middleware(['auth'])->group(function () {
         //Route::delete('/admin/messages/{id}',[MessageController::class,"destroy"])
         //->name('admin.messages.delete');
 
-      Route::get('/admin/types/edit/{id}', [TypeController::class, 'edit'])->name('admin.types.edit');
+        Route::get('/admin/types/edit/{id}', [TypeController::class, 'edit'])->name('admin.types.edit');
 
         Route::put('/admin/types/edit/{id}', [TypeController::class, 'update'])->name('admin.types.update');
 
         Route::delete('/admin/types/{id}', [TypeController::class, "destroy"])->name('admin.types.delete');
+        
+        ///////////////////////////////////////////////////
+
+        Route::get('/admin/guides/create', [GuideController::class, 'create'])->name('admin.guides.create');
+
+        Route::post('/admin/guides/store', [GuideController::class, 'store'])->name('admin.guides.store');
     });
 
 
