@@ -1,5 +1,8 @@
 require('./bootstrap');
 
+import Editor from '@toast-ui/editor'
+import '@toast-ui/editor/dist/toastui-editor.css';
+
 import Alpine from 'alpinejs';
 
 window.Alpine = Alpine;
@@ -66,6 +69,19 @@ Array.from(document.getElementsByClassName('--jb-notification-dismiss')).forEach
     el.addEventListener('click', function (e) {
         e.currentTarget.closest('.notification').classList.add('hidden');
     });
+});
+
+const editor = new Editor({
+  el: document.querySelector('#editor'),
+  height: '400px',
+  initialEditType: 'markdown',
+  placeholder: 'Write something cool!',
+})
+
+document.querySelector('#createPostForm').addEventListener('submit', e => {
+    e.preventDefault();
+    document.querySelector('#content').value = editor.getMarkdown();
+    e.target.submit();
 });
 
 const message = document.getElementById('message');

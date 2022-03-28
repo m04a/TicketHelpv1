@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Guide;
 
 class GuideController extends Controller
 {
@@ -13,7 +14,7 @@ class GuideController extends Controller
      */
     public function index()
     {
-        return view('guest.guides.index');
+        return view('admin.guides.index');
     }
 
     /**
@@ -23,7 +24,7 @@ class GuideController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.guides.create');
     }
 
     /**
@@ -34,7 +35,16 @@ class GuideController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $guide = new Guide;
+        $guide->title=$request->title;
+        $guide->description=$request->description;
+        $guide->content=$request->content;
+        $result=$guide->save();
+        if ($result) {
+            return redirect('/admin/guides/create')->with('success', "L'article s'ha creat correctament");
+        } else {
+            return redirect('/admin/guides/create')->with('message', "Hi ha hagut algun error");
+        }
     }
 
     /**
@@ -80,5 +90,15 @@ class GuideController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function listPublic()
+    {
+        return view('guest.guides.index');
     }
 }
