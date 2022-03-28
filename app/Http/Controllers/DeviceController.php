@@ -132,7 +132,7 @@ class DeviceController extends Controller
     }
     public function graph4(){
 
-        $devices = Device::all();
+        $devices = Device::all()->toArray();
         dd($devices);
         foreach ($types as $item){
             $data[$item->zone->id];
