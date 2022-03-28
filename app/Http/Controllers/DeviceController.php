@@ -136,7 +136,7 @@ class DeviceController extends Controller
         foreach($types as $index=>$opt){
             foreach($opt as $key => $value)
             {
-                $optvar[$index][$key]['sk_id'] = 5;
+                $optvar[$index][$key]['sk_id'] = $value;
             }
         }
 
