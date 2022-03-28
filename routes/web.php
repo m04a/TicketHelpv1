@@ -32,22 +32,10 @@ use App\Http\Controllers\Auth\PasswordResetLinkController;
 
 /*O-AUTH routes*/
 
-Route::get('/auth/github/redirect', function () {
-    return Socialite::driver('github')->redirect();
-})->name('github');
+Route::get('/auth/{provider}/redirect',[OauthController::class, 'redirectProvider']);
 
-Route::get('/auth/github/callback', function () {
-    $user = Socialite::driver('github')->user();
-    OauthController::store($user,$provider="github");
-});
-Route::get('/auth/google/redirect', function () {
-    return Socialite::driver('google')->redirect();
-})->name('google');
+Route::get('/auth/{provider}/callback',[OauthController::class, 'authUserOauth']);
 
-Route::get('/auth/google/callback', function () {
-    $user = Socialite::driver('google')->user();
-    OauthController::store($user,$provider="google");
-});
 
 Route::get('/', [HomePage::class, 'index'])->name('homepage.index');
 
