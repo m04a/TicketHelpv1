@@ -131,16 +131,13 @@ class DeviceController extends Controller
         }
     }
     public function graph4(){
-        $standby = Breakdown::where("status", 1)->count();
 
-        $inprocess = Breakdown::where("status", 2)->count();
-
-        $resolveds = Breakdown::where("status", 3)->count();
-
+        $types = Type::all();
+        dd($types);
         return response()->json([
             [
                 "name" => "Resoltes",
-                "value" => $resolveds
+                "value" => $types
             ],
             [
                 "name"=> "En proces",
