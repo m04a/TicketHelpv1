@@ -191,9 +191,6 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('/admin/zones/edit/{id}', [ZoneController::class, "edit"])
             ->name('admin.zones.edit');
-
-        Route::put('/admin/zones/edit/{id}', [ZoneController::class, "update"])
-            ->name('admin.zones.update');
             
         Route::post('/admin/zones/create', [ZoneController::class, "store"])
             ->name('admin.zones.store');
