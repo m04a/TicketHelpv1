@@ -7,6 +7,7 @@ use App\Models\Breakdown;
 use App\Models\Device;
 use App\Models\User;
 use App\Models\Department;
+use App\Models\Message;
 use App\Models\Zone;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -50,26 +51,25 @@ class BreakdownController extends Controller
             ]);
 
         $breakdown['done'] = Breakdown::where('status', 3)
-                    ->paginate(10)
-                    ->through(fn ($item) => [
-                        "id" => $item->id,
-                        "title" => $item->title,
-                        "status" => $item->status,
-                        "username" => $item->user->username,
-                        "department" => $item->department->name,
-                        "manager" => $item->manager->username
-                    ]);
+            ->paginate(10)
+            ->through(fn ($item) => [
+                "id" => $item->id,
+                "title" => $item->title,
+                "status" => $item->status,
+                "username" => $item->user->username,
+                "department" => $item->department->name,
+                "manager" => $item->manager->username
+            ]);
 
-        if ($userRole[0]['role_id'] > 1){
-            return view('admin.breakdowns.index',$breakdown);
-        }else{
-            return view('user.breakdowns.list',$breakdown);
+        if ($userRole[0]['role_id'] > 1) {
+            return view('admin.breakdowns.index', $breakdown);
+        } else {
+            return view('user.breakdowns.list', $breakdown);
         }
-
     }
 
-    public function filter(){
-
+    public function filter()
+    {
     }
     /**
      * Show the form for creating a new resource.
@@ -86,26 +86,31 @@ class BreakdownController extends Controller
 
         $zones = Zone::all();
 
-        $manager = User::where('role_id',3)->orderBy('role_id')->get();
+        $manager = User::where('role_id', 3)->orderBy('role_id')->get();
 
         $userLoggedIn = Auth::user()->username;
 
-        if ($idUser == 3 ){
-            return view('admin.breakdowns.create',
-                ['department' => $department,
+        if ($idUser == 3) {
+            return view(
+                'admin.breakdowns.create',
+                [
+                    'department' => $department,
                     'manager' => $manager,
                     'devices' => $devices,
                     'zones' => $zones,
-                ])->with('userLoggedIn',$userLoggedIn);
-        }else{
-            return view('user.breakdowns.create',
-                ['department' => $department,
+                ]
+            )->with('userLoggedIn', $userLoggedIn);
+        } else {
+            return view(
+                'user.breakdowns.create',
+                [
+                    'department' => $department,
                     'manager' => $manager,
                     'devices' => $devices,
                     'zones' => $zones,
-                ])->with('userLoggedIn',$userLoggedIn);
+                ]
+            )->with('userLoggedIn', $userLoggedIn);
         }
-
     }
 
     /**
@@ -128,8 +133,8 @@ class BreakdownController extends Controller
         /*Obtain the user currently logged*/
         $breakdown->user_id = Auth::user()->id;
 
-        if($breakdown->save()){
-            return back()->with('success',"S'han creat la seva incidencia satisfactoriament");
+        if ($breakdown->save()) {
+            return back()->with('success', "S'han creat la seva incidencia satisfactoriament");
         }
     }
 
@@ -142,21 +147,28 @@ class BreakdownController extends Controller
     public function show($id)
     {
 
-        $breakdownData = Breakdown::where('id', $id)->first();
+        $breakdownData = Breakdown::findOrFail($id);
 
-        $breakdownData['username'] = $breakdownData->user->username;
-
-        $breakdownData['departament'] = $breakdownData->department->name;
-
-        $breakdownData['username'] = $breakdownData->user->username;
-
-        $breakdownData['manager_username'] = $breakdownData->manager->username;
-
-        $breakdownData['zone_name'] = $breakdownData->zone->label;
-
-        $breakdownData['device_name'] = $breakdownData->device->label;
-
-        return view('admin.breakdowns.view')->with('breakdownData',$breakdownData);
+        $breakdown = [
+                "id" => $breakdownData->id,
+                "title" => $breakdownData->title,
+                "status" => $breakdownData->status,
+                "description" => $breakdownData->description,
+                "username" =>$breakdownData->user->username,
+                "departament" =>$breakdownData->department->name,
+                "manager_username" =>$breakdownData->manager->username,
+                "zone_name" =>$breakdownData->zone->label,
+                "device_name" =>$breakdownData->device->label
+        ];
+        $messages = Message::where('breakdown_id', $breakdown['id'])->get()
+            ->map(fn ($item) => [
+                'id' => $item->id,
+                'content' => $item->content,
+                'user' => $item->user->username,
+            ]);
+        return view('admin.breakdowns.view')
+        ->with('breakdown', $breakdown)
+        ->with('messages', $messages);
     }
 
     /**
@@ -173,7 +185,7 @@ class BreakdownController extends Controller
 
         $zones = Zone::all();
 
-        $manager = User::where('role_id',3)->orderBy('role_id')->get();
+        $manager = User::where('role_id', 3)->orderBy('role_id')->get();
 
         $breakdownData = Breakdown::where('id', $id)->first();
 
@@ -181,12 +193,15 @@ class BreakdownController extends Controller
 
         $breakdownData['departament'] = $breakdownData->department->name;
 
-        return view('admin.breakdowns.edit',
-            ['department' => $department,
+        return view(
+            'admin.breakdowns.edit',
+            [
+                'department' => $department,
                 'manager' => $manager,
                 'devices' => $devices,
                 'zones' => $zones,
-            ])->with('breakdownData', $breakdownData);
+            ]
+        )->with('breakdownData', $breakdownData);
     }
 
     /**
@@ -208,8 +223,8 @@ class BreakdownController extends Controller
         $breakdown->zone_id = $request->zone_id;
         $breakdown->department_id = $request->department_id;
 
-        if($breakdown->save()){
-            return back()->with('success',"S'han actualitzat les dades de la incidencia.");
+        if ($breakdown->save()) {
+            return back()->with('success', "S'han actualitzat les dades de la incidencia.");
         }
     }
 
@@ -223,12 +238,13 @@ class BreakdownController extends Controller
     {
         $breakdown = Breakdown::find($id);
 
-        if($breakdown->delete()){
-            return back()->with('success',"S'ha esborrat la seva incidencia satisfactoriament");
+        if ($breakdown->delete()) {
+            return back()->with('success', "S'ha esborrat la seva incidencia satisfactoriament");
         }
     }
 
-    public function graph1() {
+    public function graph1()
+    {
 
         $standby = Breakdown::where("status", 1)->count();
 
@@ -238,16 +254,16 @@ class BreakdownController extends Controller
 
         return response()->json([
             [
-              "name" => "Resoltes",
-              "value" => $resolveds
+                "name" => "Resoltes",
+                "value" => $resolveds
             ],
             [
-              "name"=> "En proces",
-              "value"=> $inprocess
+                "name" => "En proces",
+                "value" => $inprocess
             ],
             [
-              "name"=> "Pendents",
-              "value"=> $standby
+                "name" => "Pendents",
+                "value" => $standby
             ],
         ]);
     }

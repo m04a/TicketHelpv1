@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\BreakdownController;
+use App\Http\Controllers\OauthController;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SuggestionController;
 use App\Http\Controllers\HomePage;
@@ -11,6 +14,7 @@ use App\Http\Controllers\DepartamentController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\TypeController;
 use App\Http\Controllers\ZoneController;
+use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\GuideController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 
@@ -25,6 +29,13 @@ use App\Http\Controllers\Auth\PasswordResetLinkController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+/*O-AUTH routes*/
+
+Route::get('/auth/{provider}/redirect',[OauthController::class, 'redirectProvider']);
+
+Route::get('/auth/{provider}/callback',[OauthController::class, 'authUserOauth']);
+
 
 Route::get('/', [HomePage::class, 'index'])->name('homepage.index');
 
@@ -55,11 +66,14 @@ Route::middleware(['auth'])->group(function () {
 
         Route::put('/admin/users/edit/{id}', [UserController::class, 'update'])->name('admin.devices.update');
 
+
         Route::post('/admin/users/store', [UserController::class, 'store'])->name('admin.users.store');
+
+
 
         Route::post('/admin/profile/reset', [PasswordResetLinkController::class, 'store'])
         ->name('password.email');
-        
+
 
         ///////////////////////////////////////////////////
 
@@ -93,7 +107,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/admin/suggestions/edit/{id}', [SuggestionController::class, 'edit'])->name('admin.suggestions.edit');
 
         Route::put('/admin/suggestions/update/{id}', [SuggestionController::class, 'update'])->name('admin.suggestions.update');
-        
+
         ///////////////////////////////////////////////////
 
 
@@ -173,13 +187,13 @@ Route::middleware(['auth'])->group(function () {
 
          Route::get('/admin/zones/create', [ZoneController::class, "create"])
             ->name('admin.zones.create');
-            
+
         Route::get('/admin/zones/edit/{id}', [ZoneController::class, "edit"])
             ->name('admin.zones.edit');
 
         Route::post('/admin/zones/create', [ZoneController::class, "store"])
             ->name('admin.zones.store');
-            
+
         Route::get('/admin/zones/view/{id}', [ZoneController::class, 'show'])
         ->name('admin.zones.view');
 
@@ -192,7 +206,7 @@ Route::middleware(['auth'])->group(function () {
         ///////////////////////////////////////////////////
 
         Route::get('/admin/types' , [TypeController::class, "index"])->name('admin.types.index');
-        
+
         Route::get('/admin/types/create', [TypeController::class, 'create'])->name('admin.types.create');
 
         Route::get('/admin/types/view/{id}', [TypeController::class, 'show'])->name('admin.types.view');
@@ -208,8 +222,8 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/admin/messages/{id}', [MessageController::class, "store"])
             ->name('admin.messages.store');
 
-        //Route::delete('/admin/messages/{id}',[MessageController::class,"destroy"])
-        //->name('admin.messages.delete');
+        Route::delete('/admin/messages/{id}',[MessageController::class,"destroy"])
+        ->name('admin.messages.delete');
 
         Route::get('/admin/types/edit/{id}', [TypeController::class, 'edit'])->name('admin.types.edit');
 
@@ -258,6 +272,9 @@ Route::middleware(['auth'])->group(function () {
 
     ///////////////////////////////////////////////////
 
+
+
+
     Route::get('/user/suggestions/create', [SuggestionController::class, 'create'])->name('user.suggestions.create');
 
     Route::post('/user/suggestions/store', [SuggestionController::class, 'store'])->name('user.suggestions.store');
@@ -267,14 +284,14 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/user/suggestions/edit/{id}', [SuggestionController::class, 'edit'])->name('user.suggestions.edit');
 
     Route::delete('/user/suggestions/list/{id}', [SuggestionController::class, 'destroy'])->name('user.suggestions.delete');
-    
+
     Route::put('/user/suggestions/update/{id}', [SuggestionController::class, 'update'])->name('user.suggestions.update');
 
 
 
     ///////////////////////////////////////////////////
     Route::get('/user/profile/', [UserController::class, 'show'])->name('user.profile.index');
-    
+
     Route::put('/user/profile/{id}', [UserController::class, 'update'])->name('user.profile.update');
 });
 
