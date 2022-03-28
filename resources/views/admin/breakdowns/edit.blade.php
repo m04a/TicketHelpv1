@@ -22,7 +22,7 @@
 
         @endif
     <x-create-card>
-        <form method="POST" action="{{ url("/admin/breakdowns/edit/".$breakdownData->id) }}">
+        <form method="POST" action="{{ url'/admin/breakdowns/edit/'.$breakdownData->id) }}">
             @csrf
             <div class="content-column">
                 <!-- Name User -->
@@ -50,7 +50,7 @@
 
                     <x-select name="zone_id" class="block mt-4 w-full">
                         @foreach ($zones as $item)
-                            <option {{$breakdownData->zone_id==$item->id ? 'selected' : '' }} value="{{$item->id}} ">{{ $item->label }}</option>
+                            <option {{ $breakdownData->zone_id==$item->id ? 'selected' : '' }} value="{{$item->id}} ">{{ $item->label }}</option>
                         @endforeach
                     </x-select>
                 </div>
@@ -60,7 +60,7 @@
 
                     <x-select name="department_id" class="block mt-4 w-full">
                         @foreach ($department as $item)
-                        <option {{$breakdownData->department_id==$item->id ? 'selected' : '' }} value="{{$item->id}} ">{{ $item->name }}</option>
+                        <option {{ $breakdownData->department_id==$item->id ? 'selected' : '' }} value="{{$item->id}} ">{{ $item->name }}</option>
                         @endforeach
                     </x-select>
                 </div>
@@ -73,7 +73,7 @@
 
                     <x-select name="manager_id" class="block mt-4 w-full">
                         @foreach ($manager as $item)
-                            <option {{$breakdownData->manager_id==$item->id ? 'selected' : '' }} value="{{$item->id}} ">{{ $item->username }}</option>
+                            <option {{ $breakdownData->manager_id==$item->id ? 'selected' : '' }} value="{{$item->id}} ">{{ $item->username }}</option>
                         @endforeach
                     </x-select>
                 </div>
@@ -84,7 +84,7 @@
 
                     <x-select name="device_id" class="block mt-4 w-full">
                         @foreach ($devices as $item)
-                            <option {{$breakdownData->device_id==$item->id ? 'selected' : '' }} value="{{$item->id}} ">{{ $item->label }}</option>
+                            <option {{ $breakdownData->device_id==$item->id ? 'selected' : '' }} value="{{$item->id}} ">{{ $item->label }}</option>
                         @endforeach
                     </x-select>
                 </div>

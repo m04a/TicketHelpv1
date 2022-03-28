@@ -5,18 +5,18 @@
         </h1>
     </x-slot>
         @if(session('success'))
-                <x-success-alert id="message" class="transition-success-messages-users">
+                <x-success-alert-user id="message" class="transition-success-messages-users">
                     {{ session('success') }}
-                </x-success-alert>
+                </x-success-alert-user>
         @endif
         @if ($errors->any())
-            <x-error-alert id="message" class="transition-error-messages-users">
+            <x-error-alert-user id="message" class="transition-error-messages-users">
                 <ul>
                 @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
                 @endforeach
                 </ul>
-            </x-error-alert>
+            </x-error-alert-user>
         @endif
     <x-create-card-user>
         <form method="POST" action="{{ url('/user/breakdowns/create') }}">
@@ -95,12 +95,12 @@
             </div>
 
             <div class="button-create">
-            <a href="{{ url('user/breakdowns/list') }}">
+                <a href="{{ url('user/breakdowns/list') }}">
                     <x-button type="button" class="ml-3">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
-                    </svg>
-                        {{ __('Llistat') }}
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+                        </svg>
+                            {{ __('Llistat') }}
                     </x-button>
                 </a>
                 <x-button type="submit" class="ml-3">

@@ -237,7 +237,9 @@ class BreakdownController extends Controller
 
         $zones = Zone::all();
 
-        $manager = User::where('role_id',3)->orderBy('role_id')->get();
+        $manager = User::where('role_id',3)
+        ->orWhere('role_id',2)
+        ->orderBy('role_id')->get();
 
         $breakdownData = Breakdown::where('id', $id)->first();
 
@@ -299,11 +301,12 @@ class BreakdownController extends Controller
 
         }else{
 
-            $breakdown = Breakdown::find($id)
-            ->where('user_id', $idUser);
+            $breakdown = Breakdown::find($id);
 
-            if($breakdown->delete()){
-                return back()->with('success',"S'ha esborrat la seva incidencia satisfactoriament");
+            if($breakdown['user_id'] == $idUser){
+                if ($breakdown->delete()) {
+                    return back()->with('success', 'Pregunta esborrada!');
+                }
             }
 
         }

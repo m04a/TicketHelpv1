@@ -1,7 +1,7 @@
 <x-user-layout>
     <x-slot name="header">
         <h1 class="title">
-            Incidència 2
+            Incidència
         </h1>
     </x-slot>
     <x-slot name="slot">

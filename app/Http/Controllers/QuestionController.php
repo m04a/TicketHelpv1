@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\QuestionRequest;
 use App\Models\Question;
 use App\Models\User;
 use App\Models\Department;
@@ -23,7 +25,9 @@ class QuestionController extends Controller
         $userRole = User::where('id', '=', $idUser)->get(['role_id']);
 
         if($userRole[0]['role_id'] > 1){
-            $data['questions'] = Question::paginate(5)
+            
+            $data['unassigned'] = Question::where('status', 1)
+            ->paginate(5, ["*"], "unassigned")
             ->through(fn ($item) => [
               "id" => $item->id,
               "title" => $item->title,
@@ -33,10 +37,32 @@ class QuestionController extends Controller
               "user_id" => $item->user->username,
               "manager_id" => $item->manager->username,
               ]);
+              $data['assigned'] = Question::where('status', 2)
+              ->paginate(5, ["*"], "assigned")
+              ->through(fn ($item) => [
+                "id" => $item->id,
+                "title" => $item->title,
+                "description" => $item->description,
+                "status" => $item->status,
+                "department_id" => $item->department->name,
+                "user_id" => $item->user->username,
+                "manager_id" => $item->manager->username,
+                ]);
+                $data['done'] = Question::where('status', 3)
+                ->paginate(5, ["*"], "done")
+                ->through(fn ($item) => [
+                  "id" => $item->id,
+                  "title" => $item->title,
+                  "description" => $item->description,
+                  "status" => $item->status,
+                  "department_id" => $item->department->name,
+                  "user_id" => $item->user->username,
+                  "manager_id" => $item->manager->username,
+                  ]);
                 return view('admin.questions.index', $data);
         }else{
             $data['questions'] = Question::where('user_id', '=', $idUser)
-            ->paginate(5)
+            ->paginate(10)
             ->through(fn ($item) => [
                 "id" => $item->id,
                 "title" => $item->title,
@@ -60,14 +86,20 @@ class QuestionController extends Controller
     public function create(Request $request)
     {
         //
+        $department = Department::all();
+
+        $manager = User::where('role_id',3)
+        ->orWhere('role_id',2)
+        ->orderBy('role_id')->get();
+
         $idUser = $request->user()->id;
 
         $userRole = User::where('id', '=', $idUser)->get(['role_id']);
 
         if ($userRole[0]['role_id'] > 1){
-            return view('admin/questions/create');
+            return view('admin/questions/create', ['departament' => $department, 'manager' => $manager]);
         } else {
-            return view('user/questions/create');
+            return view('user/questions/create', ['departament' => $department, 'manager' => $manager]);
         }
 
     }
@@ -78,34 +110,39 @@ class QuestionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(QuestionRequest $request)
     {
         //
-        $idUser = $request->user()->id;
+        $idUser = Auth::user()->id;
         $userRole = User::where('id', '=', $idUser)->get(['role_id']);
 
-        $validated = $request->validate([
-            'title' => 'required',
-            'description' => 'required',
-            'departament' => 'required',
-        ]);
-
-        $questions = new Question;
-
-        $questions->title = $validated['title'];
-        $questions->description = $validated['description'];
-        $questions->status = '0';
-        $questions->department_id = $validated['departament'];
-        $questions->user_id = $idUser;
-        $questions->manager_id = '1';
-
-
-        $questions->save();
-
         if ($userRole[0]['role_id'] > 1){
-            return redirect('admin/questions/create');
+
+            $questions = new Question;
+
+            $questions->title = $request->title;
+            $questions->description = $request->description;
+            $questions->status = $request->status;
+            $questions->department_id = $request->departament;
+            $questions->user_id = $idUser;
+            $questions->manager_id = $request->manager;
+
+            if($questions->save()){
+                return redirect('admin/questions/create')->with('success', "S'ha creat la pergunta correctament!");
+            }
         } else {
-            return redirect('user/questions/create');
+            $questions = new Question;
+
+            $questions->title = $request->title;
+            $questions->description = $request->description;
+            $questions->status = 1;
+            $questions->department_id = $request->departament;
+            $questions->user_id = $idUser;
+            $questions->manager_id = $request->manager;
+            
+            if($questions->save()){
+                return redirect('user/questions/create')->with('success', "S'ha creat la pergunta correctament!");
+            }
         }
         
     }
@@ -119,15 +156,31 @@ class QuestionController extends Controller
     public function show($id)
     {
         //
-        $questions = Question::findOrFail($id);
+        $idUser = Auth::user()->id;
+        $userRole = User::where('id', '=', $idUser)->get(['role_id']);
 
-        $questions['username'] = $questions->user->username;
-        
-        $questions['department'] = $questions->department->name;
-        
-        $questions['manager'] = $questions->manager->username;
+        if ($userRole[0]['role_id'] > 1){
 
-        return view('admin.questions.view', ['questions' => $questions]);
+            $questions = Question::findOrFail($id);
+
+            $questions['username'] = $questions->user->username;
+            
+            $questions['department'] = $questions->department->name;
+            
+            $questions['manager'] = $questions->manager->username;
+    
+            return view('admin.questions.view', ['questions' => $questions]);
+        } else {
+            $questions = Question::findOrFail($id);
+
+            $questions['username'] = $questions->user->username;
+            
+            $questions['department'] = $questions->department->name;
+            
+            $questions['manager'] = $questions->manager->username;
+    
+            return view('user.questions.view', ['questions' => $questions]);
+        }
     }
 
     /**
@@ -139,13 +192,34 @@ class QuestionController extends Controller
     public function edit($id)
     {
         //
-        $questions = Question::where('id', $id)->first();
+        $idUser = Auth::user()->id;
+        $userRole = User::where('id', '=', $idUser)->get(['role_id']);
 
-        $questions['department'] = $questions->department->name;
+        if ($userRole[0]['role_id'] > 1){
 
-        $departments = Department::all();
+            $questions = Question::where('id', $id)->first();
 
-        return view('user.questions.edit' , ['departments' => $departments])->with('questions',$questions);
+            $departments = Department::all();
+
+            $manager = User::where('role_id',3)
+            ->orWhere('role_id',2)
+            ->orderBy('role_id')->get();
+    
+            $departments = Department::all();
+    
+            return view('admin.questions.edit' , ['departments' => $departments, 'manager' => $manager])->with('questions',$questions);
+            
+        } else {
+            $questions = Question::where('id', $id)->first();
+
+            $manager = User::where('role_id',3)
+            ->orWhere('role_id',2)
+            ->orderBy('role_id')->get();
+    
+            $departments = Department::all();
+    
+            return view('user.questions.edit' , ['departments' => $departments, 'manager' => $manager])->with('questions',$questions);
+        }
     }
 
     /**
@@ -155,19 +229,42 @@ class QuestionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(QuestionRequest $request, $id)
     {
         //
-        $questions = Question::findOrFail($id);
+        $idUser = Auth::user()->id;
+        $userRole = User::where('id', '=', $idUser)->get(['role_id']);
 
-        $questions->title = $request->title;
-        $questions->description = $request->description;
-        $questions->department_id = $request->department;
+        if ($userRole[0]['role_id'] > 1){
 
-        if($questions->save()){
-            return back();
+            $questions = Question::findOrFail($id);
+
+            $questions->title = $request->title;
+            $questions->description = $request->description;
+            $questions->status = $request->status;
+            $questions->department_id = $request->departament;
+            $questions->user_id = $idUser;
+            $questions->manager_id = $request->manager;
+    
+            if($questions->save()){
+                return back()->with('success',"La Pregunta S'ha actualizat correctament");
+            }
+            
+        } else {
+            $questions = Question::findOrFail($id);
+
+            $questions->title = $request->title;
+            $questions->description = $request->description;
+            $questions->department_id = $request->departament;
+            $questions->user_id = $idUser;
+            $questions->manager_id = $request->manager;
+    
+            if($questions->save()){
+                return back()->with('success',"La pregunta s'ha actualizat correctament");
+            }
+    
         }
-    }
+    }       
 
     /**
      * Remove the specified resource from storage.
@@ -178,14 +275,33 @@ class QuestionController extends Controller
     public function destroy($id)
     {
         //
-        $question = Question::findOrFail($id);
-        
-        $result = $question->delete();
-        
-        if ($result) {
-            return redirect('admin/questions')->with('message', 'Pregunta esborrada');
-        }
+        $idUser = Auth::user()->id;
+        $userRole = User::where('id', '=', $idUser)->get(['role_id']);
 
-        return redirect('admin/questions')->with('message', 'Error inesperat. Contacti amb l\'administrador del lloc');
+        if ($userRole[0]['role_id'] > 1){
+
+            $question = Question::findOrFail($id);
+        
+            $result = $question->delete();
+            
+            if ($result) {
+                return redirect('admin/questions')->with('success', 'Pregunta esborrada!');
+            }
+    
+            return redirect('admin/questions')->with('error', 'Error inesperat. Contacti amb l\'administrador del lloc');
+            
+        } else {
+            $question = Question::findOrFail($id);
+        
+            $result = $question->delete();
+            if($question['user_id'] == $idUser){
+                if ($result) {
+                    return redirect('user/questions/list')->with('success', 'Pregunta esborrada!');
+                }
+            }
+    
+            return redirect('user/questions/list')->with('error', 'Error inesperat. Contacti amb l\'administrador del lloc');
+    
+        }
     }
 }

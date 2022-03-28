@@ -216,11 +216,12 @@ class SuggestionController extends Controller
             $suggestion = Suggestion::findOrFail($id);
 
             $result = $suggestion->delete();
-
-            if ($result) {
-                return redirect('/user/suggestions/list')->with('message', 'Sugerencia esborrada!');
-            }else{
-                return redirect('/user/suggestions/list')->with('message', 'hi hagut un error al esborrar la sugerencia!');
+            if($suggestion['user_id'] == $idUser){
+                if ($result) {
+                    return redirect('/user/suggestions/list')->with('message', 'Sugerencia esborrada!');
+                }else{
+                    return redirect('/user/suggestions/list')->with('message', 'hi hagut un error al esborrar la sugerencia!');
+                }
             }
         }
     }

@@ -210,7 +210,7 @@
                                 <td data-label="Nom"># {{ $item['id'] }}</td>
                                 <td data-label="Nom">{{ $item['title']  }}</td>
                                 <td data-label="Nom">
-                                    @if($item['status'] ==1)
+                                @if($item['status'] ==1)
                                     <span class="border text-center py-2 px-2 text-red-400 bg-red-100">No assignat</span>
                                 @elseif($item['status'] ==2)
                                     <span class="border text-center py-2 px-2 text-orange-600 bg-orange-100">Assignat</span>

@@ -131,9 +131,10 @@ Route::middleware(['auth'])->group(function () {
 
         Route::post('/admin/questions/create', [QuestionController::class, "store"])->name('admin.questions.store');
 
-        Route::get('/admin/questions/edit', function () {
-            return view('admin/questions/edit');
-        })->name('admin.questions.edit');
+        Route::get('/admin/questions/edit/{id}', [QuestionController::class, "edit"])->name('admin.questions.edit');
+        
+        Route::put('/admin/questions/update/{id}', [QuestionController::class, "update"])->name('admin.questions.update');
+        
 
         ////////////////////////////////////////////////////
 
@@ -247,6 +248,10 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/user/questions/create', [QuestionController::class, "store"])->name('user.questions.store');
 
     Route::get('/user/questions/create', [QuestionController::class, "create"])->name('user.questions.create');
+    
+    Route::delete('/user/questions/{id}', [QuestionController::class, "destroy"])->name('user.questions.destroy');
+    
+    Route::get('/user/questions/view/{id}', [QuestionController::class, "show"])->name('user.questions.view');
 
     ///////////////////////////////////////////////////
 
