@@ -131,8 +131,6 @@ class DeviceController extends Controller
         }
     }
     public function graph4(){
-
-        $devices = Device::all()->groupBy('zone_id')->count();
-        dd($devices);
+       return Zone::withCount('devices')->get()->toJSON();
     }
 }
