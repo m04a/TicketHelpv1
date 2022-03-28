@@ -49,4 +49,8 @@ class Breakdown extends Model
     {
         return $this->belongsTo(Zone::class, 'zone_id');
     }
+    public function messages()
+    {
+        return $this->hasMany(Message::class, 'breakdown_id');
+    }
 }
