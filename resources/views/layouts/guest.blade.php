@@ -17,7 +17,17 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 </head>
- <body class="login">
+ <body class="pt-14 pl-0">
+    <nav id="navbar-main" class="navbar is-fixed-top">
+        <div class="aside-tools">
+            <div class="logo-dashboard">
+                <b>TicketHelp</b>
+            </div>
+        </div>
+        <div class="navbar-brand">
+            <a href="{{ url('/guides') }}" class="navbar-item font-bold">Guies</a>
+        </div>
+    </nav>
     <!-- Page Content -->
         {{ $slot }}
  </body>

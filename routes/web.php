@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\BreakdownController;
+use App\Http\Controllers\OauthController;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SuggestionController;
 use App\Http\Controllers\HomePage;
@@ -11,6 +14,10 @@ use App\Http\Controllers\DepartamentController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\TypeController;
 use App\Http\Controllers\ZoneController;
+use Laravel\Socialite\Facades\Socialite;
+use App\Http\Controllers\GuideController;
+use App\Http\Controllers\Auth\PasswordResetLinkController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -23,7 +30,16 @@ use App\Http\Controllers\ZoneController;
 |
 */
 
+/*O-AUTH routes*/
+
+Route::get('/auth/{provider}/redirect',[OauthController::class, 'redirectProvider']);
+
+Route::get('/auth/{provider}/callback',[OauthController::class, 'authUserOauth']);
+
+
 Route::get('/', [HomePage::class, 'index'])->name('homepage.index');
+
+Route::get('/guides', [GuideController::class, 'listPublic'])->name('guide.index');
 
 
 Route::middleware(['auth'])->group(function () {
@@ -44,6 +60,9 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('/admin/users/edit/{id}', [UserController::class, 'edit'])->name('admin.users.edit');
 
+        Route::get('/admin/profile/', [UserController::class, 'show'])->name('admin.profile.index');
+
+        Route::put('/admin/profile/{id}', [UserController::class, 'update'])->name('admin.profile.update');
 
         Route::put('/admin/users/edit/{id}', [UserController::class, 'update'])->name('admin.devices.update');
 
@@ -52,7 +71,9 @@ Route::middleware(['auth'])->group(function () {
 
         Route::delete('/admin/users/{id}', [UserController::class, "destroy"])->name('admin.users.delete');
 
-        
+        Route::post('/admin/profile/reset', [PasswordResetLinkController::class, 'store'])
+        ->name('password.email');
+
 
         ///////////////////////////////////////////////////
 
@@ -86,7 +107,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/admin/suggestions/edit/{id}', [SuggestionController::class, 'edit'])->name('admin.suggestions.edit');
 
         Route::put('/admin/suggestions/update/{id}', [SuggestionController::class, 'update'])->name('admin.suggestions.update');
-        
+
         ///////////////////////////////////////////////////
 
 
@@ -167,24 +188,29 @@ Route::middleware(['auth'])->group(function () {
 
          Route::get('/admin/zones/create', [ZoneController::class, "create"])
             ->name('admin.zones.create');
-            
+
         Route::get('/admin/zones/edit/{id}', [ZoneController::class, "edit"])
             ->name('admin.zones.edit');
 
         Route::put('/admin/zones/edit/{id}', [ZoneController::class, "update"])
             ->name('admin.zones.update');
             
+        Route::post('/admin/zones/create', [ZoneController::class, "store"])
+            ->name('admin.zones.store');
+
         Route::get('/admin/zones/view/{id}', [ZoneController::class, 'show'])
         ->name('admin.zones.view');
 
         Route::delete('/admin/zones/destroy/{id}', [ZoneController::class, "destroy"])
             ->name('admin.zones.delete');
 
+        Route::put('/admin/zones/edit/{id}', [ZoneController::class, "update"])
+            ->name('admin.zones.update');
 
         ///////////////////////////////////////////////////
 
         Route::get('/admin/types' , [TypeController::class, "index"])->name('admin.types.index');
-        
+
         Route::get('/admin/types/create', [TypeController::class, 'create'])->name('admin.types.create');
 
         Route::get('/admin/types/view/{id}', [TypeController::class, 'show'])->name('admin.types.view');
@@ -200,14 +226,20 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/admin/messages/{id}', [MessageController::class, "store"])
             ->name('admin.messages.store');
 
-        //Route::delete('/admin/messages/{id}',[MessageController::class,"destroy"])
-        //->name('admin.messages.delete');
+        Route::delete('/admin/messages/{id}',[MessageController::class,"destroy"])
+        ->name('admin.messages.delete');
 
-      Route::get('/admin/types/edit/{id}', [TypeController::class, 'edit'])->name('admin.types.edit');
+        Route::get('/admin/types/edit/{id}', [TypeController::class, 'edit'])->name('admin.types.edit');
 
         Route::put('/admin/types/edit/{id}', [TypeController::class, 'update'])->name('admin.types.update');
 
         Route::delete('/admin/types/{id}', [TypeController::class, "destroy"])->name('admin.types.delete');
+        
+        ///////////////////////////////////////////////////
+
+        Route::get('/admin/guides/create', [GuideController::class, 'create'])->name('admin.guides.create');
+
+        Route::post('/admin/guides/store', [GuideController::class, 'store'])->name('admin.guides.store');
     });
 
 
@@ -281,12 +313,17 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/user/suggestions/edit/{id}', [SuggestionController::class, 'edit'])->name('user.suggestions.edit');
 
     Route::delete('/user/suggestions/list/{id}', [SuggestionController::class, 'destroy'])->name('user.suggestions.delete');
-    
+
     Route::put('/user/suggestions/update/{id}', [SuggestionController::class, 'update'])->name('user.suggestions.update');
     
     Route::get('user/suggestions/index', function () {
         return view('/user/suggestions/index');
     })->name('user.suggestions.index');
+
+    ///////////////////////////////////////////////////
+    Route::get('/user/profile/', [UserController::class, 'show'])->name('user.profile.index');
+
+    Route::put('/user/profile/{id}', [UserController::class, 'update'])->name('user.profile.update');
 });
 
 require __DIR__ . '/auth.php';

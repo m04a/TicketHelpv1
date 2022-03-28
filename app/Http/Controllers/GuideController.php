@@ -1,13 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Http\Requests\MessageRequest;
-use App\Models\Message;
-use App\Models\Breakdown;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
 
-class MessageController extends Controller
+use Illuminate\Http\Request;
+use App\Models\Guide;
+
+class GuideController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +14,7 @@ class MessageController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.guides.index');
     }
 
     /**
@@ -26,7 +24,7 @@ class MessageController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.guides.create');
     }
 
     /**
@@ -35,17 +33,17 @@ class MessageController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(MessageRequest $request)
+    public function store(Request $request)
     {
-        $message = new Message;
-        $message->content=$request->content;
-        $message->user_id=Auth::user()->id;
-        $message->breakdown_id=$request->breakdown_id;
-        $message->question_id=$request->question_id;
-        if ($message->save()) {
-            return back()->with('success', "El missatge ha sigut enviat");
+        $guide = new Guide;
+        $guide->title=$request->title;
+        $guide->description=$request->description;
+        $guide->content=$request->content;
+        $result=$guide->save();
+        if ($result) {
+            return redirect('/admin/guides/create')->with('success', "L'article s'ha creat correctament");
         } else {
-            return back()->with('message', "Hi ha hagut algun error");
+            return redirect('/admin/guides/create')->with('message', "Hi ha hagut algun error");
         }
     }
 
@@ -91,12 +89,16 @@ class MessageController extends Controller
      */
     public function destroy($id)
     {
-        $Message = Message::findOrFail($id);
+        //
+    }
 
-        if ($Message->delete()) {
-            return back()->with('message', 'Missatge esborrat!');
-        } else {
-            return back()->with('message', 'Hi hagut un error al esborrar el missatge!');
-        }
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function listPublic()
+    {
+        return view('guest.guides.index');
     }
 }

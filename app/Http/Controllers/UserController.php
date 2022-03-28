@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
@@ -23,8 +26,8 @@ class UserController extends Controller
             "email" => $item->email,
             "role_name" => $item->role->label
         ]);
-        
-        return view('admin.users.index', $users); 
+
+        return view('admin.users.index', $users);
     }
 
     /**
@@ -51,7 +54,7 @@ class UserController extends Controller
 
         $user->username = $request->username;
         $user->email = $request->email;
-        $user->password = $request->password;
+        $user->password = Hash::make($request->password);
         /*Obtain the user currently logged*/
         // $user->id = Auth::user()->id;
 
@@ -66,9 +69,20 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request)
     {
         //
+        $idUser = $request->user()->id;
+
+        $users = User::where('id', '=', $idUser)->get();
+
+        $userRole = User::where('id', '=', $idUser)->get(['role_id']);
+
+        if($userRole[0]['role_id'] > 1){
+            return view('admin.profile.index' , ['users' => $users]);
+        } else {
+            return view('user.profile.index' , ['users' => $users]);
+        }
     }
 
     /**
@@ -98,7 +112,7 @@ class UserController extends Controller
         /*Records to update with the request*/
         $user->username = $request->username;
         $user->email = $request->email;
-        $user->password = $request->password;
+        $user->password = Hash::make($request->password);
 
         if($user->save()){
             return back()->with('success','S\'han actualitzat les dades de l\'usuari.');

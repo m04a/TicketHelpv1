@@ -144,7 +144,7 @@ class QuestionController extends Controller
                 return redirect('user/questions/create')->with('success', "S'ha creat la pergunta correctament!");
             }
         }
-        
+
     }
 
     /**
