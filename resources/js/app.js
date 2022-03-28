@@ -78,11 +78,23 @@ const editor = new Editor({
   placeholder: 'Write something cool!',
 })
 
-document.querySelector('#createPostForm').addEventListener('submit', e => {
-    e.preventDefault();
-    document.querySelector('#content').value = editor.getMarkdown();
-    e.target.submit();
-});
+if (document.querySelector('#createPostForm')) {
+    document.querySelector('#createPostForm').addEventListener('submit', e => {
+        e.preventDefault();
+        document.querySelector('#content').value = editor.getMarkdown();
+        e.target.submit();
+    });
+}
+
+if (document.querySelector('#editPostForm')) {
+    editor.setMarkdown(document.querySelector('#oldContent').value);
+
+    document.querySelector('#editPostForm').addEventListener('submit', e => {
+        e.preventDefault();
+        document.querySelector('#content').value = editor.getMarkdown();
+        e.target.submit();
+    });
+}
 
 const message = document.getElementById('message');
 window.onload = function(event) {

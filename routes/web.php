@@ -233,7 +233,13 @@ Route::middleware(['auth'])->group(function () {
         
         ///////////////////////////////////////////////////
 
+        Route::get('/admin/guides/edit/{id}', [GuideController::class, 'edit'])->name('admin.guides.edit');
+
+        Route::put('/admin/guides/update', [GuideController::class, 'update'])->name('admin.guides.update');
+
         Route::get('/admin/guides/create', [GuideController::class, 'create'])->name('admin.guides.create');
+
+        Route::get('/admin/guides/', [GuideController::class, 'index'])->name('admin.guides.index');
 
         Route::post('/admin/guides/store', [GuideController::class, 'store'])->name('admin.guides.store');
     });
