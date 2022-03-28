@@ -41,7 +41,7 @@
                                     <td data-label="Tipus">{{ $item['user'] }}</td>
                                     <td class="actions-cell">
                                         <div class="buttons right nowrap">
-                                            <form action="{{ url('/admin/guides/edit/' . $item['id']) }}" method="GET">
+                                            <form action="{{ url('/admin/guides/edit/' . $item['id']) }}" method="PUT">
                                                 <button class="button-table-edit" data-target="sample-modal-2"
                                                     type="submit">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"

@@ -27,7 +27,7 @@ class DeviceRequest extends FormRequest
     public function rules()
     {
         return[
-            'name' => ['required', 'string', 'min:3', 'max:120'],
+            'title' => ['required', 'string', 'min:3', 'max:120'],
             'type' => ['required', 'integer'],
             'zone' => ['required', 'integer']
         ];

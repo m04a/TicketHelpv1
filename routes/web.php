@@ -69,7 +69,7 @@ Route::middleware(['auth'])->group(function () {
 
         Route::post('/admin/users/store', [UserController::class, 'store'])->name('admin.users.store');
 
-
+        Route::delete('/admin/users/{id}', [UserController::class, "destroy"])->name('admin.users.delete');
 
         Route::post('/admin/profile/reset', [PasswordResetLinkController::class, 'store'])
         ->name('password.email');
@@ -155,9 +155,10 @@ Route::middleware(['auth'])->group(function () {
 
         Route::post('/admin/questions/create', [QuestionController::class, "store"])->name('admin.questions.store');
 
-        Route::get('/admin/questions/edit', function () {
-            return view('admin/questions/edit');
-        })->name('admin.questions.edit');
+        Route::get('/admin/questions/edit/{id}', [QuestionController::class, "edit"])->name('admin.questions.edit');
+        
+        Route::put('/admin/questions/update/{id}', [QuestionController::class, "update"])->name('admin.questions.update');
+        
 
         ////////////////////////////////////////////////////
 
@@ -191,6 +192,9 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/admin/zones/edit/{id}', [ZoneController::class, "edit"])
             ->name('admin.zones.edit');
 
+        Route::put('/admin/zones/edit/{id}', [ZoneController::class, "update"])
+            ->name('admin.zones.update');
+            
         Route::post('/admin/zones/create', [ZoneController::class, "store"])
             ->name('admin.zones.store');
 
@@ -257,10 +261,27 @@ Route::middleware(['auth'])->group(function () {
         [BreakdownController::class,"create"]);
 
     Route::post('/user/breakdowns/create',
-        [BreakdownController::class,"store"]);
+        [BreakdownController::class,"store"])->name('user.breakdowns.create');;
 
-    Route::get('/user/breakdowns/list', [BreakdownController::class, "index"])
-        ->name('user.breakdowns.list');
+    Route::delete(
+        '/user/breakdowns/{id}',
+        [BreakdownController::class, "destroy"]
+    );
+
+    Route::get(
+        '/user/breakdowns/view/{id}',
+        [BreakdownController::class, "show"]
+    );
+
+    Route::get('/user/breakdowns/list', [BreakdownController::class, "index"])->name('user.breakdowns.list');;
+    
+    Route::get('/user/breakdowns/edit/{id}', [BreakdownController::class, "edit"])->name('user.breakdowns.edit');;
+    
+    Route::put('/user/breakdowns/edit/{id}', [BreakdownController::class, "update"])->name('user.breakdowns.update');;
+    
+    Route::get('user/breakdowns/index', function () {
+        return view('/user/breakdowns/index');
+    })->name('user.breakdowns.index');
 
     ///////////////////////////////////////////////////
 
@@ -275,6 +296,14 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/user/questions/create', [QuestionController::class, "store"])->name('user.questions.store');
 
     Route::get('/user/questions/create', [QuestionController::class, "create"])->name('user.questions.create');
+    
+    Route::delete('/user/questions/{id}', [QuestionController::class, "destroy"])->name('user.questions.destroy');
+    
+    Route::get('/user/questions/view/{id}', [QuestionController::class, "show"])->name('user.questions.view');
+    
+    Route::get('user/questions/index', function () {
+        return view('/user/questions/index');
+    })->name('user.questions.index');
 
     ///////////////////////////////////////////////////
 
@@ -292,8 +321,10 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/user/suggestions/list/{id}', [SuggestionController::class, 'destroy'])->name('user.suggestions.delete');
 
     Route::put('/user/suggestions/update/{id}', [SuggestionController::class, 'update'])->name('user.suggestions.update');
-
-
+    
+    Route::get('user/suggestions/index', function () {
+        return view('/user/suggestions/index');
+    })->name('user.suggestions.index');
 
     ///////////////////////////////////////////////////
     Route::get('/user/profile/', [UserController::class, 'show'])->name('user.profile.index');

@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\DepartmentRequest;
 use App\Models\Department;
+use App\Models\Breakdown;
+use App\Models\Suggestion;
+use App\Models\Question;
 use App\Models\User;
 use App\Models\Role;
 
@@ -137,8 +140,16 @@ class DepartamentController extends Controller
     {
         $department = Department::find($id);
 
-        $department->delete();
+        // $breakdowns = Breakdown::where('department_id', $id)->count();
+        // $questions = Question::where('department_id', $id)->count();
+        // $suggestions = Suggestion::where('department_id', $id)->count();
+        
+        // $total = $breakdowns + $questions + $suggestions;
 
-        return redirect(route("admin.departments.index"));   
+        if($department->delete()){
+            return redirect("/admin/departments/")->with('success', "El departament s'ha esborrat satisfactoriament!");
+        }else{
+            return redirect("/admin/departments/")->with('error', "El departament no es pot borrar perqué te dependeciés!");
+        }   
     }
 }
