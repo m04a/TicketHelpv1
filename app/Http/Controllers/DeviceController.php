@@ -137,7 +137,7 @@ class DeviceController extends Controller
         $counter = 0;
         foreach ($devices as $item){
             $counter++;
-            $data['id'][$counter] = $item->zone_id;
+            $data['id'][$counter] = $item->zone->label.':'.$item->zone_id;
         }
         print '<pre>';
         print_r($data);
