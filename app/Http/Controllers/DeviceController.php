@@ -133,20 +133,15 @@ class DeviceController extends Controller
     public function graph4(){
 
         $types = Type::all();
-        dd($types);
-        return response()->json([
-            [
-                "name" => "Resoltes",
-                "value" => $types
-            ],
-            [
-                "name"=> "En proces",
-                "value"=> $inprocess
-            ],
-            [
-                "name"=> "Pendents",
-                "value"=> $standby
-            ],
-        ]);
+        foreach($types as $index=>$opt){
+            foreach($opt as $key => $value)
+            {
+                $optvar[$index][$key]['sk_id'] = 5;
+            }
+        }
+
+        print '<pre>';
+        print_r($optvar);
+        print '</pre>';
     }
 }
