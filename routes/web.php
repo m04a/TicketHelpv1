@@ -234,8 +234,8 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/admin/messages/{id}', [MessageController::class, "store"])
             ->name('admin.messages.store');
 
-        //Route::delete('/admin/messages/{id}',[MessageController::class,"destroy"])
-        //->name('admin.messages.delete');
+        Route::delete('/admin/messages/{id}',[MessageController::class,"destroy"])
+        ->name('admin.messages.delete');
 
       Route::get('/admin/types/edit/{id}', [TypeController::class, 'edit'])->name('admin.types.edit');
 

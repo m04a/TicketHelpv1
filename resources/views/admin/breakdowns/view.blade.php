@@ -12,7 +12,8 @@
                 <div class="column w-full">
                     <x-label for="title" :value="__('Assumpte')" />
 
-                    <x-input id="title" class="input-content input-disabled" type="text" name="nom" value="{{ $breakdownData->title }}" required autofocus disabled/>
+                    <x-input id="title" class="input-content input-disabled" type="text" name="nom"
+                        value="{{ $breakdown['title'] }}" required autofocus disabled />
                 </div>
 
             </div>
@@ -22,14 +23,16 @@
 
                     <x-label for="user" :value="__('User')" />
 
-                    <x-input id="user" class="input-content input-disabled" type="text" name="assumpte" value="{{ $breakdownData->username }}" required autofocus disabled/>
+                    <x-input id="user" class="input-content input-disabled" type="text" name="assumpte"
+                        value="{{ $breakdown['username'] }}" required autofocus disabled />
 
                 </div>
                 <!-- Department -->
                 <div class="mt-4 column-right">
                     <x-label for="rol" :value="__('Departament')" />
 
-                    <x-input id="   " class="input-content input-disabled" type="text" name="department" value="{{ $breakdownData->departament }}" required autofocus disabled/>
+                    <x-input id="   " class="input-content input-disabled" type="text" name="department"
+                        value="{{ $breakdown['departament'] }}" required autofocus disabled />
 
                 </div>
             </div>
@@ -39,14 +42,16 @@
 
                     <x-label for="user" :value="__('Administrador')" />
 
-                    <x-input id="user" class="input-content input-disabled" type="text" name="assumpte" value="{{ $breakdownData->manager_username }}" required autofocus disabled/>
+                    <x-input id="user" class="input-content input-disabled" type="text" name="assumpte"
+                        value="{{ $breakdown['manager_username'] }}" required autofocus disabled />
 
                 </div>
                 <!-- Department -->
                 <div class="mt-4 column-right">
                     <x-label for="rol" :value="__('Zona')" />
 
-                    <x-input id="   " class="input-content input-disabled" type="text" name="department" value="{{ $breakdownData->zone_name }}a" required autofocus disabled/>
+                    <x-input id="   " class="input-content input-disabled" type="text" name="department"
+                        value="{{ $breakdown['zone_name'] }}a" required autofocus disabled />
 
                 </div>
             </div>
@@ -56,14 +61,16 @@
 
                     <x-label for="user" :value="__('Dispositiu')" />
 
-                    <x-input id="user" class="input-content input-disabled" type="text" name="assumpte" value="{{ $breakdownData->device_name }}" required autofocus disabled/>
+                    <x-input id="user" class="input-content input-disabled" type="text" name="assumpte"
+                        value="{{ $breakdown['device_name'] }}" required autofocus disabled />
 
                 </div>
                 <!-- Status Breakdown -->
                 <div class="mt-4 column-right">
                     <x-label for="state" :value="__('Estat Incidència')" />
 
-                    <x-input id="state" class="input-content input-disabled" type="text" name="estat" value="{{ $breakdownData->status==1 ? 'Resolt' : 'Pendent'}}" required autofocus disabled/>
+                    <x-input id="state" class="input-content input-disabled" type="text" name="estat"
+                        value="{{ $breakdown['status'] == 1 ? 'Resolt' : 'Pendent' }}" required autofocus disabled />
                 </div>
             </div>
             <div>
@@ -71,29 +78,42 @@
 
                 <x-label for="description" class="mt-4 mb-4" :value="__('Descripció')" />
 
-                <textarea class="textarea input-disabled" disabled>{{ $breakdownData->description }}</textarea>
+                <textarea class="textarea input-disabled" disabled>{{ $breakdown['description'] }}</textarea>
             </div>
         </x-create-card>
+
         <x-create-card>
             <p class="font-bold mb-3 text-xl">Respostes</p>
+            @foreach ($messages as $item)
+                <x-label for="manager" class="mt-4 mb-4" :value="__($item['user'])" />
+                <form action="{{ url('/admin/messages/' . $item['id']) }}" method="POST">
+                    @csrf
+                    {{ method_field('DELETE') }}
+                    <button class="button-table-delete text-right" data-target="sample-modal" type="submit"
+                        onclick="return confirm('Estàs Segur que vols eliminar?')">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                        </svg>
+                    </button>
+                </form>
+                <textarea class="textarea input-disabled" disabled>{{ $item['content'] }}</textarea>
 
-            <x-label for="manager" class="mt-4 mb-4" :value="__('Manager')" />
-            <textarea class="textarea input-disabled" disabled>Possiblement sigui per la tarjeta grafica, hem passare a canviarla el dimecres, gràcies.</textarea>
-
-            <x-label for="manager" class="mt-4 mb-4" :value="__('Jorge')" />
-            <textarea class="textarea input-disabled" disabled>Gràcies el dimecres estaré aquí esperant !</textarea>
+            @endforeach
         </x-create-card>
 
         <x-create-card>
             <p class="font-bold mb-3 text-xl">Nova Resposta</p>
 
-            <form method="POST" action="{{ url("/admin/messages/".$breakdownData->id) }}">
+            <form method="POST" action="{{ url('/admin/messages/' . $breakdown['id']) }}">
                 @csrf
                 <textarea id="content" name="content" class="textarea"></textarea>
-                <input type="hidden" name="breakdown_id" value="{{ $breakdownData->id }}"/>
+                <input type="hidden" name="breakdown_id" value="{{ $breakdown['id'] }}" />
                 <div class="button-create">
                     <x-button class="ml-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 rotate-180 rotate-90" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 rotate-180 rotate-90" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
                         </svg>
                         {{ __('Enviar Resposta') }}
