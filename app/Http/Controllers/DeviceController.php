@@ -139,7 +139,7 @@ class DeviceController extends Controller
         foreach ($zones as $zone){
             $counter++;
             foreach ($devices as $device){
-                $data["zone.$counter"]['count'] = [$zone->id][$device->id];
+                $data["zone.$counter"]['count'] = [$zone->id][$device->zone_id];
             }
             $counter++;
         }
