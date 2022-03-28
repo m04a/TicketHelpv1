@@ -132,7 +132,8 @@ class DeviceController extends Controller
     }
     public function graph4(){
 
-        $types = Type::all();
+        $types = Type::all()->toArray();
+        dd($types);
         foreach($types as $index=>$opt){
             foreach($opt as $key => $value)
             {
