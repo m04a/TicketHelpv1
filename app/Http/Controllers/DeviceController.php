@@ -134,8 +134,10 @@ class DeviceController extends Controller
 
         $devices = Device::all();
         $data =[];
+        $counter = 0;
         foreach ($devices as $item){
-            $data['id'] = $item->zone_id;
+            $counter++;
+            $data['id'][$counter] = $item->zone_id;
         }
         print '<pre>';
         print_r($data);
