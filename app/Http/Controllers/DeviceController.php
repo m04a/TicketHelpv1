@@ -132,12 +132,13 @@ class DeviceController extends Controller
     }
     public function graph4(){
 
-        $devices = Device::all();
+        $devices = Device::all()->groupBy('zone_id')->count();
+        dd($devices);
         $data =[];
         $counter = 0;
         foreach ($devices as $item){
             $counter++;
-            $data['id'][$counter] = $item->zone->label.':'.$item->zone_id;
+            $data['zone'][$counter] = $item->zone->label.':'.$item->zone_id;
         }
         print '<pre>';
         print_r($data);
