@@ -132,7 +132,7 @@ class DeviceController extends Controller
     }
     public function graph4(){
 
-        $devices = Device::all()->groupBy('zone_id');
+        $devices = Device::all()->groupBy('zone_id')->toArray();
         dd($devices);
         $data =[];
         $counter = 0;
