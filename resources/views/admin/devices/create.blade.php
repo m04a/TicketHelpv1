@@ -25,7 +25,7 @@
                 </x-error-alert>
             @endif
     <x-create-card>
-        <form method="POST" action="">
+        <form method="POST" action="{{ url('/admin/devices/create/') }}">
             @csrf
 
             <div class="content-column">

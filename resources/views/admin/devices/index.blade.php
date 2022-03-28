@@ -7,11 +7,11 @@
     <x-slot name="slot">
         <section class="section main-section">
             @if(session('success'))
-                <x-success-alert id="message" class="mb-6 ml-6 mr-6">
+                <x-success-alert id="message" class="mb-6">
                     {{ session('success') }}
                 </x-success-alert>
             @elseif(session('error'))
-                <x-error-alert id="message" class="mb-6 mr-6 ml-6">
+                <x-error-alert id="message" class="mb-6">
                     {{ session('error') }}
                 </x-error-alert>
             @endif
