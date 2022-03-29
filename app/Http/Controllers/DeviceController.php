@@ -131,6 +131,15 @@ class DeviceController extends Controller
         }
     }
     public function graph4(){
-       return Zone::withCount('devices')->get()->toArray();
+
+       $devices = Zone::withCount('devices')->get();
+       $counter = 0;
+       $deviceData = [];
+       foreach ($devices as $device){
+        $deviceData[$counter]['name'] = $devices[$counter]['label'];
+        $deviceData[$counter]['value'] = $devices[$counter]['devices_count'];
+        $counter++;
+       }
+       return json_encode($deviceData);
     }
 }
