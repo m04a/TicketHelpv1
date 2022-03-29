@@ -136,4 +136,29 @@ class UserController extends Controller
             return redirect('admin/users')->with('success', "Usuari esborrat!");
         }
     }
+
+    public function graph2()
+    {
+
+        $user = User::where("role_id", 1)->count();
+
+        $edit = User::where("role_id", 2)->count();
+
+        $admin = User::where("role_id", 3)->count();
+
+        return response()->json([
+            [
+                "name" => "Admin",
+                "value" => $admin
+            ],
+            [
+                "name" => "Editor",
+                "value" => $edit
+            ],
+            [
+                "name" => "User",
+                "value" => $user
+            ],
+        ]);
+    }
 }
