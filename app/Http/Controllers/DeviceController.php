@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Http\Requests\DeviceRequest;
+use App\Models\Breakdown;
 use Illuminate\Http\Request;
 use App\Models\Device;
 use App\Models\Type;
@@ -122,5 +123,17 @@ class DeviceController extends Controller
         if ($result) {
             return redirect('/admin/devices')->with('success', 'Dispositiu esborrat!');
         }
+    }
+    public function graph4(){
+
+       $devices = Zone::withCount('devices')->get();
+       $counter = 0;
+       $deviceData = [];
+       foreach ($devices as $device){
+        $deviceData[$counter]['name'] = $devices[$counter]['label'];
+        $deviceData[$counter]['value'] = $devices[$counter]['devices_count'];
+        $counter++;
+       }
+       return json_encode($deviceData);
     }
 }
