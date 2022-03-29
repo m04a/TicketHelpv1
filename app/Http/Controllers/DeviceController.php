@@ -135,9 +135,9 @@ class DeviceController extends Controller
        $devices = Zone::withCount('devices')->get();
        $counter = 0;
        $deviceData = [];
-       foreach ($devices as $item){
-        $deviceData[$counter]['name'] = $item[$counter]['label'];
-        $deviceData[$counter]['value'] = $item[$counter]['devices_count'];
+       foreach ($devices){
+        $deviceData[$counter]['name'] = $devices[$counter]['label'];
+        $deviceData[$counter]['value'] = $devices[$counter]['devices_count'];
         $counter++;
        }
        return json_encode($deviceData);
