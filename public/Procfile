@@ -1,8 +1,1 @@
 web: heroku-php-apache2 public
-
-{
-    "require": {
-      "php": "^8.1.1",
-      "ext-sqlite3": "*"
-    }
-  }
