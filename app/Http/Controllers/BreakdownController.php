@@ -336,8 +336,7 @@ class BreakdownController extends Controller
         }else{
 
             $breakdown = Breakdown::find($id);
-            /*Records to update with the request*/
-            $breakdown->status = $request->status;
+            /*Records to update with the request*/            
             $breakdown->title = $request->title;
             $breakdown->description = $request->description;
             $breakdown->manager_id = $request->manager_id;

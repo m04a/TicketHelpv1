@@ -50,7 +50,6 @@
                 <!-- Name User -->
                 <div class="column-left mt-4">
                     <x-label class="title" for="assumpte" :value="__('Assumpte')" />
-
                     <x-input id="title" class="block mt-4 w-full" type="text" name="title" value="{{ $questions->title }}" placeholder="Sense Assumpte" autofocus />       
                 </div>
                 <!-- Text of the suggestion -->

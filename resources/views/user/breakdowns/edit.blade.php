@@ -73,7 +73,6 @@
                 <x-label for="title" :value="__('Assumpte')" />
 
                 <x-input id="title" class="input-content" type="text" name="title" value="{{ $breakdownData->title }}" autofocus />
-                <x-input id="status" type="hidden" name="status" value="{{ $breakdownData->status }}" />
             </div>
             <div class="mt-4">
                 <x-label class="label" for="description" name="description" :value="__('Missatge')" />
