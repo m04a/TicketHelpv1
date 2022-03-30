@@ -233,7 +233,7 @@ class BreakdownController extends Controller
                     'content' => $item->content,
                     'user' => $item->user->username,
                 ]);
-            return view('admin.breakdowns.view')
+            return view('user.breakdowns.view')
             ->with('breakdown', $breakdown)
             ->with('messages', $messages);
 
