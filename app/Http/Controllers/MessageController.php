@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Http\Requests\MessageRequest;
 use App\Models\Message;
+use App\Models\User;
 use App\Models\Breakdown;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -37,17 +38,32 @@ class MessageController extends Controller
      */
     public function store(MessageRequest $request)
     {
-        $message = new Message;
-        $message->content=$request->content;
-        $message->user_id=Auth::user()->id;
-        $message->breakdown_id=$request->breakdown_id;
-        $message->question_id=$request->question_id;
-        if ($message->save()) {
-            return back()->with('success', "El missatge ha sigut enviat");
-        } else {
-            return back()->with('message', "Hi ha hagut algun error");
-        }
+        $idUser = Auth::user()->id;
+
+        $userRole = User::where('id', '=', $idUser)->get(['role_id']);
+
+        if ($userRole[0]['role_id'] > 1){
+            
+            $message = new Message;
+            $message->content=$request->content;
+            $message->user_id=Auth::user()->id;
+            $message->breakdown_id=$request->breakdown_id;
+            $message->question_id=$request->question_id;
+            if ($message->save()) {
+                return back()->with('success', "El missatge ha sigut enviat");
+            }
+        }else{
+
+            $message = new Message;
+            $message->content=$request->content;
+            $message->user_id=Auth::user()->id;
+            $message->breakdown_id=$request->breakdown_id;
+            $message->question_id=$request->question_id;
+            if ($message->save()) {
+                return back()->with('success', "El missatge ha sigut enviat");
+            }
     }
+}
 
     /**
      * Display the specified resource.

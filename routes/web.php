@@ -220,12 +220,6 @@ Route::middleware(['auth'])->group(function () {
 
         ///////////////////////////////////////////////////
 
-        Route::post('/admin/messages/{id}', [MessageController::class, "store"])
-            ->name('admin.messages.store');
-
-        Route::delete('/admin/messages/{id}',[MessageController::class,"destroy"])
-        ->name('admin.messages.delete');
-
         Route::get('/admin/types/edit/{id}', [TypeController::class, 'edit'])->name('admin.types.edit');
 
         Route::put('/admin/types/edit/{id}', [TypeController::class, 'update'])->name('admin.types.update');
@@ -237,6 +231,14 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/admin/guides/create', [GuideController::class, 'create'])->name('admin.guides.create');
 
         Route::post('/admin/guides/store', [GuideController::class, 'store'])->name('admin.guides.store');
+
+
+        ///////////////////////////////////////////////////
+        Route::post('/admin/messages/{id}', [MessageController::class, "store"])
+        ->name('admin.messages.store');
+
+        Route::delete('/admin/messages/{id}',[MessageController::class,"destroy"])
+        ->name('admin.messages.delete');
     });
 
 
@@ -321,6 +323,13 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/user/profile/', [UserController::class, 'show'])->name('user.profile.index');
 
     Route::put('/user/profile/{id}', [UserController::class, 'update'])->name('user.profile.update');
+
+    ///////////////////////////////////////////////////
+    Route::post('/user/messages/{id}', [MessageController::class, "store"])
+    ->name('user.messages.store');
+
+    Route::delete('/user/messages/{id}',[MessageController::class,"destroy"])
+    ->name('user.messages.delete');
 });
 
 require __DIR__ . '/auth.php';

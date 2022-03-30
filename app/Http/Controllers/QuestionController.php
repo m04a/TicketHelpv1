@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\QuestionRequest;
 use App\Models\Question;
+use App\Models\Message;
 use App\Models\User;
 use App\Models\Department;
 use App\Models\Role;
@@ -168,8 +169,15 @@ class QuestionController extends Controller
             $questions['department'] = $questions->department->name;
             
             $questions['manager'] = $questions->manager->username;
+
+            $messages = Message::where('question_id', $questions['id'])->get()
+            ->map(fn ($item) => [
+                'id' => $item->id,
+                'content' => $item->content,
+                'user' => $item->user->username,
+            ]);
     
-            return view('admin.questions.view', ['questions' => $questions]);
+            return view('admin.questions.view', ['questions' => $questions, 'messages' => $messages]);
         } else {
             $questions = Question::findOrFail($id);
 
@@ -178,8 +186,15 @@ class QuestionController extends Controller
             $questions['department'] = $questions->department->name;
             
             $questions['manager'] = $questions->manager->username;
+            
+            $messages = Message::where('question_id', $questions['id'])->get()
+            ->map(fn ($item) => [
+                'id' => $item->id,
+                'content' => $item->content,
+                'user' => $item->user->username,
+            ]);
     
-            return view('user.questions.view', ['questions' => $questions]);
+            return view('user.questions.view', ['questions' => $questions, 'messages' => $messages]);
         }
     }
 
@@ -243,7 +258,6 @@ class QuestionController extends Controller
             $questions->description = $request->description;
             $questions->status = $request->status;
             $questions->department_id = $request->departament;
-            $questions->user_id = $idUser;
             $questions->manager_id = $request->manager;
     
             if($questions->save()){
@@ -256,7 +270,6 @@ class QuestionController extends Controller
             $questions->title = $request->title;
             $questions->description = $request->description;
             $questions->department_id = $request->departament;
-            $questions->user_id = $idUser;
             $questions->manager_id = $request->manager;
     
             if($questions->save()){
