@@ -85,7 +85,7 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('/admin/devices/create', [DeviceController::class, 'create'])->name('admin.devices.create');
 
-        Route::post('/admin/devices/{id}', [DeviceController::class, 'store'])->name('admin.devices.store');
+        Route::post('/admin/devices/create', [DeviceController::class, 'store'])->name('admin.devices.store');
 
         Route::delete('/admin/devices/{id}', [DeviceController::class, 'destroy'])->name('admin.devices.delete');
 
@@ -129,7 +129,7 @@ Route::middleware(['auth'])->group(function () {
             [BreakdownController::class, "edit"]
         );
 
-        Route::post(
+        Route::put(
             '/admin/breakdowns/edit/{id}',
             [BreakdownController::class, "update"]
         );
