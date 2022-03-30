@@ -23,6 +23,7 @@
         @endif
     <x-create-card>
         <form method="POST" action="{{ url ('/admin/breakdowns/edit/'.$breakdownData->id) }}">
+            @method('PUT')
             @csrf
             <div class="content-column">
                 <!-- Name User -->

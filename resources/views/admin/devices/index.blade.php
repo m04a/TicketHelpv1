@@ -7,11 +7,11 @@
     <x-slot name="slot">
         <section class="section main-section">
             @if(session('success'))
-                <x-success-alert id="message" class="mb-6 ml-6 mr-6">
+                <x-success-alert id="message" class="mb-6">
                     {{ session('success') }}
                 </x-success-alert>
             @elseif(session('error'))
-                <x-error-alert id="message" class="mb-6 mr-6 ml-6">
+                <x-error-alert id="message" class="mb-6">
                     {{ session('error') }}
                 </x-error-alert>
             @endif
@@ -48,7 +48,7 @@
                                     <td data-label="Tipus">{{ $item['type'] }}</td>
                                     <td class="actions-cell">
                                         <div class="buttons right nowrap">
-                                            <form action="{{ url('/admin/devices/edit/' . $item['id']) }}" method="GET">
+                                            <a href="{{ url('/admin/devices/edit/' . $item['id']) }}">
                                                 <button class="button-table-edit" data-target="sample-modal-2"
                                                     type="submit">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
@@ -58,7 +58,7 @@
                                                             d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                                                     </svg>
                                                 </button>
-                                            </form>
+                                            </a>
                                             <form action="{{ url('/admin/devices/' . $item['id']) }}" method="POST">
                                                 @csrf
                                                 {{ method_field('DELETE') }}

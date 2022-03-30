@@ -57,21 +57,27 @@
         </x-create-card-user>
         <x-create-card-user>
         <p class="font-bold mb-3 text-xl">Respostes</p>
-
-        <x-label for="manager" class="mt-4 mb-4" value="Manager : {{$questions->manager}}" />
-        <textarea class="textarea input-disabled" disabled>Pots demanar, però el has de tornar igual que tel han donat</textarea>
-
-        <x-label for="manager" class="mt-4 mb-4" value="{{$questions->username}}" />
-        <textarea class="textarea input-disabled" disabled>Vale me sirve</textarea>
+            @foreach ($messages as $item)
+                @if($item['user'] == $questions->username)
+                    <x-label for="manager" class="mt-4" :value="__($item['user'])" />
+                    <textarea class="textarea input-disabled" disabled>{{ $item['content'] }}</textarea>
+                @else
+                    <x-label for="manager" class="flex mt-4 justify-end" :value="__($item['user'])" />
+                    <textarea class="textarea input-disabled" disabled>{{ $item['content'] }}</textarea>
+                @endif
+            @endforeach
         </x-create-card-user>
 
         <x-create-card-user>
         <p class="font-bold mb-3 text-xl">Nova Resposta</p>
-            <form action="">
-                <textarea class="textarea"></textarea>
+            <form method="POST" action="{{ url('/user/messages/' . $questions->id) }}">
+                @csrf
+                <textarea id="content" name="content" class="textarea"></textarea>
+                <input type="hidden" name="question_id" value="{{ $questions->id }}" />
                 <div class="button-create">
                     <x-button class="ml-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 rotate-180 rotate-90" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 rotate-180 rotate-90" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
                         </svg>
                         {{ __('Enviar Resposta') }}
