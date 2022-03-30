@@ -21,7 +21,7 @@
     <nav id="navbar-main" class="navbar is-fixed-top">
         <div class="aside-tools">
             <div class="logo-dashboard">
-                <b>TicketHelp</b>
+                <b><a href="/">TicketHelp</a></b>
             </div>
         </div>
         <div class="navbar-brand">

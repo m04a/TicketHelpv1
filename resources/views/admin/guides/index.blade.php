@@ -41,7 +41,7 @@
                                     <td data-label="Tipus">{{ $item['user'] }}</td>
                                     <td class="actions-cell">
                                         <div class="buttons right nowrap">
-                                            <form action="{{ url('/admin/guides/edit/' . $item['id']) }}" method="PUT">
+                                            <form action="{{ url('/admin/guides/edit/' . $item['id']) }}" method="GET">
                                                 <button class="button-table-edit" data-target="sample-modal-2"
                                                     type="submit">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
@@ -52,7 +52,7 @@
                                                     </svg>
                                                 </button>
                                             </form>
-                                            <form action="{{ url('/admin/guides/' . $item['id']) }}" method="POST">
+                                            <form action="{{ url('/admin/guides/destroy/' . $item['id']) }}" method="POST">
                                                 @csrf
                                                 {{ method_field('DELETE') }}
                                                 <button class="button-table-delete" data-target="sample-modal"

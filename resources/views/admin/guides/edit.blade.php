@@ -39,7 +39,7 @@
             <div class="mt-4">
                 <x-label class="label" for="description" :value="__('Descripció')" />
 
-                <textarea class="textarea" type="text" value="{{ $guide->description }}" name="description" autofocus></textarea>
+                <textarea class="textarea" type="text" name="description" autofocus>{{ $guide->description }}</textarea>
             </div>
 
             <div class="flex flex-col space-y-2">

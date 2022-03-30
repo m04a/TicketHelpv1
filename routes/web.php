@@ -40,6 +40,7 @@ Route::get('/auth/{provider}/callback',[OauthController::class, 'authUserOauth']
 Route::get('/', [HomePage::class, 'index'])->name('homepage.index');
 
 Route::get('/guides', [GuideController::class, 'listPublic'])->name('guide.index');
+Route::get('/guides/{guide}', [GuideController::class, 'show'])->name('guide.show');
 
 
 Route::middleware(['auth'])->group(function () {
@@ -237,7 +238,7 @@ Route::middleware(['auth'])->group(function () {
         
         ///////////////////////////////////////////////////
 
-        Route::get('/admin/guides/edit/{id}', [GuideController::class, 'edit'])->name('admin.guides.edit');
+        Route::get('/admin/guides/edit/{guide}', [GuideController::class, 'edit'])->name('admin.guides.edit');
 
         Route::put('/admin/guides/update', [GuideController::class, 'update'])->name('admin.guides.update');
 
@@ -246,6 +247,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/admin/guides/', [GuideController::class, 'index'])->name('admin.guides.index');
 
         Route::post('/admin/guides/store', [GuideController::class, 'store'])->name('admin.guides.store');
+
+        Route::delete('/admin/guides/destroy/{id}', [GuideController::class, 'destroy'])->name('admin.guides.delete');
     });
 
 
@@ -257,21 +260,13 @@ Route::middleware(['auth'])->group(function () {
 
     ///////////////////////////////////////////////////
 
-    Route::get('/user/breakdowns/create',
-        [BreakdownController::class,"create"]);
+    Route::get('/user/breakdowns/create', [BreakdownController::class,"create"])->name('user.breakdowns.create');
 
-    Route::post('/user/breakdowns/create',
-        [BreakdownController::class,"store"])->name('user.breakdowns.create');;
+    Route::post('/user/breakdowns/create', [BreakdownController::class,"store"])->name('user.breakdowns.store');
 
-    Route::delete(
-        '/user/breakdowns/{id}',
-        [BreakdownController::class, "destroy"]
-    );
+    Route::delete('/user/breakdowns/{id}', [BreakdownController::class, "destroy"])->name('user.breakdowns.destroy');
 
-    Route::get(
-        '/user/breakdowns/view/{id}',
-        [BreakdownController::class, "show"]
-    );
+    Route::get('/user/breakdowns/view/{id}',[BreakdownController::class, "show"])->name('user.breakdowns.show');
 
     Route::get('/user/breakdowns/list', [BreakdownController::class, "index"])->name('user.breakdowns.list');;
     
@@ -306,9 +301,6 @@ Route::middleware(['auth'])->group(function () {
     })->name('user.questions.index');
 
     ///////////////////////////////////////////////////
-
-
-
 
     Route::get('/user/suggestions/create', [SuggestionController::class, 'create'])->name('user.suggestions.create');
 

@@ -64,15 +64,15 @@ class GuideController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Guide $guide)
     {
-        //
+        return view('guest.guides.view', ['guide' => $guide]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  Guide  $guide
      * @return \Illuminate\Http\Response
      */
     public function edit(Guide $guide)
@@ -100,7 +100,12 @@ class GuideController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $guide = Guide::findOrFail($id);
+        $result = $guide->delete();
+
+        if ($result) {
+            return redirect('/admin/guides')->with('success', 'Article esborrat!');
+        }
     }
 
     /**
@@ -110,6 +115,13 @@ class GuideController extends Controller
      */
     public function listPublic()
     {
-        return view('guest.guides.index');
+        $data['guides'] = Guide::paginate(10)
+            ->through(fn ($item) => [
+                "id" => $item->id,
+                "title" => $item->title,
+                "description" => $item->description,
+                "user" => $item->user_id
+            ]);
+        return view('guest.guides.index', $data);
     }
 }
