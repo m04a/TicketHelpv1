@@ -25,6 +25,7 @@ class TypeController extends Controller
 
         if($userRole[0]['role_id'] > 1){
             $data['types'] = Type::paginate(5)
+            ->orderBy('created_at', 'DESC')
             ->through(fn ($item) => [
               "id" => $item->id,
               "label" => $item->label,

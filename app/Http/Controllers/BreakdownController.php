@@ -28,6 +28,7 @@ class BreakdownController extends Controller
         if ($userRole[0]['role_id'] > 1){
             
             $breakdown['unassigned'] = Breakdown::where('status', 1)
+            ->orderBy('created_at', 'DESC')
             ->paginate(10, ["*"], "unassigned")
             ->through(fn ($item) => [
                 "id" => $item->id,
@@ -39,6 +40,7 @@ class BreakdownController extends Controller
             ]);
 
             $breakdown['assigned'] = Breakdown::where('status', 2)
+            ->orderBy('created_at', 'DESC')
             ->paginate(10, ["*"], "assigned")
             ->through(fn ($item) => [
                 "id" => $item->id,
@@ -51,6 +53,7 @@ class BreakdownController extends Controller
             ]);
 
             $breakdown['done'] = Breakdown::where('status', 3)
+            ->orderBy('created_at', 'DESC')
             ->paginate(10, ["*"], "done")
             ->through(fn ($item) => [
                 "id" => $item->id,
@@ -67,6 +70,7 @@ class BreakdownController extends Controller
         }else{
             
             $breakdown['user'] = Breakdown::where('user_id', $idUser)
+            ->orderBy('created_at', 'DESC')
             ->paginate(10)
             ->through(fn ($item) => [
                 "id" => $item->id,

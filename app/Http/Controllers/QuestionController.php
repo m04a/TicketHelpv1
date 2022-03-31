@@ -77,7 +77,7 @@ class QuestionController extends Controller
                 "status" => $item->status,
                 "department_id" => $item->department->name,
                 "user_id" => $item->user->username,
-                "manager_id" => optional($item->manager->username),
+                "manager_id" => optional($item->manager)->username,
               ]);
             return view('user.questions.list', $data);
         }
@@ -132,7 +132,6 @@ class QuestionController extends Controller
             $questions->status = $request->status;
             $questions->department_id = $request->departament;
             $questions->user_id = $idUser;
-            $questions->manager_id = $request->manager;
 
             if($questions->save()){
                 return redirect('admin/questions/create')->with('success', "S'ha creat la pergunta correctament!");

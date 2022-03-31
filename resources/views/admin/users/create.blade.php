@@ -24,30 +24,13 @@
         <form method="POST" action="{{ url('admin/users/store') }}">
             @csrf
             <div class="content-column">
-            <!-- Name User -->
-            <div class="column-left">
-                <x-label for="usuari" :value="__('Nom Usuari')" />
-
-                <x-input id="nom" class="input-content" type="text" name="username"  autofocus required />
-            </div>
-
-            <!-- Email User -->
-            <div class="column-right">
-                <x-label for="email" :value="__('Correu Electronic')" />
-
-                <x-input id="email" class="input-content" type="email" name="email"  autofocus required />
-            </div>
-            </div>
-            <div class="content-column">
-                <!-- Password -->
+                <!-- Name User -->
                 <div class="mt-4 column-left">
-                    <x-label for="password" :value="__('Contrasenya')" />
+                    <x-label for="usuari" :value="__('Nom Usuari')" />
 
-                    <x-input id="password" class="input-content"
-                                    type="password"
-                                    name="password"
-                                    required autocomplete="current-password" />
+                    <x-input id="nom" class="input-content" type="text" name="username"  autofocus required />
                 </div>
+
                 <!-- Rol User -->
                 <div class="mt-4 column-right">
                     <x-label for="rol" :value="__('Tria el Rol del Usuari')" />
@@ -58,6 +41,15 @@
                         <option value="3">Moderador</option>
                     </x-select>
 
+                </div>
+
+            </div>
+            <div class="columns">
+                <!-- Email User -->
+                <div class="mt-4">
+                    <x-label for="email" :value="__('Correu Electronic')" />
+
+                    <x-input id="email" class="input-content" type="email" name="email"  autofocus required />
                 </div>
             </div>
             <div class="button-create">

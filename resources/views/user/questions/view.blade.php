@@ -47,6 +47,23 @@
                 </div>
             </div>
 
+            <div class="content-column">
+                <!-- Department -->
+                <div class="column-left mt-4">
+                    <x-label for="rol" :value="__('Manager')" />
+
+                    <x-input id="department" class="input-content input-disabled" type="text" name="manager" value="{{$questions->manager}}" required  autofocus disabled/>
+
+                </div>
+
+                <!-- Status -->
+                <div class="column-right mt-4">
+                    <x-label for="rol" :value="__('Estat')" />
+
+                    <x-input id="status" class="input-content input-disabled" type="text" name="department" value="{{ ($questions->status == 1) ? 'Pendent' : (($questions->status == 2)  ? 'Assignada' : 'Resolta') }}" required  autofocus disabled/>
+                </div>
+            </div>
+
             <div>
                 <!-- Description -->
 

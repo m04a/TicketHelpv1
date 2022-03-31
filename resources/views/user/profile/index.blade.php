@@ -2,7 +2,7 @@
 
     <x-slot name="header">
         <h1 class="title">
-            Editar Usuari
+            Perfil
         </h1>
     </x-slot>
 <x-create-card>

@@ -116,6 +116,7 @@ class GuideController extends Controller
     public function listPublic()
     {
         $data['guides'] = Guide::paginate(10)
+        ->orderBy('created_at', 'DESC')
         ->through(fn ($item) => [
             "id" => $item->id,
             "title" => $item->title,
