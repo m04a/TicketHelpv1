@@ -28,7 +28,7 @@ class SuggestionRequest extends FormRequest
     {
         return [
             'token' => ['nullable'],
-            'title' => ['required', 'string', 'min:5'],
+            'title' => ['required', 'string', 'min:5', 'max:100'],
             'description' => ['required', 'string', 'min:10'],
             'department_id' => ['required', 'integer'],
         ];
@@ -38,11 +38,12 @@ class SuggestionRequest extends FormRequest
     public function messages()
     {
         return [
-            'title.required' => 'Falta el assumpte',
+            'title.required' => "Falta l'assumpte",
             'description.required' => 'Falta una descripció',
-            'department_id.required' => 'Posa un departament no siguis hacker',
-            'title.min' => 'Posa com a minim 5 caracters en el assumpte',
-            'description.min' => 'Posa com a minim 10 caracters en la descripció'
+            'department_id.required' => 'Falta el departament',
+            'title.min' => "Posa com a minim 5 caracters a l'assumpte",
+            'title.max' => "Posa com a minim 100 caracters a l'assumpte",
+            'description.min' => "Posa com a minim 10 caracters a la descripció"
         ];
     }
 }

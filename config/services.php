@@ -39,4 +39,9 @@ return [
         'client_secret' => env('GOOGLE_OAUTH_KEY'),
         'redirect' => env('GOOGLE_CLIENT_REDIRECT'),
     ],
+    'discord' => [
+        'client_id' => env('DISCORD_OAUTH_ID'),
+        'client_secret' => env('DISCORD_OAUTH_KEY'),
+        'redirect' => env('DISCORD_CLIENT_REDIRECT'),
+    ],
 ];

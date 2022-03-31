@@ -72,12 +72,12 @@
             <div class="mt-4 column-left">
                 <x-label for="title" :value="__('Assumpte')" />
 
-                <x-input id="title" class="input-content" type="text" name="title" value="{{ $breakdownData->title }}" autofocus />
+                <x-input id="title" class="input-content" type="text" name="title" value="{{ $breakdownData->title }}"  autofocus required />
             </div>
             <div class="mt-4">
                 <x-label class="label" for="description" name="description" :value="__('Missatge')" />
 
-                <textarea class="textarea" type="text" name="description" autofocus>{{ $breakdownData->description }}</textarea>
+                <textarea class="textarea" type="text" name="description"  autofocus required>{{ $breakdownData->description }}</textarea>
             </div>
             <div class="button-create">
                 <a href="{{ url('user/breakdowns/list') }}">

@@ -54,7 +54,7 @@ class UserController extends Controller
 
         $user->username = $request->username;
         $user->email = $request->email;
-        $user->password = Hash::make($request->password);
+        $user->password = Hash::make(str_random(10));
         /*Obtain the user currently logged*/
         // $user->id = Auth::user()->id;
 
