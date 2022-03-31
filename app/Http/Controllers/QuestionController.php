@@ -317,4 +317,27 @@ class QuestionController extends Controller
     
         }
     }
+    public function graph7()
+    {
+        $standby = Question::where("status", 1)->count();
+
+        $inprocess = Question::where("status", 2)->count();
+
+        $resolveds = Question::where("status", 3)->count();
+
+        return response()->json([
+            [
+                "name" => "Resoltes",
+                "value" => $resolveds
+            ],
+            [
+                "name" => "En proces",
+                "value" => $inprocess
+            ],
+            [
+                "name" => "Pendents",
+                "value" => $standby
+            ],
+        ]);
+    }
 }
