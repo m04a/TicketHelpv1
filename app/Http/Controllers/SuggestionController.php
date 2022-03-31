@@ -218,9 +218,9 @@ class SuggestionController extends Controller
             $result = $suggestion->delete();
             if($suggestion['user_id'] == $idUser){
                 if ($result) {
-                    return redirect('/user/suggestions/list')->with('success', 'Sugerencia esborrada!');
+                    return redirect('/user/suggestions/list')->with('success', 'Suggeriment esborrada!');
                 }else{
-                    return redirect('/user/suggestions/list')->with('error', 'hi hagut un error al esborrar la sugerencia!');
+                    return redirect('/user/suggestions/list')->with('error', 'hi hagut un error al esborrar el suggeriment!');
                 }
             }
         }

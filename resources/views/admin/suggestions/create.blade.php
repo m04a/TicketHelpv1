@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h1 class="title">
-            Crear un sugerencia
+            Crear un suggeriment
         </h1>
     </x-slot>
     <x-slot name="slot">
