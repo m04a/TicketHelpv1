@@ -2,7 +2,7 @@
 
     <x-slot name="header">
         <h1 class="title">
-            Crear Article
+            Editar Article
         </h1>
     </x-slot>
 
@@ -26,20 +26,20 @@
                 </x-error-alert>
             @endif
     <x-create-card>
-        <form method="POST" action="{{ url('/admin/guides/store') }}" id="createPostForm">
+        <form method="PUT" action="{{ route('admin.guides.update', $guide) }}" id="editPostForm">
             @csrf
 
             <div class="mt-4">
                 <x-label class="label" for="title" :value="__('Titol')" />
 
-                <x-input id="title" class="block mt-4 w-full" type="text" name="title"  autofocus required />
+                <x-input id="title" class="block mt-4 w-full" type="text" name="title" value="{{ $guide->title }}"  autofocus required />
             </div>
 
             <!-- Description -->
             <div class="mt-4">
                 <x-label class="label" for="description" :value="__('Descripció')" />
 
-                <textarea class="textarea" type="text" name="description"  autofocus required></textarea>
+                <textarea class="textarea" type="text" name="description"  autofocus required>{{ $guide->description }}</textarea>
             </div>
 
             <div class="flex flex-col space-y-2">
@@ -48,6 +48,7 @@
                 </div>
             </div>
 
+            <input type="hidden" id="oldContent" value="{{ $guide->content }}">
             <input type="hidden" name="content" id="content">
 
             <div class="button-create relative">
@@ -59,7 +60,7 @@
                             d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z"
                             clip-rule="evenodd"></path>
                     </svg>
-                    {{ __('Crear Article') }}
+                    {{ __('Editar Article') }}
                 </x-button>
             </div>
         </form>

@@ -35,14 +35,13 @@
                             <th>Estat</th>
                             <th>Departament</th>
                             <th>Usuari</th>
-                            <th>Manager</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($unassigned as $question)
                     <tr>
-                        <td data-label="Assumpte"># {{ $question['id']}}</td>
-                        <td data-label="Assumpte">{{ $question['title']}}</td>
+                        <td data-label="id"># {{ $question['id']}}</td>
+                        <td data-label="Assumpte" class="overflow-visible">{{ $question['title']}}</td>
                         <td data-label="Nom">
                             @if($question['status'] ==1)
                                 <span class="border text-center py-2 px-2 text-red-400 bg-red-100">No assignat</span>
@@ -54,7 +53,6 @@
                         </td> 
                         <td data-label="Departament">{{ $question['department_id']}}</td>
                         <td data-label="Usuari">{{ $question['user_id']}}</td>
-                        <td data-label="Usuari">{{ $question['manager_id']}}</td>
                         <td class="actions-cell">
                             <div class="buttons right nowrap">
 
@@ -192,7 +190,7 @@
         <div class="card has-table">
         <header class="card-header">
                 <p class="card-header-title">
-                    Preguntes acabades
+                    Preguntes resoltes
                 </p>
             </header>
             <div class="card-content">

@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h1 class="title">
-             Sugerencia numero #75
+             Suggeriment numero #75
         </h1>
     </x-slot>
     <x-slot name="slot">
@@ -20,7 +20,7 @@
                 <!-- Text of the suggestion -->
                 <div class="mb-6" >
                     <div class="text-black font-bold rounded-t py-2">
-                        Text de sugerencia
+                        Text de suggeriment 
                     </div>
                     <textarea class="textarea suggestion-text" disabled>{{ $suggestions->description }}</textarea>
                 </div>

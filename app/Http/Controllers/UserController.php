@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Role;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Hash;
@@ -54,7 +55,7 @@ class UserController extends Controller
 
         $user->username = $request->username;
         $user->email = $request->email;
-        $user->password = Hash::make($request->password);
+        $user->password = Hash::make(str_random(10));
         /*Obtain the user currently logged*/
         // $user->id = Auth::user()->id;
 
@@ -139,26 +140,14 @@ class UserController extends Controller
 
     public function graph2()
     {
-
-        $user = User::where("role_id", 1)->count();
-
-        $edit = User::where("role_id", 2)->count();
-
-        $admin = User::where("role_id", 3)->count();
-
-        return response()->json([
-            [
-                "name" => "Admin",
-                "value" => $admin
-            ],
-            [
-                "name" => "Editor",
-                "value" => $edit
-            ],
-            [
-                "name" => "User",
-                "value" => $user
-            ],
-        ]);
+        $role = Role::withCount('users')->get();
+        $counter = 0;
+        $roleData = [];
+        foreach ($role as $device){
+         $roleData[$counter]['name'] = $role[$counter]['label'];
+         $roleData[$counter]['value'] = $role[$counter]['users_count'];
+         $counter++;
+        }
+        return json_encode($roleData);
     }
 }

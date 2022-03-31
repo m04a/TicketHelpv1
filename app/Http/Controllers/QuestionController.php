@@ -28,19 +28,21 @@ class QuestionController extends Controller
         if($userRole[0]['role_id'] > 1){
             
             $data['unassigned'] = Question::where('status', 1)
+            ->orderBy('created_at', 'DESC')
             ->paginate(5, ["*"], "unassigned")
             ->through(fn ($item) => [
-              "id" => $item->id,
-              "title" => $item->title,
-              "description" => $item->description,
-              "status" => $item->status,
-              "department_id" => $item->department->name,
-              "user_id" => $item->user->username,
-              "manager_id" => $item->manager->username,
-              ]);
-              $data['assigned'] = Question::where('status', 2)
-              ->paginate(5, ["*"], "assigned")
-              ->through(fn ($item) => [
+                "id" => $item->id,
+                "title" => $item->title,
+                "description" => $item->description,
+                "status" => $item->status,
+                "department_id" => $item->department->name,
+                "user_id" => $item->user->username,
+            ]);
+
+            $data['assigned'] = Question::where('status', 2)
+            ->orderBy('created_at', 'DESC')
+            ->paginate(5, ["*"], "assigned")
+            ->through(fn ($item) => [
                 "id" => $item->id,
                 "title" => $item->title,
                 "description" => $item->description,
@@ -48,21 +50,25 @@ class QuestionController extends Controller
                 "department_id" => $item->department->name,
                 "user_id" => $item->user->username,
                 "manager_id" => $item->manager->username,
-                ]);
-                $data['done'] = Question::where('status', 3)
-                ->paginate(5, ["*"], "done")
-                ->through(fn ($item) => [
-                  "id" => $item->id,
-                  "title" => $item->title,
-                  "description" => $item->description,
-                  "status" => $item->status,
-                  "department_id" => $item->department->name,
-                  "user_id" => $item->user->username,
-                  "manager_id" => $item->manager->username,
-                  ]);
-                return view('admin.questions.index', $data);
+            ]);
+
+            $data['done'] = Question::where('status', 3)
+            ->orderBy('created_at', 'DESC')
+            ->paginate(5, ["*"], "done")
+            ->through(fn ($item) => [
+                "id" => $item->id,
+                "title" => $item->title,
+                "description" => $item->description,
+                "status" => $item->status,
+                "department_id" => $item->department->name,
+                "user_id" => $item->user->username,
+                "manager_id" => $item->manager->username,
+            ]);
+            return view('admin.questions.index', $data);
+
         }else{
             $data['questions'] = Question::where('user_id', '=', $idUser)
+            ->orderBy('created_at', 'DESC')
             ->paginate(10)
             ->through(fn ($item) => [
                 "id" => $item->id,
@@ -71,9 +77,9 @@ class QuestionController extends Controller
                 "status" => $item->status,
                 "department_id" => $item->department->name,
                 "user_id" => $item->user->username,
-                "manager_id" => $item->manager->username,
+                "manager_id" => optional($item->manager)->username,
               ]);
-                return view('user.questions.list', $data);
+            return view('user.questions.list', $data);
         }
 
         $data['questionsCount'] = Question::count();
@@ -126,7 +132,6 @@ class QuestionController extends Controller
             $questions->status = $request->status;
             $questions->department_id = $request->departament;
             $questions->user_id = $idUser;
-            $questions->manager_id = $request->manager;
 
             if($questions->save()){
                 return redirect('admin/questions/create')->with('success', "S'ha creat la pergunta correctament!");
@@ -139,7 +144,6 @@ class QuestionController extends Controller
             $questions->status = 1;
             $questions->department_id = $request->departament;
             $questions->user_id = $idUser;
-            $questions->manager_id = $request->manager;
             
             if($questions->save()){
                 return redirect('user/questions/create')->with('success', "S'ha creat la pergunta correctament!");
@@ -168,7 +172,11 @@ class QuestionController extends Controller
             
             $questions['department'] = $questions->department->name;
             
-            $questions['manager'] = $questions->manager->username;
+            if (isset($questions->manager->username)) {
+                $questions["manager"] = $questions->manager->username;
+            } else {
+                $questions["manager"] = "No assignat";
+            }
 
             $messages = Message::where('question_id', $questions['id'])->get()
             ->map(fn ($item) => [
@@ -179,13 +187,18 @@ class QuestionController extends Controller
     
             return view('admin.questions.view', ['questions' => $questions, 'messages' => $messages]);
         } else {
+
             $questions = Question::findOrFail($id);
 
             $questions['username'] = $questions->user->username;
             
             $questions['department'] = $questions->department->name;
             
-            $questions['manager'] = $questions->manager->username;
+            if (isset($questions->manager->username)) {
+                $questions["manager"] = $questions->manager->username;
+            } else {
+                $questions["manager"] = "No assignat";
+            }
             
             $messages = Message::where('question_id', $questions['id'])->get()
             ->map(fn ($item) => [
@@ -259,6 +272,10 @@ class QuestionController extends Controller
             $questions->status = $request->status;
             $questions->department_id = $request->departament;
             $questions->manager_id = $request->manager;
+
+            if ($questions->status == 1) {
+                $questions->status = 2;
+            }
     
             if($questions->save()){
                 return back()->with('success',"La Pregunta S'ha actualizat correctament");
@@ -316,5 +333,28 @@ class QuestionController extends Controller
             return redirect('user/questions/list')->with('error', 'Error inesperat. Contacti amb l\'administrador del lloc');
     
         }
+    }
+    public function graph7()
+    {
+        $standby = Question::where("status", 1)->count();
+
+        $inprocess = Question::where("status", 2)->count();
+
+        $resolveds = Question::where("status", 3)->count();
+
+        return response()->json([
+            [
+                "name" => "Resoltes",
+                "value" => $resolveds
+            ],
+            [
+                "name" => "En proces",
+                "value" => $inprocess
+            ],
+            [
+                "name" => "Pendents",
+                "value" => $standby
+            ],
+        ]);
     }
 }
