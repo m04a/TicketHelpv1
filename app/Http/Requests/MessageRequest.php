@@ -25,7 +25,7 @@ class MessageRequest extends FormRequest
     public function rules()
     {
         return [
-            'content' => ['required', 'string'],
+            'content' => ['required', 'string', 'max:250'],
             'breakdown_id' => ['nullable','integer'],
             'question_id' => ['nullable','integer']
         ];
@@ -33,6 +33,7 @@ class MessageRequest extends FormRequest
     public function messages(){
         return [
         'content.required' => 'El contingut és invalid, revisa les dades introduïdes',
+        'content.max' => 'Posa com a maxim 100 caracters al contingut del missatge',
         ];
     }
 }

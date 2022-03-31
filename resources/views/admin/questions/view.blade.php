@@ -7,12 +7,29 @@
     <x-slot name="slot">
         <x-create-card>
             <p class="font-bold mb-3 text-xl">Dades</p>
-            <div class="content-column">
-                <!-- Subject -->
-                <div class="column-right">
+            <div class="columns">
+                <!-- Titol -->
+                <div class="mt-4">
                     <x-label for="title" :value="__('Assumpte')" />
 
-                    <x-input id="title" class="input-contant-test input-disabled" type="text" name="nom" value="{{$questions->title}}" required autofocus disabled/>
+                    <x-input id="title" class="input-contant-test input-disabled" type="text" name="nom" value="{{$questions->title}}" required  autofocus disabled/>
+                </div>
+            </div>
+
+            <div class="content-column">
+                <!-- Department -->
+                <div class="column-left mt-4">
+                    <x-label for="rol" :value="__('Departament')" />
+
+                    <x-input id="department" class="input-content input-disabled" type="text" name="department" value="{{$questions->department}}" required  autofocus disabled/>
+
+                </div>
+
+                <!-- Status -->
+                <div class="column-right mt-4">
+                    <x-label for="rol" :value="__('Estat')" />
+
+                    <x-input id="status" class="input-content input-disabled" type="text" name="department" value="{{ ($questions->status == 1) ? 'Pendent' : (($questions->status == 2)  ? 'Assignada' : 'Resolta') }}" required  autofocus disabled/>
                 </div>
             </div>
             <div class="content-column">
@@ -21,14 +38,14 @@
 
                     <x-label for="user" :value="__('User')" />
 
-                    <x-input id="user" class="input-content input-disabled" type="text" name="assumpte" value="{{$questions->username}}" required autofocus disabled/>
+                    <x-input id="user" class="input-content input-disabled" type="text" name="assumpte" value="{{$questions->username}}" required  autofocus required disabled/>
 
                 </div>
-                <!-- Department -->
+                <!-- Manager -->
                 <div class="mt-4 column-right">
-                    <x-label for="rol" :value="__('Departament')" />
+                    <x-label for="rol" :value="__('Manager')" />
 
-                    <x-input id="department" class="input-content input-disabled" type="text" name="department" value="{{$questions->department}}" required autofocus disabled/>
+                    <x-input id="department" class="input-content input-disabled" type="text" name="department" value="{{$questions->manager}}" required  autofocus required disabled/>
 
                 </div>
             </div>

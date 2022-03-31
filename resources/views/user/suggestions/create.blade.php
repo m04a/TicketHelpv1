@@ -1,7 +1,7 @@
 <x-user-layout>
 <x-slot name="header">
         <h1 class="title">
-            Crear un sugerencia
+            Crear una suggerència
         </h1>
     </x-slot>
     <x-slot name="slot">
@@ -25,32 +25,31 @@
         <form action="{{ url('/user/suggestions/store') }}" method="POST">
             @csrf
 
-            <!-- Title  -->
-            <div class="content-column">
-            <!-- Name User -->
-            <div class="column-left-w200">
-                <x-label class="label" for="assumpte" :value="__('Assumpte')" />
+            <div class="columns">
+                <!-- Name User -->
+                <div class="column">
+                    <x-label class="label" for="assumpte" :value="__('Assumpte')" />
 
-                <x-input id="title" class="block mt-4 w-full" type="text" name="title" autofocus />
-            </div>
-
-            <!-- Status Breakdown -->
-            <div class="column-right">
-                    <x-label for="rol" :value="__('Estat Incidència')" />
-
-                    <x-select name="department_id" class="block mt-4 w-full">
-                        @foreach ($department as $item)
-                            <option value="{{ $item->id }} ">{{ $item->name }}</option>
-                        @endforeach
-                    </x-select>
+                    <x-input id="title" class="block mt-4 w-full" type="text" name="title"  autofocus required />
                 </div>
-            </div>
+
+                <!-- Status Breakdown -->
+                <div class="column mt-4">
+                        <x-label for="rol" :value="__('Departament')" />
+
+                        <x-select name="department_id" class="block mt-4 w-full">
+                            @foreach ($department as $item)
+                                <option value="{{ $item->id }} ">{{ $item->name }}</option>
+                            @endforeach
+                        </x-select>
+                    </div>
+                </div>
 
                 <!-- Text of the suggestion -->
                 <div class="mt-4">
                     <x-label class="label" for="missatge" :value="__('Missatge')" />
 
-                    <textarea class="textarea" type="text" name="description" autofocus></textarea>
+                    <textarea class="textarea" type="text" name="description"  autofocus required></textarea>
                 </div>
 
 

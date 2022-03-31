@@ -29,7 +29,7 @@
                     <x-label for="etiqueta" :value="__('Etiqueta del tipus')" />
 
                     <x-input id="label" class="input-content" type="text" name="label" placeholder="Switch"
-                        autofocus />
+                         autofocus required />
                 </div>
 
                 <!-- Email User -->
@@ -38,7 +38,7 @@
 
                     <x-input id="description" class="input-content" type="text" name="description"
                         placeholder="És un aparell de xarxes que permet connectar equips en una xarxa."
-                        autofocus />
+                         autofocus required />
                 </div>
             </div>
             <div class="button-create">

@@ -12,7 +12,7 @@
             <div class="column-left">
                 <x-label for="departament1" :value="__('Nom Departament')" />
 
-                <x-input id="departament" class="input-content" type="text" name="departament" for="depa" placeholder="Secretaria" required autofocus />
+                <x-input id="departament" class="input-content" type="text" name="departament" for="depa" placeholder="Secretaria" required  autofocus required />
             </div>
             <div class="button-create">
                 <a href="{{ url('admin/departments') }}">

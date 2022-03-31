@@ -30,7 +30,7 @@
                     <x-label for="etiqueta" :value="__('Etiqueta del tipus')" />
 
                     <x-input id="label" class="input-content" type="text" name="label" placeholder="Switch" value="{{$types->label}}"
-                        autofocus />
+                         autofocus required />
                 </div>
 
                 <!-- Email User -->
@@ -38,7 +38,7 @@
                     <x-label for="Descipció" :value="__('Descripció')" />
 
                     <x-input id="Description" class="input-content" type="text" name="description" value="{{$types->description}}"
-                        autofocus />
+                         autofocus required />
                 </div>
             </div>
             <div class="button-create">
