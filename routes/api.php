@@ -4,7 +4,9 @@ use App\Http\Controllers\DeviceController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BreakdownController;
+use App\Http\Controllers\TypeController;
 use App\Http\Controllers\UserController;
+use App\Models\Type;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,3 +28,5 @@ Route::get('/graph1', [BreakdownController::class, 'graph1']);
 Route::get('/graph2', [UserController::class, 'graph2']);
 
 Route::get('/graph4', [DeviceController::class, 'graph4']);
+
+Route::get('/graph6', [TypeController::class, 'graph6']);

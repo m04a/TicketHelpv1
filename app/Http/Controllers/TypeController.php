@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\TypeRequest;
 use App\Models\Type;
 use App\Models\User;
+use App\Models\Device;
 use App\Models\Role;
 
 
@@ -132,4 +133,17 @@ class TypeController extends Controller
             return redirect('admin/types')->with('success', "Tipus de dispositiu esborrat!");
         }
     }
+
+    public function graph6(){
+
+        $devices = Type::withCount('devices')->get();
+        $counter = 0;
+        $deviceData = [];
+        foreach ($devices as $device){
+         $deviceData[$counter]['name'] = $devices[$counter]['label'];
+         $deviceData[$counter]['value'] = $devices[$counter]['devices_count'];
+         $counter++;
+        }
+        return json_encode($deviceData);
+     }
 }
