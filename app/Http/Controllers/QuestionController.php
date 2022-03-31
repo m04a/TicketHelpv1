@@ -77,7 +77,7 @@ class QuestionController extends Controller
                 "status" => $item->status,
                 "department_id" => $item->department->name,
                 "user_id" => $item->user->username,
-                "manager_id" => $item->manager->username,
+                "manager_id" => optional($item->manager->username),
               ]);
             return view('user.questions.list', $data);
         }
@@ -145,12 +145,6 @@ class QuestionController extends Controller
             $questions->status = 1;
             $questions->department_id = $request->departament;
             $questions->user_id = $idUser;
-
-            if(isset($request->manager)) {
-                $questions->manager_id = $request->manager;
-            } else {
-                $questions->manager_id = "No assignat";
-            }
             
             if($questions->save()){
                 return redirect('user/questions/create')->with('success', "S'ha creat la pergunta correctament!");

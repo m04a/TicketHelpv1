@@ -73,7 +73,7 @@ class BreakdownController extends Controller
                 "title" => $item->title,
                 "status" => $item->status,
                 "username" => $item->user->username,
-                "manager" => $item->manager->username,
+                "manager" => optional($item->manager)->username,
                 "department" => $item->department->name,
                 "aula" => $item->zone->label,
             ]);
