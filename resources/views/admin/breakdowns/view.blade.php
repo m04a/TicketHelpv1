@@ -27,7 +27,7 @@
                     <x-label for="title" :value="__('Assumpte')" />
 
                     <x-input id="title" class="input-content input-disabled" type="text" name="nom"
-                        value="{{ $breakdown['title'] }}" required autofocus disabled />
+                        value="{{ $breakdown['title'] }}" required  autofocus disabled />
                 </div>
 
             </div>
@@ -38,7 +38,7 @@
                     <x-label for="user" :value="__('User')" />
 
                     <x-input id="user" class="input-content input-disabled" type="text" name="assumpte"
-                        value="{{ $breakdown['username'] }}" required autofocus disabled />
+                        value="{{ $breakdown['username'] }}" required  autofocus disabled />
 
                 </div>
                 <!-- Department -->
@@ -46,7 +46,7 @@
                     <x-label for="rol" :value="__('Departament')" />
 
                     <x-input id="   " class="input-content input-disabled" type="text" name="department"
-                        value="{{ $breakdown['departament'] }}" required autofocus disabled />
+                        value="{{ $breakdown['departament'] }}" required  autofocus disabled />
 
                 </div>
             </div>
@@ -57,7 +57,7 @@
                     <x-label for="user" :value="__('Administrador')" />
 
                     <x-input id="user" class="input-content input-disabled" type="text" name="assumpte"
-                        value="{{ $breakdown['manager_username'] }}" required autofocus disabled />
+                        value="{{ $breakdown['manager_username'] }}" required  autofocus disabled />
 
                 </div>
                 <!-- Department -->
@@ -65,7 +65,7 @@
                     <x-label for="rol" :value="__('Zona')" />
 
                     <x-input id="   " class="input-content input-disabled" type="text" name="department"
-                        value="{{ $breakdown['zone_name'] }}a" required autofocus disabled />
+                        value="{{ $breakdown['zone_name'] }}a" required  autofocus disabled />
 
                 </div>
             </div>
@@ -76,15 +76,14 @@
                     <x-label for="user" :value="__('Dispositiu')" />
 
                     <x-input id="user" class="input-content input-disabled" type="text" name="assumpte"
-                        value="{{ $breakdown['device_name'] }}" required autofocus disabled />
+                        value="{{ $breakdown['device_name'] }}" required  autofocus disabled />
 
                 </div>
                 <!-- Status Breakdown -->
                 <div class="mt-4 column-right">
                     <x-label for="state" :value="__('Estat Incidència')" />
 
-                    <x-input id="state" class="input-content input-disabled" type="text" name="estat"
-                        value="{{ $breakdown['status'] == 1 ? 'Resolt' : 'Pendent' }}" required autofocus disabled />
+                    <x-input id="state" value="{{ ($breakdown['status'] == 1) ? 'Pendent' : (($breakdown['status'] == 2)  ? 'Assignada' : 'Resolta'); }}" class="input-content input-disabled" type="text" name="estat" />
                 </div>
             </div>
             <div>

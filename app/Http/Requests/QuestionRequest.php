@@ -24,11 +24,11 @@ class QuestionRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => ['required', 'string', 'min:5'],
+            'title' => ['required', 'string', 'min:5', 'max:100'],
             'status' => ['nullable', 'numeric'],
             'description' => ['required', 'string', 'min:5'],
             'departament' => ['required', 'numeric'],
-            'manager' => ['required', 'numeric']
+            'manager_id' => ['numeric'],
         ];
     }
     public function messages()
@@ -39,6 +39,7 @@ class QuestionRequest extends FormRequest
             'department.required' => 'Posa un departament no siguis hacker',
             'manager.required' => 'no has posat ningun manager',
             'title.min' => 'Posa com a minim 5 caracters en el assumpte',
+            'title.max' => 'Posa com a maxim 100 caracters en el assumpte',
             'description.min' => 'Posa com a minim 5 caracters a la descripció'
         ];
     }

@@ -21,7 +21,7 @@ class GuideController extends Controller
                 "id" => $item->id,
                 "title" => $item->title,
                 "description" => $item->description,
-                "user" => $item->user_id
+                "user" => $item->user->username
             ]);
         return view('admin.guides.index', $data);
 
@@ -116,12 +116,13 @@ class GuideController extends Controller
     public function listPublic()
     {
         $data['guides'] = Guide::paginate(10)
-            ->through(fn ($item) => [
-                "id" => $item->id,
-                "title" => $item->title,
-                "description" => $item->description,
-                "user" => $item->user_id
-            ]);
+        ->through(fn ($item) => [
+            "id" => $item->id,
+            "title" => $item->title,
+            "description" => $item->description,
+            "user" => $item->user->username
+        ]);
+        
         return view('guest.guides.index', $data);
     }
 }

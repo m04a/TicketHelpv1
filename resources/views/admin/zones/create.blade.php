@@ -29,14 +29,14 @@
                 <div class="column-left">
                     <x-label name="label" :value="__('Nom')" />
 
-                    <x-input id="name" class="input-content" type="text" name="name" autofocus />
+                    <x-input id="name" class="input-content" type="text" name="name"  autofocus required />
                 </div>
 
                 <!-- Missatge -->
                 <div class="mt-4">
                     <x-label class="label" for="missatge" :value="__('Missatge')" />
 
-                    <textarea id="description" class="textarea" type="text" name="description" autofocus></textarea>
+                    <textarea id="description" class="textarea" type="text" name="description"  autofocus required></textarea>
                 </div>
             <div class="buttons right nowrap"> 
                 <a href="{{ url('admin/zones') }}">

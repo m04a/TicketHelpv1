@@ -34,7 +34,6 @@
                             <th>Assumpte</th>
                             <th>Estat</th>
                             <th>Departament</th>
-                            <th>Usuari</th>
                             <th>Manager</th>
                             <th></th>
                         </tr>

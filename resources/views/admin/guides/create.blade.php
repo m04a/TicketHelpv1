@@ -32,14 +32,14 @@
             <div class="mt-4">
                 <x-label class="label" for="title" :value="__('Titol')" />
 
-                <x-input id="title" class="block mt-4 w-full" type="text" name="title" autofocus />
+                <x-input id="title" class="block mt-4 w-full" type="text" name="title"  autofocus required />
             </div>
 
             <!-- Description -->
             <div class="mt-4">
                 <x-label class="label" for="description" :value="__('Descripció')" />
 
-                <textarea class="textarea" type="text" name="description" autofocus></textarea>
+                <textarea class="textarea" type="text" name="description"  autofocus required></textarea>
             </div>
 
             <div class="flex flex-col space-y-2">

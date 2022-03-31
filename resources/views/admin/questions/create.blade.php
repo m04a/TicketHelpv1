@@ -23,22 +23,13 @@
         @endif
         <x-create-card>
             <form method="POST" action="{{ url('/admin/questions/create') }}">
-            @csrf
-                <div class="content-column">
-                <!-- Name User -->
-                <div class="column-left">
-                    <x-label class="title" for="assumpte" :value="__('Assumpte')" />
+                @csrf
+                <div class="columns">
+                    <!-- Name User -->
+                    <div class="mt-4">
+                        <x-label class="title" for="assumpte" :value="__('Assumpte')" />
 
-                    <x-input id="title" class="block mt-4 w-full" type="text" name="title" placeholder="Sense Assumpte" autofocus />       
-                </div>
-                <!-- Status Breakdown -->
-                <div class="column-right">
-                        <x-label for="rol" :value="__('Estat Incidència')" />
-
-                        <x-select name="status" class="block mt-4 w-full">
-                            <option value="1">Sense Assignar</option>
-                            <option value="2">En procés</option>
-                        </x-select>
+                        <x-input id="title" class="block mt-4 w-full" type="text" max=100 min=5 name="title" placeholder="Sense Assumpte"  autofocus required />       
                     </div>
                 </div>
                 <div class="content-column mt-4">
@@ -52,14 +43,15 @@
                             @endforeach
                         </x-select>
                     </div>
+                    
+                    <!-- Status Breakdown -->
                     <div class="column-right">
+                        <x-label for="rol" :value="__('Estat')" />
 
-                        <x-label for="Tipus" :value="__('Manager')" />
-
-                        <x-select class="block mt-4 w-full" name="manager">
-                            @foreach ($manager as $item)
-                                <option value="{{$item->id}} ">{{ $item->username }}</option>
-                            @endforeach
+                        <x-select name="status" class="block mt-4 w-full">
+                            <option value="1">Sense Assignar</option>
+                            <option value="2">En procés</option>
+                            <option value="3">Resolta</option>
                         </x-select>
                     </div>
                 </div>
@@ -67,7 +59,7 @@
                 <div class="mt-4">
                     <x-label class="description" for="missatge" :value="__('Missatge')" />
 
-                    <textarea class="textarea" type="text" name="description" placeholder="Escriu el teu missatge aquí" autofocus></textarea>
+                    <textarea class="textarea" type="text" name="description" placeholder="Escriu el teu missatge aquí"  autofocus required></textarea>
                 </div>
 
 

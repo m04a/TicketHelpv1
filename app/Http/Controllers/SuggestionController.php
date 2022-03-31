@@ -87,7 +87,9 @@ class SuggestionController extends Controller
             $suggestion->user_id = $idUser;
 
             if($suggestion->save()){
-                 return redirect('/admin/suggestions/create')->with('success', 'el suggeriment a sigut creat');
+                 return redirect('/admin/suggestions/create')->with('success', 'La suggerencia a sigut enviada!');
+            }else{
+                return redirect('/user/suggestions/create')->with('error', "La suggerencia no s'ha pogut crear");
             }
 
         }else{
@@ -100,9 +102,9 @@ class SuggestionController extends Controller
             $suggestion->user_id = $idUser;
 
             if($suggestion->save()){
-                return redirect('/user/suggestions/create')->with('success', 'el suggeriment a sigut creat i enviat!');;
+                return redirect('/user/suggestions/create')->with('success', 'La suggerencia a sigut enviada!');;
             }else{
-                return redirect('/user/suggestions/create')->with('message', "el suggeriment no s'''ha pogut crear");
+                return redirect('/user/suggestions/create')->with('error', "La suggerencia no s'ha pogut crear");
             }
         }
 
@@ -173,7 +175,9 @@ class SuggestionController extends Controller
             $suggestion->user_id = $idUser;
     
             if($suggestion->save()){
-                return back()->with('success', "S'han actualitzat les dades de la incidencia.");
+                return back()->with('success', "S'han actualitzat les dades de la suggerencia.");
+            } else {
+                return back()->with('error', "No s'han pogut actualitzar les dades de la suggerencia.");
             }
 
         }else{
@@ -185,7 +189,9 @@ class SuggestionController extends Controller
             $suggestion->user_id = $idUser;
     
             if($suggestion->save()){
-                return back()->with('success', "S'han actualitzat les dades de la incidencia.");
+                return back()->with('success', "S'han actualitzat les dades de la suggerencia.");
+            } else {
+                return back()->with('error', "No s'han pogut actualitzar les dades de la suggerencia.");
             }
         }
     }
@@ -208,9 +214,9 @@ class SuggestionController extends Controller
             $result = $suggestion->delete();
 
             if ($result) {
-                return redirect('/admin/suggestions')->with('success', 'Sugerencia esborrada!');
+                return redirect('/admin/suggestions')->with('success', 'Suggerencia esborrada!');
             }else{
-                return redirect('/admin/suggestions')->with('error', 'hi hagut un error al esborrar la sugerencia!');
+                return redirect('/admin/suggestions')->with('error', 'Hi hagut un error al esborrar la suggerencia!');
             }
         }else{
             $suggestion = Suggestion::findOrFail($id);
@@ -220,7 +226,7 @@ class SuggestionController extends Controller
                 if ($result) {
                     return redirect('/user/suggestions/list')->with('success', 'Sugerencia esborrada!');
                 }else{
-                    return redirect('/user/suggestions/list')->with('error', 'hi hagut un error al esborrar la sugerencia!');
+                    return redirect('/user/suggestions/list')->with('error', 'Hi hagut un error al esborrar la suggerencia!');
                 }
             }
         }
