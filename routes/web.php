@@ -40,6 +40,7 @@ Route::get('/auth/{provider}/callback',[OauthController::class, 'authUserOauth']
 Route::get('/', [HomePage::class, 'index'])->name('homepage.index');
 
 Route::get('/guides', [GuideController::class, 'listPublic'])->name('guide.index');
+Route::get('/guides/{guide}', [GuideController::class, 'show'])->name('guide.show');
 
 
 Route::middleware(['auth'])->group(function () {
@@ -66,13 +67,11 @@ Route::middleware(['auth'])->group(function () {
 
         Route::put('/admin/users/edit/{id}', [UserController::class, 'update'])->name('admin.devices.update');
 
-
         Route::post('/admin/users/store', [UserController::class, 'store'])->name('admin.users.store');
 
         Route::delete('/admin/users/{id}', [UserController::class, "destroy"])->name('admin.users.delete');
 
-        Route::post('/admin/profile/reset', [PasswordResetLinkController::class, 'store'])
-        ->name('password.email');
+        Route::post('/admin/profile/reset', [PasswordResetLinkController::class, 'store'])->name('password.email');
 
 
         ///////////////////////////////////////////////////
@@ -111,37 +110,19 @@ Route::middleware(['auth'])->group(function () {
         ///////////////////////////////////////////////////
 
 
-        Route::get('/admin/breakdowns', [BreakdownController::class, "index"])
-            ->name('admin.breakdowns');
+        Route::get('/admin/breakdowns', [BreakdownController::class, "index"])->name('admin.breakdowns');
 
-        Route::get(
-            '/admin/breakdowns/create',
-            [BreakdownController::class, "create"]
-        );
+        Route::get('/admin/breakdowns/create',[BreakdownController::class, "create"]);
 
-        Route::post(
-            '/admin/breakdowns/create',
-            [BreakdownController::class, "store"]
-        );
+        Route::post('/admin/breakdowns/create', [BreakdownController::class, "store"]);
 
-        Route::get(
-            '/admin/breakdowns/edit/{id}',
-            [BreakdownController::class, "edit"]
-        );
+        Route::get('/admin/breakdowns/edit/{id}',[BreakdownController::class, "edit"]);
 
-        Route::put(
-            '/admin/breakdowns/edit/{id}',
-            [BreakdownController::class, "update"]
-        );
+        Route::put('/admin/breakdowns/edit/{id}',[BreakdownController::class, "update"]);
 
-        Route::get(
-            '/admin/breakdowns/view/{id}',
-            [BreakdownController::class, "show"]
-        );
-        Route::delete(
-            '/admin/breakdowns/{id}',
-            [BreakdownController::class, "destroy"]
-        );
+        Route::get('/admin/breakdowns/view/{id}',[BreakdownController::class, "show"]);
+        
+        Route::delete('/admin/breakdowns/{id}',[BreakdownController::class, "destroy"]);
 
         ///////////////////////////////////////////////////
 
@@ -228,10 +209,17 @@ Route::middleware(['auth'])->group(function () {
         
         ///////////////////////////////////////////////////
 
+        Route::get('/admin/guides/edit/{guide}', [GuideController::class, 'edit'])->name('admin.guides.edit');
+
+        Route::put('/admin/guides/update', [GuideController::class, 'update'])->name('admin.guides.update');
+
         Route::get('/admin/guides/create', [GuideController::class, 'create'])->name('admin.guides.create');
+
+        Route::get('/admin/guides/', [GuideController::class, 'index'])->name('admin.guides.index');
 
         Route::post('/admin/guides/store', [GuideController::class, 'store'])->name('admin.guides.store');
 
+        Route::delete('/admin/guides/destroy/{id}', [GuideController::class, 'destroy'])->name('admin.guides.delete');
 
         ///////////////////////////////////////////////////
         Route::post('/admin/messages/{id}', [MessageController::class, "store"])
@@ -250,21 +238,13 @@ Route::middleware(['auth'])->group(function () {
 
     ///////////////////////////////////////////////////
 
-    Route::get('/user/breakdowns/create',
-        [BreakdownController::class,"create"]);
+    Route::get('/user/breakdowns/create', [BreakdownController::class,"create"])->name('user.breakdowns.create');
 
-    Route::post('/user/breakdowns/create',
-        [BreakdownController::class,"store"])->name('user.breakdowns.create');;
+    Route::post('/user/breakdowns/create', [BreakdownController::class,"store"])->name('user.breakdowns.store');
 
-    Route::delete(
-        '/user/breakdowns/{id}',
-        [BreakdownController::class, "destroy"]
-    );
+    Route::delete('/user/breakdowns/{id}', [BreakdownController::class, "destroy"])->name('user.breakdowns.destroy');
 
-    Route::get(
-        '/user/breakdowns/view/{id}',
-        [BreakdownController::class, "show"]
-    );
+    Route::get('/user/breakdowns/view/{id}',[BreakdownController::class, "show"])->name('user.breakdowns.show');
 
     Route::get('/user/breakdowns/list', [BreakdownController::class, "index"])->name('user.breakdowns.list');;
     
@@ -299,9 +279,6 @@ Route::middleware(['auth'])->group(function () {
     })->name('user.questions.index');
 
     ///////////////////////////////////////////////////
-
-
-
 
     Route::get('/user/suggestions/create', [SuggestionController::class, 'create'])->name('user.suggestions.create');
 
