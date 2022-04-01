@@ -24,7 +24,8 @@ class ZoneController extends Controller
         $userRole = User::where('id', '=', $idUser)->get(['role_id']);
 
         if($userRole[0]['role_id'] > 1){
-            $data['zones'] = Zone::paginate(10)
+            $data['zones'] = Zone::orderBy('created_at', 'DESC')
+            ->paginate(10)
             ->through(fn ($item) => [
                 "id" => $item->id,
                 "label" => $item->label,
