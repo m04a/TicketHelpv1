@@ -44,4 +44,9 @@ return [
         'client_secret' => env('DISCORD_OAUTH_KEY'),
         'redirect' => env('DISCORD_CLIENT_REDIRECT'),
     ],
+    'instagram' => [
+        'client_id' => env('INSTAGRAM_OAUTH_ID'),
+        'client_secret' => env('INSTAGRAM_OAUTH_KEY'),
+        'redirect' => env('INSTAGRAM_CLIENT_REDIRECT'),
+    ],
 ];
