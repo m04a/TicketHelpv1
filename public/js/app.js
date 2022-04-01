@@ -31418,24 +31418,11 @@ var editor = new _toast_ui_editor__WEBPACK_IMPORTED_MODULE_0__["default"]({
   initialEditType: 'markdown',
   placeholder: 'Write something cool!'
 });
-
-if (document.querySelector('#createPostForm')) {
-  document.querySelector('#createPostForm').addEventListener('submit', function (e) {
-    e.preventDefault();
-    document.querySelector('#content').value = editor.getMarkdown();
-    e.target.submit();
-  });
-}
-
-if (document.querySelector('#editPostForm')) {
-  editor.setMarkdown(document.querySelector('#oldContent').value);
-  document.querySelector('#editPostForm').addEventListener('submit', function (e) {
-    e.preventDefault();
-    document.querySelector('#content').value = editor.getMarkdown();
-    e.target.submit();
-  });
-}
-
+document.querySelector('#createPostForm').addEventListener('submit', function (e) {
+  e.preventDefault();
+  document.querySelector('#content').value = editor.getMarkdown();
+  e.target.submit();
+});
 var message = document.getElementById('message');
 
 window.onload = function (event) {
