@@ -18,14 +18,15 @@ class DeviceController extends Controller
      */
     public function index(Request $request)
     {
-        $data['devices'] = Device::paginate(10)
-            ->through(fn ($item) => [
-                "id" => $item->id,
-                "label" => $item->label,
-                //"label" => substr($item->label, 0, 1) . "-" . str_pad($item->zone_id, 2, 0, STR_PAD_LEFT) . "-" . str_pad($item->type_id, 2, 0, STR_PAD_LEFT),
-                "zone" => $item->zone->label,
-                "type" => $item->type->label,
-            ]);
+        $data['devices'] = Device::orderBy('created_at', 'DESC')
+        ->paginate(10)
+        ->through(fn ($item) => [
+            "id" => $item->id,
+            "label" => $item->label,
+            //"label" => substr($item->label, 0, 1) . "-" . str_pad($item->zone_id, 2, 0, STR_PAD_LEFT) . "-" . str_pad($item->type_id, 2, 0, STR_PAD_LEFT),
+            "zone" => $item->zone->label,
+            "type" => $item->type->label,
+        ]);
         return view('admin.devices.index', $data);
 
         //$data['devicesCount'] = Device::count();
