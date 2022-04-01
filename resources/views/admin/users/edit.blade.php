@@ -30,14 +30,14 @@
             <div class="column-left">
                 <x-label for="usuari" :value="__('Nom Usuari')" />
 
-                <x-input id="nom" class="input-content" type="text" name="username" value="{{ $users->username }}" autofocus />
+                <x-input id="nom" class="input-content" type="text" name="username" value="{{ $users->username }}"  autofocus required />
             </div>
 
             <!-- Email User -->
             <div class="column-right">
                 <x-label for="email" :value="__('Correu Electronic')" />
 
-                <x-input id="email" class="input-content" type="email" name="email" value="{{ $users->email }}" autofocus />
+                <x-input id="email" class="input-content" type="email" name="email" value="{{ $users->email }}"  autofocus required />
             </div>
             </div>
             <div class="content-column">

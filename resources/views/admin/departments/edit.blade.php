@@ -27,7 +27,7 @@
             <div class="column-left">
                 <x-label for="departament" :value="__('Nom Departament')" />
 
-                <x-input id="departament" class="input-content" type="text" name="name" value="{{$department->name}}" autofocus />
+                <x-input id="departament" class="input-content" type="text" name="name" value="{{$department->name}}"  autofocus required />
             </div>
             <div class="button-create">
                 <a href="{{ url('admin/departments') }}">

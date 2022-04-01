@@ -30,7 +30,7 @@
             <div class="column-left-w200">
                 <x-label class="label" for="assumpte" :value="__('Assumpte')" />
 
-                <x-input id="title" class="block mt-4 w-full" type="text" value="{{ $suggestion->title }}" name="title" autofocus />
+                <x-input id="title" class="block mt-4 w-full" type="text" value="{{ $suggestion->title }}" name="title"  autofocus required />
             </div>
 
             <!-- Status Breakdown -->
@@ -48,7 +48,7 @@
                 <div class="mt-4">
                     <x-label class="label" for="missatge" :value="__('Missatge')" />
 
-                    <textarea class="textarea" type="text" name="description" autofocus>{{ $suggestion->description }}</textarea>
+                    <textarea class="textarea" type="text" name="description"  autofocus required>{{ $suggestion->description }}</textarea>
                 </div>
                 <div class="button-create">
                     <a href="{{ url('admin/suggestions') }}">

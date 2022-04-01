@@ -152,4 +152,17 @@ class DepartamentController extends Controller
             return redirect("/admin/departments/")->with('error', "El departament no es pot borrar perqué te dependeciés!");
         }   
     }
+    
+    public function graph3(){
+
+        $departments = Department::withCount('breakdowns')->get();
+        $counter = 0;
+        $departmentData = [];
+        foreach ($departments as $department){
+         $departmentData[$counter]['name'] = $departments[$counter]['name'];
+         $departmentData[$counter]['value'] = $departments[$counter]['breakdowns_count'];
+         $counter++;
+        }
+        return json_encode($departmentData);
+     }
 }

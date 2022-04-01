@@ -24,9 +24,14 @@
         <x-create-card-user>
         <form method="POST" action="{{ url('/user/questions/create') }}">
             @csrf
-                <div class="content-column">
+                <div class="columns">
+                    <div class="mt-4">
+                        <x-label class="title" for="assumpte" :value="__('Assumpte')" />
 
-                    <div class="column-left">
+                        <x-input id="title" class="block mt-4 w-full" type="text" name="title" placeholder="Sense Assumpte"  autofocus required />       
+                    </div>
+
+                    <div class="mt-4">
                         <x-label for="Tipus" :value="__('Departament')" />
 
                         <x-select class="block mt-4 w-full" name="departament">
@@ -35,27 +40,13 @@
                             @endforeach
                         </x-select>
                     </div>
-                    <div class="column-right">
-
-                        <x-label for="Tipus" :value="__('Manager')" />
-
-                        <x-select class="block mt-4 w-full" name="manager">
-                            @foreach ($manager as $item)
-                                <option value="{{$item->id}} ">{{ $item->username }}</option>
-                            @endforeach
-                        </x-select>
-                    </div>
                 </div>
-                <div class="mt-4">
-                    <x-label class="title" for="assumpte" :value="__('Assumpte')" />
 
-                    <x-input id="title" class="block mt-4 w-full" type="text" name="title" placeholder="Sense Assumpte" autofocus />       
-                </div>
-                <!-- Text of the suggestion -->
+                <!-- Text of the question -->
                 <div class="mt-4">
                     <x-label class="description" for="missatge" :value="__('Missatge')" />
 
-                    <textarea class="textarea" type="text" name="description" placeholder="Escriu el teu missatge aquí" autofocus></textarea>
+                    <textarea class="textarea" type="text" name="description" placeholder="Escriu el teu missatge aquí"  autofocus required></textarea>
                 </div>
 
 

@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('devices', function (Blueprint $table) {
 
             $table->id();
-            $table->string('label');
+            $table->text('label');
 
             $table->unsignedBigInteger('type_id');
             $table->foreign('type_id')->references('id')->on('types')->onDelete('cascade');
