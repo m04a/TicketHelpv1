@@ -34,7 +34,7 @@
                 <div class="column-left">
                     <x-label for="Nom" :value="__('Nom del dispositiu')" />
                     <x-input id="title" class="input-content" type="text" name="title" placeholder="s-02-01"
-                        value='{{ $deviceData->label }}' autofocus />
+                        value='{{ $deviceData->label }}'  autofocus required />
                 </div>
 
                 <!-- Email User -->

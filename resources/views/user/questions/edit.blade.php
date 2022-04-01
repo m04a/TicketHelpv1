@@ -50,13 +50,13 @@
                 <!-- Name User -->
                 <div class="column-left mt-4">
                     <x-label class="title" for="assumpte" :value="__('Assumpte')" />
-                    <x-input id="title" class="block mt-4 w-full" type="text" name="title" value="{{ $questions->title }}" placeholder="Sense Assumpte" autofocus />       
+                    <x-input id="title" class="block mt-4 w-full" type="text" name="title" value="{{ $questions->title }}" placeholder="Sense Assumpte"  autofocus required />       
                 </div>
                 <!-- Text of the suggestion -->
                 <div class="mt-4">
                     <x-label class="description" for="missatge" :value="__('Missatge')" />
 
-                    <textarea class="textarea" type="text" name="description" placeholder="Escriu el teu missatge aquí" autofocus>{{ $questions->description }}</textarea>
+                    <textarea class="textarea" type="text" name="description" placeholder="Escriu el teu missatge aquí"  autofocus required>{{ $questions->description }}</textarea>
                 </div>
 
 

@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h1 class="title">
-            Crear un sugerencia
+            Crear un suggeriment
         </h1>
     </x-slot>
     <x-slot name="slot">
@@ -30,7 +30,7 @@
             <div class="column-left-w200">
                 <x-label class="label" for="assumpte" :value="__('Assumpte')" />
 
-                <x-input id="title" class="block mt-4 w-full" type="text" name="title" autofocus />
+                <x-input id="title" class="block mt-4 w-full" type="text" name="title"  autofocus required />
             </div>
 
             <!-- Status Breakdown -->
@@ -49,7 +49,7 @@
                 <div class="mt-4">
                     <x-label class="label" for="missatge" :value="__('Missatge')" />
 
-                    <textarea class="textarea" type="text" name="description" autofocus></textarea>
+                    <textarea class="textarea" type="text" name="description"  autofocus required></textarea>
                 </div>
 
 

@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('breakdowns', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
+            $table->text('title');
             $table->text('description');
             $table->integer('status');
 
@@ -25,7 +25,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
-            $table->unsignedBigInteger('manager_id')->nullable();
+            $table->unsignedBigInteger('manager_id')->nullable()->constrained();
             $table->foreign('manager_id')->references('id')->on('users');
 
             $table->unsignedBigInteger('device_id')->nullable();
