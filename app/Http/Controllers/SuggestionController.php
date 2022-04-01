@@ -8,6 +8,7 @@ use App\Models\Suggestion;
 use App\Models\User;
 use App\Models\Department;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class SuggestionController extends Controller
 {
@@ -22,7 +23,7 @@ class SuggestionController extends Controller
 
         $userRole = User::where('id', '=', $idUser)->get(['role_id']);
 
-        if($userRole[0]['role_id'] > 1){
+        if ($userRole[0]['role_id'] > 1) {
             $data['suggestions'] = Suggestion::paginate(10)
             ->orderBy('created_at', 'DESC')
             ->through(fn ($item) => [
@@ -59,9 +60,9 @@ class SuggestionController extends Controller
 
         $userRole = User::where('id', '=', $idUser)->get(['role_id']);
 
-        if($userRole[0]['role_id'] > 1){
+        if ($userRole[0]['role_id'] > 1) {
             return view('admin.suggestions.create', ['department' => $department]);
-        }else{
+        } else {
             return view('user.suggestions.create', ['department' => $department]);
         }
     }
@@ -80,7 +81,7 @@ class SuggestionController extends Controller
 
         $userRole = User::where('id', '=', $idUser)->get(['role_id']);
 
-        if($userRole[0]['role_id'] > 1){
+        if ($userRole[0]['role_id'] > 1) {
             $suggestion = new Suggestion();
 
             $suggestion->title = $request->title;
@@ -93,8 +94,7 @@ class SuggestionController extends Controller
             }else{
                 return redirect('/user/suggestions/create')->with('error', "La suggerencia no s'ha pogut crear");
             }
-
-        }else{
+        } else {
 
             $suggestion = new Suggestion();
 
@@ -109,7 +109,6 @@ class SuggestionController extends Controller
                 return redirect('/user/suggestions/create')->with('error', "La suggerencia no s'ha pogut crear");
             }
         }
-
     }
 
     /**
@@ -140,16 +139,15 @@ class SuggestionController extends Controller
 
         $userRole = User::where('id', '=', $idUser)->get(['role_id']);
 
-        if($userRole[0]['role_id'] > 1){
+        if ($userRole[0]['role_id'] > 1) {
             $suggestion = Suggestion::findOrFail($id);
 
-            return view('admin.suggestions.edit', ['suggestion' => $suggestion],['department' => $department]);
-
-        }else{
+            return view('admin.suggestions.edit', ['suggestion' => $suggestion], ['department' => $department]);
+        } else {
 
             $suggestion = Suggestion::findOrFail($id);
 
-            return view('user.suggestions.edit', ['suggestion' => $suggestion],['department' => $department]);
+            return view('user.suggestions.edit', ['suggestion' => $suggestion], ['department' => $department]);
         }
     }
 
@@ -167,29 +165,28 @@ class SuggestionController extends Controller
         $idUser = Auth::user()->id;
 
         $userRole = User::where('id', '=', $idUser)->get(['role_id']);
-        
-        if($userRole[0]['role_id'] > 1){
+
+        if ($userRole[0]['role_id'] > 1) {
             $suggestion = Suggestion::find($id);
             /*Records to update with the request*/
             $suggestion->title = $request->title;
             $suggestion->department_id = $request->department_id;
             $suggestion->description = $request->description;
             $suggestion->user_id = $idUser;
-    
+
             if($suggestion->save()){
                 return back()->with('success', "S'han actualitzat les dades de la suggerencia.");
             } else {
                 return back()->with('error', "No s'han pogut actualitzar les dades de la suggerencia.");
             }
-
-        }else{
+        } else {
             $suggestion = Suggestion::find($id);
             /*Records to update with the request*/
             $suggestion->title = $request->title;
             $suggestion->department_id = $request->department_id;
             $suggestion->description = $request->description;
             $suggestion->user_id = $idUser;
-    
+
             if($suggestion->save()){
                 return back()->with('success', "S'han actualitzat les dades de la suggerencia.");
             } else {
@@ -210,17 +207,16 @@ class SuggestionController extends Controller
 
         $userRole = User::where('id', '=', $idUser)->get(['role_id']);
 
-        if($userRole[0]['role_id'] > 1){
-            $suggestion = Suggestion::findOrFail($id);+
-
-            $result = $suggestion->delete();
+        if ($userRole[0]['role_id'] > 1) {
+            $suggestion = Suggestion::findOrFail($id);
+            +$result = $suggestion->delete();
 
             if ($result) {
                 return redirect('/admin/suggestions')->with('success', 'Suggerencia esborrada!');
             }else{
                 return redirect('/admin/suggestions')->with('error', 'Hi hagut un error al esborrar la suggerencia!');
             }
-        }else{
+        } else {
             $suggestion = Suggestion::findOrFail($id);
 
             $result = $suggestion->delete();
@@ -232,5 +228,14 @@ class SuggestionController extends Controller
                 }
             }
         }
+    }
+    public function graph5()
+    {
+        $suggestions = Department::withCount("suggestions")->get()
+        ->map(fn ($item) => [
+            "name"=>$item->name,
+            "value"=>$item->suggestions_count
+        ]);
+        return response()->json($suggestions);
     }
 }
