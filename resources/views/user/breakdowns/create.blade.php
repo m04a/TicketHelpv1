@@ -26,7 +26,7 @@
                 <div class="column-left">
                     <x-label for="usuari" :value="__('Nom Usuari')" />
 
-                    <x-input id="nom" class="input-content input-disabled" type="text" name="nom" value="{{ $userLoggedIn }}" autofocus  disabled/>
+                    <x-input id="nom" class="input-content input-disabled" type="text" name="nom" value="{{ $userLoggedIn }}"  autofocus required  disabled/>
                 </div>
 
                 Status Breakdown
@@ -39,16 +39,16 @@
                     </x-select>
                 </div>
             </div> -->
-            <div class="content-column">
+            <div class="columns">
                 <!-- Subject -->
-                <div class="mt-4 column-left">
+                <div class="mt-4">
                     <x-label for="title" :value="__('Assumpte')" />
 
-                    <x-input id="title" class="input-content" type="text" name="title" autofocus />
+                    <x-input id="title" class="input-content" type="text" name="title"  autofocus required />
 
                 </div>
                 <!-- Rol User -->
-                <div class="mt-4 column-right">
+                <div class="mt-4">
                     <x-label for="rol" :value="__('Departament')" />
 
                     <x-select name="department_id" class="block mt-4 w-full">
@@ -58,17 +58,8 @@
                     </x-select>
                 </div>
             </div>
-            <div class="columns">
-                <div class="mt-4">
-                    <x-label for="rol" :value="__('Administrador')" />
-
-                    <x-select name="manager_id" class="block mt-4 w-full">
-                        @foreach ($manager as $item)
-                            <option value="{{$item->id}} ">{{ $item->username }}</option>
-                        @endforeach
-                    </x-select>
-                </div>
-                <div class="mt-4">
+            <div class="content-column">
+                <div class="mt-4 column-left">
                     <x-label for="rol" :value="__('Dispositus')" />
 
                     <x-select name="device_id" class="block mt-4 w-full">
@@ -77,7 +68,7 @@
                         @endforeach
                     </x-select>
                 </div>
-                <div class="mt-4">
+                <div class="mt-4 column-right">
                     <x-label for="rol" :value="__('Zona')" />
 
                     <x-select name="zone_id" class="block mt-4 w-full">
@@ -91,7 +82,7 @@
             <div class="mt-4">
                 <x-label class="label" for="description" name="description" :value="__('Missatge')" />
 
-                <textarea class="textarea" type="text" name="description" autofocus></textarea>
+                <textarea class="textarea" type="text" name="description"  autofocus required></textarea>
             </div>
 
             <div class="button-create">

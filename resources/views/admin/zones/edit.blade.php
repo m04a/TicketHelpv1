@@ -31,7 +31,7 @@
                 <div class="column-left">
                     <x-label for="usuari" :value="__('Nom')" />
 
-                    <x-input id="name" class="input-content" type="text" name="name" value="{{ $zone->label }}" autofocus />
+                    <x-input id="name" class="input-content" type="text" name="name" value="{{ $zone->label }}"  autofocus required />
                 </div>
             </div>
             <div class="content-column">

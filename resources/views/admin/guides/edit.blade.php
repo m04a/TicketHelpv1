@@ -32,14 +32,14 @@
             <div class="mt-4">
                 <x-label class="label" for="title" :value="__('Titol')" />
 
-                <x-input id="title" class="block mt-4 w-full" type="text" name="title" value="{{ $guide->title }}" autofocus />
+                <x-input id="title" class="block mt-4 w-full" type="text" name="title" value="{{ $guide->title }}"  autofocus required />
             </div>
 
             <!-- Description -->
             <div class="mt-4">
                 <x-label class="label" for="description" :value="__('Descripció')" />
 
-                <textarea class="textarea" type="text" name="description" autofocus>{{ $guide->description }}</textarea>
+                <textarea class="textarea" type="text" name="description"  autofocus required>{{ $guide->description }}</textarea>
             </div>
 
             <div class="flex flex-col space-y-2">

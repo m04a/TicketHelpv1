@@ -26,20 +26,20 @@
             @method('PUT')
             @csrf
                 <div class="content-column">
-                <!-- Name User -->
-                <div class="column-left">
-                    <x-label class="title" for="assumpte" :value="__('Assumpte')" />
+                    <!-- Name User -->
+                    <div class="column-left">
+                        <x-label class="title" for="assumpte" :value="__('Assumpte')" />
 
-                    <x-input id="title" class="block mt-4 w-full" type="text" name="title" value="{{ $questions->title }}" placeholder="Sense Assumpte" autofocus />       
-                </div>
-                <!-- Status Breakdown -->
-                <div class="column-right">
-                        <x-label for="rol" :value="__('Estat Incidència')" />
+                        <x-input id="title" class="block mt-4 w-full" type="text" name="title" value="{{ $questions->title }}" placeholder="Sense Assumpte"  autofocus required />       
+                    </div>
+                    <!-- Status Breakdown -->
+                    <div class="column-right">
+                        <x-label for="rol" :value="__('Estat')" />
 
                         <x-select name="status" class="block mt-4 w-full">
                             <option {{ $questions->status==1 ? 'selected' : ''}} value="1">Sense Assignar</option>
                             <option {{ $questions->status==2 ? 'selected' : ''}} value="2">En procés</option>
-                            <option {{ $questions->status==3 ? 'selected' : ''}} value="3">Finalitzat</option>
+                            <option {{ $questions->status==3 ? 'selected' : ''}} value="3">Resolta</option>
                         </x-select>
                     </div>
                 </div>
@@ -69,7 +69,7 @@
                 <div class="mt-4">
                     <x-label class="description" for="missatge" :value="__('Missatge')" />
 
-                    <textarea class="textarea" type="text" name="description" placeholder="Escriu el teu missatge aquí" autofocus>{{ $questions->description }}</textarea>
+                    <textarea class="textarea" type="text" name="description" placeholder="Escriu el teu missatge aquí"  autofocus required>{{ $questions->description }}</textarea>
                 </div>
 
 

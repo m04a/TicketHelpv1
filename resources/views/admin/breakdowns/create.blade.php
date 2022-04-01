@@ -24,12 +24,21 @@
 <x-create-card>
     <form method="POST" action="{{ url('/admin/breakdowns/create') }}">
         @csrf
-            <div class="content-column">
+
+            <!-- Subject -->
+            <div >
+                <x-label for="title" :value="__('Assumpte')" />
+
+                <x-input id="title" class="input-content" type="text" name="title"  autofocus required />
+
+            </div>
+
+            <div class="content-column mt-4">
             <!-- Name User -->
             <div class="column-left">
                 <x-label for="usuari" :value="__('Nom Usuari')" />
 
-                <x-input id="nom" class="input-content input-disabled" type="text" name="nom" value="{{ $userLoggedIn }}" autofocus  disabled/>
+                <x-input id="nom" class="input-content input-disabled" type="text" name="nom" value="{{ $userLoggedIn }}"  autofocus required  disabled/>
             </div>
 
             <!-- Status Breakdown -->
@@ -39,6 +48,7 @@
                     <x-select name="status" class="block mt-4 w-full">
                         <option value="1">Sense Assignar</option>
                         <option value="2">En procés</option>
+                        <option value="3">Resolta</option>
                     </x-select>
                 </div>
             </div>
@@ -53,55 +63,37 @@
                         @endforeach
                     </x-select>
                 </div>
-                <!-- Rol User -->
-                <div class="mt-4 column-right">
-                    <x-label for="rol" :value="__('Departament')" />
 
-                    <x-select name="department_id" class="block mt-4 w-full">
-                        @foreach ($department as $item)
-                            <option value="{{$item->id}} ">{{ $item->name }}</option>
-                        @endforeach
-                    </x-select>
+                <!-- Status Breakdown -->
+                <div class="column-right">
+                    <div class="mt-4">
+                        <x-label for="rol" :value="__('Dispositus')" />
+
+                        <x-select name="device_id" class="block mt-4 w-full">
+                            @foreach ($devices as $item)
+                                <option value="{{$item->id}} ">{{ $item->label }}</option>
+                            @endforeach
+                        </x-select>
+                    </div>
                 </div>
             </div>
-        <div class="content-column">
-            <!-- Name User -->
-            <div class="column-left">
-                <div class="mt-4">
-                    <x-label for="rol" :value="__('Administrador')" />
+        <div class="columns">
+            <!-- Rol User -->
+            <div class="mt-4">
+                <x-label for="rol" :value="__('Departament')" />
 
-                    <x-select name="manager_id" class="block mt-4 w-full">
-                        @foreach ($manager as $item)
-                            <option value="{{$item->id}} ">{{ $item->username }}</option>
-                        @endforeach
-                    </x-select>
-                </div>
-            </div>
-            <!-- Status Breakdown -->
-            <div class="column-right">
-                <div class="mt-4">
-                    <x-label for="rol" :value="__('Dispositus')" />
-
-                    <x-select name="device_id" class="block mt-4 w-full">
-                        @foreach ($devices as $item)
-                            <option value="{{$item->id}} ">{{ $item->label }}</option>
-                        @endforeach
-                    </x-select>
-                </div>
+                <x-select name="department_id" class="block mt-4 w-full">
+                    @foreach ($department as $item)
+                        <option value="{{$item->id}} ">{{ $item->name }}</option>
+                    @endforeach
+                </x-select>
             </div>
         </div>
 
-        <!-- Subject -->
-        <div class="mt-4 column-left">
-            <x-label for="title" :value="__('Assumpte')" />
-
-            <x-input id="title" class="input-content" type="text" name="title" autofocus />
-
-        </div>
         <div class="mt-4">
             <x-label class="label" for="description" name="description" :value="__('Missatge')" />
 
-            <textarea class="textarea" type="text" name="description" autofocus></textarea>
+            <textarea class="textarea" type="text" name="description"  autofocus required></textarea>
         </div>
 
             <div class="button-create">
