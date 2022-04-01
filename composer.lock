@@ -3008,9 +3008,6 @@
             "time": "2021-09-25T23:10:38+00:00"
         },
         {
-<<<<<<< HEAD
-            "name": "socialiteproviders/instagram",
-=======
             "name": "socialiteproviders/discord",
             "version": "4.1.1",
             "source": {
@@ -3135,7 +3132,6 @@
         },
         {
             "name": "socialiteproviders/google",
->>>>>>> 9ed8929 (composer)
             "version": "4.1.0",
             "source": {
                 "type": "git",
