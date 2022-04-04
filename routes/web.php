@@ -93,6 +93,10 @@ Route::middleware(['auth'])->group(function () {
 
         Route::delete('/admin/devices/{id}', [DeviceController::class, 'destroy'])->name('admin.devices.delete');
 
+        Route::get('/admin/devices/history/{id}', [DeviceController::class, 'history'])->name('admin.devices.history');
+
+        Route::get('/admin/devices/view/{id}', [DeviceController::class, 'show'])->name('admin.devices.view');
+
         Route::put('/admin/devices/edit/{id}', [DeviceController::class, 'update'])->name('admin.devices.update');
 
         Route::get('/admin/devices/edit/{id}', [DeviceController::class, 'edit'])->name('admin.devices.edit');
@@ -167,11 +171,9 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/admin/messages/{id}',[MessageController::class,"destroy"])
         ->name('admin.messages.delete');
 
-        Route::middleware(['moderator'])->group(function () {
+        Route::middleware(['admin'])->group(function () {
 
             //ADMIN
-
-            ///////////////////////////////////////////////////
 
             Route::get('/admin/users', [UserController::class, 'index'])->name('admin.users.index');
 
@@ -205,6 +207,15 @@ Route::middleware(['auth'])->group(function () {
             Route::delete('/admin/departments/destroy/{id}', [DepartamentController::class, "destroy"])
                 ->name('admin.departments.delete');
 
+            Route::get('/admin/departments/history/{id}', [DepartamentController::class, "history"])
+            ->name('admin.departments.history');
+    
+            Route::get('/admin/departments/view/{id}', [DepartamentController::class, "show"])
+                ->name('admin.departments.view');
+                
+            Route::get('/admin/departments/view-question/{id}', [DepartamentController::class, "showquestion"])
+            ->name('admin.departments.view-question');
+
             ///////////////////////////////////////////////////
 
 
@@ -228,6 +239,12 @@ Route::middleware(['auth'])->group(function () {
 
             Route::put('/admin/zones/edit/{id}', [ZoneController::class, "update"])
                 ->name('admin.zones.update');
+
+            Route::get('/admin/zones/history/{id}', [ZoneController::class, "history"])
+            ->name('admin.zones.history');
+    
+            Route::get('/admin/zones/view/{id}', [ZoneController::class, 'showbreakdown'])
+            ->name('admin.zones.view');
 
             ///////////////////////////////////////////////////
 
