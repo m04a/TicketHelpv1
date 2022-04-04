@@ -59,6 +59,11 @@ return [
         'client_secret' => env('VKONTAKTE_CLIENT_SECRET'),
         'redirect' => env('VKONTAKTE_REDIRECT_URI')
       ],
+      'reddit' => [    
+        'client_id' => env('REDDIT_CLIENT_ID'),  
+        'client_secret' => env('REDDIT_CLIENT_SECRET'),  
+        'redirect' => env('REDDIT_REDIRECT_URI') 
+      ],
     'gitlab' => [    
         'client_id' => env('GITLAB_CLIENT_ID'),  
         'client_secret' => env('GITLAB_CLIENT_SECRET'),  
