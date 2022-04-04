@@ -20,7 +20,8 @@ class UserController extends Controller
     public function index()
     {
 
-        $users['users'] = User::paginate(10)
+        $users['users'] = User::orderBy('created_at', 'DESC')
+        ->paginate(10)
         ->through(fn ($item) => [
             "id"=> $item->id,
             "username" => $item->username,

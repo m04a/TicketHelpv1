@@ -26,7 +26,8 @@ class DepartamentController extends Controller
         $userRole = User::where('id', '=', $idUser)->get(['role_id']);
 
         if($userRole[0]['role_id'] > 1){
-            $data['departments'] = Department::paginate(10)
+            $data['departments'] = Department::orderBy('created_at', 'DESC')
+            ->paginate(10)
             ->through(fn ($item) => [
                 "id" => $item->id,
                 "name" => $item->name,
@@ -34,6 +35,7 @@ class DepartamentController extends Controller
                 return view('admin.departments.index', $data);
         }else{
             $data['departments'] = Department::where('user_id', '=', $idUser)
+            ->orderBy('created_at', 'DESC')
             ->paginate(10)
             ->through(fn ($item) => [
                 "id" => $item->id,
