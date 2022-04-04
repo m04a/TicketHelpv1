@@ -29,9 +29,7 @@ class UserRequest extends FormRequest
         return [
             'username' => ['required', 'string'],
             'email' => ['required', 'string'],
-            'password' => ['required', 'string'],
-
-
+            'role_id' => ['number'],
             // 'value' => ['required', 'numeric'],
 
         ];
@@ -41,7 +39,6 @@ class UserRequest extends FormRequest
         return [
             'username.required' => 'Nom d\'usuari no vàlid, revisa les dades introduïdes',
             'email.required' => 'Correu introduït no vàlid, revisa les dades introduïdes',
-            'password.required' => 'Password no vàlid, revisa les dades introduïdes',
             // 'value.required' => 'Error al proccessar el rol d\'usuari',
         ];
     }

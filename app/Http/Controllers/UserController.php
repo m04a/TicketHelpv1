@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Role;
+use App\Models\Department;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -45,6 +47,20 @@ class UserController extends Controller
     }
 
     /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function createStaff()
+    {
+
+        $departments = Department::all();
+
+        return view('admin/users/createStaff', ['departments' => $departments]);
+
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -56,7 +72,9 @@ class UserController extends Controller
 
         $user->username = $request->username;
         $user->email = $request->email;
-        $user->password = Hash::make(str_random(10));
+        $user->password = Hash::make(Str::random(10));
+        $user->role_id = $request->role_id;
+        
         /*Obtain the user currently logged*/
         // $user->id = Auth::user()->id;
 

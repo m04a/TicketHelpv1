@@ -179,6 +179,8 @@ Route::middleware(['auth'])->group(function () {
 
             Route::get('/admin/users/create', [UserController::class, 'create'])->name('admin.users.create');
 
+            Route::get('/admin/users/createStaff', [UserController::class, 'createStaff'])->name('admin.users.createStaff');
+
             Route::get('/admin/users/edit/{id}', [UserController::class, 'edit'])->name('admin.users.edit');
 
             Route::put('/admin/users/edit/{id}', [UserController::class, 'update'])->name('admin.devices.update');
