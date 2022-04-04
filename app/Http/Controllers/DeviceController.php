@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Http\Requests\DeviceRequest;
 use App\Models\Breakdown;
+use App\Models\Message;
 use Illuminate\Http\Request;
 use App\Models\Device;
 use App\Models\Type;
@@ -18,14 +19,15 @@ class DeviceController extends Controller
      */
     public function index(Request $request)
     {
-        $data['devices'] = Device::paginate(10)
-            ->through(fn ($item) => [
-                "id" => $item->id,
-                "label" => $item->label,
-                //"label" => substr($item->label, 0, 1) . "-" . str_pad($item->zone_id, 2, 0, STR_PAD_LEFT) . "-" . str_pad($item->type_id, 2, 0, STR_PAD_LEFT),
-                "zone" => $item->zone->label,
-                "type" => $item->type->label,
-            ]);
+        $data['devices'] = Device::orderBy('created_at', 'DESC')
+        ->paginate(10)
+        ->through(fn ($item) => [
+            "id" => $item->id,
+            "label" => $item->label,
+            //"label" => substr($item->label, 0, 1) . "-" . str_pad($item->zone_id, 2, 0, STR_PAD_LEFT) . "-" . str_pad($item->type_id, 2, 0, STR_PAD_LEFT),
+            "zone" => $item->zone->label,
+            "type" => $item->type->label,
+        ]);
         return view('admin.devices.index', $data);
 
         //$data['devicesCount'] = Device::count();
@@ -71,8 +73,35 @@ class DeviceController extends Controller
      */
     public function show($id)
     {
-        //
-    }
+        $breakdownData = Breakdown::findOrFail($id);
+
+        $breakdown = [
+                "id" => $breakdownData->id,
+                "title" => $breakdownData->title,
+                "status" => $breakdownData->status,
+                "description" => $breakdownData->description,
+                "username" =>$breakdownData->user->username,
+                "departament" =>$breakdownData->department->name,
+                "zone_name" =>$breakdownData->zone->label,
+                "device_name" =>$breakdownData->device->label,
+                "device_id" =>$breakdownData->device_id
+        ];
+    
+        if (isset($breakdownData->manager_id)) {
+            $breakdown["manager_username"] = $breakdownData->manager->username;
+        } else {
+            $breakdown["manager_username"] = "No assignat";
+        }
+        $messages = Message::where('breakdown_id', $breakdown['id'])->get()
+        ->map(fn ($item) => [
+            'id' => $item->id,
+            'content' => $item->content,
+            'user' => $item->user->username,
+        ]);
+        return view('admin.devices.view')
+        ->with('breakdown', $breakdown)
+        ->with('messages', $messages);
+        }
 
     /**
      * Show the form for editing the specified resource.
@@ -135,5 +164,22 @@ class DeviceController extends Controller
         $counter++;
        }
        return json_encode($deviceData);
+    }
+
+    public function history($id){
+        $history['history'] = Breakdown::where('device_id', $id)
+        ->orderBy('created_at', 'DESC')
+        ->paginate(10, ["*"], "history")
+        ->through(fn ($item) => [
+            "id" => $item->id,
+            "title" => $item->title,
+            "status" => $item->status,
+            "username" => $item->user->username,
+            "department" => $item->department->name,
+            "aula" => $item->zone->label,
+            "manager" => optional($item->manager)->username
+        ]);
+    
+        return view('admin.devices.history',$history);
     }
 }

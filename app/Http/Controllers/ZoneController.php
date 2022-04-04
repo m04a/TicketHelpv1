@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\ZoneRequest;
 use App\Models\Zone;
+use App\Models\Breakdown;
+use App\Models\Question;
+use App\Models\Message;
 use App\Models\User;
 use App\Models\Role;
 use Illuminate\Support\Facades\Auth;
@@ -24,7 +27,8 @@ class ZoneController extends Controller
         $userRole = User::where('id', '=', $idUser)->get(['role_id']);
 
         if($userRole[0]['role_id'] > 1){
-            $data['zones'] = Zone::paginate(10)
+            $data['zones'] = Zone::orderBy('created_at', 'DESC')
+            ->paginate(10)
             ->through(fn ($item) => [
                 "id" => $item->id,
                 "label" => $item->label,
@@ -146,5 +150,53 @@ class ZoneController extends Controller
         }
 
         return redirect(route("admin.zones.index")); 
+    }
+
+    public function history($id){
+        $history['history'] = Breakdown::where('zone_id', $id)
+        ->orderBy('created_at', 'DESC')
+        ->paginate(10, ["*"], "history")
+        ->through(fn ($item) => [
+            "id" => $item->id,
+            "title" => $item->title,
+            "status" => $item->status,
+            "username" => $item->user->username,
+            "department" => $item->department->name,
+            "aula" => $item->zone->label,
+            "manager" => optional($item->manager)->username
+        ]);
+        return view('admin.zones.history',$history);
+    }
+
+    public function showbreakdown($id)
+    {
+        $breakdownData = Breakdown::findOrFail($id);
+
+        $breakdown = [
+                "id" => $breakdownData->id,
+                "title" => $breakdownData->title,
+                "status" => $breakdownData->status,
+                "description" => $breakdownData->description,
+                "username" =>$breakdownData->user->username,
+                "departament" =>$breakdownData->department->name,
+                "zone_name" =>$breakdownData->zone->label,
+                "device_name" =>$breakdownData->device->label,
+                "zone_id" =>$breakdownData->zone_id
+        ];
+    
+        if (isset($breakdownData->manager_id)) {
+            $breakdown["manager_username"] = $breakdownData->manager->username;
+        } else {
+            $breakdown["manager_username"] = "No assignat";
+        }
+        $messages = Message::where('breakdown_id', $breakdown['id'])->get()
+        ->map(fn ($item) => [
+            'id' => $item->id,
+            'content' => $item->content,
+            'user' => $item->user->username,
+        ]);
+        return view('admin.zones.view')
+        ->with('breakdown', $breakdown)
+        ->with('messages', $messages);
     }
 }

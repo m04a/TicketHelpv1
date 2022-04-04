@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\DepartmentRequest;
 use App\Models\Department;
 use App\Models\Breakdown;
+use App\Models\Message;
 use App\Models\Suggestion;
 use App\Models\Question;
 use App\Models\User;
@@ -26,7 +27,8 @@ class DepartamentController extends Controller
         $userRole = User::where('id', '=', $idUser)->get(['role_id']);
 
         if($userRole[0]['role_id'] > 1){
-            $data['departments'] = Department::paginate(10)
+            $data['departments'] = Department::orderBy('created_at', 'DESC')
+            ->paginate(10)
             ->through(fn ($item) => [
                 "id" => $item->id,
                 "name" => $item->name,
@@ -34,6 +36,7 @@ class DepartamentController extends Controller
                 return view('admin.departments.index', $data);
         }else{
             $data['departments'] = Department::where('user_id', '=', $idUser)
+            ->orderBy('created_at', 'DESC')
             ->paginate(10)
             ->through(fn ($item) => [
                 "id" => $item->id,
@@ -83,7 +86,34 @@ class DepartamentController extends Controller
      */
     public function show($id)
     {
-        //
+        $breakdownData = Breakdown::findOrFail($id);
+
+        $breakdown = [
+                "id" => $breakdownData->id,
+                "title" => $breakdownData->title,
+                "status" => $breakdownData->status,
+                "description" => $breakdownData->description,
+                "username" =>$breakdownData->user->username,
+                "departament" =>$breakdownData->department->name,
+                "zone_name" =>$breakdownData->zone->label,
+                "device_name" =>$breakdownData->device->label,
+                "department_id" =>$breakdownData->department_id
+        ];
+    
+        if (isset($breakdownData->manager_id)) {
+            $breakdown["manager_username"] = $breakdownData->manager->username;
+        } else {
+            $breakdown["manager_username"] = "No assignat";
+        }
+        $messages = Message::where('breakdown_id', $breakdown['id'])->get()
+        ->map(fn ($item) => [
+            'id' => $item->id,
+            'content' => $item->content,
+            'user' => $item->user->username,
+        ]);
+        return view('admin.departments.view')
+        ->with('breakdown', $breakdown)
+        ->with('messages', $messages);
     }
 
     /**
@@ -165,4 +195,59 @@ class DepartamentController extends Controller
         }
         return json_encode($departmentData);
      }
+
+     public function history($id){
+        $history['history'] = Breakdown::where('department_id', $id)
+        ->orderBy('created_at', 'DESC')
+        ->paginate(10, ["*"], "history")
+        ->through(fn ($item) => [
+            "id" => $item->id,
+            "title" => $item->title,
+            "status" => $item->status,
+            "username" => $item->user->username,
+            "department" => $item->department->name,
+            "aula" => $item->zone->label,
+            "manager" => optional($item->manager)->username
+        ]);
+
+        $historyquestion['historyquestion'] = Question::where('department_id', $id)
+        ->orderBy('created_at', 'DESC')
+        ->paginate(10, ["*"], "history")
+        ->through(fn ($item) => [
+            "id" => $item->id,
+            "title" => $item->title,
+            "description" => $item->description,
+            "status" => $item->status,
+            "department_id" => $item->department->name,
+            "user_id" => $item->user->username,
+        ]);
+    
+        return view('admin.departments.history',$history,$historyquestion);
+    }
+
+    public function showquestion($id)
+    {
+        $questions = Question::findOrFail($id);
+
+        $questions['username'] = $questions->user->username;
+        
+        $questions['department'] = $questions->department->name;
+        
+        $questions['department_id'] = $questions->department_id;
+        
+        if (isset($questions->manager->username)) {
+            $questions["manager"] = $questions->manager->username;
+        } else {
+            $questions["manager"] = "No assignat";
+        }
+
+        $messages = Message::where('question_id', $questions['id'])->get()
+        ->map(fn ($item) => [
+            'id' => $item->id,
+            'content' => $item->content,
+            'user' => $item->user->username,
+        ]);
+
+        return view('admin.departments.view-question', ['questions' => $questions, 'messages' => $messages]);
+    }
 }

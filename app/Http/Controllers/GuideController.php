@@ -16,13 +16,14 @@ class GuideController extends Controller
     public function index()
     {
 
-        $data['guides'] = Guide::paginate(10)
-            ->through(fn ($item) => [
-                "id" => $item->id,
-                "title" => $item->title,
-                "description" => $item->description,
-                "user" => $item->user->username
-            ]);
+        $data['guides'] = Guide::orderBy('created_at', 'DESC')
+        ->paginate(10)
+        ->through(fn ($item) => [
+            "id" => $item->id,
+            "title" => $item->title,
+            "description" => $item->description,
+            "user" => $item->user->username
+        ]);
         return view('admin.guides.index', $data);
 
     }
@@ -115,8 +116,8 @@ class GuideController extends Controller
      */
     public function listPublic()
     {
-        $data['guides'] = Guide::paginate(10)
-        ->orderBy('created_at', 'DESC')
+        $data['guides'] = Guide::orderBy('created_at', 'DESC')
+        ->paginate(10)
         ->through(fn ($item) => [
             "id" => $item->id,
             "title" => $item->title,
