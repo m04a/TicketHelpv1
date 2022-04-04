@@ -183,13 +183,16 @@ Route::middleware(['auth'])->group(function () {
          Route::get('/admin/zones/create', [ZoneController::class, "create"])
             ->name('admin.zones.create');
 
+        Route::get('/admin/zones/history/{id}', [ZoneController::class, "history"])
+            ->name('admin.zones.history');
+
         Route::get('/admin/zones/edit/{id}', [ZoneController::class, "edit"])
             ->name('admin.zones.edit');
             
         Route::post('/admin/zones/create', [ZoneController::class, "store"])
             ->name('admin.zones.store');
 
-        Route::get('/admin/zones/view/{id}', [ZoneController::class, 'show'])
+        Route::get('/admin/zones/view/{id}', [ZoneController::class, 'showbreakdown'])
         ->name('admin.zones.view');
 
         Route::delete('/admin/zones/destroy/{id}', [ZoneController::class, "destroy"])

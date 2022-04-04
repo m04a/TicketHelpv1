@@ -76,15 +76,10 @@
             <p class="font-bold mb-3 text-xl">Respostes</p>
             @foreach ($messages as $item)
                 @if($item['user'] == $questions->username)
-                <div class="messages-admin-view">
-
                     <x-label for="manager" class="messages-admin-view-label-user" :value="__($item['user'])" />
-                </div>
                     <textarea class="textarea input-disabled" disabled>{{ $item['content'] }}</textarea>
                 @else
-                <div class="messages-admin-view">
                     <x-label for="manager" class="mt-4" :value="__($item['user'])" />
-                </div>
                     <textarea class="textarea input-disabled" disabled>{{ $item['content'] }}</textarea>
                 @endif
             @endforeach
