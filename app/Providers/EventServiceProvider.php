@@ -21,7 +21,11 @@ class EventServiceProvider extends ServiceProvider
             \SocialiteProviders\Instagram\InstagramExtendSocialite::class.'@handle',
         ],
         Registered::class => [
-            SendEmailVerificationNotification::class,
+            SendEmailVerificationNotification::class,  
+        ],
+        \SocialiteProviders\Manager\SocialiteWasCalled::class => [
+            // ... other providers
+            \SocialiteProviders\GitLab\GitLabExtendSocialite::class.'@handle',
         ],
     ];
 
