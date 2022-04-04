@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class Admin
+class SuperAdmin
 {
     /**
      * Handle an incoming request.
@@ -18,7 +18,7 @@ class Admin
     public function handle(Request $request, Closure $next)
     {
 
-        if ( Auth::check() && Auth::user()->role_id >= 3)
+        if ( Auth::check() && Auth::user()->role_id == 4)
         {
             return $next($request);
         }

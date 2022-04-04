@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class Admin
+class Moderator
 {
     /**
      * Handle an incoming request.
@@ -18,7 +18,7 @@ class Admin
     public function handle(Request $request, Closure $next)
     {
 
-        if ( Auth::check() && Auth::user()->role_id >= 3)
+        if ( Auth::check() && Auth::user()->role_id >= 2)
         {
             return $next($request);
         }
