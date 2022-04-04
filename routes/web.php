@@ -153,6 +153,15 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/admin/departments/create', [DepartamentController::class, "create"])
             ->name('admin.departments.create');
 
+        Route::get('/admin/departments/history/{id}', [DepartamentController::class, "history"])
+            ->name('admin.departments.history');
+
+        Route::get('/admin/departments/view/{id}', [DepartamentController::class, "show"])
+            ->name('admin.departments.view');
+            
+        Route::get('/admin/departments/view-question/{id}', [DepartamentController::class, "showquestion"])
+        ->name('admin.departments.view-question');
+
         Route::post('/admin/departments/create', [DepartamentController::class, "store"])
             ->name('admin.departments.store');
 

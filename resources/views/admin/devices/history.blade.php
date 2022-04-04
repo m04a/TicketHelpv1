@@ -9,7 +9,7 @@
             <div class="card has-table">
                 <header class="card-header">
                     <p class="card-header-title">
-                        Historic
+                        Històric
                     </p>
                 </header>
                 <div class="card-content">
