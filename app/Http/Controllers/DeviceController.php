@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Http\Requests\DeviceRequest;
 use App\Models\Breakdown;
+use App\Models\Message;
 use Illuminate\Http\Request;
 use App\Models\Device;
 use App\Models\Type;
@@ -72,8 +73,35 @@ class DeviceController extends Controller
      */
     public function show($id)
     {
-        //
-    }
+        $breakdownData = Breakdown::findOrFail($id);
+
+        $breakdown = [
+                "id" => $breakdownData->id,
+                "title" => $breakdownData->title,
+                "status" => $breakdownData->status,
+                "description" => $breakdownData->description,
+                "username" =>$breakdownData->user->username,
+                "departament" =>$breakdownData->department->name,
+                "zone_name" =>$breakdownData->zone->label,
+                "device_name" =>$breakdownData->device->label,
+                "device_id" =>$breakdownData->device_id
+        ];
+    
+        if (isset($breakdownData->manager_id)) {
+            $breakdown["manager_username"] = $breakdownData->manager->username;
+        } else {
+            $breakdown["manager_username"] = "No assignat";
+        }
+        $messages = Message::where('breakdown_id', $breakdown['id'])->get()
+        ->map(fn ($item) => [
+            'id' => $item->id,
+            'content' => $item->content,
+            'user' => $item->user->username,
+        ]);
+        return view('admin.devices.view')
+        ->with('breakdown', $breakdown)
+        ->with('messages', $messages);
+        }
 
     /**
      * Show the form for editing the specified resource.
@@ -136,5 +164,22 @@ class DeviceController extends Controller
         $counter++;
        }
        return json_encode($deviceData);
+    }
+
+    public function history($id){
+        $history['history'] = Breakdown::where('device_id', $id)
+        ->orderBy('created_at', 'DESC')
+        ->paginate(10, ["*"], "history")
+        ->through(fn ($item) => [
+            "id" => $item->id,
+            "title" => $item->title,
+            "status" => $item->status,
+            "username" => $item->user->username,
+            "department" => $item->department->name,
+            "aula" => $item->zone->label,
+            "manager" => optional($item->manager)->username
+        ]);
+    
+        return view('admin.devices.history',$history);
     }
 }

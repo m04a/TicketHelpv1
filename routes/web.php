@@ -88,6 +88,10 @@ Route::middleware(['auth'])->group(function () {
 
         Route::delete('/admin/devices/{id}', [DeviceController::class, 'destroy'])->name('admin.devices.delete');
 
+        Route::get('/admin/devices/history/{id}', [DeviceController::class, 'history'])->name('admin.devices.history');
+
+        Route::get('/admin/devices/view/{id}', [DeviceController::class, 'show'])->name('admin.devices.view');
+
         Route::put('/admin/devices/edit/{id}', [DeviceController::class, 'update'])->name('admin.devices.update');
 
         Route::get('/admin/devices/edit/{id}', [DeviceController::class, 'edit'])->name('admin.devices.edit');
