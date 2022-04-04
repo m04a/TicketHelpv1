@@ -20,9 +20,14 @@ class EventServiceProvider extends ServiceProvider
             \SocialiteProviders\Discord\DiscordExtendSocialite::class.'@handle',
             \SocialiteProviders\Instagram\InstagramExtendSocialite::class.'@handle',
             \SocialiteProviders\Reddit\RedditExtendSocialite::class.'@handle',
+            \SocialiteProviders\VKontakte\VKontakteExtendSocialite::class.'@handle',
         ],
         Registered::class => [
-            SendEmailVerificationNotification::class,
+            SendEmailVerificationNotification::class,  
+        ],
+        \SocialiteProviders\Manager\SocialiteWasCalled::class => [
+            // ... other providers
+            \SocialiteProviders\GitLab\GitLabExtendSocialite::class.'@handle',
         ],
     ];
 

@@ -88,6 +88,10 @@ Route::middleware(['auth'])->group(function () {
 
         Route::delete('/admin/devices/{id}', [DeviceController::class, 'destroy'])->name('admin.devices.delete');
 
+        Route::get('/admin/devices/history/{id}', [DeviceController::class, 'history'])->name('admin.devices.history');
+
+        Route::get('/admin/devices/view/{id}', [DeviceController::class, 'show'])->name('admin.devices.view');
+
         Route::put('/admin/devices/edit/{id}', [DeviceController::class, 'update'])->name('admin.devices.update');
 
         Route::get('/admin/devices/edit/{id}', [DeviceController::class, 'edit'])->name('admin.devices.edit');
@@ -149,6 +153,15 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/admin/departments/create', [DepartamentController::class, "create"])
             ->name('admin.departments.create');
 
+        Route::get('/admin/departments/history/{id}', [DepartamentController::class, "history"])
+            ->name('admin.departments.history');
+
+        Route::get('/admin/departments/view/{id}', [DepartamentController::class, "show"])
+            ->name('admin.departments.view');
+            
+        Route::get('/admin/departments/view-question/{id}', [DepartamentController::class, "showquestion"])
+        ->name('admin.departments.view-question');
+
         Route::post('/admin/departments/create', [DepartamentController::class, "store"])
             ->name('admin.departments.store');
 
@@ -170,13 +183,16 @@ Route::middleware(['auth'])->group(function () {
          Route::get('/admin/zones/create', [ZoneController::class, "create"])
             ->name('admin.zones.create');
 
+        Route::get('/admin/zones/history/{id}', [ZoneController::class, "history"])
+            ->name('admin.zones.history');
+
         Route::get('/admin/zones/edit/{id}', [ZoneController::class, "edit"])
             ->name('admin.zones.edit');
             
         Route::post('/admin/zones/create', [ZoneController::class, "store"])
             ->name('admin.zones.store');
 
-        Route::get('/admin/zones/view/{id}', [ZoneController::class, 'show'])
+        Route::get('/admin/zones/view/{id}', [ZoneController::class, 'showbreakdown'])
         ->name('admin.zones.view');
 
         Route::delete('/admin/zones/destroy/{id}', [ZoneController::class, "destroy"])
