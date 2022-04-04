@@ -19,6 +19,7 @@ class EventServiceProvider extends ServiceProvider
             // ... other providers
             \SocialiteProviders\Discord\DiscordExtendSocialite::class.'@handle',
             \SocialiteProviders\Instagram\InstagramExtendSocialite::class.'@handle',
+            \SocialiteProviders\VKontakte\VKontakteExtendSocialite::class.'@handle',
         ],
         Registered::class => [
             SendEmailVerificationNotification::class,  
