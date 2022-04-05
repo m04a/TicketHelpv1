@@ -26,9 +26,17 @@ class BreakdownController extends Controller
         $userRole = User::where('id', '=', $idUser)->get(['role_id']);
 
         if ($userRole[0]['role_id'] > 1){
+
+            if (Auth::user()->department_id) {
+                $breakdownDepartment = Breakdown::where('department_id', Auth::user()->department_id)->orderBy('created_at', 'DESC');
+            } else {
+                $breakdownDepartment = Breakdown::where('id', '>', '0' )->orderBy('created_at', 'DESC');
+            }
+
             
-            $breakdown['unassigned'] = Breakdown::where('status', 1)
-            ->orderBy('created_at', 'DESC')
+
+            
+            $breakdown['unassigned'] = $breakdownDepartment->where('status', 1)
             ->paginate(10, ["*"], "unassigned")
             ->through(fn ($item) => [
                 "id" => $item->id,
@@ -39,7 +47,7 @@ class BreakdownController extends Controller
                 "aula" => $item->zone->label,
             ]);
 
-            $breakdown['assigned'] = Breakdown::where('status', 2)
+            $breakdown['assigned'] = $breakdownDepartment->where('status', 2)
             ->orderBy('created_at', 'DESC')
             ->paginate(10, ["*"], "assigned")
             ->through(fn ($item) => [
@@ -52,8 +60,7 @@ class BreakdownController extends Controller
                 "manager" => $item->manager->username
             ]);
 
-            $breakdown['done'] = Breakdown::where('status', 3)
-            ->orderBy('created_at', 'DESC')
+            $breakdown['done'] = $breakdownDepartment->where('status', 3)
             ->paginate(10, ["*"], "done")
             ->through(fn ($item) => [
                 "id" => $item->id,
@@ -70,7 +77,6 @@ class BreakdownController extends Controller
         }else{
             
             $breakdown['user'] = Breakdown::where('user_id', $idUser)
-            ->orderBy('created_at', 'DESC')
             ->paginate(10)
             ->through(fn ($item) => [
                 "id" => $item->id,
