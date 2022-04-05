@@ -25,6 +25,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         // uncomment next line to make web visible in heroku -> https://test-php-397h4ewh.herokuapp.com/
-        URL::forceScheme('https');
+        //URL::forceScheme('https');
     }
 }
