@@ -49,7 +49,7 @@ class BreakdownController extends Controller
                 "username" => $item->user->username,
                 "department" => $item->department->name,
                 "aula" => $item->zone->label,
-                "manager" => $item->manager->username
+                "manager" => optional($item->manager)->username
             ]);
 
             $breakdown['done'] = Breakdown::where('status', 3)
@@ -62,7 +62,7 @@ class BreakdownController extends Controller
                 "username" => $item->user->username,
                 "department" => $item->department->name,
                 "aula" => $item->zone->label,
-                "manager" => $item->manager->username
+                "manager" => optional($item->manager)->username
             ]);
         
             return view('admin.breakdowns.index',$breakdown);
