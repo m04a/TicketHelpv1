@@ -38,9 +38,7 @@
                     <x-select name="role_id" class="block mt-4 w-full">
                         <option value="2">Moderador</option>
                         <option value="3">Administrador</option>
-                        @if(Auth::user()->role->id == 4)
-                            <option value="4">SuperAdmin</option>
-                        @endif    
+                        <option value="4">SuperAdmin</option>
                     </x-select>
 
                 </div>

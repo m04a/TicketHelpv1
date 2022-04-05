@@ -33,25 +33,17 @@
 
                 <!-- Rol User -->
                 <div class="mt-4 column-right">
-                    <x-label for="rol" :value="__('Tria el Rol del Usuari')" />
-                    
-                    <x-select class="block mt-4 w-full">
-                        <option value="1">Usuari</option>
-                        <option value="2">Administrador</option>
-                        <option value="3">Moderador</option>
-                    </x-select>
 
-                </div>
-
-            </div>
-            <div class="columns">
-                <!-- Email User -->
-                <div class="mt-4">
                     <x-label for="email" :value="__('Correu Electronic')" />
 
                     <x-input id="email" class="input-content" type="email" name="email"  autofocus required />
+
                 </div>
+
             </div>
+
+            <input type="hidden" name="role_id" value=1 id="content">
+
             <div class="button-create">
                 <a href="{{ url('admin/users') }}">
                     <x-button type="button" class="ml-3">

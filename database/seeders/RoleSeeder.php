@@ -29,5 +29,10 @@ class RoleSeeder extends Seeder
             'id' => '3',
             'label' => 'Administrator',
         ]);
+
+        DB::table('roles')->insert([
+            'id' => '4',
+            'label' => 'SuperAdmin',
+        ]);
     }
 }

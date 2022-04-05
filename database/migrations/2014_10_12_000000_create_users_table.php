@@ -23,7 +23,7 @@ return new class extends Migration
             $table->unsignedBigInteger('role_id')->default(1);
             $table->foreign('role_id')->references('id')->on('roles');
 
-            $table->unsignedBigInteger('department_id')->nullable()->constrained();
+            $table->unsignedBigInteger('department_id')->nullable();
             $table->foreign('department_id')->references('id')->on('departments');
 
             $table->rememberToken();

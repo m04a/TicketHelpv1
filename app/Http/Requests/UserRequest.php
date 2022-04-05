@@ -29,7 +29,6 @@ class UserRequest extends FormRequest
         return [
             'username' => ['required', 'string'],
             'email' => ['required', 'string'],
-            'role_id' => ['number'],
             // 'value' => ['required', 'numeric'],
 
         ];

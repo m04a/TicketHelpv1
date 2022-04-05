@@ -16,10 +16,20 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
+
+        DB::table('users')->insert([
+            'username' => 'SuperAdmin',
+            'email' => 'superadmin@cendrassos.net',
+            'role_id' => 4,
+            'department_id' => null,
+            'password' => Hash::make('1234567890'),
+        ]);
+
         DB::table('users')->insert([
             'username' => 'Oriol',
             'email' => 'oriol@cendrassos.net',
             'role_id' => 3,
+            'department_id' => 1,
             'password' => Hash::make('1234567890'),
         ]);
 
@@ -27,6 +37,7 @@ class UserSeeder extends Seeder
             'username' => 'Alex',
             'email' => 'alex@cendrassos.net',
             'role_id' => 3,
+            'department_id' => 2,
             'password' => Hash::make('1234567890'),
         ]);
 
@@ -34,6 +45,7 @@ class UserSeeder extends Seeder
             'username' => 'Moha',
             'email' => 'moha@cendrassos.net',
             'role_id' => 3,
+            'department_id' => 3,
             'password' => Hash::make('1234567890'),
         ]);
 
@@ -41,6 +53,7 @@ class UserSeeder extends Seeder
             'username' => 'Juanka',
             'email' => 'juanka@cendrassos.net',
             'role_id' => 3,
+            'department_id' => 4,
             'password' => Hash::make('1234567890'),
         ]);
 
@@ -48,6 +61,7 @@ class UserSeeder extends Seeder
             'username' => 'Kirill',
             'email' => 'kirill@cendrassos.net',
             'role_id' => 3,
+            'department_id' => 1,
             'password' => Hash::make('1234567890'),
         ]);
 
@@ -55,6 +69,7 @@ class UserSeeder extends Seeder
             'username' => 'Jorge',
             'email' => 'jorge@cendrassos.net',
             'role_id' => 3,
+            'department_id' => 2,
             'password' => Hash::make('1234567890'),
         ]);
 
@@ -62,6 +77,7 @@ class UserSeeder extends Seeder
             'username' => 'Iker',
             'email' => 'iker@cendrassos.net',
             'role_id' => 3,
+            'department_id' => 2,
             'password' => Hash::make('1234567890'),
         ]);
         
@@ -69,6 +85,7 @@ class UserSeeder extends Seeder
             'username' => 'User',
             'email' => 'user@cendrassos.net',
             'role_id' => 1,
+            'department_id' => null,
             'password' => Hash::make('1234567890'),
         ]);
 
@@ -76,6 +93,7 @@ class UserSeeder extends Seeder
             'username' => 'Editor',
             'email' => 'editor@cendrassos.net',
             'role_id' => 2,
+            'department_id' => null,
             'password' => Hash::make('1234567890'),
         ]);
     }
