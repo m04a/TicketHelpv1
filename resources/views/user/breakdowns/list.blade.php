@@ -35,7 +35,7 @@
                             <th>Estat</th>
                             <th>Departament</th>
                             <th>Manager</th>
-                            <th>Aula</th>
+                            <th>Zona</th>
                             <th></th>
                         </tr>
                         </thead>

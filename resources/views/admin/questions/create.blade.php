@@ -35,7 +35,7 @@
                 <div class="content-column mt-4">
 
                     <div class="column-left">
-                        <x-label for="Tipus" :value="__('Departament')" />
+                        <x-label for="Department" :value="__('Departament')" />
 
                         <x-select class="block mt-4 w-full" name="departament">
                             @foreach ($departament as $item)

@@ -26,6 +26,9 @@ return new class extends Migration
             $table->unsignedBigInteger('department_id')->nullable();
             $table->foreign('department_id')->references('id')->on('departments');
 
+            $table->unsignedBigInteger('zone_id')->nullable();
+            $table->foreign('zone_id')->references('id')->on('zones');
+
             $table->rememberToken();
             $table->timestamps();
         });

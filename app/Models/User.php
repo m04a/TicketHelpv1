@@ -53,4 +53,24 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Role::class, 'role_id');
     }
+
+    /**
+     * Reference relationship 1:N on Users and Rols
+     *
+     * @return belongsTo(Modal::class);
+     */
+    public function zone()
+    {
+        return $this->belongsTo(Zone::class, 'zone_id');
+    }
+
+    /**
+     * Reference relationship 1:N on Users and Rols
+     *
+     * @return belongsTo(Modal::class);
+     */
+    public function department()
+    {
+        return $this->belongsTo(Department::class, 'department_id');
+    }
 }

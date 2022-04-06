@@ -30,26 +30,27 @@
             <div class="column-left">
                 <x-label for="usuari" :value="__('Nom Usuari')" />
 
-                <x-input id="nom" class="input-content" type="text" name="username" value="{{ $users->username }}"  autofocus required />
+                <x-input id="nom" class="input-content" type="text" name="username" value="{{ $user->username }}"  autofocus required />
             </div>
 
             <!-- Email User -->
             <div class="column-right">
                 <x-label for="email" :value="__('Correu Electronic')" />
 
-                <x-input id="email" class="input-content" type="email" name="email" value="{{ $users->email }}"  autofocus required />
+                <x-input id="email" class="input-content" type="email" name="email" value="{{ $user->email }}"  autofocus required />
             </div>
             </div>
+            @if ($user->role_id > 1 && $user->role_id < 4)
             <div class="content-column">
-                <!-- Password -->
+                <!-- Departament User -->
                 <div class="mt-4 column-left">
-                    <x-label for="password" :value="__('Contrasenya')" />
+                    <x-label for="department" :value="__('Departament')" />
 
-                    <x-input id="password" class="input-content"
-                                    type="password"
-                                    name="password"
-                                    value="1234567890"
-                                    required autocomplete="current-password" />
+                    <x-select name="department_id" class="block mt-4 w-full">
+                        @foreach ($departments as $item)
+                            <option value="{{$item->id}} ">{{ $item->name }}</option>
+                        @endforeach
+                    </x-select>
                 </div>
                 <!-- Rol User -->
                 <div class="mt-4 column-right">
@@ -59,10 +60,33 @@
                         <option value="1">Administrador</option>
                         <option value="2">Usuari</option>
                         <option value="3">Moderador</option>
+                        @if (Auth::user()->role_id == 4) {
+                            <option value="4">SuperAdmin</option>
+                        }
+                        @endif
                     </x-select>
 
                 </div>
             </div>
+            @else
+            <div class="columns">
+                <div class="mt-4 ">
+                    <x-label for="rol" :value="__('Tria el Rol del Usuari')" />
+                    
+                    <x-select class="block mt-4 w-full" >
+                        <option value="1">Administrador</option>
+                        <option value="2">Usuari</option>
+                        <option value="3">Moderador</option>
+                        @if (Auth::user()->role_id == 4) {
+                            <option value="4">SuperAdmin</option>
+                        }
+                        @endif
+                    </x-select>
+
+                </div>
+            </div>
+            @endif
+
             <div class="button-create">
                 <a href="{{ url('admin/users') }}">
                     <x-button type="button" class="ml-3">

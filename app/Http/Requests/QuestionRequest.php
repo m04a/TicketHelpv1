@@ -27,7 +27,7 @@ class QuestionRequest extends FormRequest
             'title' => ['required', 'string', 'min:5', 'max:100'],
             'status' => ['nullable', 'numeric'],
             'description' => ['required', 'string', 'min:5'],
-            'departament' => ['required', 'numeric'],
+            'department_id' => ['required', 'numeric'],
             'manager_id' => ['numeric'],
         ];
     }
@@ -36,7 +36,7 @@ class QuestionRequest extends FormRequest
         return [
             'title.required' => 'Falta el assumpte',
             'description.required' => 'Falta una descripció',
-            'department.required' => 'Posa un departament no siguis hacker',
+            'department_id.required' => 'Falta el departament',
             'manager.required' => 'no has posat ningun manager',
             'title.min' => 'Posa com a minim 5 caracters en el assumpte',
             'title.max' => 'Posa com a maxim 100 caracters en el assumpte',

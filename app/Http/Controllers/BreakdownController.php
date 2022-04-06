@@ -32,9 +32,6 @@ class BreakdownController extends Controller
             } else {
                 $breakdownDepartment = Breakdown::where('id', '>', '0' )->orderBy('created_at', 'DESC');
             }
-
-            
-
             
             $breakdown['unassigned'] = $breakdownDepartment->where('status', 1)
             ->paginate(10, ["*"], "unassigned")
@@ -106,7 +103,11 @@ class BreakdownController extends Controller
 
         $department = Department::all();
 
-        $devices = Device::all();
+        if(Auth::user()->zone_id != null) {
+            $devices = Device::where('zone_id', Auth::user()->zone_id)->get();
+        } else {
+            $devices = Device::all();
+        }
 
         $zones = Zone::all();
 
@@ -306,7 +307,7 @@ class BreakdownController extends Controller
             
             $department = Department::all();
 
-            $devices = Device::all();
+            $devices = Device::where('zone_id', Auth::user()->zone_id)->get();
     
             $zones = Zone::all();
     
@@ -367,7 +368,6 @@ class BreakdownController extends Controller
             /*Records to update with the request*/            
             $breakdown->title = $request->title;
             $breakdown->description = $request->description;
-            $breakdown->manager_id = $request->manager_id;
             $breakdown->device_id = $request->device_id;
             $breakdown->zone_id = $request->zone_id;
             $breakdown->department_id = $request->department_id;

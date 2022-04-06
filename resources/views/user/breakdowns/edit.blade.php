@@ -1,7 +1,7 @@
 <x-user-layout>
     <x-slot name="header">
         <h1 class="title">
-            Crear Incidència
+            Editar Incidència
         </h1>
     </x-slot>
         @if(session('success'))
@@ -22,15 +22,22 @@
     <form method="POST" action="{{ url('/user/breakdowns/edit/'.$breakdownData->id) }}">
             @method('PUT')
             @csrf
+
+            <div class="columns">
+                <!-- Subject -->
+                <div class="mt-4">
+                    <x-label for="title" :value="__('Assumpte')" />
+
+                    <x-input id="title" class="input-content" type="text" name="title" value="{{ $breakdownData->title }}"  autofocus required />
+                </div>
+            </div>
+
             <div class="content-column">
                 <div class="mt-4 column-left">
                     <x-label for="rol" :value="__('Zona')" />
 
-                    <x-select name="zone_id" class="block mt-4 w-full">
-                        @foreach ($zones as $item)
-                            <option {{ $breakdownData->zone_id==$item->id ? 'selected' : '' }} value="{{$item->id}} ">{{ $item->label }}</option>
-                        @endforeach
-                    </x-select>
+                    <x-input  type="text" class="input-content input-disabled" value="{{Auth::user()->zone->label}}" disabled />
+                    <input name="zone_id" type="hidden" value="{{Auth::user()->zone_id}}">
                 </div>
                 <!-- Department -->
                 <div class="mt-4 column-right">
@@ -43,37 +50,18 @@
                     </x-select>
                 </div>
             </div>
-            <div class="content-column">
-                <!-- Name User -->
 
-                <div class="mt-4 column-left">
-                    <x-label for="rol" :value="__('Administrador')" />
+            <!-- Status Breakdown -->
+            <div class="mt-4">
+                <x-label for="rol" :value="__('Dispositiu')" />
 
-                    <x-select name="manager_id" class="block mt-4 w-full">
-                        @foreach ($manager as $item)
-                            <option {{ $breakdownData->manager_id==$item->id ? 'selected' : '' }} value="{{$item->id}} ">{{ $item->username }}</option>
-                        @endforeach
-                    </x-select>
-                </div>
-
-                <!-- Status Breakdown -->
-                <div class="mt-4 column-right">
-                    <x-label for="rol" :value="__('Dispositus')" />
-
-                    <x-select name="device_id" class="block mt-4 w-full">
-                        @foreach ($devices as $item)
-                            <option {{ $breakdownData->device_id==$item->id ? 'selected' : '' }} value="{{$item->id}} ">{{ $item->label }}</option>
-                        @endforeach
-                    </x-select>
-                </div>
+                <x-select name="device_id" class="block mt-4 w-full">
+                    @foreach ($devices as $item)
+                        <option {{ $breakdownData->device_id==$item->id ? 'selected' : '' }} value="{{$item->id}} ">{{ $item->label }}</option>
+                    @endforeach
+                </x-select>
             </div>
 
-            <!-- Subject -->
-            <div class="mt-4 column-left">
-                <x-label for="title" :value="__('Assumpte')" />
-
-                <x-input id="title" class="input-content" type="text" name="title" value="{{ $breakdownData->title }}"  autofocus required />
-            </div>
             <div class="mt-4">
                 <x-label class="label" for="description" name="description" :value="__('Missatge')" />
 

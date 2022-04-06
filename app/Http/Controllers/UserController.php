@@ -21,15 +21,27 @@ class UserController extends Controller
      */
     public function index()
     {
-
-        $users['users'] = User::orderBy('created_at', 'DESC')
-        ->paginate(10)
-        ->through(fn ($item) => [
-            "id"=> $item->id,
-            "username" => $item->username,
-            "email" => $item->email,
-            "role_name" => $item->role->label
-        ]);
+        if(Auth::user()->role_id == 4) {
+            $users['users'] = User::orderBy('created_at', 'DESC')
+            ->paginate(10)
+            ->through(fn ($item) => [
+                "id"=> $item->id,
+                "username" => $item->username,
+                "email" => $item->email,
+                "role_name" => $item->role->label
+            ]);
+        } else {
+            $users['users'] = User::where('role_id' ,'!=' , 4)
+            ->orderBy('created_at', 'DESC')
+            ->paginate(10)
+            ->through(fn ($item) => [
+                "id"=> $item->id,
+                "username" => $item->username,
+                "email" => $item->email,
+                "role_name" => $item->role->label
+            ]);
+        }
+        
 
         return view('admin.users.index', $users);
     }
@@ -115,8 +127,9 @@ class UserController extends Controller
     {
 
         //$idUser = $request->user()->id;
-        $users = User::findOrFail($id);
-        return view('admin.users.edit', ['users' => $users]);
+        $departments = Department::all();
+        $user = User::findOrFail($id);
+        return view('admin.users.edit', ['user' => $user, 'departments' => $departments ]);
     }
 
     /**
