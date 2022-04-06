@@ -156,7 +156,7 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('/admin/departments/view/{id}', [DepartamentController::class, "show"])
             ->name('admin.departments.view');
-            
+
         Route::get('/admin/departments/view-question/{id}', [DepartamentController::class, "showquestion"])
         ->name('admin.departments.view-question');
 
@@ -314,6 +314,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/user/profile/', [UserController::class, 'show'])->name('user.profile.index');
 
     Route::put('/user/profile/{id}', [UserController::class, 'update'])->name('user.profile.update');
+
+    Route::post('/user/profile/reset', [PasswordResetLinkController::class, 'store'])->name('password.email');
+
 
     ///////////////////////////////////////////////////
     Route::post('/user/messages/{id}', [MessageController::class, "store"])
