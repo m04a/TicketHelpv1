@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Question;
 use App\Models\Breakdown;
+use App\Models\User;
+use App\Models\Guide;
+use App\Models\Suggestion;
+use App\Models\Device;
 
 class HomePage extends Controller
 {
@@ -20,11 +24,11 @@ class HomePage extends Controller
 
         if (Auth::check() && Auth::user()->role_id > 1){
             $data['questionCount'] = Question::where('status',1)->count();
-            $data['questionCountPendents'] = Question::where('status',2)->count();
-            $data['questionCountResoltes'] = Question::where('status',3)->count();
             $data['breakdownCount'] = Breakdown::where('status',1)->count();
-            $data['breakdownCountPendents'] = Breakdown::where('status',2)->count();
-            $data['breakdownCountResoltes'] = Breakdown::where('status',3)->count();
+            $data['userCount'] = User::get()->count();
+            $data['guideCount'] = Guide::get()->count();
+            $data['suggestionCount'] = Suggestion::get()->count();
+            $data['deviceCount'] = Device::get()->count();
             return view('admin.dashboard', $data);
         }elseif(Auth::check() && Auth::user()->role_id == 1){
             return view('user.dashboard');
