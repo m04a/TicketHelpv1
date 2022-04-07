@@ -21,7 +21,7 @@
 {{-- Footer --}}
 @slot('footer')
 @component('mail::footer')
-© {{ date('Y') }} {{ config('app.name') }}. @lang('All rights reservedeeeeeed.')
+© {{ date('Y') }} @lang('TicketHelp'). @lang('All rights reserved.')
 @endcomponent
 @endslot
 @endcomponent
