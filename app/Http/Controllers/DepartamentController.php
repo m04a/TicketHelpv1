@@ -182,7 +182,14 @@ class DepartamentController extends Controller
             return redirect("/admin/departments/")->with('error', "El departament no es pot borrar perqué te dependeciés!");
         }   
     }
-    
+
+    /**
+     * Retun values in json array for Angular graphic.
+     *
+     * 
+     * 
+     * @return json_encode($array)
+     */
     public function graph3(){
 
         $departments = Department::withCount('breakdowns')->get();
@@ -196,6 +203,13 @@ class DepartamentController extends Controller
         return json_encode($departmentData);
      }
 
+    /**
+     * View index historic of department
+     *
+     * 
+     * @param $id
+     * @return view('name',($object),($object));
+     */
      public function history($id){
         $history['history'] = Breakdown::where('department_id', $id)
         ->orderBy('created_at', 'DESC')
@@ -225,6 +239,13 @@ class DepartamentController extends Controller
         return view('admin.departments.history',$history,$historyquestion);
     }
 
+    /**
+     * Show question detail of department
+     *
+     * 
+     * @param $id
+     * @return view('name', ['name_value' => ($object), 'name_value' => ($object)]);
+     */
     public function showquestion($id)
     {
         $questions = Question::findOrFail($id);

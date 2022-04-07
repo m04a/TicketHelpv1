@@ -28,6 +28,12 @@ class TypeRequest extends FormRequest
             'description' => 'required',
         ];
     }
+
+    /**
+     * Return message of error
+     *
+     * @return array
+     */
     public function messages()
     {
         return [
