@@ -146,6 +146,7 @@ class UserController extends Controller
         $user->username = $request->username;
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
+        $user->role_id = $request->role_id;
 
         if($user->save()){
             return back()->with('success','S\'han actualitzat les dades de l\'usuari.');

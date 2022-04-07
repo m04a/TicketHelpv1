@@ -54,16 +54,13 @@
                 </div>
                 <!-- Rol User -->
                 <div class="mt-4 column-right">
-                    <x-label for="rol" :value="__('Tria el Rol del Usuari')" />
+                    <x-label for="role_id" :value="__('Tria el Rol del Usuari')" />
                     
-                    <x-select class="block mt-4 w-full" >
-                        <option value="1">Administrador</option>
-                        <option value="2">Usuari</option>
-                        <option value="3">Moderador</option>
-                        @if (Auth::user()->role_id == 4) {
-                            <option value="4">SuperAdmin</option>
-                        }
-                        @endif
+                    <x-select name="role_id" class="block mt-4 w-full" >
+                        <option {{ $user->role_id==3 ? 'selected' : ''}} value="3">Administrador</option>
+                        <option {{ $user->role_id==1 ? 'selected' : ''}} value="1">Usuari</option>
+                        <option {{ $user->role_id==2 ? 'selected' : ''}} value="2">Moderador</option>
+                        <option {{ $user->role_id==4 ? 'selected' : ''}} value="4">SuperAdmin</option>
                     </x-select>
 
                 </div>
@@ -73,14 +70,10 @@
                 <div class="mt-4 ">
                     <x-label for="rol" :value="__('Tria el Rol del Usuari')" />
                     
-                    <x-select class="block mt-4 w-full" >
-                        <option value="1">Administrador</option>
-                        <option value="2">Usuari</option>
-                        <option value="3">Moderador</option>
-                        @if (Auth::user()->role_id == 4) {
-                            <option value="4">SuperAdmin</option>
-                        }
-                        @endif
+                    <x-select name="role_id" class="block mt-4 w-full" >
+                        <option {{ $user->role_id==3 ? 'selected' : ''}} value="3">Administrador</option>
+                        <option {{ $user->role_id==1 ? 'selected' : ''}} value="1">Usuari</option>
+                        <option {{ $user->role_id==2 ? 'selected' : ''}} value="2">Moderador</option>
                     </x-select>
 
                 </div>

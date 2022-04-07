@@ -177,7 +177,7 @@ class BreakdownController extends Controller
             $breakdown->user_id = Auth::user()->id;
     
             if($breakdown->save()){
-                return back()->with('success',"S'ha creat la seva incidencia satisfactoriament");
+                return back()->with('success',"S'ha creat la seva incidencia satisfactòriament");
             }
 
         }else{
