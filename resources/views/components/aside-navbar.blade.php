@@ -26,6 +26,13 @@
                     <span class="menu-item-label">Preguntes</span>
                 </a>
             </li>
+            <li class="{{ (request()->is('admin/devices*')) ? 'active' : '' }}">
+                <a href="/admin/devices">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" /></svg>
+                    <span class="menu-item-label">Dispostius</span>
+                </a>
+            </li>
+            @if (Auth::user()->role_id > 2)
             <li class="{{ (request()->is('admin/zones*')) ? 'active' : '' }}">
                 <a href="/admin/zones">
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" /></svg>
@@ -36,12 +43,6 @@
                 <a href="/admin/departments">
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
                     <span class="menu-item-label">Departaments</span>
-                </a>
-            </li>
-            <li class="{{ (request()->is('admin/devices*')) ? 'active' : '' }}">
-                <a href="/admin/devices">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" /></svg>
-                    <span class="menu-item-label">Dispostius</span>
                 </a>
             </li>
             <li class="{{ (request()->is('admin/users*')) ? 'active' : '' }}">
@@ -58,6 +59,7 @@
                     <span class="menu-item-label ml-3">Tipus</span>
                 </a>
             </li>
+            @endif
             <li class="{{ (request()->is('admin/guides*')) ? 'active' : '' }}">
                 <a href="/admin/guides">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 ml-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">

@@ -30,9 +30,9 @@
                     </div>
 
                     <div class="mt-4">
-                        <x-label for="Tipus" :value="__('Departament')" />
+                        <x-label for="department_id" :value="__('Departament')" />
 
-                        <x-select class="block mt-4 w-full" name="departament">
+                        <x-select class="block mt-4 w-full" name="department_id">
                             @foreach ($departament as $item)
                                 <option value="{{$item->id}} ">{{ $item->name }}</option>
                             @endforeach

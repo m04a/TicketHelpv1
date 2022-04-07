@@ -39,7 +39,7 @@ class MessageRequest extends FormRequest
     public function messages(){
         return [
         'content.required' => 'El contingut és invalid, revisa les dades introduïdes',
-        'content.max' => 'Posa com a maxim 100 caracters al contingut del missatge',
+        'content.max' => 'Posa com a maxim 250 caracters al contingut del missatge',
         ];
     }
 }

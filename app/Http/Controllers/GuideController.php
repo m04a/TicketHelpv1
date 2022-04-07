@@ -88,9 +88,15 @@ class GuideController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $guide)
     {
-        //
+        $guide = Guide::where('id', $guide)->first();;
+        $guide->title=$request->title;
+        $guide->description=$request->description;
+        $guide->content=$request->content;
+        if ($guide->save()) {
+            return back()->with('success', "L'article s'ha modificat correctament");
+        }
     }
 
     /**

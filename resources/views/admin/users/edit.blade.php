@@ -40,18 +40,21 @@
                 <x-input id="email" class="input-content" type="email" name="email" value="{{ $user->email }}"  autofocus required />
             </div>
             </div>
-            @if ($user->role_id > 1 && $user->role_id < 4)
+            @if (Auth::user()->role_id == 4)
             <div class="content-column">
-                <!-- Departament User -->
-                <div class="mt-4 column-left">
-                    <x-label for="department" :value="__('Departament')" />
+                @if($user->role_id < 4 && $user->role_id > 1)
+                    <!-- Departament User -->
+                    <div class="mt-4 column-left">
+                        <x-label for="department" :value="__('Departament')" />
 
-                    <x-select name="department_id" class="block mt-4 w-full">
-                        @foreach ($departments as $item)
-                            <option value="{{$item->id}} ">{{ $item->name }}</option>
-                        @endforeach
-                    </x-select>
-                </div>
+                        
+                        <x-select name="department_id" class="block mt-4 w-full">
+                            @foreach ($departments as $item)
+                                <option value="{{$item->id}} ">{{ $item->name }}</option>
+                            @endforeach
+                        </x-select>
+                    </div>
+                @endif
                 <!-- Rol User -->
                 <div class="mt-4 column-right">
                     <x-label for="role_id" :value="__('Tria el Rol del Usuari')" />
@@ -67,6 +70,20 @@
             </div>
             @else
             <div class="columns">
+                @if($user->role_id < 4 && $user->role_id > 1)
+                    <!-- Departament User -->
+                    <div class="mt-4 column-left">
+                        <x-label for="department" :value="__('Departament')" />
+
+                        
+                        <x-select name="department_id" class="block mt-4 w-full">
+                            @foreach ($departments as $item)
+                                <option value="{{$item->id}} ">{{ $item->name }}</option>
+                            @endforeach
+                        </x-select>
+                    </div>
+                @endif
+                
                 <div class="mt-4 ">
                     <x-label for="rol" :value="__('Tria el Rol del Usuari')" />
                     

@@ -38,6 +38,8 @@
             <x-input id="nom" class="input-content" type="text" name="username" value="{{ $users[0]['username'] }}" required  autofocus />
         </div>
 
+        <x-input id="role_id" class="input-content" type="hidden" name="role_id" value="{{ $users[0]['role_id'] }}" required  autofocus />
+
         <!-- Email User -->
         <div class="column-right">
             <x-label for="email" :value="__('Correu Electronic')" />

@@ -28,7 +28,7 @@
                 <div class="mt-4 column-left">
                     <x-label for="usuari" :value="__('Nom Usuari')" />
 
-                    <x-input id="nom" class="input-content" type="text" name="username"  autofocus required />
+                    <x-input id="nom" class="input-content" type="text" name="username" max=50 min=4 autofocus required />
                 </div>
 
                 <!-- Rol User -->

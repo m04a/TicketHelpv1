@@ -86,7 +86,7 @@
             <p class="font-bold mb-3 text-xl">Nova Resposta</p>
             <form method="POST" action="{{ url('/admin/messages/'.$questions->id) }}">
                 @csrf
-                <textarea name="content" class="textarea"></textarea>
+                <textarea name="content" class="textarea" maxlength="250"></textarea>
                 <input type="hidden" name="question_id" value="{{ $questions->id }}"/>
                 <div class="button-create">
                     <x-button class="ml-3">
