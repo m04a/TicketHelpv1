@@ -14,9 +14,9 @@ class SettingController extends Controller
      */
     public function index()
     {
-        $oauthFields = Setting::where('id',1)->first()->toArray();
+        $oauthData = Setting::find(1);
 
-        return view('admin.settings.index',['oauthFields' => $oauthFields]);
+        return view('admin.settings.index',['oauthFields' => $oauthData]);
     }
 
     /**
@@ -71,7 +71,6 @@ class SettingController extends Controller
      */
     public function update(Request $request)
     {
-        $oauthFields = Setting::where('id',1)->first()->toArray();
         $oauthData = Setting::find(1);
         $oauth = $request['oauth'];
         foreach($oauth as  $key => $value) {
