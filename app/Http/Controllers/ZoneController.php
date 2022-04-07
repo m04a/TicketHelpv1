@@ -151,7 +151,14 @@ class ZoneController extends Controller
 
         return redirect(route("admin.zones.index")); 
     }
-
+    
+    /**
+     * View index historic of department
+     *
+     * 
+     * @param $id
+     * @return view('name',($object),($object));
+     */
     public function history($id){
         $history['history'] = Breakdown::where('zone_id', $id)
         ->orderBy('created_at', 'DESC')
@@ -168,6 +175,15 @@ class ZoneController extends Controller
         return view('admin.zones.history',$history);
     }
 
+    /**
+     * Show breakdown detail of zone
+     *
+     * 
+     * @param $id
+     * @return view('mame')
+        ->with('name', $object)
+        ->with('name', $object);
+     */
     public function showbreakdown($id)
     {
         $breakdownData = Breakdown::findOrFail($id);

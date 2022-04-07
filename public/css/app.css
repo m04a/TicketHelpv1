@@ -996,6 +996,10 @@ select {
   overflow: visible;
 }
 
+.break-all {
+  word-break: break-all;
+}
+
 .rounded-md {
   border-radius: 0.375rem;
 }
@@ -1133,6 +1137,11 @@ select {
 .border-indigo-400 {
   --tw-border-opacity: 1;
   border-color: rgb(129 140 248 / var(--tw-border-opacity));
+}
+
+.border-orange-500 {
+  --tw-border-opacity: 1;
+  border-color: rgb(249 115 22 / var(--tw-border-opacity));
 }
 
 .bg-white {
@@ -3548,6 +3557,11 @@ td.image-cell .image {
   background-color: rgb(249 250 251 / var(--tw-bg-opacity));
 }
 
+.hover\:bg-orange-500:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(249 115 22 / var(--tw-bg-opacity));
+}
+
 .hover\:fill-gray-50:hover {
   fill: #f9fafb;
 }
@@ -3558,6 +3572,10 @@ td.image-cell .image {
 
 .hover\:fill-blue-100:hover {
   fill: #dbeafe;
+}
+
+.hover\:fill-orange-100:hover {
+  fill: #ffedd5;
 }
 
 .hover\:text-gray-500:hover {

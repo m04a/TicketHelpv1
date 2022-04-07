@@ -33,6 +33,12 @@ class UserRequest extends FormRequest
 
         ];
     }
+    
+    /**
+     * Return message of error
+     *
+     * @return array
+     */
     public function messages()
     {
         return [

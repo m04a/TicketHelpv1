@@ -44,10 +44,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
     
-    /**
-     * Reference relationship 1:N on Users and Rols
+     /**
+     * Make relationship of roles
      *
-     * @return belongsTo(Modal::class);
+     * @return belongsTo(Modal, 'name');
      */
     public function role()
     {

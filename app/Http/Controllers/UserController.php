@@ -170,6 +170,13 @@ class UserController extends Controller
         }
     }
 
+    /**
+     * Retun values in json array for Angular graphic. 
+     *
+     * 
+     * 
+     * @return @return json_encode($array)
+     */
     public function graph2()
     {
         $role = Role::withCount('users')->get();

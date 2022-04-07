@@ -6,21 +6,21 @@
             </h1>
         </x-slot>
         @if(session('success'))
-                <x-success-alert class="m-6">
-                    {{ session('success') }}
-                </x-success-alert>
-            @endif
-            @if ($errors->any())
+            <x-success-alert class="m-6">
+                {{ session('success') }}
+            </x-success-alert>
+        @endif
+        @if ($errors->any())
 
-                <x-error-alert class="m-6">
-                    <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                    </ul>
-                </x-error-alert>
+            <x-error-alert class="m-6">
+                <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+                </ul>
+            </x-error-alert>
 
-            @endif
+        @endif
     <x-create-card>
         <form method="POST" action="">
             @csrf

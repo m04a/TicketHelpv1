@@ -34,6 +34,11 @@ class BreakdownRequest extends FormRequest
             'device_id' => ['required', 'numeric'],
         ];
     }
+    /**
+     * Return message of error
+     *
+     * @return array
+     */
     public function messages()
     {
         return [

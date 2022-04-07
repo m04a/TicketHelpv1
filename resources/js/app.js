@@ -11,8 +11,14 @@ Alpine.start();
 
 "use strict";
 
-/** In the future we should search a way to put all of this in Angular**/
-/* Aside & Navbar: dropdowns */
+/* 
+ * In the future we should search a way to put all of this in Angular
+ */
+
+/* 
+    * Aside & Navbar: dropdowns 
+*/
+
 Array.from(document.getElementsByClassName('dropdown')).forEach(function (elA) {
     elA.addEventListener('click', function (e) {
         if (e.currentTarget.classList.contains('navbar-item')) {
@@ -25,7 +31,10 @@ Array.from(document.getElementsByClassName('dropdown')).forEach(function (elA) {
         }
     });
 });
-/* Aside Mobile toggle */
+
+/*
+    * Aside Mobile toggle 
+*/
 
 Array.from(document.getElementsByClassName('mobile-aside-button')).forEach(function (el) {
     el.addEventListener('click', function (e) {
@@ -35,7 +44,10 @@ Array.from(document.getElementsByClassName('mobile-aside-button')).forEach(funct
         dropdownIcon.classList.toggle('mdi-backburger');
     });
 });
-/* NavBar menu mobile toggle */
+
+/* 
+    * NavBar menu mobile toggle 
+*/
 
 Array.from(document.getElementsByClassName('--jb-navbar-menu-toggle')).forEach(function (el) {
     el.addEventListener('click', function (e) {
@@ -45,8 +57,14 @@ Array.from(document.getElementsByClassName('--jb-navbar-menu-toggle')).forEach(f
         dropdownIcon.classList.toggle('mdi-close');
     });
 });
-/*No implemented yet but useful if we want to*/
-/* Modal: open */
+
+/*
+    * No implemented yet but useful if we want to
+*/
+
+/*
+    * Modal: open 
+*/
 
 Array.from(document.getElementsByClassName('--jb-modal')).forEach(function (el) {
     el.addEventListener('click', function (e) {
@@ -55,7 +73,10 @@ Array.from(document.getElementsByClassName('--jb-modal')).forEach(function (el) 
         document.documentElement.classList.add('clipped');
     });
 });
-/* Modal: close */
+
+/* 
+ * Modal: close 
+*/
 
 Array.from(document.getElementsByClassName('--jb-modal-close')).forEach(function (el) {
     el.addEventListener('click', function (e) {
@@ -63,13 +84,20 @@ Array.from(document.getElementsByClassName('--jb-modal-close')).forEach(function
         document.documentElement.classList.remove('is-clipped');
     });
 });
-/* Notification dismiss */
+
+/* 
+ *Notification dismiss 
+*/
 
 Array.from(document.getElementsByClassName('--jb-notification-dismiss')).forEach(function (el) {
     el.addEventListener('click', function (e) {
         e.currentTarget.closest('.notification').classList.add('hidden');
     });
 });
+
+/*
+    * script mc @toast-ui/editor
+*/
 
 const editor = new Editor({
   el: document.querySelector('#editor'),
@@ -95,6 +123,10 @@ if (document.querySelector('#editPostForm')) {
         e.target.submit();
     });
 }
+
+/*
+    * Animation of message successfully or errorr
+*/
 
 const message = document.getElementById('message');
 window.onload = function(event) {

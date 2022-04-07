@@ -31,6 +31,12 @@ class QuestionRequest extends FormRequest
             'manager_id' => ['numeric'],
         ];
     }
+
+    /**
+     * Return message of error
+     *
+     * @return array
+     */
     public function messages()
     {
         return [
