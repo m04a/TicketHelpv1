@@ -100,17 +100,18 @@ class PagesTest extends TestCase
     {
         $this->withoutMiddleware();
 
-        $user = User::firstWhere('role_id' ,1);
+        $user = User::firstWhere('role_id' ,3);
 
-        $response = $this->actingAs($user)->post('/user/questions/create', [
-            "title" => "Problemes amb el projectorsdadasdasdadadasdasd",
-            "description" => "Prova test unitariadasdsaadasds",
-            "status" => 1,
-            "department_id" => 1,
-            "user_id" => 1,
+        $response = $this->actingAs($user)->post('/admin/breakdowns/create', [
+            "title" => "Problemes amb el projector",
+            "description" => "Prova test unitari",
+            "device_id" => 1,
+            "department_id" => 2,
+            "zone_id" => 1,
+            "user_id" => 2
         ]);
 
-        $response->assertStatus(200);
+        $response->assertStatus(302);
     }
 
 

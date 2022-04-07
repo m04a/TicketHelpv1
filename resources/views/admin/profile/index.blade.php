@@ -71,7 +71,6 @@
 </x-create-card>
     <x-create-card>
         <x-label class="mb-4" :value="__('Vincular usuari a un proveidor de correu')" />
-        <div class="content-column">
             <!-- Name User -->
             <!-- Email User -->
             <div class="grid grid-cols-2 m-8 gap-8">
