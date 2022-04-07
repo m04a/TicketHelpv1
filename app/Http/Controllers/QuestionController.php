@@ -26,7 +26,7 @@ class QuestionController extends Controller
         $userRole = User::where('id', '=', $idUser)->get(['role_id']);
 
         if($userRole[0]['role_id'] > 1){
-            
+
             $data['unassigned'] = Question::where('status', 1)
             ->orderBy('created_at', 'DESC')
             ->paginate(5, ["*"], "unassigned")
@@ -144,7 +144,7 @@ class QuestionController extends Controller
             $questions->status = 1;
             $questions->department_id = $request->departament;
             $questions->user_id = $idUser;
-            
+
             if($questions->save()){
                 return redirect('user/questions/create')->with('success', "S'ha creat la pergunta correctament!");
             }
@@ -169,9 +169,9 @@ class QuestionController extends Controller
             $questions = Question::findOrFail($id);
 
             $questions['username'] = $questions->user->username;
-            
+
             $questions['department'] = $questions->department->name;
-            
+
             if (isset($questions->manager->username)) {
                 $questions["manager"] = $questions->manager->username;
             } else {
@@ -184,29 +184,29 @@ class QuestionController extends Controller
                 'content' => $item->content,
                 'user' => $item->user->username,
             ]);
-    
+
             return view('admin.questions.view', ['questions' => $questions, 'messages' => $messages]);
         } else {
 
             $questions = Question::findOrFail($id);
 
             $questions['username'] = $questions->user->username;
-            
+
             $questions['department'] = $questions->department->name;
-            
+
             if (isset($questions->manager->username)) {
                 $questions["manager"] = $questions->manager->username;
             } else {
                 $questions["manager"] = "No assignat";
             }
-            
+
             $messages = Message::where('question_id', $questions['id'])->get()
             ->map(fn ($item) => [
                 'id' => $item->id,
                 'content' => $item->content,
                 'user' => $item->user->username,
             ]);
-    
+
             return view('user.questions.view', ['questions' => $questions, 'messages' => $messages]);
         }
     }
@@ -232,20 +232,20 @@ class QuestionController extends Controller
             $manager = User::where('role_id',3)
             ->orWhere('role_id',2)
             ->orderBy('role_id')->get();
-    
+
             $departments = Department::all();
-    
+
             return view('admin.questions.edit' , ['departments' => $departments, 'manager' => $manager])->with('questions',$questions);
-            
+
         } else {
             $questions = Question::where('id', $id)->first();
 
             $manager = User::where('role_id',3)
             ->orWhere('role_id',2)
             ->orderBy('role_id')->get();
-    
+
             $departments = Department::all();
-    
+
             return view('user.questions.edit' , ['departments' => $departments, 'manager' => $manager])->with('questions',$questions);
         }
     }
@@ -276,11 +276,11 @@ class QuestionController extends Controller
             if ($questions->status == 1) {
                 $questions->status = 2;
             }
-    
+
             if($questions->save()){
                 return back()->with('success',"La Pregunta S'ha actualizat correctament");
             }
-            
+
         } else {
             $questions = Question::findOrFail($id);
 
@@ -288,13 +288,13 @@ class QuestionController extends Controller
             $questions->description = $request->description;
             $questions->department_id = $request->departament;
             $questions->manager_id = $request->manager;
-    
+
             if($questions->save()){
                 return back()->with('success',"La pregunta s'ha actualizat correctament");
             }
-    
+
         }
-    }       
+    }
 
     /**
      * Remove the specified resource from storage.
@@ -311,27 +311,27 @@ class QuestionController extends Controller
         if ($userRole[0]['role_id'] > 1){
 
             $question = Question::findOrFail($id);
-        
+
             $result = $question->delete();
-            
+
             if ($result) {
                 return redirect('admin/questions')->with('success', 'Pregunta esborrada!');
             }
-    
+
             return redirect('admin/questions')->with('error', 'Error inesperat. Contacti amb l\'administrador del lloc');
-            
+
         } else {
             $question = Question::findOrFail($id);
-        
+
             $result = $question->delete();
             if($question['user_id'] == $idUser){
                 if ($result) {
                     return redirect('user/questions/list')->with('success', 'Pregunta esborrada!');
                 }
             }
-    
+
             return redirect('user/questions/list')->with('error', 'Error inesperat. Contacti amb l\'administrador del lloc');
-    
+
         }
     }
     public function graph7()

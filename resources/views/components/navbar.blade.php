@@ -27,13 +27,13 @@
                         <span class="icon"><i class="mdi mdi-account"></i></span>
                         <span>Perfil</span>
                     </a>
-                    @else 
+                    @else
                     <a href="{{ url('/user/profile/') }}" class="navbar-item">
                         <span class="icon"><i class="mdi mdi-account"></i></span>
                         <span>Perfil</span>
                     </a>
                     @endif
-                    <a href="" class="navbar-item">
+                    <a href="/admin/settings" class="navbar-item">
                         <span class="icon"><i class="mdi mdi-settings"></i></span>
                         <span>Paràmetres</span>
                     </a>

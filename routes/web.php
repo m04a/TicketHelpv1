@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BreakdownController;
 use App\Http\Controllers\OauthController;
+use App\Http\Controllers\SettingController;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -125,7 +126,7 @@ Route::middleware(['auth'])->group(function () {
         Route::put('/admin/breakdowns/edit/{id}',[BreakdownController::class, "update"]);
 
         Route::get('/admin/breakdowns/view/{id}',[BreakdownController::class, "show"]);
-        
+
         Route::delete('/admin/breakdowns/{id}',[BreakdownController::class, "destroy"]);
 
         ///////////////////////////////////////////////////
@@ -141,9 +142,9 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/admin/questions/create', [QuestionController::class, "store"])->name('admin.questions.store');
 
         Route::get('/admin/questions/edit/{id}', [QuestionController::class, "edit"])->name('admin.questions.edit');
-        
+
         Route::put('/admin/questions/update/{id}', [QuestionController::class, "update"])->name('admin.questions.update');
-        
+
 
         ////////////////////////////////////////////////////
 
@@ -158,7 +159,7 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('/admin/departments/view/{id}', [DepartamentController::class, "show"])
             ->name('admin.departments.view');
-            
+
         Route::get('/admin/departments/view-question/{id}', [DepartamentController::class, "showquestion"])
         ->name('admin.departments.view-question');
 
@@ -188,7 +189,7 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('/admin/zones/edit/{id}', [ZoneController::class, "edit"])
             ->name('admin.zones.edit');
-            
+
         Route::post('/admin/zones/create', [ZoneController::class, "store"])
             ->name('admin.zones.store');
 
@@ -222,7 +223,7 @@ Route::middleware(['auth'])->group(function () {
         Route::put('/admin/types/edit/{id}', [TypeController::class, 'update'])->name('admin.types.update');
 
         Route::delete('/admin/types/{id}', [TypeController::class, "destroy"])->name('admin.types.delete');
-        
+
         ///////////////////////////////////////////////////
 
         Route::get('/admin/guides/edit/{guide}', [GuideController::class, 'edit'])->name('admin.guides.edit');
@@ -243,6 +244,13 @@ Route::middleware(['auth'])->group(function () {
 
         Route::delete('/admin/messages/{id}',[MessageController::class,"destroy"])
         ->name('admin.messages.delete');
+
+        ///////////////////////////////////////////////////
+
+        Route::get('/admin/settings/', [SettingController::class, 'index'])->name('admin.settings.index');
+
+        Route::post('/admin/settings/', [SettingController::class, 'update'])->name('admin.settings.update');
+
     });
 
 
@@ -263,11 +271,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/user/breakdowns/view/{id}',[BreakdownController::class, "show"])->name('user.breakdowns.show');
 
     Route::get('/user/breakdowns/list', [BreakdownController::class, "index"])->name('user.breakdowns.list');;
-    
+
     Route::get('/user/breakdowns/edit/{id}', [BreakdownController::class, "edit"])->name('user.breakdowns.edit');;
-    
+
     Route::put('/user/breakdowns/edit/{id}', [BreakdownController::class, "update"])->name('user.breakdowns.update');;
-    
+
     Route::get('user/breakdowns/index', function () {
         return view('/user/breakdowns/index');
     })->name('user.breakdowns.index');
@@ -285,11 +293,11 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/user/questions/create', [QuestionController::class, "store"])->name('user.questions.store');
 
     Route::get('/user/questions/create', [QuestionController::class, "create"])->name('user.questions.create');
-    
+
     Route::delete('/user/questions/{id}', [QuestionController::class, "destroy"])->name('user.questions.destroy');
-    
+
     Route::get('/user/questions/view/{id}', [QuestionController::class, "show"])->name('user.questions.view');
-    
+
     Route::get('user/questions/index', function () {
         return view('/user/questions/index');
     })->name('user.questions.index');
@@ -307,7 +315,7 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/user/suggestions/list/{id}', [SuggestionController::class, 'destroy'])->name('user.suggestions.delete');
 
     Route::put('/user/suggestions/update/{id}', [SuggestionController::class, 'update'])->name('user.suggestions.update');
-    
+
     Route::get('user/suggestions/index', function () {
         return view('/user/suggestions/index');
     })->name('user.suggestions.index');
