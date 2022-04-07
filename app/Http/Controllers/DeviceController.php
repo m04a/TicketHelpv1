@@ -182,7 +182,13 @@ class DeviceController extends Controller
      * @return view('name',($object))
      */
     public function history($id){
-        $history['history'] = Breakdown::where('device_id', $id)
+        $device = Device::where('id', $id)->get();
+    
+        $nom = $device[0]['label'];
+
+        $device_id = $device[0]['id'];
+
+        $history = Breakdown::where('device_id', $id)
         ->orderBy('created_at', 'DESC')
         ->paginate(10, ["*"], "history")
         ->through(fn ($item) => [
@@ -195,6 +201,6 @@ class DeviceController extends Controller
             "manager" => optional($item->manager)->username
         ]);
     
-        return view('admin.devices.history',$history);
+        return view('admin.devices.history',['history' => $history,'nom' => $nom,'id' => $device_id]);
     }
 }

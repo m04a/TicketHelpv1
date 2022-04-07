@@ -103,12 +103,11 @@ class PagesTest extends TestCase
         $user = User::firstWhere('role_id' ,1);
 
         $response = $this->actingAs($user)->post('/user/questions/create', [
-            "title" => "Problemes amb el projector",
-            "description" => "Prova test unitari",
+            "title" => "Problemes amb el projectorsdadasdasdadadasdasd",
+            "description" => "Prova test unitariadasdsaadasds",
             "status" => 1,
             "department_id" => 1,
             "user_id" => 1,
-            "manager_id" => 1
         ]);
 
         $response->assertStatus(200);

@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h1 class="title">
-            Departaments
+            Departament - {{ $department }}
         </h1>
     </x-slot>
     <x-slot name="slot">
@@ -59,7 +59,7 @@
                     <x-pagination>
                         @for($i = 0; $i < $history->lastPage(); $i++)
                             <div class="buttons">
-                                <a class="pagination-next m-2" href="{{ url('/admin/departments/history?history=' . $i+1) }}" >
+                                <a class="pagination-next m-2" href="{{ url('/admin/departments/history/'.$id.'?history=' . $i+1) }}" >
                                     @if($history->currentPage() == $i+1) 
                                     <button type="button" class="button active">{{ $i+1 }}</button>
                                     @else
@@ -128,7 +128,7 @@
                 <x-pagination>
                     @for($i = 0; $i < $historyquestion->lastPage(); $i++)
                         <div class="buttons">
-                            <a class="pagination-next m-2" href="{{ url('/admin/departments/history?historyquestion=' . $i+1) }}" >
+                            <a class="pagination-next m-2" href="{{ url('/admin/departments/history/'.$id.'?historyquestion=' . $i+1) }}" >
                                 @if($historyquestion->currentPage() == $i+1) 
                                 <button type="button" class="button active">{{ $i+1 }}</button>
                                 @else
@@ -192,7 +192,7 @@
                     <x-pagination>
                         @for($i = 0; $i < $historysuggestion->lastPage(); $i++)
                             <div class="buttons">
-                                <a class="pagination-next m-2" href="{{ url('/admin/departments/history?historysuggestion=' . $i+1) }}" >
+                                <a class="pagination-next m-2" href="{{ url('/admin/departments/history/'.$id.'?historysuggestion=' . $i+1) }}" >
                                     @if($historysuggestion->currentPage() == $i+1) 
                                     <button type="button" class="button active">{{ $i+1 }}</button>
                                     @else
