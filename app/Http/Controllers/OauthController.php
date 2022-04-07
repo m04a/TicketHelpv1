@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Service_oauth;
+use App\Models\Setting;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,7 +14,7 @@ class OauthController extends Controller
     /**
      * Vinculate count or login whit external count
      *
-     * 
+     *
      * @param $provider
      * @return redirect('name')->with('success/error','message');
      */
@@ -23,7 +24,7 @@ class OauthController extends Controller
 
         $user_email = $user->email;
 
-        /* 
+        /*
         * We check if the mail is stored in the database with the same provider
         */
         $checkMailoauth = Service_oauth::where('mail',$user_email)
@@ -71,15 +72,16 @@ class OauthController extends Controller
                 return redirect('/');
             }
             else{
-                return redirect('login')->with('error','El email no està vinculat amb aquest cap proveidor de correus');
+                $oauthData = Setting::find(1)->toArray();
+                return view('auth/login' ,['oauthData' => $oauthData])->with('error','El email no està vinculat amb aquest cap proveidor de correus');
             }
         }
     }
-    
+
     /**
      * Redirect whit a selected provider
      *
-     * 
+     *
      * @param $provider
      * @return Laravel\Socialite\Facades\Socialite;
      */
