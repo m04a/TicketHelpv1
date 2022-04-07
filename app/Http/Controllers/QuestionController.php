@@ -334,6 +334,14 @@ class QuestionController extends Controller
     
         }
     }
+
+    /**
+     * Retun values in json array for Angular graphic. 
+     *
+     * 
+     * 
+     * @return @return json_encode($array)
+     */
     public function graph7()
     {
         $standby = Question::where("status", 1)->count();

@@ -153,6 +153,14 @@ class DeviceController extends Controller
             return redirect('/admin/devices')->with('success', 'Dispositiu esborrat!');
         }
     }
+    
+    /**
+     * Retun values in json array for Angular graphic.
+     *
+     * 
+     * 
+     * @return json_encode($array)
+     */
     public function graph4(){
 
        $devices = Zone::withCount('devices')->get();
@@ -166,6 +174,13 @@ class DeviceController extends Controller
        return json_encode($deviceData);
     }
 
+    /**
+     * View index historic of device.
+     *
+     * 
+     * 
+     * @return view('name',($object))
+     */
     public function history($id){
         $history['history'] = Breakdown::where('device_id', $id)
         ->orderBy('created_at', 'DESC')
