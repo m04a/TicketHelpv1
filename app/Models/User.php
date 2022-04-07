@@ -21,6 +21,7 @@ class User extends Authenticatable
         'username',
         'email',
         'role_id',
+        'department_id',
         'password',
     ];
 
@@ -51,5 +52,25 @@ class User extends Authenticatable
     public function role()
     {
         return $this->belongsTo(Role::class, 'role_id');
+    }
+
+    /**
+     * Reference relationship 1:N on Users and Rols
+     *
+     * @return belongsTo(Modal::class);
+     */
+    public function zone()
+    {
+        return $this->belongsTo(Zone::class, 'zone_id');
+    }
+
+    /**
+     * Reference relationship 1:N on Users and Rols
+     *
+     * @return belongsTo(Modal::class);
+     */
+    public function department()
+    {
+        return $this->belongsTo(Department::class, 'department_id');
     }
 }

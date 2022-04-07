@@ -34,24 +34,25 @@
             </div>
 
             <div class="content-column mt-4">
-            <!-- Name User -->
-            <div class="column-left">
-                <x-label for="usuari" :value="__('Nom Usuari')" />
+                <!-- Name User -->
+                <div class="column-left">
+                    <x-label for="usuari" :value="__('Nom Usuari')" />
 
-                <x-input id="nom" class="input-content input-disabled" type="text" name="nom" value="{{ $userLoggedIn }}"  autofocus required  disabled/>
-            </div>
+                    <x-input id="nom" class="input-content input-disabled" type="text" name="nom" value="{{ $userLoggedIn }}"  autofocus required  disabled/>
+                </div>
 
-            <!-- Status Breakdown -->
-            <div class="column-right">
-                    <x-label for="rol" :value="__('Estat Incidència')" />
+                <div class="column-right">
+                    <x-label for="rol" :value="__('Departament')" />
 
-                    <x-select name="status" class="block mt-4 w-full">
-                        <option value="1">Sense Assignar</option>
-                        <option value="2">En procés</option>
-                        <option value="3">Resolta</option>
+                    <x-select name="department_id" class="block mt-4 w-full">
+                        @foreach ($department as $item)
+                            <option value="{{$item->id}} ">{{ $item->name }}</option>
+                        @endforeach
                     </x-select>
                 </div>
             </div>
+            
+
             <div class="content-column">
                 <!-- Zone -->
                 <div class="mt-4 column-left">
@@ -77,18 +78,7 @@
                     </div>
                 </div>
             </div>
-        <div class="columns">
-            <!-- Rol User -->
-            <div class="mt-4">
-                <x-label for="rol" :value="__('Departament')" />
 
-                <x-select name="department_id" class="block mt-4 w-full">
-                    @foreach ($department as $item)
-                        <option value="{{$item->id}} ">{{ $item->name }}</option>
-                    @endforeach
-                </x-select>
-            </div>
-        </div>
 
         <div class="mt-4">
             <x-label class="label" for="description" name="description" :value="__('Missatge')" />

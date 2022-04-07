@@ -35,7 +35,7 @@
 
             <!-- Status Breakdown -->
             <div class="column-right">
-                    <x-label for="rol" :value="__('Estat Incidència')" />
+                    <x-label for="rol" :value="__('Departament')" />
                     
                     <x-select name="department_id" class="block mt-4 w-full">
                         @foreach ($department as $item)

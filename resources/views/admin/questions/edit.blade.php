@@ -48,7 +48,7 @@
                     <div class="column-left">
                         <x-label for="Tipus" :value="__('Departament')" />
 
-                        <x-select class="block mt-4 w-full" name="departament">
+                        <x-select class="block mt-4 w-full" name="department_id">
                             @foreach ($departments as $item)
                                 <option {{ $questions->department_id==$item->id ? 'selected' : '' }} value="{{$item->id}} ">{{ $item->name }}</option>
                             @endforeach

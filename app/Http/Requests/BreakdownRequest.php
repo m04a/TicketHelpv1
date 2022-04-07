@@ -46,7 +46,7 @@ class BreakdownRequest extends FormRequest
             'description.required' => 'La descripció és invalida, revisa les dades introduïdes',
             'department_id.required' => 'El departament és invalid, revisa les dades introduïdes',
             'manager_id.required' => 'El manager és invalid, revisa les dades introduïdes',
-            'zone_id.required' => 'La zone és invalida, revisa les dades introduïdes',
+            'zone_id.required' => 'La zona és invalida, revisa les dades introduïdes',
             'device_id.required' => 'El dispositiu és invalid, revisa les dades introduïdes',
             'title.min' => 'Posa com a minim 5 caracters en el assumpte',
             'title.max' => 'Posa com a maxim 100 caracters en el assumpte',

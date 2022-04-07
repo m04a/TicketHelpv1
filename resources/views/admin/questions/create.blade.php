@@ -31,29 +31,17 @@
 
                         <x-input id="title" class="block mt-4 w-full" type="text" max=100 min=5 name="title" placeholder="Sense Assumpte"  autofocus required />       
                     </div>
-                </div>
-                <div class="content-column mt-4">
 
-                    <div class="column-left">
-                        <x-label for="Tipus" :value="__('Departament')" />
+                    <div class="mt-4">
+                        <x-label for="Department" :value="__('Departament')" />
 
-                        <x-select class="block mt-4 w-full" name="departament">
+                        <x-select class="block mt-4 w-full" name="department_id">
                             @foreach ($departament as $item)
                                 <option value="{{$item->id}} ">{{ $item->name }}</option>
                             @endforeach
                         </x-select>
                     </div>
                     
-                    <!-- Status Breakdown -->
-                    <div class="column-right">
-                        <x-label for="rol" :value="__('Estat')" />
-
-                        <x-select name="status" class="block mt-4 w-full">
-                            <option value="1">Sense Assignar</option>
-                            <option value="2">En procés</option>
-                            <option value="3">Resolta</option>
-                        </x-select>
-                    </div>
                 </div>
                 <!-- Text of the suggestion -->
                 <div class="mt-4">

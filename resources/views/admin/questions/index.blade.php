@@ -128,11 +128,11 @@
                         <td data-label="Assumpte">{{ $question['title']}}</td>
                         <td data-label="Nom">
                             @if($question['status'] ==1)
-                                <span class="border text-center py-2 px-2 text-red-400 bg-red-100">No assignat</span>
+                                <span class="border text-center py-2 px-2 text-red-400 bg-red-100">No assignada</span>
                             @elseif($question['status'] ==2)
-                                <span class="border text-center py-2 px-2 text-orange-600 bg-orange-100">Assignat</span>
+                                <span class="border text-center py-2 px-2 text-orange-600 bg-orange-100">Assignada</span>
                             @else
-                            <span class="border text-center py-2 px-2 text-green-600 bg-green-100">Finalitzat</span>
+                            <span class="border text-center py-2 px-2 text-green-600 bg-green-100">Resolta</span>
                             @endif
                         </td>                        
                         <td data-label="Departament">{{ $question['department_id']}}</td>

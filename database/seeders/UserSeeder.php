@@ -16,66 +16,67 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
+
         DB::table('users')->insert([
-            'username' => 'Oriol',
-            'email' => 'oriol@cendrassos.net',
-            'role_id' => 3,
+            'username' => 'SuperAdmin',
+            'email' => 'superadmin@cendrassos.net',
+            'role_id' => 4,
+            'department_id' => null,
+            'zone_id' => null,
             'password' => Hash::make('1234567890'),
         ]);
 
         DB::table('users')->insert([
-            'username' => 'Alex',
-            'email' => 'alex@cendrassos.net',
+            'username' => 'admin',
+            'email' => 'admin@cendrassos.net',
             'role_id' => 3,
+            'department_id' => 2,
+            'zone_id' => null,
+            'password' => Hash::make('1234567890'),
+        ]);
+
+        DB::table('users')->insert([
+            'username' => 'Oriol',
+            'email' => 'obech@cendrassos.net',
+            'role_id' => 1,
+            'department_id' => null,
+            'zone_id' => 2,
             'password' => Hash::make('1234567890'),
         ]);
 
         DB::table('users')->insert([
             'username' => 'Moha',
-            'email' => 'moha@cendrassos.net',
-            'role_id' => 3,
+            'email' => 'mbourarach@cendrassos.net',
+            'role_id' => 1,
+            'department_id' => null,
+            'zone_id' => 4,
             'password' => Hash::make('1234567890'),
         ]);
 
         DB::table('users')->insert([
-            'username' => 'Juanka',
-            'email' => 'juanka@cendrassos.net',
-            'role_id' => 3,
-            'password' => Hash::make('1234567890'),
-        ]);
-
-        DB::table('users')->insert([
-            'username' => 'Kirill',
-            'email' => 'kirill@cendrassos.net',
-            'role_id' => 3,
-            'password' => Hash::make('1234567890'),
-        ]);
-
-        DB::table('users')->insert([
-            'username' => 'Jorge',
-            'email' => 'jorge@cendrassos.net',
-            'role_id' => 3,
-            'password' => Hash::make('1234567890'),
-        ]);
-
-        DB::table('users')->insert([
-            'username' => 'Iker',
-            'email' => 'iker@cendrassos.net',
-            'role_id' => 3,
+            'username' => 'Alex',
+            'email' => 'aaguilera@cendrassos.net',
+            'role_id' => 1,
+            'department_id' => null,
+            'zone_id' => 2,
             'password' => Hash::make('1234567890'),
         ]);
         
         DB::table('users')->insert([
-            'username' => 'User',
-            'email' => 'user@cendrassos.net',
+            'username' => 'Usuari',
+            'email' => 'usuari@cendrassos.net',
             'role_id' => 1,
+            'department_id' => null,
+            'zone_id' => 2,
             'password' => Hash::make('1234567890'),
         ]);
 
         DB::table('users')->insert([
-            'username' => 'Editor',
-            'email' => 'editor@cendrassos.net',
+            'username' => 'Moderador',
+            'email' => 'moderador@cendrassos.net',
             'role_id' => 2,
+            'department_id' => 2,
+            'zone_id' => null,
             'password' => Hash::make('1234567890'),
         ]);
     }

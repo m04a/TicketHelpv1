@@ -27,8 +27,13 @@ class QuestionController extends Controller
 
         if($userRole[0]['role_id'] > 1){
 
-            $data['unassigned'] = Question::where('status', 1)
-            ->orderBy('created_at', 'DESC')
+            if (Auth::user()->department_id) {
+                $questionDepartment1 = Question::where('department_id', Auth::user()->department_id)->orderBy('created_at', 'DESC');
+            } else {
+                $questionDepartment1 = Question::where('id', '>', '0' )->orderBy('created_at', 'DESC');
+            }
+            
+            $data['unassigned'] = $questionDepartment1->where('status', 1)
             ->paginate(5, ["*"], "unassigned")
             ->through(fn ($item) => [
                 "id" => $item->id,
@@ -39,8 +44,13 @@ class QuestionController extends Controller
                 "user_id" => $item->user->username,
             ]);
 
-            $data['assigned'] = Question::where('status', 2)
-            ->orderBy('created_at', 'DESC')
+            if (Auth::user()->department_id) {
+                $questionDepartment2 = Question::where('department_id', Auth::user()->department_id)->orderBy('created_at', 'DESC');
+            } else {
+                $questionDepartment2 = Question::where('id', '>', '0' )->orderBy('created_at', 'DESC');
+            }
+
+            $data['assigned'] = $questionDepartment2->where('status', 2)
             ->paginate(5, ["*"], "assigned")
             ->through(fn ($item) => [
                 "id" => $item->id,
@@ -52,8 +62,13 @@ class QuestionController extends Controller
                 "manager_id" => $item->manager->username,
             ]);
 
-            $data['done'] = Question::where('status', 3)
-            ->orderBy('created_at', 'DESC')
+            if (Auth::user()->department_id) {
+                $questionDepartment3 = Question::where('department_id', Auth::user()->department_id)->orderBy('created_at', 'DESC');
+            } else {
+                $questionDepartment3 = Question::where('id', '>', '0' )->orderBy('created_at', 'DESC');
+            }
+
+            $data['done'] = $questionDepartment3->where('status', 3)
             ->paginate(5, ["*"], "done")
             ->through(fn ($item) => [
                 "id" => $item->id,
@@ -92,7 +107,7 @@ class QuestionController extends Controller
      */
     public function create(Request $request)
     {
-        //
+        
         $department = Department::all();
 
         $manager = User::where('role_id',3)
@@ -129,8 +144,8 @@ class QuestionController extends Controller
 
             $questions->title = $request->title;
             $questions->description = $request->description;
-            $questions->status = $request->status;
-            $questions->department_id = $request->departament;
+            $questions->status = 1;
+            $questions->department_id = $request->department_id;
             $questions->user_id = $idUser;
 
             if($questions->save()){
@@ -142,7 +157,7 @@ class QuestionController extends Controller
             $questions->title = $request->title;
             $questions->description = $request->description;
             $questions->status = 1;
-            $questions->department_id = $request->departament;
+            $questions->department_id = $request->department_id;
             $questions->user_id = $idUser;
 
             if($questions->save()){
@@ -270,7 +285,7 @@ class QuestionController extends Controller
             $questions->title = $request->title;
             $questions->description = $request->description;
             $questions->status = $request->status;
-            $questions->department_id = $request->departament;
+            $questions->department_id = $request->department_id;
             $questions->manager_id = $request->manager;
 
             if ($questions->status == 1) {

@@ -2,7 +2,7 @@
 
         <x-slot name="header">
             <h1 class="title">
-                Crear Usuari
+                Crear Staff
             </h1>
         </x-slot>
         @if(session('success'))
@@ -33,17 +33,37 @@
 
                 <!-- Rol User -->
                 <div class="mt-4 column-right">
-
-                    <x-label for="email" :value="__('Correu Electronic')" />
-
-                    <x-input id="email" class="input-content" type="email" name="email"  autofocus required />
+                    <x-label for="role" :value="__('Tria el Rol del Usuari')" />
+                    
+                    <x-select name="role_id" class="block mt-4 w-full">
+                        <option value="2">Moderador</option>
+                        <option value="3">Administrador</option>
+                        <option value="4">SuperAdmin</option>
+                    </x-select>
 
                 </div>
 
             </div>
+            <div class="content-column">
+                <!-- Email User -->
+                <div class="mt-4 column-left">
+                    <x-label for="email" :value="__('Correu Electronic')" />
 
-            <input type="hidden" name="role_id" value=1 id="content">
+                    <x-input id="email" class="input-content" type="email" name="email"  autofocus required />
+                </div>
 
+                <!-- Departament User -->
+                <div class="mt-4 column-right">
+
+                    <x-label for="email" :value="__('Departament')" />
+
+                    <x-select name="department_id" class="block mt-4 w-full">
+                        @foreach ($departments as $item)
+                            <option value="{{$item->id}} ">{{ $item->name }}</option>
+                        @endforeach
+                    </x-select>
+                </div>
+            </div>
             <div class="button-create">
                 <a href="{{ url('admin/users') }}">
                     <x-button type="button" class="ml-3">

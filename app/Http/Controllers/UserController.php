@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Setting;
 use App\Models\User;
 use App\Models\Role;
+use App\Models\Department;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -20,15 +22,27 @@ class UserController extends Controller
      */
     public function index()
     {
-
-        $users['users'] = User::orderBy('created_at', 'DESC')
-        ->paginate(10)
-        ->through(fn ($item) => [
-            "id"=> $item->id,
-            "username" => $item->username,
-            "email" => $item->email,
-            "role_name" => $item->role->label
-        ]);
+        if(Auth::user()->role_id == 4) {
+            $users['users'] = User::orderBy('created_at', 'DESC')
+            ->paginate(10)
+            ->through(fn ($item) => [
+                "id"=> $item->id,
+                "username" => $item->username,
+                "email" => $item->email,
+                "role_name" => $item->role->label
+            ]);
+        } else {
+            $users['users'] = User::where('role_id' ,'!=' , 4)
+            ->orderBy('created_at', 'DESC')
+            ->paginate(10)
+            ->through(fn ($item) => [
+                "id"=> $item->id,
+                "username" => $item->username,
+                "email" => $item->email,
+                "role_name" => $item->role->label
+            ]);
+        }
+        
 
         return view('admin.users.index', $users);
     }
@@ -46,6 +60,20 @@ class UserController extends Controller
     }
 
     /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function createStaff()
+    {
+
+        $departments = Department::all();
+
+        return view('admin/users/createStaff', ['departments' => $departments]);
+
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -57,7 +85,9 @@ class UserController extends Controller
 
         $user->username = $request->username;
         $user->email = $request->email;
-        $user->password = Hash::make(str_random(10));
+        $user->password = Hash::make(Str::random(10));
+        $user->role_id = $request->role_id;
+        
         /*Obtain the user currently logged*/
         // $user->id = Auth::user()->id;
 
@@ -100,8 +130,9 @@ class UserController extends Controller
     {
 
         //$idUser = $request->user()->id;
-        $users = User::findOrFail($id);
-        return view('admin.users.edit', ['users' => $users]);
+        $departments = Department::all();
+        $user = User::findOrFail($id);
+        return view('admin.users.edit', ['user' => $user, 'departments' => $departments ]);
     }
 
     /**
@@ -118,6 +149,7 @@ class UserController extends Controller
         $user->username = $request->username;
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
+        $user->role_id = $request->role_id;
 
         if($user->save()){
             return back()->with('success','S\'han actualitzat les dades de l\'usuari.');

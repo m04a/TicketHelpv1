@@ -46,32 +46,37 @@ Route::get('/guides/{guide}', [GuideController::class, 'show'])->name('guide.sho
 
 Route::middleware(['auth'])->group(function () {
 
-    Route::middleware(['admin'])->group(function () {
+    Route::middleware(['moderator'])->group(function () {
 
-        // ADMIN
+        //MODERATOR
 
         Route::get('/admin/dashboard', [HomePage::class, 'index'])->name('admin.dashboard');
 
         ///////////////////////////////////////////////////
 
-        Route::get('/admin/users', [UserController::class, 'index'])->name('admin.users.index');
-
-        Route::get('/admin/users/create', [UserController::class, 'create'])->name('admin.users.create');
-
-        Route::get('/admin/users/edit/{id}', [UserController::class, 'edit'])->name('admin.users.edit');
-
         Route::get('/admin/profile/', [UserController::class, 'show'])->name('admin.profile.index');
 
         Route::put('/admin/profile/{id}', [UserController::class, 'update'])->name('admin.profile.update');
-
-        Route::put('/admin/users/edit/{id}', [UserController::class, 'update'])->name('admin.devices.update');
-
-        Route::post('/admin/users/store', [UserController::class, 'store'])->name('admin.users.store');
-
-        Route::delete('/admin/users/{id}', [UserController::class, "destroy"])->name('admin.users.delete');
-
+        
         Route::post('/admin/profile/reset', [PasswordResetLinkController::class, 'store'])->name('password.email');
 
+        ///////////////////////////////////////////////////
+
+        Route::get('/user/suggestions/create', [SuggestionController::class, 'create'])->name('user.suggestions.create');
+
+        Route::post('/user/suggestions/store', [SuggestionController::class, 'store'])->name('user.suggestions.store');
+
+        Route::get('/user/suggestions/list', [SuggestionController::class, 'index'])->name('user.suggestions.list');
+
+        Route::get('/user/suggestions/edit/{id}', [SuggestionController::class, 'edit'])->name('user.suggestions.edit');
+
+        Route::delete('/user/suggestions/list/{id}', [SuggestionController::class, 'destroy'])->name('user.suggestions.delete');
+
+        Route::put('/user/suggestions/update/{id}', [SuggestionController::class, 'update'])->name('user.suggestions.update');
+        
+        Route::get('user/suggestions/index', function () {
+            return view('/user/suggestions/index');
+        })->name('user.suggestions.index');
 
         ///////////////////////////////////////////////////
 
@@ -142,89 +147,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/admin/questions/edit/{id}', [QuestionController::class, "edit"])->name('admin.questions.edit');
 
         Route::put('/admin/questions/update/{id}', [QuestionController::class, "update"])->name('admin.questions.update');
-
-
-        ////////////////////////////////////////////////////
-
-        Route::get('/admin/departments', [DepartamentController::class, 'index'])
-            ->name('admin.departments.index');
-
-        Route::get('/admin/departments/create', [DepartamentController::class, "create"])
-            ->name('admin.departments.create');
-
-        Route::get('/admin/departments/history/{id}', [DepartamentController::class, "history"])
-            ->name('admin.departments.history');
-
-        Route::get('/admin/departments/view/{id}', [DepartamentController::class, "show"])
-            ->name('admin.departments.view');
-
-        Route::get('/admin/departments/view-question/{id}', [DepartamentController::class, "showquestion"])
-        ->name('admin.departments.view-question');
-
-        Route::get('/admin/departments/view-suggestion/{id}', [DepartamentController::class, "showsuggestion"])
-        ->name('admin.departments.view-suggestion');
-
-        Route::post('/admin/departments/create', [DepartamentController::class, "store"])
-            ->name('admin.departments.store');
-
-        Route::get('/admin/departments/edit/{id}', [DepartamentController::class, "edit"])
-            ->name('admin.departments.edit');
-
-        Route::put('/admin/departments/edit/{id}', [DepartamentController::class, "update"])
-            ->name('admin.departments.update');
-
-        Route::delete('/admin/departments/destroy/{id}', [DepartamentController::class, "destroy"])
-            ->name('admin.departments.delete');
-
-        ///////////////////////////////////////////////////
-
-
-         Route::get('/admin/zones', [ZoneController::class, 'index'])
-         ->name('admin.zones.index');
-
-         Route::get('/admin/zones/create', [ZoneController::class, "create"])
-            ->name('admin.zones.create');
-
-        Route::get('/admin/zones/history/{id}', [ZoneController::class, "history"])
-            ->name('admin.zones.history');
-
-        Route::get('/admin/zones/edit/{id}', [ZoneController::class, "edit"])
-            ->name('admin.zones.edit');
-
-        Route::post('/admin/zones/create', [ZoneController::class, "store"])
-            ->name('admin.zones.store');
-
-        Route::get('/admin/zones/view/{id}', [ZoneController::class, 'showbreakdown'])
-        ->name('admin.zones.view');
-
-        Route::delete('/admin/zones/destroy/{id}', [ZoneController::class, "destroy"])
-            ->name('admin.zones.delete');
-
-        Route::put('/admin/zones/edit/{id}', [ZoneController::class, "update"])
-            ->name('admin.zones.update');
-
-        ///////////////////////////////////////////////////
-
-        Route::get('/admin/types' , [TypeController::class, "index"])->name('admin.types.index');
-
-        Route::get('/admin/types/create', [TypeController::class, 'create'])->name('admin.types.create');
-
-        Route::get('/admin/types/view/{id}', [TypeController::class, 'show'])->name('admin.types.view');
-
-        Route::post('/admin/types/create' , [TypeController::class, "store"])->name('admin.types.store');
-
-        Route::get('/admin/types/edit', function () {
-            return view('admin/types/edit');
-        })->name('user.types.edit');
-
-        ///////////////////////////////////////////////////
-
-        Route::get('/admin/types/edit/{id}', [TypeController::class, 'edit'])->name('admin.types.edit');
-
-        Route::put('/admin/types/edit/{id}', [TypeController::class, 'update'])->name('admin.types.update');
-
-        Route::delete('/admin/types/{id}', [TypeController::class, "destroy"])->name('admin.types.delete');
-
+        
         ///////////////////////////////////////////////////
 
         Route::get('/admin/guides/edit/{guide}', [GuideController::class, 'edit'])->name('admin.guides.edit');
@@ -238,15 +161,124 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/admin/guides/store', [GuideController::class, 'store'])->name('admin.guides.store');
 
         Route::delete('/admin/guides/destroy/{id}', [GuideController::class, 'destroy'])->name('admin.guides.delete');
-
+        
         ///////////////////////////////////////////////////
+
         Route::post('/admin/messages/{id}', [MessageController::class, "store"])
         ->name('admin.messages.store');
 
         Route::delete('/admin/messages/{id}',[MessageController::class,"destroy"])
         ->name('admin.messages.delete');
 
-        ///////////////////////////////////////////////////
+        Route::middleware(['admin'])->group(function () {
+
+            //ADMIN
+
+            Route::get('/admin/users', [UserController::class, 'index'])->name('admin.users.index');
+
+            Route::get('/admin/users/create', [UserController::class, 'create'])->name('admin.users.create');
+
+            Route::get('/admin/users/createStaff', [UserController::class, 'createStaff'])->name('admin.users.createStaff');
+
+            Route::get('/admin/users/edit/{id}', [UserController::class, 'edit'])->name('admin.users.edit');
+
+            Route::put('/admin/users/edit/{id}', [UserController::class, 'update'])->name('admin.devices.update');
+
+            Route::post('/admin/users/store', [UserController::class, 'store'])->name('admin.users.store');
+
+            Route::delete('/admin/users/{id}', [UserController::class, "destroy"])->name('admin.users.delete');
+
+            ////////////////////////////////////////////////////
+
+            Route::get('/admin/departments', [DepartamentController::class, 'index'])
+                ->name('admin.departments.index');
+
+            Route::get('/admin/departments/create', [DepartamentController::class, "create"])
+                ->name('admin.departments.create');
+
+            Route::post('/admin/departments/create', [DepartamentController::class, "store"])
+                ->name('admin.departments.store');
+            
+            Route::get('/admin/departments/view/{id}', [DepartamentController::class, "show"])
+            ->name('admin.departments.view');
+    
+            Route::get('/admin/departments/view-question/{id}', [DepartamentController::class, "showquestion"])
+            ->name('admin.departments.view-question');
+
+            Route::get('/admin/departments/edit/{id}', [DepartamentController::class, "edit"])
+                ->name('admin.departments.edit');
+
+            Route::put('/admin/departments/edit/{id}', [DepartamentController::class, "update"])
+                ->name('admin.departments.update');
+
+            Route::get('/admin/departments/view-suggestion/{id}', [DepartamentController::class, "showsuggestion"])
+                ->name('admin.departments.view-suggestion');
+
+            Route::delete('/admin/departments/destroy/{id}', [DepartamentController::class, "destroy"])
+                ->name('admin.departments.delete');
+
+            Route::get('/admin/departments/history/{id}', [DepartamentController::class, "history"])
+            ->name('admin.departments.history');
+    
+            Route::get('/admin/departments/view/{id}', [DepartamentController::class, "show"])
+                ->name('admin.departments.view');
+                
+            Route::get('/admin/departments/view-question/{id}', [DepartamentController::class, "showquestion"])
+            ->name('admin.departments.view-question');
+
+            ///////////////////////////////////////////////////
+
+
+            Route::get('/admin/zones', [ZoneController::class, 'index'])
+            ->name('admin.zones.index');
+
+            Route::get('/admin/zones/create', [ZoneController::class, "create"])
+                ->name('admin.zones.create');
+
+            Route::get('/admin/zones/edit/{id}', [ZoneController::class, "edit"])
+                ->name('admin.zones.edit');
+                
+            Route::post('/admin/zones/create', [ZoneController::class, "store"])
+                ->name('admin.zones.store');
+
+            Route::get('/admin/zones/view/{id}', [ZoneController::class, 'show'])
+            ->name('admin.zones.view');
+
+            Route::delete('/admin/zones/destroy/{id}', [ZoneController::class, "destroy"])
+                ->name('admin.zones.delete');
+
+            Route::put('/admin/zones/edit/{id}', [ZoneController::class, "update"])
+                ->name('admin.zones.update');
+
+            Route::get('/admin/zones/history/{id}', [ZoneController::class, "history"])
+            ->name('admin.zones.history');
+    
+            Route::get('/admin/zones/view/{id}', [ZoneController::class, 'showbreakdown'])
+            ->name('admin.zones.view');
+
+            ///////////////////////////////////////////////////
+
+            Route::get('/admin/types' , [TypeController::class, "index"])->name('admin.types.index');
+
+            Route::get('/admin/types/create', [TypeController::class, 'create'])->name('admin.types.create');
+
+            Route::get('/admin/types/view/{id}', [TypeController::class, 'show'])->name('admin.types.view');
+
+            Route::post('/admin/types/create' , [TypeController::class, "store"])->name('admin.types.store');
+
+            Route::get('/admin/types/edit', function () {
+                return view('admin/types/edit');
+            })->name('user.types.edit');
+
+            ///////////////////////////////////////////////////
+
+            Route::get('/admin/types/edit/{id}', [TypeController::class, 'edit'])->name('admin.types.edit');
+
+            Route::put('/admin/types/edit/{id}', [TypeController::class, 'update'])->name('admin.types.update');
+
+            Route::delete('/admin/types/{id}', [TypeController::class, "destroy"])->name('admin.types.delete');
+
+        });
 
         Route::get('/admin/settings/', [SettingController::class, 'index'])->name('admin.settings.index');
 
@@ -302,24 +334,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('user/questions/index', function () {
         return view('/user/questions/index');
     })->name('user.questions.index');
-
-    ///////////////////////////////////////////////////
-
-    Route::get('/user/suggestions/create', [SuggestionController::class, 'create'])->name('user.suggestions.create');
-
-    Route::post('/user/suggestions/store', [SuggestionController::class, 'store'])->name('user.suggestions.store');
-
-    Route::get('/user/suggestions/list', [SuggestionController::class, 'index'])->name('user.suggestions.list');
-
-    Route::get('/user/suggestions/edit/{id}', [SuggestionController::class, 'edit'])->name('user.suggestions.edit');
-
-    Route::delete('/user/suggestions/list/{id}', [SuggestionController::class, 'destroy'])->name('user.suggestions.delete');
-
-    Route::put('/user/suggestions/update/{id}', [SuggestionController::class, 'update'])->name('user.suggestions.update');
-
-    Route::get('user/suggestions/index', function () {
-        return view('/user/suggestions/index');
-    })->name('user.suggestions.index');
 
     ///////////////////////////////////////////////////
     Route::get('/user/profile/', [UserController::class, 'show'])->name('user.profile.index');

@@ -150,7 +150,7 @@
                 @if (Route::has('password.request'))
                     <a class="underline text-sm text-gray-600 hover:text-gray-900"
                         href="{{ route('password.request') }}">
-                        {{ __('Has olvidat el password?') }}
+                        {{ __('Recuperar contrasenya') }}
                     </a>
                 @endif
 
