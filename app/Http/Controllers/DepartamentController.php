@@ -211,6 +211,12 @@ class DepartamentController extends Controller
      * @return view('name',($object),($object));
      */
      public function history($id){
+        $department = Department::where('id', $id)->get();
+
+        $nom  =  $department[0]['name'];
+
+        $department_id = $department[0]['id'];
+
         $history = Breakdown::where('department_id', $id)
         ->orderBy('created_at', 'DESC')
         ->paginate(10, ["*"], "history")
@@ -245,7 +251,7 @@ class DepartamentController extends Controller
           "description" => $item->description,
           ]);
     
-        return view('admin.departments.history',['history' => $history,'historyquestion' => $historyquestion,'historysuggestion' => $historysuggestion]);
+        return view('admin.departments.history',['id' => $department_id,'department' => $nom, 'history' => $history,'historyquestion' => $historyquestion,'historysuggestion' => $historysuggestion]);
     }
 
     /**
