@@ -10,19 +10,28 @@ use Laravel\Socialite\Facades\Socialite;
 
 class OauthController extends Controller
 {
+    /**
+     * Vinculate count or login whit external count
+     *
+     * 
+     * @param $provider
+     * @return redirect('name')->with('success/error','message');
+     */
     public function authUserOauth($provider){
 
         $user = Socialite::driver($provider)->user();
 
         $user_email = $user->email;
 
-        /*We check if the mail is stored in the database with the same provider*/
+        /* 
+        * We check if the mail is stored in the database with the same provider
+        */
         $checkMailoauth = Service_oauth::where('mail',$user_email)
             ->where('provider_label',$provider)->first();
 
         /*
-         If the user it's already logged in it means that he want's to add an account.
-         Then we make a little autentification check
+         * If the user it's already logged in it means that he want's to add an account.
+         * Then we make a little autentification check
         */
         if(Auth::check()){
 
@@ -66,6 +75,14 @@ class OauthController extends Controller
             }
         }
     }
+    
+    /**
+     * Redirect whit a selected provider
+     *
+     * 
+     * @param $provider
+     * @return Laravel\Socialite\Facades\Socialite;
+     */
     public function redirectProvider($provider){
         return Socialite::driver($provider)->redirect();
     }

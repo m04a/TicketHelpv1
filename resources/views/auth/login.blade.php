@@ -88,7 +88,7 @@
                     <span class="align-middle"> Iniciar sessió amb VK</span>
                 </div>
             </a>
-            
+
                 <a href="{{ url('/auth/reddit/redirect')}}">
                     <div class="w-full hover:fill-blue-100 mb-3 text-center bg-transparent hover:bg-blue-500 text-blue-500 font-semibold hover:text-white py-3  border border-blue-500 hover:border-transparent transition ease-in-out duration-150">
                         <svg class="icon mr-1 0" xmlns="http://www.w3.org/2000/svg" viewBox="1 2 20 20">
@@ -96,6 +96,7 @@
                         </svg>
                         <span class="align-middle"> Iniciar sessió amb Reddit</span>
                     </div>
+                </a>
                 <a href="{{ url('/auth/gitlab/redirect')}}">
                     <div class="w-full hover:fill-red-100 mb-3 text-center bg-transparent hover:bg-orange-600 text-orange-500 font-semibold hover:text-white py-3  border border-orange-300 hover:border-transparent transition ease-in-out duration-150">
                         <svg class="icon mr-1 0" xmlns="http://www.w3.org/2000/svg" viewBox="1 2 20 20">

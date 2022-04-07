@@ -9,6 +9,11 @@ class Guide extends Model
 {
     use HasFactory;
 
+     /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
     protected $fillable = [
         'title',
         'description',
@@ -16,6 +21,11 @@ class Guide extends Model
         'user_id',
     ];
 
+     /**
+     * Make relationship of users
+     *
+     * @return belongsTo(Modal, 'name');
+     */
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
