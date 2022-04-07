@@ -161,6 +161,9 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/admin/departments/view-question/{id}', [DepartamentController::class, "showquestion"])
         ->name('admin.departments.view-question');
 
+        Route::get('/admin/departments/view-suggestion/{id}', [DepartamentController::class, "showsuggestion"])
+        ->name('admin.departments.view-suggestion');
+
         Route::post('/admin/departments/create', [DepartamentController::class, "store"])
             ->name('admin.departments.store');
 
