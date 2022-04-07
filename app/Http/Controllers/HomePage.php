@@ -10,6 +10,9 @@ use App\Models\User;
 use App\Models\Guide;
 use App\Models\Suggestion;
 use App\Models\Device;
+use App\Models\Type;
+use App\Models\Zone;
+use App\Models\Department;
 
 class HomePage extends Controller
 {
@@ -29,6 +32,9 @@ class HomePage extends Controller
             $data['guideCount'] = Guide::get()->count();
             $data['suggestionCount'] = Suggestion::get()->count();
             $data['deviceCount'] = Device::get()->count();
+            $data['typeCount'] = Type::get()->count();
+            $data['zoneCount'] = Zone::get()->count();
+            $data['departmentCount'] = Department::get()->count();
             return view('admin.dashboard', $data);
         }elseif(Auth::check() && Auth::user()->role_id == 1){
             return view('user.dashboard');
