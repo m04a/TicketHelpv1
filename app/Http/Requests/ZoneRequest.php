@@ -29,6 +29,12 @@ class ZoneRequest extends FormRequest
             'description' => ['required', 'string'],
         ];
     }
+
+    /**
+     * Return message of error
+     *
+     * @return array
+     */
     public function messages(){
         return [
             'name.required' => 'el nom es invalid!',

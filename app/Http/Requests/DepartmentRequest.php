@@ -30,6 +30,11 @@ class DepartmentRequest extends FormRequest
             'name' => ['required', 'string'],
         ];
     }
+    /**
+     * Return message of error
+     *
+     * @return array
+     */
     public function messages(){
         return [
         'name.required' => 'El deparatament és invalid, revisa les dades introduïdes',

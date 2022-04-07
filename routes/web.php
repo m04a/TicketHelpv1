@@ -50,9 +50,7 @@ Route::middleware(['auth'])->group(function () {
 
         // ADMIN
 
-        Route::get('/admin/dashboard', function () {
-            return view('admin/dashboard');
-        })->name('admin.dashboard');
+        Route::get('/admin/dashboard', [HomePage::class, 'index'])->name('admin.dashboard');
 
         ///////////////////////////////////////////////////
 
@@ -324,6 +322,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/user/profile/', [UserController::class, 'show'])->name('user.profile.index');
 
     Route::put('/user/profile/{id}', [UserController::class, 'update'])->name('user.profile.update');
+
+    Route::post('/user/profile/reset', [PasswordResetLinkController::class, 'store'])->name('password.email');
+
 
     ///////////////////////////////////////////////////
     Route::post('/user/messages/{id}', [MessageController::class, "store"])

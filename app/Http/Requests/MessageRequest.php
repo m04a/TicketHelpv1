@@ -30,6 +30,12 @@ class MessageRequest extends FormRequest
             'question_id' => ['nullable','integer']
         ];
     }
+    
+    /**
+     * Return message of error
+     *
+     * @return array
+     */
     public function messages(){
         return [
         'content.required' => 'El contingut és invalid, revisa les dades introduïdes',

@@ -24,8 +24,8 @@ class SuggestionController extends Controller
         $userRole = User::where('id', '=', $idUser)->get(['role_id']);
 
         if ($userRole[0]['role_id'] > 1) {
-            $data['suggestions'] = Suggestion::paginate(10)
-            ->orderBy('created_at', 'DESC')
+            $data['suggestions'] = Suggestion::orderBy('created_at', 'DESC')
+            ->paginate(10)
             ->through(fn ($item) => [
               "id" => $item->id,
               "title" => $item->title,
@@ -33,8 +33,8 @@ class SuggestionController extends Controller
               ]);
                 return view('admin.suggestions.index', $data);
         }else{
-            $data['suggestions'] = Suggestion::where('user_id', '=', $idUser)
-            ->orderBy('created_at', 'DESC')
+            $data['suggestions'] = Suggestion::orderBy('created_at', 'DESC')
+            ->where('user_id', '=', $idUser)
             ->paginate(10)
             ->through(fn ($item) => [
               "id" => $item->id,
@@ -229,6 +229,14 @@ class SuggestionController extends Controller
             }
         }
     }
+
+    /**
+     * Retun values in json array for Angular graphic. 
+     *
+     * 
+     * 
+     * @return @return json_encode($array)
+     */
     public function graph5()
     {
         $suggestions = Department::withCount("suggestions")->get()
