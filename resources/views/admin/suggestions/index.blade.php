@@ -44,6 +44,7 @@
                             <th>Id</th>
                             <th>Assumpte</th>
                             <th>Missatge</th>
+                            <th>Departament</th>
                             <th></th>
                         </tr>
                         </thead>
@@ -53,6 +54,7 @@
                             <td data-label="Id">#{{ $suggestion['id']}}</td>
                             <td data-label="Assumpte">{{ $suggestion['title'] }}</td>
                             <td data-label="Missatge">{{ $suggestion['description'] }}</td>
+                            <td data-label="Departament">{{ $suggestion['department'] }}</td>
                             <td class="actions-cell">
                                 <div class="buttons right nowrap">
                                     <a href="{{ url('/admin/suggestions/view/' . $suggestion['id']) }}">

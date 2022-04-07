@@ -23,13 +23,20 @@ class SuggestionController extends Controller
 
         $userRole = User::where('id', '=', $idUser)->get(['role_id']);
 
+        if (Auth::user()->department_id != null) {
+            $suggestionDepartment = Suggestion::where('department_id', Auth::user()->department_id)->orderBy('created_at', 'DESC');
+        } else {
+            $suggestionDepartment1 = Suggestion::where('id', '>', '0' )->orderBy('created_at', 'DESC');
+        }
+
         if ($userRole[0]['role_id'] > 1) {
-            $data['suggestions'] = Suggestion::orderBy('created_at', 'DESC')
+            $data['suggestions'] = $suggestionDepartment
             ->paginate(10)
             ->through(fn ($item) => [
               "id" => $item->id,
               "title" => $item->title,
               "description" => $item->description,
+              "department" => $item->department->name,
               ]);
                 return view('admin.suggestions.index', $data);
         }else{
