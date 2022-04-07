@@ -59,7 +59,7 @@
                     <x-pagination>
                         @for($i = 0; $i < $history->lastPage(); $i++)
                             <div class="buttons">
-                                <a class="pagination-next m-2" href="{{ url('/admin/breakdowns?history=' . $i+1) }}" >
+                                <a class="pagination-next m-2" href="{{ url('/admin/devices/history?history=' . $i+1) }}" >
                                     @if($history->currentPage() == $i+1) 
                                     <button type="button" class="button active">{{ $i+1 }}</button>
                                     @else

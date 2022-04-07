@@ -211,7 +211,7 @@ class DepartamentController extends Controller
      * @return view('name',($object),($object));
      */
      public function history($id){
-        $history['history'] = Breakdown::where('department_id', $id)
+        $history = Breakdown::where('department_id', $id)
         ->orderBy('created_at', 'DESC')
         ->paginate(10, ["*"], "history")
         ->through(fn ($item) => [
@@ -224,9 +224,9 @@ class DepartamentController extends Controller
             "manager" => optional($item->manager)->username
         ]);
 
-        $historyquestion['historyquestion'] = Question::where('department_id', $id)
+        $historyquestion = Question::where('department_id', $id)
         ->orderBy('created_at', 'DESC')
-        ->paginate(10, ["*"], "history")
+        ->paginate(10, ["*"], "historyquestion")
         ->through(fn ($item) => [
             "id" => $item->id,
             "title" => $item->title,
@@ -235,8 +235,17 @@ class DepartamentController extends Controller
             "department_id" => $item->department->name,
             "user_id" => $item->user->username,
         ]);
+
+        $historysuggestion = Suggestion::where('department_id', $id)
+        ->orderBy('created_at', 'DESC')
+        ->paginate(10, ["*"], "historysuggestion")
+        ->through(fn ($item) => [
+          "id" => $item->id,
+          "title" => $item->title,
+          "description" => $item->description,
+          ]);
     
-        return view('admin.departments.history',$history,$historyquestion);
+        return view('admin.departments.history',['history' => $history,'historyquestion' => $historyquestion,'historysuggestion' => $historysuggestion]);
     }
 
     /**
@@ -270,5 +279,12 @@ class DepartamentController extends Controller
         ]);
 
         return view('admin.departments.view-question', ['questions' => $questions, 'messages' => $messages]);
+    }
+
+    public function showsuggestion($id)
+    {
+        $suggestion = Suggestion::findOrFail($id);
+
+        return view('admin.departments.view-suggestion', ['suggestions' => $suggestion]);
     }
 }

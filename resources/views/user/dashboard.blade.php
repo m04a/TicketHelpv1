@@ -2,7 +2,7 @@
     @csrf
     <x-slot name="header">
         <h1 class="title">
-            Dashboard
+            Inici
         </h1>
     </x-slot>
     <x-slot name="slot">

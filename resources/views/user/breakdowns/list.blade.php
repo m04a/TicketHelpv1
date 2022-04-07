@@ -15,7 +15,7 @@
             <div class="card has-table">
                 <header class="card-header">
                     <p class="card-header-title">
-                        Sense Assignar
+                        LListat
                     </p>
                     <a href="{{ url('/user/breakdowns/create') }}" class="button-table-add">
                         <div class="button-table-add-separation">
@@ -35,7 +35,7 @@
                             <th>Estat</th>
                             <th>Departament</th>
                             <th>Manager</th>
-                            <th>Aula</th>
+                            <th>Zona</th>
                             <th></th>
                         </tr>
                         </thead>

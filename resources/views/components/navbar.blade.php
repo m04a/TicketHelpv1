@@ -27,20 +27,16 @@
                         <span class="icon"><i class="mdi mdi-account"></i></span>
                         <span>Perfil</span>
                     </a>
-                    @else 
+                    <a href="/admin/settings" class="navbar-item">
+                        <span class="icon"><i class="mdi mdi-settings"></i></span>
+                        <span>Paràmetres</span>
+                    </a>
+                    @else
                     <a href="{{ url('/user/profile/') }}" class="navbar-item">
                         <span class="icon"><i class="mdi mdi-account"></i></span>
                         <span>Perfil</span>
                     </a>
                     @endif
-                    <a href="" class="navbar-item">
-                        <span class="icon"><i class="mdi mdi-settings"></i></span>
-                        <span>Paràmetres</span>
-                    </a>
-                    <a href="" class="navbar-item">
-                        <span class="icon"><i class="mdi mdi-email"></i></span>
-                        <span>Missatges</span>
-                    </a>
                     <hr class="navbar-divider">
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf

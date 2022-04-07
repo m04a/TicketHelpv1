@@ -26,9 +26,14 @@ class QuestionController extends Controller
         $userRole = User::where('id', '=', $idUser)->get(['role_id']);
 
         if($userRole[0]['role_id'] > 1){
+
+            if (Auth::user()->department_id) {
+                $questionDepartment1 = Question::where('department_id', Auth::user()->department_id)->orderBy('created_at', 'DESC');
+            } else {
+                $questionDepartment1 = Question::where('id', '>', '0' )->orderBy('created_at', 'DESC');
+            }
             
-            $data['unassigned'] = Question::where('status', 1)
-            ->orderBy('created_at', 'DESC')
+            $data['unassigned'] = $questionDepartment1->where('status', 1)
             ->paginate(5, ["*"], "unassigned")
             ->through(fn ($item) => [
                 "id" => $item->id,
@@ -39,8 +44,13 @@ class QuestionController extends Controller
                 "user_id" => $item->user->username,
             ]);
 
-            $data['assigned'] = Question::where('status', 2)
-            ->orderBy('created_at', 'DESC')
+            if (Auth::user()->department_id) {
+                $questionDepartment2 = Question::where('department_id', Auth::user()->department_id)->orderBy('created_at', 'DESC');
+            } else {
+                $questionDepartment2 = Question::where('id', '>', '0' )->orderBy('created_at', 'DESC');
+            }
+
+            $data['assigned'] = $questionDepartment2->where('status', 2)
             ->paginate(5, ["*"], "assigned")
             ->through(fn ($item) => [
                 "id" => $item->id,
@@ -52,8 +62,13 @@ class QuestionController extends Controller
                 "manager_id" => $item->manager->username,
             ]);
 
-            $data['done'] = Question::where('status', 3)
-            ->orderBy('created_at', 'DESC')
+            if (Auth::user()->department_id) {
+                $questionDepartment3 = Question::where('department_id', Auth::user()->department_id)->orderBy('created_at', 'DESC');
+            } else {
+                $questionDepartment3 = Question::where('id', '>', '0' )->orderBy('created_at', 'DESC');
+            }
+
+            $data['done'] = $questionDepartment3->where('status', 3)
             ->paginate(5, ["*"], "done")
             ->through(fn ($item) => [
                 "id" => $item->id,
@@ -92,7 +107,7 @@ class QuestionController extends Controller
      */
     public function create(Request $request)
     {
-        //
+        
         $department = Department::all();
 
         $manager = User::where('role_id',3)
@@ -129,8 +144,8 @@ class QuestionController extends Controller
 
             $questions->title = $request->title;
             $questions->description = $request->description;
-            $questions->status = $request->status;
-            $questions->department_id = $request->departament;
+            $questions->status = 1;
+            $questions->department_id = $request->department_id;
             $questions->user_id = $idUser;
 
             if($questions->save()){
@@ -142,9 +157,9 @@ class QuestionController extends Controller
             $questions->title = $request->title;
             $questions->description = $request->description;
             $questions->status = 1;
-            $questions->department_id = $request->departament;
+            $questions->department_id = $request->department_id;
             $questions->user_id = $idUser;
-            
+
             if($questions->save()){
                 return redirect('user/questions/create')->with('success', "S'ha creat la pergunta correctament!");
             }
@@ -169,9 +184,9 @@ class QuestionController extends Controller
             $questions = Question::findOrFail($id);
 
             $questions['username'] = $questions->user->username;
-            
+
             $questions['department'] = $questions->department->name;
-            
+
             if (isset($questions->manager->username)) {
                 $questions["manager"] = $questions->manager->username;
             } else {
@@ -184,29 +199,29 @@ class QuestionController extends Controller
                 'content' => $item->content,
                 'user' => $item->user->username,
             ]);
-    
+
             return view('admin.questions.view', ['questions' => $questions, 'messages' => $messages]);
         } else {
 
             $questions = Question::findOrFail($id);
 
             $questions['username'] = $questions->user->username;
-            
+
             $questions['department'] = $questions->department->name;
-            
+
             if (isset($questions->manager->username)) {
                 $questions["manager"] = $questions->manager->username;
             } else {
                 $questions["manager"] = "No assignat";
             }
-            
+
             $messages = Message::where('question_id', $questions['id'])->get()
             ->map(fn ($item) => [
                 'id' => $item->id,
                 'content' => $item->content,
                 'user' => $item->user->username,
             ]);
-    
+
             return view('user.questions.view', ['questions' => $questions, 'messages' => $messages]);
         }
     }
@@ -232,20 +247,20 @@ class QuestionController extends Controller
             $manager = User::where('role_id',3)
             ->orWhere('role_id',2)
             ->orderBy('role_id')->get();
-    
+
             $departments = Department::all();
-    
+
             return view('admin.questions.edit' , ['departments' => $departments, 'manager' => $manager])->with('questions',$questions);
-            
+
         } else {
             $questions = Question::where('id', $id)->first();
 
             $manager = User::where('role_id',3)
             ->orWhere('role_id',2)
             ->orderBy('role_id')->get();
-    
+
             $departments = Department::all();
-    
+
             return view('user.questions.edit' , ['departments' => $departments, 'manager' => $manager])->with('questions',$questions);
         }
     }
@@ -270,17 +285,17 @@ class QuestionController extends Controller
             $questions->title = $request->title;
             $questions->description = $request->description;
             $questions->status = $request->status;
-            $questions->department_id = $request->departament;
+            $questions->department_id = $request->department_id;
             $questions->manager_id = $request->manager;
 
             if ($questions->status == 1) {
                 $questions->status = 2;
             }
-    
+
             if($questions->save()){
                 return back()->with('success',"La Pregunta S'ha actualizat correctament");
             }
-            
+
         } else {
             $questions = Question::findOrFail($id);
 
@@ -288,13 +303,13 @@ class QuestionController extends Controller
             $questions->description = $request->description;
             $questions->department_id = $request->departament;
             $questions->manager_id = $request->manager;
-    
+
             if($questions->save()){
                 return back()->with('success',"La pregunta s'ha actualizat correctament");
             }
-    
+
         }
-    }       
+    }
 
     /**
      * Remove the specified resource from storage.
@@ -311,27 +326,27 @@ class QuestionController extends Controller
         if ($userRole[0]['role_id'] > 1){
 
             $question = Question::findOrFail($id);
-        
+
             $result = $question->delete();
-            
+
             if ($result) {
                 return redirect('admin/questions')->with('success', 'Pregunta esborrada!');
             }
-    
+
             return redirect('admin/questions')->with('error', 'Error inesperat. Contacti amb l\'administrador del lloc');
-            
+
         } else {
             $question = Question::findOrFail($id);
-        
+
             $result = $question->delete();
             if($question['user_id'] == $idUser){
                 if ($result) {
                     return redirect('user/questions/list')->with('success', 'Pregunta esborrada!');
                 }
             }
-    
+
             return redirect('user/questions/list')->with('error', 'Error inesperat. Contacti amb l\'administrador del lloc');
-    
+
         }
     }
 

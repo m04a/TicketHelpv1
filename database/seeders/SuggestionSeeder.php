@@ -43,13 +43,13 @@ class SuggestionSeeder extends Seeder
             'title' => 'Millora el aula',
             'description' => 'En el aula fa molta fred mamahuevo',
             'department_id' => 2,
-            'user_id' => 6,
+            'user_id' => 2,
         ]);
         DB::table('suggestions')->insert([
             'title' => 'Millora el aula',
             'description' => 'En el aula fa molta fred mamahuevo',
             'department_id' => 4,
-            'user_id' => 8,
+            'user_id' => 1,
         ]);
     }
 }

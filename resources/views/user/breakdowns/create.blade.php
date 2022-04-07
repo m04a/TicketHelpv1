@@ -69,13 +69,10 @@
                     </x-select>
                 </div>
                 <div class="mt-4 column-right">
-                    <x-label for="rol" :value="__('Zona')" />
+                    <x-label for="zone_id" :value="__('Zona')" />
 
-                    <x-select name="zone_id" class="block mt-4 w-full">
-                        @foreach ($zones as $item)
-                            <option value="{{$item->id}} ">{{ $item->label }}</option>
-                        @endforeach
-                    </x-select>
+                    <x-input  type="text" class="input-content input-disabled" value="{{Auth::user()->zone->label}}" disabled />
+                    <input name="zone_id" type="hidden" value="{{Auth::user()->zone_id}}">
                 </div>
             </div>
 

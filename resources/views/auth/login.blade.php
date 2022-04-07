@@ -18,7 +18,8 @@
             @csrf
 
             <!-- Email Address -->
-            <a href="{{ url('/auth/github/redirect') }}">
+                @if($oauthData['oauth_github'] == 1)
+                <a href="{{ url('/auth/github/redirect') }}">
                 <div
                     class="w-full hover:fill-gray-50 mb-3 text-center bg-transparent hover:bg-gray-700 text-gray-900 font-semibold hover:text-white py-3  border border-gray-600 hover:border-transparent transition ease-in-out duration-150">
                     <svg class="icon mr-1 0" xmlns="http://www.w3.org/2000/svg" width="32px" height="32px"
@@ -29,7 +30,9 @@
                     <span class="align-middle"> Iniciar sessió amb Github</span>
                 </div>
             </a>
-            <a href="{{ url('/auth/google/redirect') }}">
+                @endif
+                @if($oauthData['oauth_google'] == 1)
+                <a href="{{ url('/auth/google/redirect') }}">
                 <div
                     class="w-full hover:fill-red-100 mb-3 text-center bg-transparent hover:bg-red-700 text-red-900 font-semibold hover:text-white py-3  border border-red-600 hover:border-transparent transition ease-in-out duration-150">
                     <svg class="icon mr-1 0" xmlns="http://www.w3.org/2000/svg" viewBox="1 2 20 20">
@@ -39,6 +42,8 @@
                     <span class="align-middle"> Iniciar sessió amb Google</span>
                 </div>
             </a>
+                @endif
+                @if($oauthData['oauth_discord'] == 1)
             <a href="{{ url('/auth/discord/redirect') }}">
                 <div
                     class="w-full hover:fill-red-100 mb-3 text-center bg-transparent hover:bg-blue-700 text-blue-800 font-semibold hover:text-white py-3  border border-blue-700 hover:border-transparent transition ease-in-out duration-150">
@@ -54,7 +59,9 @@
                     <span class="align-middle"> Iniciar sessió amb Discord</span>
                 </div>
             </a>
-            <a href="{{ url('/auth/instagram/redirect') }}">
+                @endif
+                @if($oauthData['oauth_instagram'] == 1)
+                <a href="{{ url('/auth/instagram/redirect') }}">
                 <div
                     class="w-full hover:fill-red-100 mb-3 text-center instagram text-purple-800 font-semibold hover:text-white py-3  border border-purple-700 hover:border-transparent transition ease-in-out duration-150">
                     <svg class="icon mr-1 0" viewBox="0 -20 325 325" version="1.1" xmlns="http://www.w3.org/2000/svg"
@@ -65,7 +72,9 @@
                     <span class="align-middle"> Iniciar sessió amb Instagram</span>
                 </div>
             </a>
-            <a href="{{ url('/auth/facebook/redirect') }}">
+                @endif
+                @if($oauthData['oauth_facebook'] == 1)
+                <a href="{{ url('/auth/facebook/redirect') }}">
                 <div
                     class="w-full hover:fill-blue-100 mb-3 text-center bg-transparent hover:bg-blue-500 text-blue-500 font-semibold hover:text-white py-3  border border-blue-500 hover:border-transparent transition ease-in-out duration-150">
                     <svg class="icon mr-1 0" xmlns="http://www.w3.org/2000/svg" viewBox="1 2 20 20">
@@ -78,7 +87,9 @@
                     <span class="align-middle"> Iniciar sessió amb Facebook</span>
                 </div>
             </a>
-            <a href="{{ url('/auth/vkontakte/redirect') }}">
+                @endif
+                    @if($oauthData['oauth_vk'] == 1)
+                    <a href="{{ url('/auth/vkontakte/redirect') }}">
                 <div
                     class="w-full hover:fill-blue-100 mb-3 text-center bg-transparent hover:bg-blue-500 text-blue-500 font-semibold hover:text-white py-3  border border-blue-500 hover:border-transparent transition ease-in-out duration-150">
                     <svg class="icon mr-1 0" xmlns="http://www.w3.org/2000/svg" viewBox="1 2 20 20">
@@ -87,8 +98,10 @@
                     </svg>
                     <span class="align-middle"> Iniciar sessió amb VK</span>
                 </div>
-            </a>
+                 </a>
+                    @endif
 
+                    @if($oauthData['oauth_reddit'] == 1)
                 <a href="{{ url('/auth/reddit/redirect')}}">
                     <div class="w-full hover:fill-blue-100 mb-3 text-center bg-transparent hover:bg-blue-500 text-blue-500 font-semibold hover:text-white py-3  border border-blue-500 hover:border-transparent transition ease-in-out duration-150">
                         <svg class="icon mr-1 0" xmlns="http://www.w3.org/2000/svg" viewBox="1 2 20 20">
@@ -97,7 +110,9 @@
                         <span class="align-middle"> Iniciar sessió amb Reddit</span>
                     </div>
                 </a>
-                <a href="{{ url('/auth/gitlab/redirect')}}">
+                    @endif
+                    @if($oauthData['oauth_gitlab'] == 1)
+                    <a href="{{ url('/auth/gitlab/redirect')}}">
                     <div class="w-full hover:fill-red-100 mb-3 text-center bg-transparent hover:bg-orange-600 text-orange-500 font-semibold hover:text-white py-3  border border-orange-300 hover:border-transparent transition ease-in-out duration-150">
                         <svg class="icon mr-1 0" xmlns="http://www.w3.org/2000/svg" viewBox="1 2 20 20">
                             <path d="M14.381966,9 L17.1055728,3.5527864 C17.510563,2.74280594 18.6976082,2.84525834 18.9578263,3.71265211 L21.9578263,13.7126521 C22.0764694,14.1081293 21.9398565,14.5358621 21.6139406,14.7893522 L12.6139406,21.7893522 C12.2528301,22.0702159 11.7471699,22.0702159 11.3860594,21.7893522 L2.38605939,14.7893522 C2.06014352,14.5358621 1.92353056,14.1081293 2.04217371,13.7126521 L5.04217371,3.71265211 C5.30239185,2.84525834 6.48943696,2.74280594 6.89442719,3.5527864 L9.61803399,9 L14.381966,9 Z M17.7667436,6.7025808 L15.8944272,10.4472136 C15.7250352,10.7859976 15.3787721,11 15,11 L9,11 C8.62122794,11 8.27496482,10.7859976 8.10557281,10.4472136 L6.23325641,6.7025808 L4.15466686,13.6312126 L12,19.7331384 L19.8453331,13.6312126 L17.7667436,6.7025808 Z"/>
@@ -105,6 +120,7 @@
                         <span class="align-middle"> Iniciar sessió amb GitLab</span>
                     </div>
                 </a>
+                    @endif
             <div>
                 <x-label for="email" :value="__('Correu electronic')" />
 
@@ -134,7 +150,7 @@
                 @if (Route::has('password.request'))
                     <a class="underline text-sm text-gray-600 hover:text-gray-900"
                         href="{{ route('password.request') }}">
-                        {{ __('Has olvidat el password?') }}
+                        {{ __('Recuperar contrasenya') }}
                     </a>
                 @endif
 

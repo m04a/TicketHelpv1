@@ -6,20 +6,18 @@
     </x-slot>
     <x-slot name="slot">
         @if(session('success'))
-            <x-success-alert id="message" class="transition-messages-questions-user">
-                {{ session('success') }}
-            </x-success-alert>
+                <x-success-alert id="message" class="transition-messages-questions-user">
+                    {{ session('success') }}
+                </x-success-alert>
         @endif
         @if ($errors->any())
-
-            <x-error-alert id="message" class="transition-error-messages-questions-user">
+            <x-error-alert id="message" class="transition-messages-questions-user">
                 <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
                 </ul>
             </x-error-alert>
-
         @endif
         <x-create-card-user>
         <form method="POST" action="{{ url('/user/questions/create') }}">

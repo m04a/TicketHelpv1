@@ -6,7 +6,7 @@
             </a>
         </x-slot>
 
-        <div class="mb-4 text-sm text-gray-600">
+        <div class="mb-4 text-sm text-gray-600 text-justify">
             {{ __('Has oblidat la teva contrasenya? Cap problema. Només heu de fer-nos saber la vostra adreça de correu electrònic i us enviarem per correu electrònic un enllaç de restabliment de la contrasenya que us permetrà triar-ne una de nova.') }}
         </div>
 

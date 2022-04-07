@@ -18,7 +18,7 @@ class QuestionSeeder extends Seeder
         //
         DB::table('questions')->insert([
             'title' => 'Problemes amb el projector',
-            'description' => 'Porva de exemple jeje xd',
+            'description' => 'Prova exemple jeje xd',
             'status' => 2,
             'department_id' => 1,
             'user_id' => 1,
@@ -48,7 +48,7 @@ class QuestionSeeder extends Seeder
             'description' => 'Porva de exemple jeje xd',
             'status' => 3,
             'department_id' => 1,
-            'user_id' => 7,
+            'user_id' => 2,
             'manager_id' => 1,
         ]);
         DB::table('questions')->insert([
@@ -56,7 +56,7 @@ class QuestionSeeder extends Seeder
             'description' => 'Porva de exemple jeje xd',
             'status' => 1,
             'department_id' => 1,
-            'user_id' => 7,
+            'user_id' => 4,
             'manager_id' => 1,
         ]);
 
@@ -65,7 +65,7 @@ class QuestionSeeder extends Seeder
             'description' => 'Porva de exemple jeje xd',
             'status' => 1,
             'department_id' => 1,
-            'user_id' => 7,
+            'user_id' => 4,
             'manager_id' => 1,
         ]);
     }

@@ -39,11 +39,9 @@ class PasswordResetLinkController extends Controller
             $request->only('email')
         );
 
-        $request->session()->flush();
-
         return $status == Password::RESET_LINK_SENT
-                    ? back()->with('status', __($status))
+                    ? back()->with('success', "S'ha enviat un correu per canviar la contrasenya")
                     : back()->withInput($request->only('email'))
-                            ->withErrors(['email' => __($status)]);
+                            ->withErrors(['error' => "Hi ha hagut un error a l'enviar el correu per canviar la contrasenya"]);
     }
 }
