@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             DepartmentSeeder::class,
             SuggestionSeeder::class,
             QuestionSeeder::class,
+            SettingSeeder::class,
         ]);
     }
 }

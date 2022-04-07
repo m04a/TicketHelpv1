@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BreakdownController;
 use App\Http\Controllers\OauthController;
+use App\Http\Controllers\SettingController;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -244,6 +245,13 @@ Route::middleware(['auth'])->group(function () {
 
         Route::delete('/admin/messages/{id}',[MessageController::class,"destroy"])
         ->name('admin.messages.delete');
+
+        ///////////////////////////////////////////////////
+
+        Route::get('/admin/settings/', [SettingController::class, 'index'])->name('admin.settings.index');
+
+        Route::post('/admin/settings/', [SettingController::class, 'update'])->name('admin.settings.update');
+
     });
 
 

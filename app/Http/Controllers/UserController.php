@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Setting;
 use App\Models\User;
 use App\Models\Role;
 use Illuminate\Http\Request;
@@ -80,10 +81,12 @@ class UserController extends Controller
 
         $userRole = User::where('id', '=', $idUser)->get(['role_id']);
 
+        $oauthData = Setting::find(1)->toArray();
+
         if($userRole[0]['role_id'] > 1){
-            return view('admin.profile.index' , ['users' => $users]);
+            return view('admin.profile.index' , ['users' => $users],['oauthData' => $oauthData]);
         } else {
-            return view('user.profile.index' , ['users' => $users]);
+            return view('user.profile.index' , ['users' => $users],['oauthData' => $oauthData]);
         }
     }
 
@@ -131,19 +134,19 @@ class UserController extends Controller
     {
         //
         $user = User::findOrFail($id);
-        
+
         $result = $user->delete();
-        
+
         if ($result) {
             return redirect('admin/users')->with('success', "Usuari esborrat!");
         }
     }
 
     /**
-     * Retun values in json array for Angular graphic. 
+     * Retun values in json array for Angular graphic.
      *
-     * 
-     * 
+     *
+     *
      * @return @return json_encode($array)
      */
     public function graph2()

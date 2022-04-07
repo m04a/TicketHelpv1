@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Question;
@@ -39,7 +40,8 @@ class HomePage extends Controller
         }elseif(Auth::check() && Auth::user()->role_id == 1){
             return view('user.dashboard');
         }else{
-            return view('auth/login');
+            $oauthData = Setting::find(1)->toArray();
+            return view('auth/login' ,['oauthData' => $oauthData]);
         }
 
     }
