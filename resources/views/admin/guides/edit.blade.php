@@ -26,9 +26,9 @@
                 </x-error-alert>
             @endif
     <x-create-card>
-        <form method="PUT" action="{{ route('admin.guides.update', $guide) }}" id="editPostForm">
+        <form method="POST" action="{{ url('/admin/guides/update/' . $guide->id) }}" id="editPostForm">
+            @method('PUT')    
             @csrf
-
             <div class="mt-4">
                 <x-label class="label" for="title" :value="__('Titol')" />
 

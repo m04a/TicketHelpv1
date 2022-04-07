@@ -28,7 +28,7 @@
                 <div class="mt-4 column-left">
                     <x-label for="usuari" :value="__('Nom Usuari')" />
 
-                    <x-input id="nom" class="input-content" type="text" name="username"  autofocus required />
+                    <x-input id="nom" class="input-content" type="text" name="username"  autofocus required max=50 min=4/>
                 </div>
 
                 <!-- Rol User -->
@@ -38,7 +38,7 @@
                     <x-select name="role_id" class="block mt-4 w-full">
                         <option value="2">Moderador</option>
                         <option value="3">Administrador</option>
-                        <option value="4">SuperAdmin</option>
+                        <option {{ Auth::user()->role_id < 4 ? 'disabled' : '' }} value="4">SuperAdmin</option>
                     </x-select>
 
                 </div>

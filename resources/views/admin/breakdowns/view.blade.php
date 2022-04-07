@@ -124,7 +124,7 @@
 
             <form method="POST" action="{{ url('/admin/messages/' . $breakdown['id']) }}">
                 @csrf
-                <textarea id="content" name="content" class="textarea"></textarea>
+                <textarea id="content" name="content" class="textarea" maxlength="250"></textarea>
                 <input type="hidden" name="breakdown_id" value="{{ $breakdown['id'] }}" />
                 <div class="button-create">
                     <x-button class="ml-3">

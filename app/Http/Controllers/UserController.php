@@ -148,7 +148,6 @@ class UserController extends Controller
         /*Records to update with the request*/
         $user->username = $request->username;
         $user->email = $request->email;
-        $user->password = Hash::make($request->password);
         $user->role_id = $request->role_id;
 
         if($user->save()){

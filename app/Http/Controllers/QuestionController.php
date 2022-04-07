@@ -290,6 +290,8 @@ class QuestionController extends Controller
 
             if ($questions->status == 1) {
                 $questions->status = 2;
+            } else {
+                $question->status = $request->status;
             }
 
             if($questions->save()){
@@ -301,7 +303,7 @@ class QuestionController extends Controller
 
             $questions->title = $request->title;
             $questions->description = $request->description;
-            $questions->department_id = $request->departament;
+            $questions->department_id = $request->department_id;
             $questions->manager_id = $request->manager;
 
             if($questions->save()){
