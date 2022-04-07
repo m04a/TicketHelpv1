@@ -27,7 +27,11 @@
                         <span class="icon"><i class="mdi mdi-account"></i></span>
                         <span>Perfil</span>
                     </a>
-                    @else 
+                    <a href="/admin/settings" class="navbar-item">
+                        <span class="icon"><i class="mdi mdi-settings"></i></span>
+                        <span>Paràmetres</span>
+                    </a>
+                    @else
                     <a href="{{ url('/user/profile/') }}" class="navbar-item">
                         <span class="icon"><i class="mdi mdi-account"></i></span>
                         <span>Perfil</span>

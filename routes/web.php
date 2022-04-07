@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BreakdownController;
 use App\Http\Controllers\OauthController;
+use App\Http\Controllers\SettingController;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -210,6 +211,9 @@ Route::middleware(['auth'])->group(function () {
             Route::put('/admin/departments/edit/{id}', [DepartamentController::class, "update"])
                 ->name('admin.departments.update');
 
+            Route::get('/admin/departments/view-suggestion/{id}', [DepartamentController::class, "showsuggestion"])
+                ->name('admin.departments.view-suggestion');
+
             Route::delete('/admin/departments/destroy/{id}', [DepartamentController::class, "destroy"])
                 ->name('admin.departments.delete');
 
@@ -275,6 +279,11 @@ Route::middleware(['auth'])->group(function () {
             Route::delete('/admin/types/{id}', [TypeController::class, "destroy"])->name('admin.types.delete');
 
         });
+
+        Route::get('/admin/settings/', [SettingController::class, 'index'])->name('admin.settings.index');
+
+        Route::post('/admin/settings/', [SettingController::class, 'update'])->name('admin.settings.update');
+
     });
 
 
