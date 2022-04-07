@@ -25,38 +25,30 @@
             <form action="{{ url('/user/questions/edit/'.$questions->id) }}" method="POST">
             @method('PUT')
             @csrf
-                <div class="content-column">
+                <div class="columns">
 
-                    <div class="column-left">
+                    <!-- Name User -->
+                    <div class="mt-4">
+                        <x-label class="title" for="assumpte" :value="__('Assumpte')" />
+                        <x-input id="title" class="block mt-4 w-full" type="text" name="title" value="{{ $questions->title }}" placeholder="Sense Assumpte"  autofocus required />       
+                    </div>
+
+                    <div class="mt-4">
                         <x-label for="Tipus" :value="__('Departament')" />
 
-                        <x-select class="block mt-4 w-full" name="departament">
+                        <x-select class="block mt-4 w-full" name="department_id">
                             @foreach ($departments as $item)
                                 <option {{ $questions->department_id==$item->id ? 'selected' : '' }} value="{{$item->id}} ">{{ $item->name }}</option>
                             @endforeach
                         </x-select>
                     </div>
-                    <div class="column-right">
+                    <!-- Text of the suggestion -->
+                    <div class="mt-4">
+                        <x-label class="description" for="missatge" :value="__('Missatge')" />
 
-                        <x-label for="Tipus" :value="__('Manager')" />
-
-                        <x-select class="block mt-4 w-full" name="manager">
-                            @foreach ($manager as $item)
-                                <option {{ $questions->manager_id==$item->id ? 'selected' : '' }} value="{{$item->id}} ">{{ $item->username }}</option>
-                            @endforeach
-                        </x-select>
+                        <textarea class="textarea" type="text" name="description" placeholder="Escriu el teu missatge aquí"  autofocus required>{{ $questions->description }}</textarea>
                     </div>
-                </div>
-                <!-- Name User -->
-                <div class="column-left mt-4">
-                    <x-label class="title" for="assumpte" :value="__('Assumpte')" />
-                    <x-input id="title" class="block mt-4 w-full" type="text" name="title" value="{{ $questions->title }}" placeholder="Sense Assumpte"  autofocus required />       
-                </div>
-                <!-- Text of the suggestion -->
-                <div class="mt-4">
-                    <x-label class="description" for="missatge" :value="__('Missatge')" />
 
-                    <textarea class="textarea" type="text" name="description" placeholder="Escriu el teu missatge aquí"  autofocus required>{{ $questions->description }}</textarea>
                 </div>
 
 

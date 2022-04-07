@@ -99,13 +99,8 @@
         <x-create-card-user>
             <p class="font-bold mb-3 text-xl">Respostes</p>
             @foreach ($messages as $item)
-                @if($item['user'] == $breakdown['username'])
-                    <x-label for="manager" class="mt-4" :value="__($item['user'])" />
-                    <textarea class="textarea input-disabled" disabled>{{ $item['content'] }}</textarea>
-                @else
-                    <x-label for="manager" class="flex mt-4 justify-end" :value="__($item['user'])" />
-                    <textarea class="textarea input-disabled" disabled>{{ $item['content'] }}</textarea>
-                @endif
+                <x-label for="manager" class="mt-4" :value="__($item['user'])" />
+                <textarea class="textarea input-disabled" disabled>{{ $item['content'] }}</textarea>
             @endforeach
         </x-create-card-user>
 

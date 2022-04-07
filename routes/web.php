@@ -146,12 +146,6 @@ Route::middleware(['auth'])->group(function () {
         
         ///////////////////////////////////////////////////
 
-        Route::post('/admin/messages/{id}', [MessageController::class, "store"])
-        ->name('admin.messages.store');
-
-        Route::delete('/admin/messages/{id}',[MessageController::class,"destroy"])
-        ->name('admin.messages.delete');
-
         Route::middleware(['admin'])->group(function () {
 
             //ADMIN
@@ -274,6 +268,14 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/user/dashboard', function () {
         return view('user/dashboard');
     })->name('user.dashboard');
+
+    //////////////////////////////////////////////////
+
+    Route::post('/admin/messages/{id}', [MessageController::class, "store"])
+        ->name('admin.messages.store');
+
+    Route::delete('/admin/messages/{id}',[MessageController::class,"destroy"])
+        ->name('admin.messages.delete');
 
     ///////////////////////////////////////////////////
 
