@@ -3703,6 +3703,7 @@ td.image-cell .image {
   padding-bottom: 1px;
   padding-top: 0.5rem;
   font-weight: 800;
+  text-transform: uppercase;
 }
 
 .gith {
