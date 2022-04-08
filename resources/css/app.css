@@ -813,7 +813,7 @@ td.image-cell .image {
 }
 
 .flex-wrap{
-    @apply justify-center bg-zinc-200;
+    @apply justify-center;
 }
 
 .names{
