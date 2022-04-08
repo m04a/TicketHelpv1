@@ -27,7 +27,7 @@
                     <table>
                         <thead>
                             <tr>
-                                <th>Titol</th>
+                                <th>Títol</th>
                                 <th>Descripció</th>
                                 <th>Autor</th>
                                 <th></th>
