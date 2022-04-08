@@ -254,11 +254,17 @@ Route::middleware(['auth'])->group(function () {
 
             Route::delete('/admin/types/{id}', [TypeController::class, "destroy"])->name('admin.types.delete');
 
+
+            Route::get('/admin/info/index', function () {
+                return view('admin/info/index');
+            })->name('admin.info.index');
+
         });
 
         Route::get('/admin/settings/', [SettingController::class, 'index'])->name('admin.settings.index');
 
         Route::post('/admin/settings/', [SettingController::class, 'update'])->name('admin.settings.update');
+        
 
     });
 

@@ -807,3 +807,19 @@ td.image-cell .image {
 .logo{
     @apply w-44 h-16;
 }
+
+.card-info{
+    @apply w-80 flex flex-col items-center;
+}
+
+.flex-wrap{
+    @apply justify-center bg-zinc-200;
+}
+
+.names{
+    @apply pb-px pt-2 font-extrabold;
+}
+
+.gith{
+    @apply text-amber-600;
+}
