@@ -34,7 +34,7 @@
                             </svg>
                                 {{ __('Llistat') }}
                         </x-button>
-                    </a>
+                    </a>                    
                 </div>
             </form>
         </x-create-card>

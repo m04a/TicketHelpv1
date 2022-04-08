@@ -18,7 +18,7 @@
                 <div class="card-info bg-white shadow-md">
                     <img src="https://i.postimg.cc/T19BfLjM/Avatar-Maker.png" alt="Avatar Iker">
                     <h3 class="names">Iker Ramajo</h3>
-                    <a href="https://github.com/iramajo" class="gith">GitHub</a>
+                    <a href="https://github.com/iramajo" class="gith" target="_blank">GitHub</a>
                 </div>
 
                 <div class="card-info bg-white shadow-md">
@@ -31,13 +31,13 @@
                 <div class="card-info bg-white shadow-md">
                     <img src="https://i.postimg.cc/Rh5xc6r8/Avatar-Maker-2.png" alt="Avatar Kirill">
                     <h3 class="names">Kirill Lupenkov</h3>
-                    <a href="https://github.com/nemesxv" class="gith">GitHub</a>
+                    <a href="https://github.com/nemesxv" class="gith" target="_blank">GitHub</a>
                 </div>
                 
                 <div class="card-info bg-white shadow-md">
                     <img src="https://i.postimg.cc/TYNH0XC9/Avatar-Maker-3.png" alt="Avatar Oriol">
                     <h3 class="names">Oriol Bech</h3>
-                    <a href="https://github.com/OriolBech" class="gith">GitHub</a>
+                    <a href="https://github.com/OriolBech" class="gith" target="_blank">GitHub</a>
                 </div>
                 
                 <div class="card-info bg-white shadow-md">

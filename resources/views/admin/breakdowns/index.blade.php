@@ -117,7 +117,7 @@
                             <th>Estat</th>
                             <th>Usuari</th>
                             <th>Departament</th>
-                            <th>Manager</th>
+                            <th>Mànager</th>
                             <th>Aula</th>
                             <th></th>
                         </tr>
@@ -202,7 +202,7 @@
                             <th>Estat</th>
                             <th>Usuari</th>
                             <th>Departament</th>
-                            <th>Manager</th>
+                            <th>Mànager</th>
                             <th>Aula</th>
                             <th></th>
                         </tr>

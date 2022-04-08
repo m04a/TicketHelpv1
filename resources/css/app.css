@@ -817,7 +817,7 @@ td.image-cell .image {
 }
 
 .names{
-    @apply pb-px pt-2 font-extrabold;
+    @apply pb-px pt-2 font-extrabold uppercase;
 }
 
 .gith{
