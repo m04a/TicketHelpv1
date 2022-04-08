@@ -291,7 +291,7 @@ class QuestionController extends Controller
             if ($questions->status == 1) {
                 $questions->status = 2;
             } else {
-                $question->status = $request->status;
+                $questions->status = $request->status;
             }
 
             if($questions->save()){
