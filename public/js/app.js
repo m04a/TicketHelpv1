@@ -5619,12 +5619,137 @@ module.exports = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var alpinejs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! alpinejs */ "./node_modules/alpinejs/dist/module.esm.js");
+Object(function webpackMissingModule() { var e = new Error("Cannot find module '@toast-ui/editor'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+Object(function webpackMissingModule() { var e = new Error("Cannot find module '@toast-ui/editor/dist/toastui-editor.css'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+/* harmony import */ var alpinejs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! alpinejs */ "./node_modules/alpinejs/dist/module.esm.js");
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 
-window.Alpine = alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"];
-alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"].start();
+
+
+window.Alpine = alpinejs__WEBPACK_IMPORTED_MODULE_1__["default"];
+alpinejs__WEBPACK_IMPORTED_MODULE_1__["default"].start();
+"use strict";
+/* 
+ * In the future we should search a way to put all of this in Angular
+ */
+
+/* 
+    * Aside & Navbar: dropdowns 
+*/
+
+
+Array.from(document.getElementsByClassName('dropdown')).forEach(function (elA) {
+  elA.addEventListener('click', function (e) {
+    if (e.currentTarget.classList.contains('navbar-item')) {
+      e.currentTarget.classList.toggle('active');
+    } else {
+      var dropdownIcon = e.currentTarget.getElementsByClassName('mdi')[1];
+      e.currentTarget.parentNode.classList.toggle('active');
+      dropdownIcon.classList.toggle('mdi-plus');
+      dropdownIcon.classList.toggle('mdi-minus');
+    }
+  });
+});
+/*
+    * Aside Mobile toggle 
+*/
+
+Array.from(document.getElementsByClassName('mobile-aside-button')).forEach(function (el) {
+  el.addEventListener('click', function (e) {
+    var dropdownIcon = e.currentTarget.getElementsByClassName('icon')[0].getElementsByClassName('mdi')[0];
+    document.documentElement.classList.toggle('aside-mobile-expanded');
+    dropdownIcon.classList.toggle('mdi-forwardburger');
+    dropdownIcon.classList.toggle('mdi-backburger');
+  });
+});
+/* 
+    * NavBar menu mobile toggle 
+*/
+
+Array.from(document.getElementsByClassName('--jb-navbar-menu-toggle')).forEach(function (el) {
+  el.addEventListener('click', function (e) {
+    var dropdownIcon = e.currentTarget.getElementsByClassName('icon')[0].getElementsByClassName('mdi')[0];
+    document.getElementById(e.currentTarget.getAttribute('data-target')).classList.toggle('active');
+    dropdownIcon.classList.toggle('mdi-dots-vertical');
+    dropdownIcon.classList.toggle('mdi-close');
+  });
+});
+/*
+    * No implemented yet but useful if we want to
+*/
+
+/*
+    * Modal: open 
+*/
+
+Array.from(document.getElementsByClassName('--jb-modal')).forEach(function (el) {
+  el.addEventListener('click', function (e) {
+    var modalTarget = e.currentTarget.getAttribute('data-target');
+    document.getElementById(modalTarget).classList.add('active');
+    document.documentElement.classList.add('clipped');
+  });
+});
+/* 
+ * Modal: close 
+*/
+
+Array.from(document.getElementsByClassName('--jb-modal-close')).forEach(function (el) {
+  el.addEventListener('click', function (e) {
+    e.currentTarget.closest('.modal').classList.remove('active');
+    document.documentElement.classList.remove('is-clipped');
+  });
+});
+/* 
+ *Notification dismiss 
+*/
+
+Array.from(document.getElementsByClassName('--jb-notification-dismiss')).forEach(function (el) {
+  el.addEventListener('click', function (e) {
+    e.currentTarget.closest('.notification').classList.add('hidden');
+  });
+});
+/*
+    * script mc @toast-ui/editor
+*/
+
+var editor = new Object(function webpackMissingModule() { var e = new Error("Cannot find module '@toast-ui/editor'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())({
+  el: document.querySelector('#editor'),
+  height: '400px',
+  initialEditType: 'markdown',
+  placeholder: 'Write something cool!'
+});
+
+if (document.querySelector('#createPostForm')) {
+  document.querySelector('#createPostForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    document.querySelector('#content').value = editor.getMarkdown();
+    e.target.submit();
+  });
+}
+
+if (document.querySelector('#editPostForm')) {
+  editor.setMarkdown(document.querySelector('#oldContent').value);
+  document.querySelector('#editPostForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    document.querySelector('#content').value = editor.getMarkdown();
+    e.target.submit();
+  });
+}
+/*
+    * Animation of message successfully or errorr
+*/
+
+
+var message = document.getElementById('message');
+
+window.onload = function (event) {
+  setTimeout(function () {
+    event.preventDefault();
+    message.classList.remove('opacity-100');
+    message.classList.add('hidden');
+  }, 5000);
+};
 
 /***/ }),
 
