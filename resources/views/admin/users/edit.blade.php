@@ -78,7 +78,7 @@
                         
                         <x-select name="department_id" class="block mt-4 w-full">
                             @foreach ($departments as $item)
-                                <option value="{{$item->id}} ">{{ $item->name }}</option>
+                                <option {{ $user->department_id==$item->id ? 'selected' : ''}} value="{{$item->id}} ">{{ $item->name }}</option>
                             @endforeach
                         </x-select>
                     </div>
@@ -88,7 +88,9 @@
                     <x-label for="rol" :value="__('Tria el Rol del Usuari')" />
                     
                     <x-select name="role_id" class="block mt-4 w-full" >
+                        @if (Auth::user()->role_id > 2)
                         <option {{ $user->role_id==3 ? 'selected' : ''}} value="3">Administrador</option>
+                        @endif
                         <option {{ $user->role_id==1 ? 'selected' : ''}} value="1">Usuari</option>
                         <option {{ $user->role_id==2 ? 'selected' : ''}} value="2">Moderador</option>
                     </x-select>

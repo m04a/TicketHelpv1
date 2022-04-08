@@ -149,6 +149,9 @@ class UserController extends Controller
         $user->username = $request->username;
         $user->email = $request->email;
         $user->role_id = $request->role_id;
+        if(isset($request->department_id)) {
+            $user->department_id = $request->department_id;
+        }
 
         if($user->save()){
             return back()->with('success','S\'han actualitzat les dades de l\'usuari.');

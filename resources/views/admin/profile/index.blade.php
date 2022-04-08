@@ -47,6 +47,7 @@
             <x-input id="email" class="input-content" type="email" name="email" value="{{ $users[0]['email'] }}" required  autofocus />
         </div>
         </div>
+        
         <div class="button-create">
             <x-button class="ml-3">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
