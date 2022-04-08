@@ -123,7 +123,7 @@ _We install and configure locally._
    ``` 
 6. Start the server
    ```sh
-   php artisan serve (once the command is made, we access the ip it gave us, "127.0.0.1".)
+   php artisan serve (once the order is made, we access the ip that gave us in a browser, "127.0.0.1:8000".)
    ```
 7. If you want to see the tests execute the following command
     ```sh

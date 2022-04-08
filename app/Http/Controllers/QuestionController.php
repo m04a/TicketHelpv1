@@ -373,7 +373,7 @@ class QuestionController extends Controller
                 "value" => $resolveds
             ],
             [
-                "name" => "En proces",
+                "name" => "En procés",
                 "value" => $inprocess
             ],
             [
