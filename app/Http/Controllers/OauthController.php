@@ -20,6 +20,7 @@ class OauthController extends Controller
      */
     public function authUserOauth($provider){
 
+
         $user = Socialite::driver($provider)->user();
 
         $user_email = $user->email;
@@ -37,6 +38,8 @@ class OauthController extends Controller
         if(Auth::check()){
 
         $user_id = Auth::user()->id;
+
+        $userRole = User::where('id', '=', $user_id)->get(['role_id']);
             /*
              * We check if the user is stored in the database with the same provider
              */
@@ -51,7 +54,12 @@ class OauthController extends Controller
            $oauthObjectModel->mail = $user->email;
 
            if($oauthObjectModel->save()){
-               return redirect('/admin/profile/')->with('success','S\'han actualitzat les dades de l\'usuari.');
+
+               if ($userRole[0]['role_id'] > 1) {
+                   return redirect('/admin/profile/')->with('success','S\'han actualitzat les dades de l\'usuari.');
+               }else{
+                   return redirect('/user/profile/')->with('success','S\'han actualitzat les dades de l\'usuari.');
+               }
            }
           }else{
            $vinculation = Service_oauth::create([
@@ -60,11 +68,19 @@ class OauthController extends Controller
                'user_id' => $user_id,
            ]);
            if($vinculation){
-               return redirect('/admin/profile/')->with('success','S\'han creat les dades de vinculació l\'usuari.');
+               if ($userRole[0]['role_id'] > 1) {
+                   return redirect('/admin/profile/')->with('success','S\'han creat les dades de vinculació l\'usuari.');
+               }else{
+                   return redirect('/user/profile/')->with('success','S\'han creat les dades de vinculació l\'usuari.');
+               }
            }
        }
         }else{
-            return redirect('/admin/profile/')->with('error','No s\'han creat les dades de vinculació l\'usuari. El email ja està vinculat amb aquesta un altre compte');
+            if ($userRole[0]['role_id'] > 1) {
+                return redirect('/admin/profile/')->with('error','No s\'han creat les dades de vinculació l\'usuari. El email ja està vinculat amb aquesta un altre compte');
+            }else{
+                return redirect('/user/profile/')->with('error','No s\'han creat les dades de vinculació l\'usuari. El email ja està vinculat amb aquesta un altre compte');
+            }
         }
         }else{
             if($checkMailoauth){
@@ -73,7 +89,7 @@ class OauthController extends Controller
             }
             else{
                 $oauthData = Setting::find(1)->toArray();
-                return view('auth/login' ,['oauthData' => $oauthData])->with('error','El email no està vinculat amb aquest cap proveidor de correus');
+                return redirect('login' ,['oauthData' => $oauthData])->with('error','El email no està vinculat amb aquest cap proveidor de correus');
             }
         }
     }
