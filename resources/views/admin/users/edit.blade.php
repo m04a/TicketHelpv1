@@ -50,7 +50,7 @@
                         
                         <x-select name="department_id" class="block mt-4 w-full">
                             @foreach ($departments as $item)
-                                <option value="{{$item->id}} ">{{ $item->name }}</option>
+                                <option {{ $user->department_id==$item->id ? 'selected' : ''}} value="{{$item->id}} ">{{ $item->name }}</option>
                             @endforeach
                         </x-select>
                     </div>
