@@ -68,7 +68,7 @@
                 <!-- Status Breakdown -->
                 <div class="column-right">
                     <div class="mt-4">
-                        <x-label for="rol" :value="__('Dispositus')" />
+                        <x-label for="rol" :value="__('Dispositius')" />
 
                         <x-select name="device_id" class="block mt-4 w-full">
                             @foreach ($devices as $item)

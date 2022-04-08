@@ -33,7 +33,6 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Etiqueta</th>
-                                <th>Descripció</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -42,7 +41,6 @@
                             <tr>
                                 <td data-label="Etiqueta">{{ $type['id']}}</td>
                                 <td data-label="Titol">{{ $type['label']}}</td>
-                                <td data-label="Assupte">{{ $type['description']}}</td>
                                 <td class="actions-cell">
                                     <div class="buttons right nowrap">
                                         <a href="{{ url('/admin/types/view/' . $type['id']) }}">

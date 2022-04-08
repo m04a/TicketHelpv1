@@ -368,6 +368,8 @@ class BreakdownController extends Controller
 
             if ($breakdown->status == 1) {
                 $breakdown->status = 2;
+            } else {
+                $breakdown->status = $request->status;
             }
 
             if($breakdown->save()){

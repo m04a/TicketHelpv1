@@ -160,7 +160,13 @@ class ZoneController extends Controller
      * @return view('name',($object),($object));
      */
     public function history($id){
-        $history['history'] = Breakdown::where('zone_id', $id)
+        $zone = Zone::where('id', $id)->get();
+        
+        $nom = $zone[0]['label'];
+
+        $zone_id = $zone[0]['id'];
+
+        $history = Breakdown::where('zone_id', $id)
         ->orderBy('created_at', 'DESC')
         ->paginate(10, ["*"], "history")
         ->through(fn ($item) => [
@@ -172,7 +178,7 @@ class ZoneController extends Controller
             "aula" => $item->zone->label,
             "manager" => optional($item->manager)->username
         ]);
-        return view('admin.zones.history',$history);
+        return view('admin.zones.history',['history' => $history,'nom' => $nom,'id' => $zone_id]);
     }
 
     /**

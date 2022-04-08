@@ -1,64 +1,193 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+<!-- PROJECT SHIELDS -->
+<!--
+*** I'm using markdown "reference style" links for readability.
+*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
+*** See the bottom of this document for the declaration of the reference variables
+*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
+*** https://www.markdownguide.org/basic-syntax/#reference-style-links
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+-->
 
-## About Laravel
+[![Forks][forks-shield]][forks-url]
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+  <a href="https://github.com/Projecte5/TicketHelp">
+    <img src="https://i.ibb.co/hXk4C0k/Ticket-Help.png" alt="Logo" width="200" height="80">
+  </a>
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+  <h3 align="center">TicketHelp</h3>
 
-## Learning Laravel
+  <p align="center">
+    An awesome website to tell us your breakdowns!
+    <br />
+    <a href="https://github.com/Projecte5/TicketHelp"><strong>Explore the docs</strong></a>
+    <br />
+    <br />
+    <a href="https://comoinstalar.online/">:eye: View Demo :eye:</a> 
+    
+  </p>
+</div>
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-## Laravel Sponsors
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Index 📑</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#About The Project ℹ️">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ol>
+</details>
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
 
-### Premium Partners
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+<!-- ABOUT THE PROJECT -->
+## About The Project ℹ️
 
-## Contributing
+This project consists of being able to create incidents, since we know that there are many device incidents, such as in a high school classroom, with our application you will always be able to notify new incidents every time one comes out.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
-## Code of Conduct
+<p align="right">(<a href="#top">back to top</a>)</p>
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
 
-## Security Vulnerabilities
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### Built With 🛠️
 
-## License
+Our application is built with the following languages:
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+* [Laravel](https://laravel.com)
+* [Angular](https://angular.io/)
+* [Tailwindcss](https://tailwindcss.com)
+* [PHP](https://www.php.net/downloads)
+* [MySql](https://www.mysql.com)
+
+
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+
+
+<!-- GETTING STARTED -->
+## Getting Started 🏁
+
+To get a working local copy, follow these simple steps:
+
+### Prerequisites
+
+Before we start we will install a few things:
+* npm
+* php
+* MySql
+
+### Installation ⬇️
+
+_We install and configure locally._
+
+1. Clone the repo
+   ```sh
+   git clone https://github.com/Projecte5/TicketHelp.git
+   ```
+2. Install NPM packages
+   ```sh
+   npm install
+   ```
+3. Install composer packages
+   ```sh
+   composer install
+   ```
+4. Update composer packages
+   ```sh
+   composer update
+   ```   
+5. Update composer packages
+   ```sh
+    php artisan migrate:refresh --seed
+   ``` 
+6. Start the server
+   ```sh
+   php artisan serve (once the command is made, we access the ip it gave us, "127.0.0.1".)
+   ```
+7. If you want to see the tests execute the following command
+    ```sh
+   php artisan test
+   ```
+   
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+<!-- USAGE EXAMPLES -->
+## Usage 📜
+
+First we log in with our username and password, it redirects us to the admin panel or the user panel, it depends on the user with which we have logged in, then we can open an incident of a device in a specific department and a specific classroom.
+
+We can also create a department, in case we need it, among other things.
+
+* LOGIN
+<div align="center">
+    <img src="https://i.ibb.co/JKT9BqC/login-ticket-Help.png" alt="login" width="700" height="300">
+</div>
+
+* ADMIN
+<div align="center">    
+    <img src="https://i.postimg.cc/1PNVMg4K/admin-ticket-Help.png" alt="admin" width="700" height="300">
+</div>
+
+* USER
+<div align="center">
+    <img src="https://i.postimg.cc/g0K8STHj/user-ticket-Help.png" alt="user" width="700" height="300">
+</div>
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+<!-- CONTRIBUTING -->
+## Contributing 💡
+
+If you have a suggestion that would improve this, please fork the repository and create a pull request. You can also simply open an issue with the "improvement" tag. 
+
+Don't forget to give the project a star :star:! Thanks!
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature_AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature_AmazingFeature`)
+5. Open a Pull Request
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+<!-- CONTACT -->
+## Contact 📞
+
+* Mohamed Bourarach - [GitHub](https://github.com/m04a)
+* Alex Aguilera - [GitHub](https://github.com/Luky7600)
+* Oriol Bech - [GitHub](https://github.com/OriolBech)
+* Kirill Lupenkov - [GitHub](https://github.com/nemesxv)
+* Juan Carlos - [GitHub](https://github.com/Juanka007)
+* Iker Ramajo - [GitHub](https://github.com/iramajo)
+* Jorge Luis Martinez - [GitHub](https://github.com/George11849)
+
+Project Link: [Repo](https://github.com/Projecte5/TicketHelp)
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=for-the-badge
+[forks-url]: https://github.com/Projecte5/TicketHelp/network/members
+[product-screenshot]: images/screenshot.png
