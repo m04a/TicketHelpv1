@@ -18,8 +18,10 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'username',
         'email',
+        'role_id',
+        'department_id',
         'password',
     ];
 
@@ -41,4 +43,34 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    
+     /**
+     * Make relationship of roles
+     *
+     * @return belongsTo(Modal, 'name');
+     */
+    public function role()
+    {
+        return $this->belongsTo(Role::class, 'role_id');
+    }
+
+    /**
+     * Reference relationship 1:N on Users and Rols
+     *
+     * @return belongsTo(Modal::class);
+     */
+    public function zone()
+    {
+        return $this->belongsTo(Zone::class, 'zone_id');
+    }
+
+    /**
+     * Reference relationship 1:N on Users and Rols
+     *
+     * @return belongsTo(Modal::class);
+     */
+    public function department()
+    {
+        return $this->belongsTo(Department::class, 'department_id');
+    }
 }
