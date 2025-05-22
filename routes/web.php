@@ -285,19 +285,19 @@ Route::middleware(['auth'])->group(function () {
 
     ///////////////////////////////////////////////////
 
-    Route::get('/user/breakdowns/create', [BreakdownController::class,"create"])->name('user.breakdowns.create');
+    Route::get('/user/breakdowns/create', [BreakdownController::class,"userCreate"])->name('user.breakdowns.create');
 
-    Route::post('/user/breakdowns/create', [BreakdownController::class,"store"])->name('user.breakdowns.store');
+    Route::post('/user/breakdowns/create', [BreakdownController::class,"userStore"])->name('user.breakdowns.store');
 
-    Route::delete('/user/breakdowns/{id}', [BreakdownController::class, "destroy"])->name('user.breakdowns.destroy');
+    Route::delete('/user/breakdowns/{id}', [BreakdownController::class, "userDestroy"])->name('user.breakdowns.destroy');
 
-    Route::get('/user/breakdowns/view/{id}',[BreakdownController::class, "show"])->name('user.breakdowns.show');
+    Route::get('/user/breakdowns/view/{id}',[BreakdownController::class, "userShow"])->name('user.breakdowns.show');
 
-    Route::get('/user/breakdowns/list', [BreakdownController::class, "index"])->name('user.breakdowns.list');;
+    Route::get('/user/breakdowns/list', [BreakdownController::class, "userIndex"])->name('user.breakdowns.list');;
 
-    Route::get('/user/breakdowns/edit/{id}', [BreakdownController::class, "edit"])->name('user.breakdowns.edit');;
+    Route::get('/user/breakdowns/edit/{id}', [BreakdownController::class, "userEdit"])->name('user.breakdowns.edit');;
 
-    Route::put('/user/breakdowns/edit/{id}', [BreakdownController::class, "update"])->name('user.breakdowns.update');;
+    Route::put('/user/breakdowns/edit/{id}', [BreakdownController::class, "userUpdate"])->name('user.breakdowns.update');;
 
     Route::get('user/breakdowns/index', function () {
         return view('/user/breakdowns/index');
@@ -327,17 +327,17 @@ Route::middleware(['auth'])->group(function () {
 
     ///////////////////////////////////////////////////
 
-    Route::get('/user/suggestions/create', [SuggestionController::class, 'create'])->name('user.suggestions.create');
+    Route::get('/user/suggestions/create', [SuggestionController::class, 'userCreate'])->name('user.suggestions.create');
 
-    Route::post('/user/suggestions/store', [SuggestionController::class, 'store'])->name('user.suggestions.store');
+    Route::post('/user/suggestions/store', [SuggestionController::class, 'userStore'])->name('user.suggestions.store');
 
-    Route::get('/user/suggestions/list', [SuggestionController::class, 'index'])->name('user.suggestions.list');
+    Route::get('/user/suggestions/list', [SuggestionController::class, 'userIndex'])->name('user.suggestions.list');
 
-    Route::get('/user/suggestions/edit/{id}', [SuggestionController::class, 'edit'])->name('user.suggestions.edit');
+    Route::get('/user/suggestions/edit/{id}', [SuggestionController::class, 'userEdit'])->name('user.suggestions.edit');
 
-    Route::delete('/user/suggestions/list/{id}', [SuggestionController::class, 'destroy'])->name('user.suggestions.delete');
+    Route::delete('/user/suggestions/list/{id}', [SuggestionController::class, 'userDestroy'])->name('user.suggestions.delete');
 
-    Route::put('/user/suggestions/update/{id}', [SuggestionController::class, 'update'])->name('user.suggestions.update');
+    Route::put('/user/suggestions/update/{id}', [SuggestionController::class, 'userUpdate'])->name('user.suggestions.update');
     
     Route::get('user/suggestions/index', function () {
         return view('/user/suggestions/index');
